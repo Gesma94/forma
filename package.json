@@ -1,5 +1,8 @@
 {
   "name": "forma",
   "version": "1.0.0",
-  "author": "Matteo Gesmundo"
+  "author": "Matteo Gesmundo",
+  "devDependencies": {
+    "@biomejs/biome": "2.0.0"
+  }
 }
