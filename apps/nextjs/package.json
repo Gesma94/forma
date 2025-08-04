@@ -10,6 +10,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "pnpm biome lint --write .",
+    "format": "pnpm biome format --write ."
   }
 }
