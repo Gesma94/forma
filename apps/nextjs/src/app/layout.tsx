@@ -1,3 +1,4 @@
+import { Footer } from '@/layout/footer/footer';
 import { interNextFont } from '../utils/fonts/inter';
 import { roobertNextFont } from '../utils/fonts/roobert';
 import './globals.css';
@@ -10,7 +11,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang='en' className={getHtmlClassName()}>
-      <body className='bg-amber-100'>{children}</body>
+      <body className='bg-amber-100'>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
