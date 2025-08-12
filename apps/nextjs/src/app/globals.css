@@ -4,4 +4,10 @@
   --font-\*: initial;
   --font-base: Inter, sans-serif;
   --font-accent: Roobert, sans-serif;
+
+  --container-8xl: 88rem;
+  --container-9xl: 96rem;
+
+  --color-\*: initial;
+  --color-primary: #e3562d;
 }
