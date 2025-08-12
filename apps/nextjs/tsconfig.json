@@ -21,7 +21,12 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": "./src/",
+    "paths": {
+      "@/ui/*": ["components/ui/*"],
+      "@/layout/*": ["components/layout/*"],
+    }
   },
   "include": [
     "next-env.d.ts",
