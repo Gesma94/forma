@@ -2,7 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
   "extends": ["./../../biome.json"],
   "files": {
-    "includes": ["./biome.json", "./package.json", "./src/**/*.{tsx,ts}", "./postcss.config.mjs"]
+    "includes": ["./biome.json", "./package.json", "./src/**/*.{tsx,ts,css}", "./postcss.config.mjs"]
   },
   "linter": {
     "rules": {

@@ -1,1 +1,7 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@theme {
+  --font-\*: initial;
+  --font-base: Inter, sans-serif;
+  --font-accent: Roobert, sans-serif;
+}
