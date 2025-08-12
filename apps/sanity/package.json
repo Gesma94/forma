@@ -1,0 +1,29 @@
+{
+  "name": "forma",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "lint": "pnpm biome lint --write .",
+    "format": "pnpm biome format --write ."
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/vision": "^4.3.0",
+    "react": "^19.1",
+    "react-dom": "^19.1",
+    "sanity": "^4.3.0",
+    "styled-components": "^6.1.18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1"
+  }
+}

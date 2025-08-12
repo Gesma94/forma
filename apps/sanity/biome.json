@@ -1,0 +1,14 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "extends": ["./../../biome.json"],
+  "files": {
+    "includes": [
+      "./biome.json",
+      "./package.json",
+      "./src/**/*.{tsx,ts,css}",
+      "./sanity.cli.ts",
+      "./sanity.config.ts",
+      ".tsconfig.js"
+    ]
+  }
+}
