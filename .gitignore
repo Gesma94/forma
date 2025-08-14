@@ -16,3 +16,10 @@ dist
 
 # Nextjs directories & files
 .next
+
+# Sanity directories & files
+.sanity
+
+# Generated files
+apps/sanity/generated
+apps/nextjs/src/types/generated
