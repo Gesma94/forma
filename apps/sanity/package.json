@@ -3,27 +3,32 @@
   "private": true,
   "version": "1.0.0",
   "main": "package.json",
-  "license": "UNLICENSED",
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy",
     "lint": "pnpm biome lint --write .",
-    "format": "pnpm biome format --write ."
+    "format": "pnpm biome format --write .",
+    "typegen:delete-generate-folders": "rimraf \"./generated/\" && rimraf \"./nextjs/src/types/generated\"",
+    "typegen:create-generate-folders": "mkdirp \"./generated/schemas/\" && mkdirp \"./generated/types\" && mkdirp \"./../nextjs/src/types/generated\"",
+    "typegen:extract": "pnpm dlx sanity schema extract --path ./generated/schemas/sanity-schema.json",
+    "typegen:generate": "pnpm dlx sanity typegen generate",
+    "typegen:copy": "cpy \"./generated/types/**/*\" \"../nextjs/src/types/generated\"",
+    "typegen": "pnpm run typegen:create-generate-folders && pnpm run typegen:extract && pnpm run typegen:generate && pnpm run typegen:copy"
   },
-  "keywords": [
-    "sanity"
-  ],
   "dependencies": {
     "@sanity/vision": "^4.3.0",
+    "lucide-react": "^0.539.0",
     "react": "^19.1",
     "react-dom": "^19.1",
     "sanity": "^4.3.0",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
-    "@types/react": "^19.1"
+    "@types/react": "^19.1",
+    "cpy-cli": "^6.0.0",
+    "mkdirp": "^3.0.1",
+    "rimraf": "^6.0.1"
   }
 }
