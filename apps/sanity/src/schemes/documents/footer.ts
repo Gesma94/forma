@@ -13,28 +13,28 @@ export const footerDocumentType = defineType({
       name: 'socialLinks',
       title: 'Social Links',
       options: {
-        collapsible: false,
+        collapsible: false
       }
     },
     {
       name: 'linkSection',
       title: 'Link Section',
       options: {
-        collapsible: false,
+        collapsible: false
       }
     },
     {
       name: 'addressSection',
       title: 'Address Section',
       options: {
-        collapsible: false,
+        collapsible: false
       }
     },
     {
       name: 'contactSection',
       title: 'Contact Section',
       options: {
-        collapsible: false,
+        collapsible: false
       }
     }
   ],
@@ -57,7 +57,7 @@ export const footerDocumentType = defineType({
       type: 'string',
       fieldset: 'linkSection',
       validation: rule => rule.required()
-    }),    
+    }),
     defineField({
       type: 'array',
       name: 'links',
