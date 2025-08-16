@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang='en' className={getHtmlClassName()}>
-      <body className='bg-amber-100'>
+      <body className='font-base bg-amber-100'>
         {children}
         <Footer />
       </body>

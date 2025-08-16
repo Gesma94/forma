@@ -1,0 +1,7 @@
+'use client';
+
+import { Separator as AriaSeparator, type SeparatorProps } from 'react-aria-components';
+
+export function Separator(props: SeparatorProps) {
+  return <AriaSeparator {...props} />;
+}

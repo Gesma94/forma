@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-\*: initial;
@@ -10,4 +11,7 @@
 
   --color-\*: initial;
   --color-primary: #e3562d;
+  --color-primary-text: #faf4df;
+
+  --color-bg: #faf4df;
 }
