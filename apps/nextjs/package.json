@@ -6,8 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "pnpm biome lint --write .",
-    "format": "pnpm biome format --write ."
+    "biome:lint": "pnpm biome lint .",
+    "biome:format": "pnpm biome format .",
+    "biome:check": "pnpm biome check .",
+    "biome:check:write": "pnpm biome check --write ."
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
