@@ -6,10 +6,10 @@ type Props = {
   icon: Icon;
 };
 
-export function SocialLink({ url, icon: Icon }: Props) {
+export function FooterSocialLink({ url, icon: Icon }: Props) {
   return (
     <Link href={url} target='_blank' rel='noopener noreferrer'>
-      <Icon className='size-10 text-primary-text' />
+      <Icon className='size-8 text-primary-text' />
     </Link>
   );
 }
