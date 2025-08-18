@@ -11,7 +11,19 @@
 
   --color-\*: initial;
   --color-primary: #e3562d;
+  --color-primary-hover: #cc4926;
+  --color-primary-active: #a73b1f;
+  --color-primary-focus: #ec6840;
+  --color-primary-disabled: #e5e5e5;
   --color-primary-text: #faf4df;
+  --color-primary-text-disabled: #a1a1a1;
 
   --color-bg: #faf4df;
+  --color-bg-hover: #f3eed4;
+  --color-bg-active: #e9e2c1;
+  --color-bg-focus: #f7f2dc;
+  --color-bg-disabled: #f5f5f0;
+  --color-bg-text: #2e1c13;
+  --color-bg-text-disabled: #a1a1a1;
+
 }
