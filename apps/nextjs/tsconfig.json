@@ -26,6 +26,8 @@
     "paths": {
       "@/ui/*": ["components/ui/*"],
       "@/layout/*": ["components/layout/*"],
+      "@/utils/*": ["utils/*"],
+      "@/styles/*": ["styles/*"],
     }
   },
   "include": [
