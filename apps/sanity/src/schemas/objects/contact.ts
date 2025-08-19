@@ -1,10 +1,10 @@
 import { MailIcon, PhoneIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
-import { CONTACT_OBJECT_SCHEMA_TYPE } from '../../utils/sanity-types';
+import { OBJECT_SCHEMA_TYPES } from '../../common/constants';
 
 export const contactObjectType = defineType({
   type: 'object',
-  name: CONTACT_OBJECT_SCHEMA_TYPE,
+  name: OBJECT_SCHEMA_TYPES.contact,
   preview: {
     select: {
       label: 'label',

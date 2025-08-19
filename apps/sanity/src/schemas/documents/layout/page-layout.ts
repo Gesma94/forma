@@ -1,11 +1,11 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
-import { getPageTitleFromId } from '../../../utils/editor';
-import { PAGE_LAYOUT_SCHEMA_TYPE } from '../../../utils/sanity-types';
+import { defineField, defineType } from 'sanity';
+import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
+import { getPageTitleFromId } from '../../../common/utils';
 import { moduleDocumentSchemaTypes } from '../modules';
 
 export const pageLayoutDocumentType = defineType({
   type: 'document',
-  name: PAGE_LAYOUT_SCHEMA_TYPE,
+  name: DOCUMENT_SCHEMA_TYPES.pageLayout,
   preview: {
     select: {
       id: '_id'

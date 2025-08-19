@@ -1,12 +1,12 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
-import { textBlockToPlainText } from '../../../utils/portable-text';
-import { HERO_MODULE_SCHEMA_TYPE } from '../../../utils/sanity-types';
+import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
+import { textBlockToPlainText } from '../../../common/utils';
 import { defineRichEditorField } from '../../../fields';
 
 export const heroModuleDocumentType = defineType({
   type: 'document',
   title: 'Hero Module',
-  name: HERO_MODULE_SCHEMA_TYPE,
+  name: DOCUMENT_SCHEMA_TYPES.heroModule,
   preview: {
     select: {
       title: 'heading',
@@ -15,7 +15,6 @@ export const heroModuleDocumentType = defineType({
     prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Hero Module' })
   },
   fields: [
-    
     defineField({
       name: 'backgroundImage',
       title: 'Background Image',

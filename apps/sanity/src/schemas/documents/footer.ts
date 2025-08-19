@@ -1,9 +1,9 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
-import { CONTACT_OBJECT_SCHEMA_TYPE, FOOTER_SCHEMA_TYPE, LINK_OBJECT_SCHEMA_TYPE } from '../../utils/sanity-types';
+import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../common/constants';
 
 export const footerDocumentType = defineType({
   type: 'document',
-  name: FOOTER_SCHEMA_TYPE,
+  name: DOCUMENT_SCHEMA_TYPES.footer,
   preview: {
     prepare: () => ({ title: 'Footer Settings' })
   },
@@ -63,7 +63,7 @@ export const footerDocumentType = defineType({
       name: 'links',
       title: 'Links',
       fieldset: 'linkSection',
-      of: [defineArrayMember({ type: LINK_OBJECT_SCHEMA_TYPE })]
+      of: [defineArrayMember({ type: OBJECT_SCHEMA_TYPES.link })]
     }),
     defineField({
       name: 'addressTitle',
@@ -105,7 +105,7 @@ export const footerDocumentType = defineType({
       name: 'contacts',
       title: 'Contacts',
       fieldset: 'contactSection',
-      of: [defineArrayMember({ type: CONTACT_OBJECT_SCHEMA_TYPE })]
+      of: [defineArrayMember({ type: OBJECT_SCHEMA_TYPES.contact })]
     }),
     defineField({
       type: 'string',
