@@ -20,11 +20,11 @@
     "typegen": "pnpm run typegen:create-generate-folders && pnpm run typegen:extract && pnpm run typegen:generate && pnpm run typegen:copy"
   },
   "dependencies": {
-    "@sanity/vision": "^4.3.0",
+    "@sanity/vision": "^4.5.0",
     "lucide-react": "^0.539.0",
     "react": "^19.1",
     "react-dom": "^19.1",
-    "sanity": "^4.3.0",
+    "sanity": "^4.5.0",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
