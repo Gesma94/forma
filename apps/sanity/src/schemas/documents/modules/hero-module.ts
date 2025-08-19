@@ -17,6 +17,7 @@ export const heroModuleDocumentType = defineType({
     prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Hero Module' })
   },
   fields: [
+    
     defineField({
       name: 'backgroundImage',
       title: 'Background Image',
