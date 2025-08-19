@@ -7,7 +7,7 @@ type TProps = {
   validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]>;
 }
 
-export function defineRichEditor({ name, title, validation }: TProps): ReturnType<typeof defineField> {
+export function defineRichEditorField({ name, title, validation }: TProps): ReturnType<typeof defineField> {
     return defineField({
           name,
           title,
@@ -30,7 +30,7 @@ export function defineRichEditor({ name, title, validation }: TProps): ReturnTyp
             })
           ],
           validation
-        }),
+        })
 }
 
 function ColorDecorator(props: BlockDecoratorProps) {

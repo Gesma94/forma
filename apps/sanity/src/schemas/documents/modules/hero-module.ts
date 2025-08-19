@@ -1,9 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { textBlockToPlainText } from '../../../utils/portable-text';
 import { HERO_MODULE_SCHEMA_TYPE } from '../../../utils/sanity-types';
-import { PaletteIcon } from 'lucide-react';
-import { ColorDecorator } from '../../../components/portable-text-decorators/color-decorator';
-import { ColorIcon } from '../../../components/portable-text-decorators/color-icon';
+import { defineRichEditorField } from '../../../fields';
 
 export const heroModuleDocumentType = defineType({
   type: 'document',
@@ -24,27 +22,9 @@ export const heroModuleDocumentType = defineType({
       type: 'image',
       validation: rule => rule.required()
     }),
-    defineField({
+    defineRichEditorField({
       name: 'heading',
       title: 'Heading',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'block',
-          marks: {
-            decorators: [
-              { title: 'Bold', value: 'strong' },
-              { title: 'Italic', value: 'em' },
-              { title: 'Color', value: 'color', icon: ColorIcon, component: ColorDecorator }
-            ],
-            annotations: [
-            
-            ]
-          },
-          lists: [],
-          styles: []
-        })
-      ],
       validation: rule => rule.required()
     }),
     defineField({
