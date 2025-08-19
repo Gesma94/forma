@@ -1,6 +1,6 @@
+import { LinkIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { LINK_OBJECT_SCHEMA_TYPE } from '../../utils/sanity-types';
-import { LinkIcon } from 'lucide-react';
 
 export const linkObjectType = defineType({
   type: 'object',
