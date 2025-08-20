@@ -1,12 +1,12 @@
 {
   "private": true,
+  "type": "module",
   "name": "@forma/common",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
     "build": "pnpm run clean && tsc",
-    "build:dev": "pnpm run clean && tsc -p ./tsconfig.dev.json",
     "typecheck": "tsc --noEmit",
     "biome:lint": "pnpm biome lint .",
     "biome:format": "pnpm biome format .",
