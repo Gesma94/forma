@@ -2,7 +2,7 @@ import type { Icon as PhosphorIcon } from '@phosphor-icons/react';
 import { EnvelopeSimpleIcon, PhoneIcon } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import type { ContactObjectType } from 'types/generated/sanity-types';
+import type { ContactObjectType } from 'types/generated/sanity-types-generated';
 
 type TProps = {
   contact: ContactObjectType;

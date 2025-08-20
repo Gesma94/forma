@@ -1,7 +1,7 @@
 import { createClient } from '@sanity/client';
 import { createGroqBuilder, makeSafeQueryRunner } from 'groqd';
 
-import type * as SanityTypes from './../types/generated/sanity-types';
+import type * as SanityTypes from './../types/generated/sanity-types-generated';
 
 type SchemaConfig = {
   schemaTypes: SanityTypes.AllSanitySchemaTypes;

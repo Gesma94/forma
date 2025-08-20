@@ -7,7 +7,7 @@
       "./package.json",
       "./src/**/*.{tsx,ts,css}",
       "./postcss.config.mjs",
-      "!src/types/generated/sanity-types.ts"
+      "!src/types/generated/sanity-types-generated.ts"
     ]
   },
   "linter": {

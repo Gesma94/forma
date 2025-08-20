@@ -1,4 +1,4 @@
-import type { HeroModuleDocumentType } from 'types/generated/sanity-types';
+import type { HeroModuleDocumentType } from 'types/generated/sanity-types-generated';
 
 type TProps = {
   module: HeroModuleDocumentType;
