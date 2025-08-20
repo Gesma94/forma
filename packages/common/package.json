@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "@forma/common",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "pnpm run clean && tsc",
+    "build:dev": "pnpm run clean && tsc -p ./tsconfig.dev.json",
+    "typecheck": "tsc --noEmit",
+    "biome:lint": "pnpm biome lint .",
+    "biome:format": "pnpm biome format .",
+    "biome:check": "pnpm biome check .",
+    "biome:check:write": "pnpm biome check --write ."
+  },
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {
+    "rimraf": "^6.0.1",
+    "type-fest": "^4.41.0"
+  }
+}
