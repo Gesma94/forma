@@ -16,4 +16,4 @@ const sanityClient = createClient({
 });
 
 export const q = createGroqBuilder<SchemaConfig>({});
-export const runQuery = makeSafeQueryRunner(query => sanityClient.fetch(query));
+export const runQuery = makeSafeQueryRunner((query, options) => sanityClient.fetch(query, options.parameters));

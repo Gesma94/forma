@@ -1,8 +1,26 @@
-export default function Page() {
+import { q, runQuery } from '@/utils/groqd-client';
+import { ModuleRenderer } from '@/utils/module-renderer';
+
+type TSanityQueryParams = {
+  pageId: string;
+};
+
+export default async function Page() {
+  const result = await runQuery(
+    q
+      .parameters<TSanityQueryParams>()
+      .star.filterByType('pageLayoutDocumentType')
+      .filterBy('_id == $pageId')
+      .slice(0)
+      .project(sub => ({
+        modules: sub.field('modules[]').deref()
+      })),
+    { parameters: { pageId: 'homePageDocumentId' } }
+  );
+
   return (
     <div>
-      <h1 className='font-accent'>Hello, Next.js!</h1>
-      <p className='font-base'>This will be written in font base</p>
+      <ModuleRenderer modules={result.modules} />
     </div>
   );
 }
