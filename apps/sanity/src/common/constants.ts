@@ -6,6 +6,7 @@ export const SINGLETON_DOCUMENT_IDS = {
 export const DOCUMENT_SCHEMA_TYPES = {
   footer: 'footerDocumentType',
   heroModule: 'heroModuleDocumentType',
+  studioModule: 'studioModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType'
 } as const;
 
