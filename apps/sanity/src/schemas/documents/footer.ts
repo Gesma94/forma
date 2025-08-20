@@ -76,6 +76,7 @@ export const footerDocumentType = defineType({
       name: 'address',
       title: 'Address',
       type: 'text',
+      rows: 5,
       fieldset: 'addressSection',
       validation: rule => rule.required()
     }),
