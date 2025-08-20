@@ -1,5 +1,6 @@
 import { q, runQuery } from '@/utils/groqd-client';
 import { ModuleRenderer } from '@/utils/module-renderer';
+import { SANITY_DOCUMENT_IDS } from '@forma/common';
 
 type TSanityQueryParams = {
   pageId: string;
@@ -15,7 +16,7 @@ export default async function Page() {
       .project(sub => ({
         modules: sub.field('modules[]').deref()
       })),
-    { parameters: { pageId: 'homePageDocumentId' } }
+    { parameters: { pageId: SANITY_DOCUMENT_IDS.homepage } }
   );
 
   return (
