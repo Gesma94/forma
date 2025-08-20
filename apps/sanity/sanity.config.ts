@@ -1,3 +1,4 @@
+import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { visionTool } from '@sanity/vision';
 import { HomeIcon, WavesIcon } from 'lucide-react';
 import { defineConfig } from 'sanity';
@@ -5,7 +6,6 @@ import { structureTool } from 'sanity/structure';
 import { DOCUMENT_SCHEMA_TYPES } from './src/common/constants';
 import { schemaTypes } from './src/schemas';
 import { moduleDocumentSchemaTypes } from './src/schemas/documents/modules';
-import { SANITY_DOCUMENT_IDS } from '@forma/common';
 
 export default defineConfig({
   name: 'default',
@@ -20,8 +20,6 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
-            S.listItem().title("asset")
-            .child(S.documentTypeList("sanity.imageAsset").title("tutti i fle").filter('')),
             S.divider().title('Pages'),
             S.listItem()
               .icon(HomeIcon)
