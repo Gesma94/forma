@@ -1,8 +1,3 @@
-export const SINGLETON_DOCUMENT_IDS = {
-  footer: 'footerDocumentId',
-  homepage: 'homePageDocumentId'
-} as const;
-
 export const DOCUMENT_SCHEMA_TYPES = {
   footer: 'footerDocumentType',
   heroModule: 'heroModuleDocumentType',

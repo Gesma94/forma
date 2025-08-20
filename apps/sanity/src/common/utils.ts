@@ -1,12 +1,12 @@
+import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { isPortableTextTextBlock, type PortableTextBlock } from 'sanity';
-import { SINGLETON_DOCUMENT_IDS } from './constants';
 
 export function getPageTitleFromId(pageId: string): string {
   if (pageId.startsWith('drafts.')) {
     pageId = pageId.replace('drafts.', '');
   }
 
-  if (pageId === SINGLETON_DOCUMENT_IDS.homepage) {
+  if (pageId === SANITY_DOCUMENT_IDS.homepage) {
     return 'Homepage';
   }
 

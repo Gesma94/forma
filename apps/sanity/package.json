@@ -20,6 +20,7 @@
     "typegen": "pnpm run typegen:create-generate-folders && pnpm run typegen:extract && pnpm run typegen:generate && pnpm run typegen:copy"
   },
   "dependencies": {
+    "@forma/common": "workspace:*",
     "@sanity/vision": "^4.5.0",
     "lucide-react": "^0.539.0",
     "react": "^19.1",

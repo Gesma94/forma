@@ -2,9 +2,10 @@ import { visionTool } from '@sanity/vision';
 import { HomeIcon, WavesIcon } from 'lucide-react';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
-import { DOCUMENT_SCHEMA_TYPES, SINGLETON_DOCUMENT_IDS } from './src/common/constants';
+import { DOCUMENT_SCHEMA_TYPES } from './src/common/constants';
 import { schemaTypes } from './src/schemas';
 import { moduleDocumentSchemaTypes } from './src/schemas/documents/modules';
+import { SANITY_DOCUMENT_IDS } from '@forma/common';
 
 export default defineConfig({
   name: 'default',
@@ -19,30 +20,32 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
+            S.listItem().title("asset")
+            .child(S.documentTypeList("sanity.imageAsset").title("tutti i fle").filter('')),
             S.divider().title('Pages'),
             S.listItem()
               .icon(HomeIcon)
-              .id(SINGLETON_DOCUMENT_IDS.homepage)
+              .id(SANITY_DOCUMENT_IDS.homepage)
               .schemaType(DOCUMENT_SCHEMA_TYPES.pageLayout)
               .title('Homepage')
               .child(
                 S.editor()
                   .title('Homepage')
-                  .id(SINGLETON_DOCUMENT_IDS.homepage)
+                  .id(SANITY_DOCUMENT_IDS.homepage)
                   .schemaType(DOCUMENT_SCHEMA_TYPES.pageLayout)
-                  .documentId(SINGLETON_DOCUMENT_IDS.homepage)
+                  .documentId(SANITY_DOCUMENT_IDS.homepage)
               ),
             S.divider().title('Singletons'),
             S.listItem()
               .icon(WavesIcon)
-              .id(SINGLETON_DOCUMENT_IDS.footer)
+              .id(SANITY_DOCUMENT_IDS.footer)
               .schemaType(DOCUMENT_SCHEMA_TYPES.footer)
               .title('Footer')
               .child(
                 S.editor()
-                  .id(SINGLETON_DOCUMENT_IDS.footer)
+                  .id(SANITY_DOCUMENT_IDS.footer)
                   .schemaType(DOCUMENT_SCHEMA_TYPES.footer)
-                  .documentId(SINGLETON_DOCUMENT_IDS.footer)
+                  .documentId(SANITY_DOCUMENT_IDS.footer)
               ),
             S.divider().title('Modules'),
             ...moduleDocumentSchemaTypes.map(x =>
