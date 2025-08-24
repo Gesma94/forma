@@ -1,7 +1,7 @@
-import { tv } from 'tailwind-variants';
+import { tv, type VariantProps } from 'tailwind-variants';
 
 export const buttonStyle = tv({
-  base: 'flex font-accent items-center font-medium justify-center transition-colors duration-300',
+  base: 'flex font-accent items-center font-normal justify-center transition-colors duration-300',
   variants: {
     size: {
       small: 'gap-2 h-8 px-2 text-xs rounded',
@@ -23,7 +23,7 @@ export const buttonStyle = tv({
     },
     isDisabled: {
       true: '',
-      false: ''
+      false: 'cursor-pointer'
     },
     isLoading: {
       true: '',
@@ -31,13 +31,6 @@ export const buttonStyle = tv({
     }
   },
   compoundVariants: [
-    // Size states
-    {
-      variant: 'primary',
-      size: ['default', 'large'],
-      className: 'font-semibold'
-    },
-
     // Disabled states
     {
       variant: 'primary',
@@ -52,6 +45,34 @@ export const buttonStyle = tv({
       className: 'bg-bg-disabled text-bg-text-disabled'
     },
 
+    // Default primary states
+    {
+      variant: 'primary',
+      surface: 'bg',
+      isDisabled: false,
+      isLoading: false,
+      className: `
+                border-primary
+                bg-primary text-primary-text
+                hover:bg-primary-hover
+                active:bg-primary-active
+                focus-visible:outline-bg focus-visible:outline focus-visible:outline-offset-4
+                `
+    },
+    {
+      variant: 'primary',
+      surface: 'primary',
+      isDisabled: false,
+      isLoading: false,
+      className: `
+                border-bg
+                bg-bg text-primary
+                hover:bg-bg-hover
+                active:bg-bg-active
+                focus-visible:outline-bg focus-visible:outline focus-visible:outline-offset-4
+                `
+    },
+
     // Default outline states
     {
       variant: 'outline',
@@ -63,8 +84,10 @@ export const buttonStyle = tv({
                 bg-primary text-primary-text
                 hover:bg-primary-hover
                 active:bg-primary-active
-                focus:outline-bg focus:outline focus:outline-offset-4
+                focus-visible:outline-bg focus-visible:outline focus-visible:outline-offset-4
                 `
     }
   ]
 });
+
+export type TButtonStyleProps = VariantProps<typeof buttonStyle>;

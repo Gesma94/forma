@@ -1,9 +1,26 @@
 'use client';
 
 import { Button as AriaButton, type ButtonProps } from 'react-aria-components';
-import { buttonStyle } from '@/styles/button';
+import { buttonStyle, type TButtonStyleProps } from '@/styles/button';
 import { getAriaCustomClassName } from '@/utils/style';
 
-export function Button({ className, ...rest }: ButtonProps) {
-  return <AriaButton className={getAriaCustomClassName(className, buttonStyle())} {...rest} />;
+export function Button({
+  className,
+  variant,
+  surface,
+  size = 'default',
+  isDisabled,
+  isFullWidth,
+  isLoading,
+  ...rest
+}: ButtonProps & TButtonStyleProps) {
+  return (
+    <AriaButton
+      className={getAriaCustomClassName(
+        className,
+        buttonStyle({ variant, surface, size, isDisabled, isFullWidth, isLoading })
+      )}
+      {...rest}
+    />
+  );
 }
