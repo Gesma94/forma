@@ -38,10 +38,10 @@ export const heroModuleDocumentType = defineType({
       type: 'string',
       validation: rule => rule.required()
     }),
-    defineField({
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
+    defineRichEditorField({
+      name: 'subHeading',
+      title: 'Sub Heading',
+      allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
     defineField({
