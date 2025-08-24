@@ -1,6 +1,6 @@
+import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { q, runQuery } from '@/utils/groqd-client';
 import { ModuleRenderer } from '@/utils/module-renderer';
-import { SANITY_DOCUMENT_IDS } from '@forma/common';
 
 type TSanityQueryParams = {
   pageId: string;
