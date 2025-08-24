@@ -7,11 +7,15 @@
       "./package.json",
       "./src/**/*.{tsx,ts,css}",
       "./postcss.config.mjs",
+      "./next.config.js",
       "!src/types/generated/sanity-types-generated.ts"
     ]
   },
   "linter": {
     "rules": {
+      "performance": {
+        "noImgElement": "off"
+      },
       "correctness": {
         "useHookAtTopLevel": "error",
         "useExhaustiveDependencies": "error"
