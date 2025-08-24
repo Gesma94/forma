@@ -9,6 +9,8 @@
   --container-8xl: 88rem;
   --container-9xl: 96rem;
 
+  --spacing-min-hero: 50rem;
+
   --color-\*: initial;
   --color-primary: #e3562d;
   --color-primary-hover: #cc4926;
@@ -25,4 +27,6 @@
   --color-bg-disabled: #f5f5f0;
   --color-bg-text: #2e1c13;
   --color-bg-text-disabled: #a1a1a1;
+
+  --color-text-muted: #767676;
 }
