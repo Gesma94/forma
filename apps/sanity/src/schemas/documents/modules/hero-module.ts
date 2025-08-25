@@ -14,15 +14,15 @@ export const heroModuleDocumentType = defineType({
     },
     prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Hero Module' })
   },
-    fieldsets: [
+  fieldsets: [
     {
       name: 'heading',
       title: 'Heading',
       options: {
         collapsible: false
       }
-    },
-    ],
+    }
+  ],
   fields: [
     defineField({
       name: 'backgroundImage',
