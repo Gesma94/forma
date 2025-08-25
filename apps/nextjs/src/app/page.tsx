@@ -1,9 +1,16 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
+import type { Viewport } from 'next';
 import { q, runQuery } from '@/utils/groqd-client';
 import { ModuleRenderer } from '@/utils/module-renderer';
 
 type TSanityQueryParams = {
   pageId: string;
+};
+
+export const viewport: Viewport = {
+  viewportFit: 'cover',
+  width: 'device-width',
+  initialScale: 1
 };
 
 export default async function Page() {
