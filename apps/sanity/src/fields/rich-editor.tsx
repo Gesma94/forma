@@ -13,6 +13,7 @@ type TProps = {
   name: string;
   title: string;
   note?: string;
+  fieldset?: string;
   allowColorMarkDecorator?: boolean;
   validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]>;
 };
@@ -21,6 +22,7 @@ export function defineRichEditorField({
   name,
   title,
   note,
+  fieldset,
   allowColorMarkDecorator = true,
   validation
 }: TProps): ReturnType<typeof defineField> {
@@ -28,6 +30,7 @@ export function defineRichEditorField({
     name,
     title,
     type: 'array',
+    fieldset,
     description: note ? <Note>{note}</Note> : undefined,
     of: [
       defineArrayMember({
