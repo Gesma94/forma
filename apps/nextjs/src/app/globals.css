@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@plugin "tailwindcss-motion";
 
 @theme {
   --font-\*: initial;
@@ -10,6 +11,8 @@
   --container-9xl: 96rem;
 
   --spacing-min-hero: 50rem;
+
+  --breakpoint-xs: 30rem;
 
   --color-\*: initial;
   --color-primary: #e3562d;
@@ -29,4 +32,27 @@
   --color-bg-text-disabled: #a1a1a1;
 
   --color-text-muted: #767676;
+
+  --color-overlay: #2e1c138c;
+
+  --animate-backdrop-blur: backdrop-blur 0.5s forwards;
+  --animate-backdrop-blur-reverse: backdrop-blur-reverse 0.5s forwards;
+
+  @keyframes backdrop-blur {
+    0% {
+      backdrop-filter: blur(0);
+    }
+    100% {
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  @keyframes backdrop-blur-reverse {
+    0% {
+      backdrop-filter: blur(10px);
+    }
+    100% {
+      backdrop-filter: blur(0);
+    }
+  }
 }
