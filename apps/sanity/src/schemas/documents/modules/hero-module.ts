@@ -14,6 +14,15 @@ export const heroModuleDocumentType = defineType({
     },
     prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Hero Module' })
   },
+    fieldsets: [
+    {
+      name: 'heading',
+      title: 'Heading',
+      options: {
+        collapsible: false
+      }
+    },
+    ],
   fields: [
     defineField({
       name: 'backgroundImage',
@@ -24,6 +33,13 @@ export const heroModuleDocumentType = defineType({
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',
+      fieldset: 'heading',
+      validation: rule => rule.required()
+    }),
+    defineRichEditorField({
+      name: 'mobileHeading',
+      title: 'Mobile Heading',
+      fieldset: 'heading',
       validation: rule => rule.required()
     }),
     defineField({
