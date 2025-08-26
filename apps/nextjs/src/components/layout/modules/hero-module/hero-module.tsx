@@ -54,7 +54,13 @@ export function HeroModule({ module }: TProps) {
                   <p className='pt-8 text-text-muted text-md font-body'>{module.firmsText}</p>
                   <div className='mt-2 flex gap-4 h-16' style={{ filter: 'invert(1) brightness(0.4)' }}>
                     {module.firmImages.map(x => (
-                      <img className='h-full w-auto' key={x._key} src={getSanityImageUrl(x)} alt={x._key} />
+                      <img
+                        fetchPriority='high'
+                        className='h-full w-auto'
+                        key={x._key}
+                        src={getSanityImageUrl(x)}
+                        alt={x._key}
+                      />
                     ))}
                   </div>
                 </div>
