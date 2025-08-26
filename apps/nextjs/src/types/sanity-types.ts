@@ -1,3 +1,7 @@
-import type { HeroModuleDocumentType, StudioModuleDocumentType } from './generated/sanity-types-generated';
+import type {
+  CountersModuleDocumentType,
+  HeroModuleDocumentType,
+  StudioModuleDocumentType
+} from './generated/sanity-types-generated';
 
-export type TAllSanityModuleSchemas = StudioModuleDocumentType | HeroModuleDocumentType;
+export type TAllSanityModuleSchemas = StudioModuleDocumentType | HeroModuleDocumentType | CountersModuleDocumentType;
