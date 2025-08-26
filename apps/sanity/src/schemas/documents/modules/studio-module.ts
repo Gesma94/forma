@@ -31,6 +31,7 @@ export const studioModuleDocumentType = defineType({
     defineRichEditorField({
       name: 'content',
       title: 'Content',
+      allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
     defineImageField({
