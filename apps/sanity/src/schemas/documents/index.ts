@@ -1,5 +1,9 @@
-import { footerDocumentType } from './footer';
 import { layoutDocumentSchemaTypes } from './layout';
 import { moduleDocumentSchemaTypes } from './modules';
+import { singletonDocumentSchemaTypes } from './singletons';
 
-export const documentSchemaTypes = [footerDocumentType, ...moduleDocumentSchemaTypes, ...layoutDocumentSchemaTypes];
+export const documentSchemaTypes = [
+  ...singletonDocumentSchemaTypes,
+  ...moduleDocumentSchemaTypes,
+  ...layoutDocumentSchemaTypes
+];
