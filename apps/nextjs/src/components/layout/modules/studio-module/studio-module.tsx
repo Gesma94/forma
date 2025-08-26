@@ -1,5 +1,4 @@
 import { MOTION_ANIMATION } from 'common/enums/motion-animation';
-import Image from 'next/image';
 import type { StudioModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { textWithSideImage, twoColumnLayout } from '@/styles/layouts';
 import { Button } from '@/ui/buttons/button/button';
@@ -19,23 +18,32 @@ export function StudioModule({ module }: TProps) {
   console.log(module.content);
   return (
     <ModuleContentContainer surface='bg'>
-      <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} className={twoColumnLayout()}>
+      <MotionDiv
+        animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM}
+        className={twoColumnLayout({
+          class: 'grid-rows-[auto_auto] grid-cols-1 xl:grid-rows-1 xl:grid-cols-[4fr_3fr] 2xl:grid-cols-2'
+        })}
+      >
         <div className={textWithSideImage({ class: 'flex flex-col' })}>
-          <div className='flex relative'>
-            <div className='absolute h-18 mt-[75px] mr-4 -left-4 -top-1 -translate-x-full'>
-              <LogoIcon variant='brand' />
-            </div>
-            <h2 className='text-8xl text-primary flex flex-col'>
-              <span className='text-6xl'>This is</span>
-              <span className='font-bold'>Forma Studio</span>
+          <div className='flex relative md:mx-auto xl:mx-[unset]'>
+            <h2 className='text-7xl md:text-8xl text-primary flex flex-col'>
+              <span className='text-5xl md:text-6xl'>This is</span>
+              <span className=' font-bold flex gap-2 md:whitespace-nowrap'>
+                <span className='h-14 mt-2 md:h-20 md:hidden xl:block'>
+                  <LogoIcon variant='brand' />
+                </span>
+                Forma Studio
+              </span>
             </h2>
           </div>
-          <StudioModuleSubHeading value={module.subHeading} />
+          <div className='mt-2'>
+            <StudioModuleSubHeading value={module.subHeading} />
+          </div>
           <div className='mt-8'>
             <ParagraphPortableText value={module.content} surface='bg' />
           </div>
           {module.showCta && (
-            <div className='mt-8 mr-auto'>
+            <div className='md:mx-auto xl:mx-[unset] mt-8 mr-auto'>
               <Button size='large' variant='primary' surface='bg'>
                 {module.CtaLabel}
               </Button>
@@ -43,12 +51,7 @@ export function StudioModule({ module }: TProps) {
           )}
         </div>
         <div className='relative'>
-          <Image
-            fill={true}
-            className='w-full aspect-[9/16] h-auto object-cover rounded-2xl'
-            alt='test'
-            src={imageUrl}
-          />
+          <img className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl' alt='test' src={imageUrl} />
         </div>
       </MotionDiv>
     </ModuleContentContainer>

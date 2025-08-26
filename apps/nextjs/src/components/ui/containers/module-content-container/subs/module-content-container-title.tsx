@@ -1,5 +1,5 @@
 import { PortableTextEmComponent, PortableTextStrongComponent } from '@/ui/portable-text/base-components';
-import { BasePortableText, TBasePortableTextConsumerProps } from '@/ui/portable-text/base-portable-text';
+import { BasePortableText, type TBasePortableTextConsumerProps } from '@/ui/portable-text/base-portable-text';
 
 export function ModuleContentContainerTitle({ value }: TBasePortableTextConsumerProps) {
   return (

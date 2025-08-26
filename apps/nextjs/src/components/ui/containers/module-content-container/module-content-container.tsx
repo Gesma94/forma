@@ -33,7 +33,7 @@ export function ModuleContentContainer({ children, surface, title, skipContentCo
 }
 
 const style = tv({
-  base: 'py-20 grid grid-rows-[auto_auto]',
+  base: 'py-10 md:py-20 grid grid-rows-[auto_auto]',
   variants: {
     surface: {
       bg: 'bg-bg text-bg-text',

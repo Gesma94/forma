@@ -2,7 +2,7 @@ import type { HTMLProps } from 'react';
 import { tv, type VariantProps } from 'tailwind-variants';
 import type { SetRequired } from 'type-fest';
 import { PortableTextEmComponent, PortableTextStrongComponent } from './base-components';
-import { BasePortableText, TBasePortableTextConsumerProps } from './base-portable-text';
+import { BasePortableText, type TBasePortableTextConsumerProps } from './base-portable-text';
 
 type TProps = SetRequired<VariantProps<typeof style>, 'surface'> &
   TBasePortableTextConsumerProps &
