@@ -13,7 +13,7 @@ export function HeroModuleSubHeadingPortableText({ value }: TProps) {
       components={{
         block: {
           normal: ({ children }) => (
-            <h1 className='prose-lg font-inter text-center text-primary-text md:prose-xl 2xl:prose-2xl'>{children}</h1>
+            <h1 className='prose-xl font-inter text-left text-primary-text md:prose-xl 2xl:prose-2xl'>{children}</h1>
           )
         },
         marks: {

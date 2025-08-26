@@ -40,7 +40,7 @@ export function StudioModule({ module }: TProps) {
             <ParagraphPortableText value={module.content} surface='bg' />
           </div>
           {module.showCta && (
-            <div className='md:mx-auto xl:mx-[unset] mt-8 mr-auto'>
+            <div className='mt-8 grid xs:block md:mx-auto xl:mx-[unset]xs:mr-auto'>
               <Button size='large' variant='primary' surface='bg'>
                 {module.CtaLabel}
               </Button>

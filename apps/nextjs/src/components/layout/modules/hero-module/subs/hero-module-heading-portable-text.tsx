@@ -1,10 +1,6 @@
 import { PortableText } from '@portabletext/react';
 import type { HeroModuleDocumentType } from 'types/generated/sanity-types-generated';
-import {
-  PortableTextEmComponent,
-  PortableTextPrimaryColorComponent,
-  PortableTextStrongComponent
-} from '@/ui/portable-text/base-components';
+import { PortableTextEmComponent, PortableTextStrongComponent } from '@/ui/portable-text/base-components';
 
 type TProps = {
   value: HeroModuleDocumentType['heading'];
@@ -17,13 +13,15 @@ export function HeroModuleHeadingPortableText({ value }: TProps) {
       components={{
         block: {
           normal: ({ children }) => (
-            <h1 className='font-accent text-center text-primary-text text-5xl sm:text-8xl 2xl:text-9xl'>{children}</h1>
+            <h1 className='font-accenter text-left text-primary-text text-7xl leading-16 sm:text-center sm:leading-none sm:text-8xl 2xl:text-9xl'>
+              {children}
+            </h1>
           )
         },
         marks: {
           em: PortableTextEmComponent,
           strong: PortableTextStrongComponent,
-          color: PortableTextPrimaryColorComponent
+          color: ({ children }) => <span className='text-primary font-semibold'>{children}</span>
         }
       }}
     />
