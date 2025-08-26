@@ -11,7 +11,7 @@ export function PortableTextEmComponent<T extends TypedObject>({
 export function PortableTextStrongComponent<T extends TypedObject>({
   children
 }: PortableTextMarkComponentProps<T>): JSX.Element {
-  return <strong>{children}</strong>;
+  return <strong className='font-bold'>{children}</strong>;
 }
 
 export function PortableTextPrimaryColorComponent<T extends TypedObject>({
