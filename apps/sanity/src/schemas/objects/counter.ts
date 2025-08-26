@@ -19,7 +19,7 @@ export const counterObjectType = defineType({
   },
   fields: [
     defineField({
-      type: 'string',
+      type: 'number',
       title: 'Value',
       name: 'value',
       validation: rule => rule.required()
@@ -38,10 +38,9 @@ export const counterObjectType = defineType({
         ]
       }
     }),
-
     defineRichEditorField({
-      name: 'text',
-      title: 'Text',
+      name: 'content',
+      title: 'Content',
       validation: rule => rule.required(),
       allowColorMarkDecorator: false
     })
