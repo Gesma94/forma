@@ -37,7 +37,8 @@ export const studioModuleDocumentType = defineType({
       name: 'showCta',
       title: 'Show CTA',
       type: 'boolean',
-      initialValue: true
+      initialValue: true,
+      validation: rule => rule.required()
     }),
     defineField({
       name: 'CtaLabel',
