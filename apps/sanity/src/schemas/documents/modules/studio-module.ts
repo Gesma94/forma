@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineRichEditorField } from '../../../fields';
+import { defineImageField, defineRichEditorField } from '../../../fields';
 
 export const studioModuleDocumentType = defineType({
   type: 'document',
@@ -14,6 +14,10 @@ export const studioModuleDocumentType = defineType({
     },
     prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Studio Module' })
   },
+  fieldsets: [{
+name: 'CTA',
+title: 'Call to Action',
+  }],
   fields: [
     defineRichEditorField({
       name: 'subHeading',
@@ -27,22 +31,23 @@ export const studioModuleDocumentType = defineType({
       title: 'Content',
       validation: rule => rule.required()
     }),
-    defineField({
+    defineImageField({
       name: 'image',
       title: 'Image',
-      type: 'image',
       validation: rule => rule.required()
     }),
     defineField({
       name: 'showCta',
       title: 'Show CTA',
       type: 'boolean',
+      fieldset: 'CTA',
       initialValue: true,
       validation: rule => rule.required()
     }),
     defineField({
       name: 'CtaLabel',
       title: 'CTA Label',
+      fieldset: 'CTA',
       type: 'string',
       validation: rule => rule.required()
     })

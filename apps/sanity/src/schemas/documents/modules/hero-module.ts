@@ -1,7 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineRichEditorField } from '../../../fields';
+import { defineImageField, defineRichEditorField } from '../../../fields';
 
 export const heroModuleDocumentType = defineType({
   type: 'document',
@@ -24,10 +24,9 @@ export const heroModuleDocumentType = defineType({
     }
   ],
   fields: [
-    defineField({
+    defineImageField({
       name: 'backgroundImage',
       title: 'Background Image',
-      type: 'image',
       validation: rule => rule.required()
     }),
     defineRichEditorField({
