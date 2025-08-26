@@ -3,7 +3,8 @@ export const DOCUMENT_SCHEMA_TYPES = {
   heroModule: 'heroModuleDocumentType',
   studioModule: 'studioModuleDocumentType',
   countersModule: 'countersModuleDocumentType',
-  pageLayout: 'pageLayoutDocumentType'
+  pageLayout: 'pageLayoutDocumentType',
+  brand: 'brandDocumentType'
 } as const;
 
 export const OBJECT_SCHEMA_TYPES = {

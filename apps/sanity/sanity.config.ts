@@ -1,11 +1,12 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { visionTool } from '@sanity/vision';
-import { HomeIcon, WavesIcon } from 'lucide-react';
+import { HomeIcon, SparklesIcon, WavesIcon } from 'lucide-react';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { DOCUMENT_SCHEMA_TYPES } from './src/common/constants';
 import { schemaTypes } from './src/schemas';
 import { moduleDocumentSchemaTypes } from './src/schemas/documents/modules';
+import { assetDocumentTypes } from './src/schemas/documents/assets';
 
 export default defineConfig({
   name: 'default',
@@ -50,7 +51,14 @@ export default defineConfig({
               S.listItem()
                 .title(x.title ?? `Module ${x.name}`)
                 .child(S.documentList().schemaType(x.name).filter(`_type == "${x.name}"`).id(x.name))
-            )
+            ),
+            S.divider().title('Assets'),
+            ...assetDocumentTypes.map(x =>
+              S.listItem()
+                .icon(SparklesIcon)
+                .title(x.title ?? x.name)
+                .child(S.documentList().schemaType(x.name).filter(`_type == "${x.name}"`).id(x.name))
+            ),
           ])
     }),
     visionTool()

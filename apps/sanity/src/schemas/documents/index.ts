@@ -1,3 +1,4 @@
+import { assetDocumentTypes } from './assets';
 import { layoutDocumentSchemaTypes } from './layout';
 import { moduleDocumentSchemaTypes } from './modules';
 import { singletonDocumentSchemaTypes } from './singletons';
@@ -5,5 +6,6 @@ import { singletonDocumentSchemaTypes } from './singletons';
 export const documentSchemaTypes = [
   ...singletonDocumentSchemaTypes,
   ...moduleDocumentSchemaTypes,
-  ...layoutDocumentSchemaTypes
+  ...layoutDocumentSchemaTypes,
+  ...assetDocumentTypes
 ];
