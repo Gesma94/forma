@@ -1,10 +1,8 @@
-import { MOTION_ANIMATION } from 'common/enums/motion-animation';
 import type { StudioModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { textWithSideImage, twoColumnLayout } from '@/styles/layouts';
 import { Button } from '@/ui/buttons/button/button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { LogoIcon } from '@/ui/logos/logo-icon/logo-icon';
-import { MotionDiv } from '@/ui/motion/motion-div';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { getSanityImageUrl } from '@/utils/groqd-client';
 import { StudioModuleSubHeading } from './subs/studio-module-subheading';
@@ -18,8 +16,7 @@ export function StudioModule({ module }: TProps) {
 
   return (
     <ModuleContentContainer surface='bg'>
-      <MotionDiv
-        animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM}
+      <div
         className={twoColumnLayout({
           class: 'grid-rows-[auto_auto] grid-cols-1 xl:grid-rows-1 xl:grid-cols-[4fr_3fr] 2xl:grid-cols-2'
         })}
@@ -57,7 +54,7 @@ export function StudioModule({ module }: TProps) {
             src={imageUrl}
           />
         </div>
-      </MotionDiv>
+      </div>
     </ModuleContentContainer>
   );
 }

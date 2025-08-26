@@ -1,13 +1,13 @@
 import { PortableTextEmComponent, PortableTextStrongComponent } from '@/ui/portable-text/base-components';
 import { BasePortableText, type TBasePortableTextConsumerProps } from '@/ui/portable-text/base-portable-text';
 
-export function ModuleContentContainerTitle({ value }: TBasePortableTextConsumerProps) {
+export function CounterContent({ value }: TBasePortableTextConsumerProps) {
   return (
     <BasePortableText
       value={value}
       components={{
         block: {
-          normal: ({ children }) => <h2 className='text-6xl md:text-8xl font-accent text-center'>{children}</h2>
+          normal: ({ children }) => <p className='prose-xl font-base text-bg-text font-light'>{children}</p>
         },
         marks: {
           em: PortableTextEmComponent,

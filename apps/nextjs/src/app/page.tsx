@@ -29,6 +29,7 @@ export default async function Page() {
   return (
     <div>
       <ModuleRenderer modules={result.modules} />
+      <div className='h-[300px] bg-bg' />
     </div>
   );
 }

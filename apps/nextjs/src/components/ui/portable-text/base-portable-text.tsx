@@ -3,8 +3,9 @@ import type { SetOptional } from 'type-fest';
 
 type TPortableTextBlockOptionalChildren = SetOptional<PortableTextBlock, 'children'>;
 
+export type TBasePortableTextValue = TPortableTextBlockOptionalChildren | TPortableTextBlockOptionalChildren[];
 export type TBasePortableTextConsumerProps = {
-  value: TPortableTextBlockOptionalChildren | TPortableTextBlockOptionalChildren[];
+  value: TBasePortableTextValue;
 };
 
 export type TBasePortableTextProps = TBasePortableTextConsumerProps & {
