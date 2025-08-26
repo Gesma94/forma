@@ -2,7 +2,7 @@ import Image from 'next/image';
 import type { HeroModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ContentContainer } from '@/ui/content-container/content-container';
-import { getSanityImageUrl } from '@/utils/groqd-client';
+import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { HeroModuleHeadingPortableText } from './subs/hero-module-heading-portable-text';
 import { HeroModuleSubHeadingPortableText } from './subs/hero-module-subheading-portable-text';
 
@@ -10,16 +10,24 @@ type TProps = {
   module: HeroModuleDocumentType;
 };
 
-export function HeroModule({ module }: TProps) {
+type TSanityQueryParams = {
+  firmIds: string[];
+};
+
+export async function HeroModule({ module }: TProps) {
   const imageUrl = getSanityImageUrl(module.backgroundImage);
+  const firms = await runQuery(
+    q.parameters<TSanityQueryParams>().star.filterByType('brandDocumentType').filterRaw('_id in $firmIds'),
+    { parameters: { firmIds: module.firmImages.map(x => x._ref) } }
+  );
 
   return (
     <div className='w-full h-dvh relative sm:min-h-min-hero'>
       <Image
-        alt='test'
         fill={true}
         src={imageUrl}
         priority={true}
+        alt={module.backgroundImage.altText}
         className='object-cover object-bottom bg-linear-30 brightness-[0.32]'
       />
 
@@ -53,13 +61,13 @@ export function HeroModule({ module }: TProps) {
                 <div className='flex flex-col items-center'>
                   <p className='pt-8 text-text-muted text-md font-body'>{module.firmsText}</p>
                   <div className='mt-2 flex gap-4 h-16' style={{ filter: 'invert(1) brightness(0.4)' }}>
-                    {module.firmImages.map(x => (
+                    {firms.map(x => (
                       <img
                         fetchPriority='high'
                         className='h-full w-auto'
-                        key={x._key}
-                        src={getSanityImageUrl(x)}
-                        alt={x._key}
+                        key={x._id}
+                        src={getSanityImageUrl(x.logo)}
+                        alt={x.logo.altText}
                       />
                     ))}
                   </div>

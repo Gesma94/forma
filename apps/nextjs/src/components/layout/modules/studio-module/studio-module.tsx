@@ -15,7 +15,7 @@ type TProps = {
 
 export function StudioModule({ module }: TProps) {
   const imageUrl = getSanityImageUrl(module.image);
-  console.log(module.content);
+
   return (
     <ModuleContentContainer surface='bg'>
       <MotionDiv
@@ -51,7 +51,11 @@ export function StudioModule({ module }: TProps) {
           )}
         </div>
         <div className='relative'>
-          <img className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl' alt='test' src={imageUrl} />
+          <img
+            className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
+            alt={module.image.altText}
+            src={imageUrl}
+          />
         </div>
       </MotionDiv>
     </ModuleContentContainer>
