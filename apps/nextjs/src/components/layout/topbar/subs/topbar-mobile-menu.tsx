@@ -27,7 +27,7 @@ export function TopbarMobileMenu() {
       </AriaButton>
       <ModalOverlay className={({ state }) => modalOverlayStyle({ isOpen: state.isOpen })}>
         <Modal className={({ isEntering, isExiting }) => modalStyle({ isEntering, isExiting })}>
-          <Dialog aria-label='Mobile menu' className='h-full flex flex-col'>
+          <Dialog aria-label='Mobile menu' className='h-full flex flex-col overflow-y-auto pb-10'>
             <div>
               <ContentContainer>
                 <div className='h-20 flex justify-between items-center'>
