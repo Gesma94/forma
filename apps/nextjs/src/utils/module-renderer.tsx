@@ -1,5 +1,6 @@
 import type { TAllSanityModuleSchemas } from 'types/sanity-types';
 import { HeroModule } from '@/layout/modules/hero-module/hero-module';
+import { StudioModule } from '@/layout/modules/studio-module/studio-module';
 
 type TProps = {
   modules: TAllSanityModuleSchemas[];
@@ -10,6 +11,8 @@ export function ModuleRenderer({ modules }: TProps) {
     switch (module._type) {
       case 'heroModuleDocumentType':
         return <HeroModule key={module._id} module={module} />;
+      case 'studioModuleDocumentType':
+        return <StudioModule key={module._id} module={module} />;
     }
   });
 }
