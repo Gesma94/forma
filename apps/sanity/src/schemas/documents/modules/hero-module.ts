@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineImageField, defineRichEditorField } from '../../../fields';
@@ -66,10 +66,16 @@ export const heroModuleDocumentType = defineType({
       validation: rule => rule.required()
     }),
     defineField({
-      type: 'array',
       name: 'firmImages',
       title: 'Firm Images',
-      of: [defineArrayMember({ type: 'image' })]
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: { type: DOCUMENT_SCHEMA_TYPES.brand }
+        }
+      ],
+      validation: rule => rule.required()
     }),
     defineField({
       name: 'scrollText',

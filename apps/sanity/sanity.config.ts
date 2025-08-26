@@ -5,8 +5,8 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { DOCUMENT_SCHEMA_TYPES } from './src/common/constants';
 import { schemaTypes } from './src/schemas';
-import { moduleDocumentSchemaTypes } from './src/schemas/documents/modules';
 import { assetDocumentTypes } from './src/schemas/documents/assets';
+import { moduleDocumentSchemaTypes } from './src/schemas/documents/modules';
 
 export default defineConfig({
   name: 'default',
@@ -58,7 +58,7 @@ export default defineConfig({
                 .icon(SparklesIcon)
                 .title(x.title ?? x.name)
                 .child(S.documentList().schemaType(x.name).filter(`_type == "${x.name}"`).id(x.name))
-            ),
+            )
           ])
     }),
     visionTool()

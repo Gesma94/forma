@@ -1,7 +1,7 @@
-import {  defineField, defineType } from 'sanity';
-import { DOCUMENT_SCHEMA_TYPES, } from '../../../common/constants';
-import { defineImageField, } from '../../../fields';
 import { SparkleIcon } from 'lucide-react';
+import { defineField, defineType } from 'sanity';
+import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
+import { defineImageField } from '../../../fields';
 
 export const BrandDocumentType = defineType({
   type: 'document',
@@ -11,7 +11,7 @@ export const BrandDocumentType = defineType({
   preview: {
     select: {
       title: 'name',
-      media: 'logo'      
+      media: 'logo'
     },
     prepare: ({ title, media }) => ({ title, media })
   },
@@ -25,12 +25,12 @@ export const BrandDocumentType = defineType({
     defineField({
       name: 'shortName',
       title: 'Short Name',
-      type: 'string',
+      type: 'string'
     }),
     defineImageField({
       name: 'logo',
       title: 'Logo',
       validation: rule => rule.required()
-    }),
+    })
   ]
 });

@@ -14,10 +14,12 @@ export const studioModuleDocumentType = defineType({
     },
     prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Studio Module' })
   },
-  fieldsets: [{
-name: 'CTA',
-title: 'Call to Action',
-  }],
+  fieldsets: [
+    {
+      name: 'CTA',
+      title: 'Call to Action'
+    }
+  ],
   fields: [
     defineRichEditorField({
       name: 'subHeading',
