@@ -1,6 +1,7 @@
 'use client';
 
 import { ListIcon, XIcon } from '@phosphor-icons/react';
+import { HouseIcon } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -15,7 +16,6 @@ import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { LogoWithText } from '@/ui/logos/logo-with-text/logo-with-text';
 import { topbarCommonNavLinks } from './topbar-common';
-import { HouseIcon } from '@phosphor-icons/react/dist/ssr';
 
 export function TopbarMobileMenu() {
   const pathname = usePathname();
@@ -44,9 +44,9 @@ export function TopbarMobileMenu() {
             </div>
 
             <nav className='mt-4 flex flex-col'>
-              <Link href='/'className='px-8 h-20 flex gap-4 items-center text-2xl font-light text-bg-text'>
-              <HouseIcon className='size-8' />
-              Home
+              <Link href='/' className='px-8 h-20 flex gap-4 items-center text-2xl font-light text-bg-text'>
+                <HouseIcon className='size-8' />
+                Home
               </Link>
               {topbarCommonNavLinks.map(link => {
                 const Icon = link.icon;
