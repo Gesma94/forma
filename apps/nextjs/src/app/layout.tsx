@@ -3,7 +3,6 @@ import { interNextFont } from '../utils/fonts/inter';
 import { Roobert } from '../utils/fonts/roobert';
 import './globals.css';
 import type { ReactNode } from 'react';
-import { Topbar } from '@/layout/topbar/topbar';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const getHtmlClassName = () => {
@@ -12,11 +11,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang='en' className={getHtmlClassName()}>
-      <body className='font-base bg-primary'>
-        <div className='absolute top-0 w-full h-20 z-10'>
-          <Topbar />
-        </div>
-        {children}
+      <body className='flex flex-col font-base bg-primary min-h-dvh'>
+        <div className='grow bg-bg'>{children}</div>
         <Footer />
       </body>
     </html>

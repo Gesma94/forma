@@ -1,6 +1,7 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import type { Viewport } from 'next';
 import { Topbar } from '@/layout/topbar/topbar';
+import { ContentContainer } from '@/ui/content-container/content-container';
 import { q, runQuery } from '@/utils/groqd-client';
 import { ModuleRenderer } from '@/utils/module-renderer';
 
@@ -24,13 +25,18 @@ export default async function Page() {
       .project(sub => ({
         modules: sub.field('modules[]').deref()
       })),
-    { parameters: { pageId: SANITY_DOCUMENT_IDS.homepage } }
+    { parameters: { pageId: SANITY_DOCUMENT_IDS.bookpage } }
   );
 
   return (
     <div>
-      <Topbar variant='floating' />
+      <Topbar variant='solid' />
       <ModuleRenderer modules={result.modules} />
+      <ContentContainer>
+        <div className='grid grid-cols-2'>
+          <h1 className='sticky top-20 text-7xl font-bold'>Book a cal</h1>
+        </div>
+      </ContentContainer>
       <div className='h-[300px] bg-bg' />
     </div>
   );

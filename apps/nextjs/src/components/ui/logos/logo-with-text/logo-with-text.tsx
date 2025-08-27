@@ -1,8 +1,8 @@
 import { tv, type VariantProps } from 'tailwind-variants';
 
-type Props = Required<VariantProps<typeof style>>;
+export type TLogoWithTextProps = Required<VariantProps<typeof style>>;
 
-export function LogoWithText({ variant }: Props) {
+export function LogoWithText({ variant }: TLogoWithTextProps) {
   const { path: pathStyle, svg: svgStyle } = style({ variant });
 
   return (
