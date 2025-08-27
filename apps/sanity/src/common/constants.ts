@@ -1,7 +1,9 @@
 export const DOCUMENT_SCHEMA_TYPES = {
   footer: 'footerDocumentType',
   heroModule: 'heroModuleDocumentType',
+  halfHeroModule: 'halfHeroModuleDocumentType',
   studioModule: 'studioModuleDocumentType',
+  bookModule: 'bookModuleDocumentType',
   countersModule: 'countersModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType',
   brand: 'brandDocumentType'
@@ -9,6 +11,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
 
 export const OBJECT_SCHEMA_TYPES = {
   link: 'linkObjectType',
+  cta: 'ctaObjectType',
   contact: 'contactObjectType',
   counter: 'counterObjectType'
 } as const;

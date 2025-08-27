@@ -1,12 +1,31 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { visionTool } from '@sanity/vision';
-import { HomeIcon, SparklesIcon, WavesIcon } from 'lucide-react';
+import { HomeIcon, type LucideProps, NotebookPenIcon, SparklesIcon, WavesIcon } from 'lucide-react';
+import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { DOCUMENT_SCHEMA_TYPES } from './src/common/constants';
 import { schemaTypes } from './src/schemas';
 import { assetDocumentTypes } from './src/schemas/documents/assets';
 import { moduleDocumentSchemaTypes } from './src/schemas/documents/modules';
+
+type TPageItem = {
+  id: string;
+  icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;
+  title: string;
+};
+const pageItems: TPageItem[] = [
+  {
+    id: SANITY_DOCUMENT_IDS.homepage,
+    icon: HomeIcon,
+    title: 'Homepage'
+  },
+  {
+    id: SANITY_DOCUMENT_IDS.bookpage,
+    icon: NotebookPenIcon,
+    title: 'Book'
+  }
+];
 
 export default defineConfig({
   name: 'default',
@@ -22,18 +41,20 @@ export default defineConfig({
           .title('Content')
           .items([
             S.divider().title('Pages'),
-            S.listItem()
-              .icon(HomeIcon)
-              .id(SANITY_DOCUMENT_IDS.homepage)
-              .schemaType(DOCUMENT_SCHEMA_TYPES.pageLayout)
-              .title('Homepage')
-              .child(
-                S.editor()
-                  .title('Homepage')
-                  .id(SANITY_DOCUMENT_IDS.homepage)
-                  .schemaType(DOCUMENT_SCHEMA_TYPES.pageLayout)
-                  .documentId(SANITY_DOCUMENT_IDS.homepage)
-              ),
+            ...pageItems.map(pageItem =>
+              S.listItem()
+                .icon(pageItem.icon)
+                .id(pageItem.id)
+                .schemaType(DOCUMENT_SCHEMA_TYPES.pageLayout)
+                .title(pageItem.title)
+                .child(
+                  S.editor()
+                    .title(pageItem.title)
+                    .id(pageItem.id)
+                    .schemaType(DOCUMENT_SCHEMA_TYPES.pageLayout)
+                    .documentId(pageItem.id)
+                )
+            ),
             S.divider().title('Singletons'),
             S.listItem()
               .icon(WavesIcon)
