@@ -1,4 +1,4 @@
-import { defineField, type ImageRule, type ImageValue, type ValidationBuilder } from 'sanity';
+import { defineField, type FieldDefinition, type ImageRule, type ImageValue, type ValidationBuilder } from 'sanity';
 
 type TProps = {
   name: string;
@@ -6,10 +6,17 @@ type TProps = {
   note?: string;
   fieldset?: string;
   allowColorMarkDecorator?: boolean;
+  fields?: FieldDefinition[];
   validation?: ValidationBuilder<ImageRule, ImageValue>;
 };
 
-export function defineImageField({ name, title, fieldset, validation }: TProps): ReturnType<typeof defineField> {
+export function defineImageField({
+  name,
+  title,
+  fieldset,
+  fields,
+  validation
+}: TProps): ReturnType<typeof defineField> {
   return defineField({
     name,
     title,
@@ -21,7 +28,8 @@ export function defineImageField({ name, title, fieldset, validation }: TProps):
         name: 'altText',
         type: 'string',
         validation: rule => rule.required()
-      }
+      },
+      ...(fields ?? [])
     ],
     validation
   });
