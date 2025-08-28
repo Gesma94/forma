@@ -11,3 +11,13 @@ export const motionAnimationTranslateFromBottom: MotionProps = {
     ease: 'easeOut'
   }
 } as const;
+
+export const motionAnimationScrollXInfinity: MotionProps = {
+  initial: { x: '-25%' },
+  animate: { x: '-75%' },
+  transition: {
+    duration: 80,
+    ease: 'linear',
+    repeat: Infinity
+  }
+};

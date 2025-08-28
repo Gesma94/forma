@@ -18,7 +18,7 @@ export function ModuleContentContainer({ children, surface, title, skipContentCo
     <div className={style({ surface })}>
       <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} className='grid grid-rows-[auto_auto]'>
         {title && (
-          <div className='mb-10'>
+          <div className='mb-4 md:mb-10'>
             <ContentContainer>
               {typeof title === 'string' ? (
                 <h2 className='text-5xl md:text-8xl font-accent text-center'>{title}</h2>
@@ -28,9 +28,7 @@ export function ModuleContentContainer({ children, surface, title, skipContentCo
             </ContentContainer>
           </div>
         )}
-        <div>
-          <Container>{children}</Container>
-        </div>
+        <Container>{children}</Container>
       </MotionDiv>
     </div>
   );

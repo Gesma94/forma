@@ -7,7 +7,7 @@ export function ModuleContentContainerTitle({ value }: TBasePortableTextConsumer
       value={value}
       components={{
         block: {
-          normal: ({ children }) => <h2 className='text-6xl md:text-8xl font-accent text-center'>{children}</h2>
+          normal: ({ children }) => <h2 className='text-5xl md:text-8xl font-accent text-center'>{children}</h2>
         },
         marks: {
           em: PortableTextEmComponent,
