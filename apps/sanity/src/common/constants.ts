@@ -5,6 +5,9 @@ export const DOCUMENT_SCHEMA_TYPES = {
   studioModule: 'studioModuleDocumentType',
   bookModule: 'bookModuleDocumentType',
   countersModule: 'countersModuleDocumentType',
+  brandsModule: 'brandsModuleDocumentType',
+  quoteModule: 'quoteModuleDocumentType',
+  imageWithTextModule: 'imageWithTextModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType',
   brand: 'brandDocumentType'
 } as const;
