@@ -16,12 +16,14 @@ export const textWithImageModuleDocumentType = defineType({
       media: 'image',
       variant: 'variant'
     },
-    prepare: ({ title, media,variant }) => ({ 
+    prepare: ({ title, media, variant }) => ({
       title: textBlockToPlainText(title),
-       media, subtitle: `Text with Image Module- ${getVariantTitle(variant)}` })
+      media,
+      subtitle: `Text with Image Module- ${getVariantTitle(variant)}`
+    })
   },
   fields: [
-    defineModuleVariantField({}),    
+    defineModuleVariantField({}),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',

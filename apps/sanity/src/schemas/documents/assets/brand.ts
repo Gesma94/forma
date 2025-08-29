@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { defineImageField } from '../../../fields';
 
-export const BrandDocumentType = defineType({
+export const brandDocumentType = defineType({
   type: 'document',
   title: 'Brand',
   icon: SparkleIcon,

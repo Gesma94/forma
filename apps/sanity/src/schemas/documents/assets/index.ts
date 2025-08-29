@@ -1,3 +1,4 @@
-import { BrandDocumentType } from './brand';
+import { brandDocumentType } from './brand';
+import { quoteDocumentType } from './quote';
 
-export const assetDocumentTypes = [BrandDocumentType];
+export const assetDocumentTypes = [brandDocumentType, quoteDocumentType];

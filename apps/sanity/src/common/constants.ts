@@ -6,10 +6,11 @@ export const DOCUMENT_SCHEMA_TYPES = {
   bookModule: 'bookModuleDocumentType',
   countersModule: 'countersModuleDocumentType',
   brandsModule: 'brandsModuleDocumentType',
-  quoteModule: 'quoteModuleDocumentType',
+  quotesModule: 'quotesModuleDocumentType',
   textWithImageModule: 'textWithImageModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType',
-  brand: 'brandDocumentType'
+  brand: 'brandDocumentType',
+  quote: 'quoteDocumentType'
 } as const;
 
 export const OBJECT_SCHEMA_TYPES = {
