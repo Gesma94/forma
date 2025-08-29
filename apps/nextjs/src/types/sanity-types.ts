@@ -3,9 +3,9 @@ import type {
   CountersModuleDocumentType,
   HalfHeroModuleDocumentType,
   HeroModuleDocumentType,
-  ImageWithTextModuleDocumentType,
   QuoteModuleDocumentType,
-  StudioModuleDocumentType
+  StudioModuleDocumentType,
+  TextWithImageModuleDocumentType
 } from './generated/sanity-types-generated';
 
 export type TAllSanityModuleSchemas =
@@ -14,5 +14,5 @@ export type TAllSanityModuleSchemas =
   | CountersModuleDocumentType
   | BrandsModuleDocumentType
   | QuoteModuleDocumentType
-  | ImageWithTextModuleDocumentType
+  | TextWithImageModuleDocumentType
   | HalfHeroModuleDocumentType;

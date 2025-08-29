@@ -1,4 +1,4 @@
-import { BRANDS_MODULE_VARIANTS } from '@forma/common';
+import { MODULE_VARIANTS } from '@forma/common';
 import { tv, type VariantProps } from 'tailwind-variants';
 import type { SetRequired } from 'type-fest';
 import type { BrandDocumentType } from 'types/generated/sanity-types-generated';
@@ -25,8 +25,8 @@ const style = tv({
   base: 'size-64 shrink-0 flex items-center justify-center p-4 rounded-2xl',
   variants: {
     variant: {
-      [BRANDS_MODULE_VARIANTS.ON_BG]: '',
-      [BRANDS_MODULE_VARIANTS.ON_PRIMARY]: 'invert-[88%]'
+      [MODULE_VARIANTS.ON_BG]: '',
+      [MODULE_VARIANTS.ON_PRIMARY]: 'invert-[88%]'
     }
   }
 });

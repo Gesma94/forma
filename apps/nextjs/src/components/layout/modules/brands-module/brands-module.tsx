@@ -1,10 +1,9 @@
-import { BRANDS_MODULE_VARIANTS } from '@forma/common';
 import { MOTION_ANIMATION } from 'common/enums/motion-animation';
 import type { BrandsModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { MotionUl } from '@/ui/motion/motion-ul';
-import { ParagraphPortableText, type TParagraphPortableTextProps } from '@/ui/portable-text/paragraph-portable-text';
+import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { q, runQuery } from '@/utils/groqd-client';
 import { BrandListItem } from './subs/brand-list-item';
 
@@ -22,14 +21,11 @@ export async function BrandsModule({ module }: TProps) {
     { parameters: { brandIds: module.brands.map(x => x._ref) } }
   );
 
-  const paragraphSurface: TParagraphPortableTextProps['surface'] =
-    module.variant === BRANDS_MODULE_VARIANTS.ON_PRIMARY ? 'primary' : 'bg';
-
   return (
-    <ModuleContentContainer surface='primary' title={module.heading} skipContentContainer={true}>
+    <ModuleContentContainer variant={module.variant} title={module.heading} skipContentContainer={true}>
       <ContentContainer>
         <div className='max-w-5xl mx-auto'>
-          <ParagraphPortableText value={module.content} surface={paragraphSurface} className='text-center' />
+          <ParagraphPortableText value={module.content} variant={module.variant} className='text-center' />
         </div>
       </ContentContainer>
       <div className='mt-4 w-full overflow-hidden'>

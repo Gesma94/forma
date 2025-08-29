@@ -3,6 +3,7 @@ import { BrandsModule } from '@/layout/modules/brands-module/brands-module';
 import { CountersModule } from '@/layout/modules/counters-module/counters-module';
 import { HeroModule } from '@/layout/modules/hero-module/hero-module';
 import { StudioModule } from '@/layout/modules/studio-module/studio-module';
+import { TextWithImageModule } from '@/layout/modules/text-with-image-module/text-with-image-module';
 
 type TProps = {
   modules: TAllSanityModuleSchemas[];
@@ -19,6 +20,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <CountersModule key={module._id} module={module} />;
       case 'brandsModuleDocumentType':
         return <BrandsModule key={module._id} module={module} />;
+      case 'textWithImageModuleDocumentType':
+        return <TextWithImageModule key={module._id} module={module} />;
     }
   });
 }
