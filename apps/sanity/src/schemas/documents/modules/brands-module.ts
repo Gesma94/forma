@@ -1,18 +1,8 @@
-import { BRANDS_MODULE_VARIANTS, type TBrandsModuleVariants } from '@forma/common';
 import { SparkleIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineRichEditorField } from '../../../fields';
-
-function getVariantTitle(variant: TBrandsModuleVariants) {
-  switch (variant) {
-    case BRANDS_MODULE_VARIANTS.ON_BG:
-      return 'On BG';
-    case BRANDS_MODULE_VARIANTS.ON_PRIMARY:
-      return 'On Primary';
-  }
-}
+import { getVariantTitle, textBlockToPlainText } from '../../../common/utils';
+import { defineModuleVariantField, defineRichEditorField } from '../../../fields';
 
 export const brandsModuleDocumentType = defineType({
   type: 'document',
@@ -30,20 +20,7 @@ export const brandsModuleDocumentType = defineType({
     })
   },
   fields: [
-    defineField({
-      type: 'string',
-      title: 'Variant',
-      name: 'variant',
-      validation: rule => rule.required(),
-      initialValue: BRANDS_MODULE_VARIANTS.ON_BG,
-      options: {
-        layout: 'radio',
-        list: Object.values(BRANDS_MODULE_VARIANTS).map(x => ({
-          title: getVariantTitle(x),
-          value: x
-        }))
-      }
-    }),
+    defineModuleVariantField({}),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',

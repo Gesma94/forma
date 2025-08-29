@@ -1,4 +1,4 @@
-import { SANITY_DOCUMENT_IDS } from '@forma/common';
+import { MODULE_VARIANTS, SANITY_DOCUMENT_IDS, TModuleVariants } from '@forma/common';
 import { isPortableTextTextBlock, type PortableTextBlock } from 'sanity';
 
 export function getPageTitleFromId(pageId: string): string {
@@ -36,4 +36,13 @@ export function textBlockToPlainText(blocks: PortableTextBlock[] = []) {
       // join the paragraphs leaving split by two linebreaks
       .join('\n\n')
   );
+}
+
+export function getVariantTitle(variant: TModuleVariants) {
+  switch (variant) {
+    case MODULE_VARIANTS.ON_BG:
+      return 'On BG';
+    case MODULE_VARIANTS.ON_PRIMARY:
+      return 'On Primary';
+  }
 }

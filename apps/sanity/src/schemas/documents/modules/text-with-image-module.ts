@@ -2,22 +2,26 @@ import { IMAGE_X_POSITION } from '@forma/common';
 import { ListXIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineImageField, defineRichEditorField } from '../../../fields';
+import { getVariantTitle, textBlockToPlainText } from '../../../common/utils';
+import { defineImageField, defineModuleVariantField, defineRichEditorField } from '../../../fields';
 
 export const textWithImageModuleDocumentType = defineType({
   type: 'document',
   title: 'Text with Image Module',
-  name: DOCUMENT_SCHEMA_TYPES.imageWithTextModule,
+  name: DOCUMENT_SCHEMA_TYPES.textWithImageModule,
   icon: ListXIcon,
   preview: {
     select: {
       title: 'heading',
-      media: 'image'
+      media: 'image',
+      variant: 'variant'
     },
-    prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Text with Image Module' })
+    prepare: ({ title, media,variant }) => ({ 
+      title: textBlockToPlainText(title),
+       media, subtitle: `Text with Image Module- ${getVariantTitle(variant)}` })
   },
   fields: [
+    defineModuleVariantField({}),    
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',
