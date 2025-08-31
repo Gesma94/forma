@@ -1,7 +1,7 @@
+import { MODULE_VARIANTS } from '@forma/common';
 import type { CountersModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { Counter } from './subs/counter';
-import { MODULE_VARIANTS } from '@forma/common';
 
 type TProps = {
   module: CountersModuleDocumentType;

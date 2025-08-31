@@ -16,10 +16,8 @@ export function Button({
 }: ButtonProps & TButtonStyleProps) {
   return (
     <AriaButton
-      className={getAriaCustomClassName(
-        className,
-        buttonStyle({ variant, surface, size, isDisabled, isFullWidth, isLoading })
-      )}
+    className={(value) =>  buttonStyle({ variant, surface, size, isDisabled, isFullWidth, isLoading, className: getAriaCustomClassName(value, className) })}
+     
       {...rest}
     />
   );

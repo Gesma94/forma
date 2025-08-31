@@ -1,3 +1,4 @@
+import { MODULE_VARIANTS } from '@forma/common';
 import type { StudioModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { textWithSideImage, twoColumnLayout } from '@/styles/layouts';
 import { Button } from '@/ui/buttons/button/button';
@@ -6,7 +7,6 @@ import { LogoIcon } from '@/ui/logos/logo-icon/logo-icon';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { getSanityImageUrl } from '@/utils/groqd-client';
 import { StudioModuleSubHeading } from './subs/studio-module-subheading';
-import { MODULE_VARIANTS } from '@forma/common';
 
 type TProps = {
   module: StudioModuleDocumentType;

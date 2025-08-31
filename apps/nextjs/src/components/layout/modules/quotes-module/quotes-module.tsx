@@ -25,7 +25,7 @@ export async function QuotesModule({ module }: TProps) {
   return (
     <ModuleContentContainer title={module.heading} skipContentContainer={true}>
       <div className='px-16 md:px-24'>
-      <QuotesCarousel quotes={quotesWithImages} />
+        <QuotesCarousel quotes={quotesWithImages} />
       </div>
     </ModuleContentContainer>
   );

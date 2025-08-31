@@ -20,7 +20,7 @@ export function IconButton({
   const Icon = icon;
 
   return (
-    <AriaButton className={getAriaCustomClassName(className, style({ variant, surface, size, isDisabled }))} {...rest}>
+    <AriaButton className={(value) =>  style({ variant, surface, size, isDisabled, className: getAriaCustomClassName(value, className) })} {...rest}>
       <Icon className='size-1/2' />
     </AriaButton>
   );
@@ -29,6 +29,7 @@ const style = tv({
   base: 'rounded-full flex items-center  justify-center',
   variants: {
     size: {
+      extrasmall: 'size-6',
       small: 'size-8',
       medium: 'size-10',
       large: 'size-12'

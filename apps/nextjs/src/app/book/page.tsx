@@ -3,8 +3,13 @@ import { CalendarDotsIcon } from '@phosphor-icons/react/dist/ssr';
 import type { Viewport } from 'next';
 import { Topbar } from '@/layout/topbar/topbar';
 import { ContentContainer } from '@/ui/content-container/content-container';
+import { TextField } from '@/ui/fields/text-field/text-field';
 import { q, runQuery } from '@/utils/groqd-client';
 import { ModuleRenderer } from '@/utils/module-renderer';
+import { TextAreaField } from '@/ui/fields/text-area-field/text-area-field';
+import { CalendarSlotField } from '@/ui/fields/calendar-slot-field/calendar-slot-field';
+import { DateField } from '@/ui/fields/date-field/date-field';
+import { Button } from '@/ui/buttons/button/button';
 
 type TSanityQueryParams = {
   pageId: string;
@@ -36,11 +41,11 @@ export default async function Page() {
         <img
           alt='we'
           src='https://cdn.sanity.io/images/8gia4a8i/production/70d69846f77d7644b1a6a734c703296eca8b412d-2000x1430.jpg'
-          className='absolute object-cover size-full brightness-50'
+          className='absolute object-cover size-full brightness-[30%]'
         />
         <ContentContainer>
           <div className='relative py-20 grid grid-cols-2 gap-20'>
-            <div className='relative top-20 mb-auto'>
+            <div className='sticky pt-20 top-20 mb-auto'>
               <div className='absolute -bottom-10 right-10 rotate-12 opacity-10'>
                 <CalendarDotsIcon className='size-80 text-primary' />
               </div>
@@ -55,63 +60,16 @@ export default async function Page() {
               {/* <img src='https://placehold.co/400x400' className='object-cover w-full max-h-96 aspect-square rounded-2xl mt-10' /> */}
             </div>
             <div className='flex flex-col gap-4 mt-60'>
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              <input
-                type='text'
-                className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
-                placeholder='Search available slots...'
-              />
-              {/* <input type="text" className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light' placeholder='Search available slots...' />
-            <input type="text" className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light' placeholder='Search available slots...' />
-            <input type="text" className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light' placeholder='Search available slots...' />
-            <input type="text" className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light' placeholder='Search available slots...' />
-            <input type="text" className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light' placeholder='Search available slots...' />
-            <input type="text" className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light' placeholder='Search available slots...' /> */}
-            </div>
+              <TextField type='text' label='Full name' />
+              <TextField type='email' label='Email' />
+              <CalendarSlotField label="Appointment Date"/>
+              <TextField type='text' label='Company/Studio' />
+              <TextAreaField label='Whats the project about?' rows={4}/>
+              <DateField label="When is the deadline?" />
+              <div>
+              <Button className='min-w-2xs mt-10' size='large' variant='primary' surface='bg'>Submit</Button>
+              </div>
+               </div>
           </div>
         </ContentContainer>
       </div>
