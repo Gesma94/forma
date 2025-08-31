@@ -29,8 +29,6 @@ export default async function Page() {
     { parameters: { pageId: SANITY_DOCUMENT_IDS.bookpage } }
   );
 
-  console.log(result);
-
   return (
     <div>
       <Topbar variant='floating' />
@@ -42,7 +40,7 @@ export default async function Page() {
         />
         <ContentContainer>
           <div className='relative py-20 grid grid-cols-2 gap-20'>
-            <div className='sticky top-1/4 mb-auto'>
+            <div className='relative top-20 mb-auto'>
               <div className='absolute -bottom-10 right-10 rotate-12 opacity-10'>
                 <CalendarDotsIcon className='size-80 text-primary' />
               </div>
@@ -56,7 +54,7 @@ export default async function Page() {
               </div>
               {/* <img src='https://placehold.co/400x400' className='object-cover w-full max-h-96 aspect-square rounded-2xl mt-10' /> */}
             </div>
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-4 mt-60'>
               <input
                 type='text'
                 className='w-full border bg-bg border-bg-text/20 rounded-md h-14 px-4 text-lg font-base font-light'
