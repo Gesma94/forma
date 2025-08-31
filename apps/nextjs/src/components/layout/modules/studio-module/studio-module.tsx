@@ -6,6 +6,7 @@ import { LogoIcon } from '@/ui/logos/logo-icon/logo-icon';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { getSanityImageUrl } from '@/utils/groqd-client';
 import { StudioModuleSubHeading } from './subs/studio-module-subheading';
+import { MODULE_VARIANTS } from '@forma/common';
 
 type TProps = {
   module: StudioModuleDocumentType;
@@ -15,7 +16,7 @@ export function StudioModule({ module }: TProps) {
   const imageUrl = getSanityImageUrl(module.image);
 
   return (
-    <ModuleContentContainer surface='bg'>
+    <ModuleContentContainer variant={MODULE_VARIANTS.ON_BG}>
       <div
         className={twoColumnLayout({
           class: 'grid-rows-[auto_auto] grid-cols-1 xl:grid-rows-1 xl:grid-cols-[4fr_3fr] 2xl:grid-cols-2'
@@ -37,7 +38,7 @@ export function StudioModule({ module }: TProps) {
             <StudioModuleSubHeading value={module.subHeading} />
           </div>
           <div className='mt-8'>
-            <ParagraphPortableText value={module.content} surface='bg' />
+            <ParagraphPortableText value={module.content} variant={MODULE_VARIANTS.ON_BG} />
           </div>
           {module.showCta && (
             <div className='mt-8 grid xs:block md:mx-auto xl:mx-[unset] xs:mr-auto'>

@@ -4,6 +4,7 @@
   "author": "Matteo Gesmundo",
   "scripts": {
     "dev": "next dev",
+    "build:dep": "cd ../../packages/common && pnpm install && pnpm build",
     "build": "next build",
     "start": "next start",
     "biome:lint": "pnpm biome lint .",
