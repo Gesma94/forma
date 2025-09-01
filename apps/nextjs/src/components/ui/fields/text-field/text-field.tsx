@@ -30,7 +30,7 @@ export function TextField({ label, ...rest }: Props) {
   };
 
   const isLabelRaised = useMemo<boolean>(() => {
-        if (rest.value) {
+    if (rest.value) {
       return true;
     }
     if (isFocused) {
@@ -63,7 +63,7 @@ export function TextField({ label, ...rest }: Props) {
         {label}
       </MotionLabel>
       <AriaInput
-       {...rest}
+        {...rest}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         ref={inputRef}

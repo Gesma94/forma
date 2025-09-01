@@ -1,7 +1,7 @@
 import type { Icon } from '@phosphor-icons/react';
 import { Button as AriaButton, type ButtonProps } from 'react-aria-components';
+import { iconButtonStyle, type TIconButtonStyle } from '@/styles/icon-button';
 import { getAriaCustomClassName } from '@/utils/style';
-import { iconButtonStyle, TIconButtonStyle } from '@/styles/icon-button';
 
 type TProps = TIconButtonStyle &
   Omit<ButtonProps, 'children'> & {
@@ -20,7 +20,12 @@ export function IconButton({
   const Icon = icon;
 
   return (
-    <AriaButton className={(value) =>  iconButtonStyle({ variant, surface, size, isDisabled, className: getAriaCustomClassName(value, className) })} {...rest}>
+    <AriaButton
+      className={value =>
+        iconButtonStyle({ variant, surface, size, isDisabled, className: getAriaCustomClassName(value, className) })
+      }
+      {...rest}
+    >
       <Icon className='size-1/2' />
     </AriaButton>
   );

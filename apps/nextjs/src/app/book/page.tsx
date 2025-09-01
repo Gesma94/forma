@@ -1,20 +1,17 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { CalendarDotsIcon } from '@phosphor-icons/react/dist/ssr';
 import type { Viewport } from 'next';
+import { getCalendlyDaysAvailableSlots } from 'services/calendly';
 import { Topbar } from '@/layout/topbar/topbar';
+import { Button } from '@/ui/buttons/button/button';
 import { ContentContainer } from '@/ui/content-container/content-container';
+import { DateField } from '@/ui/fields/date-field/date-field';
+import { SelectField } from '@/ui/fields/select-field/select-field';
+import { SelectOption } from '@/ui/fields/select-field/select-option';
+import { TextAreaField } from '@/ui/fields/text-area-field/text-area-field';
 import { TextField } from '@/ui/fields/text-field/text-field';
 import { q, runQuery } from '@/utils/groqd-client';
 import { ModuleRenderer } from '@/utils/module-renderer';
-import { TextAreaField } from '@/ui/fields/text-area-field/text-area-field';
-import { CalendarSlotField } from '@/ui/fields/calendar-slot-field/calendar-slot-field';
-import { DateField } from '@/ui/fields/date-field/date-field';
-import { Button } from '@/ui/buttons/button/button';
-import { getCalendlyDaysAvailableSlots } from 'services/calendly';
-import { addMinutes } from 'date-fns';
-import { SelectField } from '@/ui/fields/select-field/select-field';
-import { ListBoxItem } from 'react-aria-components';
-import { SelectOption } from '@/ui/fields/select-field/select-option';
 
 type TSanityQueryParams = {
   pageId: string;
@@ -27,19 +24,20 @@ export const viewport: Viewport = {
 };
 
 export default async function Page() {
-  const [calendlyData, sanityData] = await Promise.all([
+  const [_, sanityData] = await Promise.all([
     getCalendlyDaysAvailableSlots(14),
     runQuery(
-    q
-      .parameters<TSanityQueryParams>()
-      .star.filterByType('pageLayoutDocumentType')
-      .filterBy('_id == $pageId')
-      .slice(0)
-      .project(sub => ({
-        modules: sub.field('modules[]').deref()
-      })),
-    { parameters: { pageId: SANITY_DOCUMENT_IDS.bookpage } }
-  )]);
+      q
+        .parameters<TSanityQueryParams>()
+        .star.filterByType('pageLayoutDocumentType')
+        .filterBy('_id == $pageId')
+        .slice(0)
+        .project(sub => ({
+          modules: sub.field('modules[]').deref()
+        })),
+      { parameters: { pageId: SANITY_DOCUMENT_IDS.bookpage } }
+    )
+  ]);
 
   return (
     <div>
@@ -67,34 +65,35 @@ export default async function Page() {
               {/* <img src='https://placehold.co/400x400' className='object-cover w-full max-h-96 aspect-square rounded-2xl mt-10' /> */}
             </div>
             <div className='flex flex-col gap-4 xl:mt-60 w-full max-w-2xl mx-auto'>
-
               <TextField type='text' label='Full name' />
               <TextField type='email' label='Email' />
               <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
-              <DateField label="Appointment Date" />
-              <SelectField label='Appointment slot'>
-                   <SelectOption>Aardvark</SelectOption>
-                      <SelectOption>Cat</SelectOption>
-                      <SelectOption>Dog</SelectOption>
-                      <SelectOption>Kangaroo</SelectOption>
-                      <SelectOption>Panda</SelectOption>
-                      <SelectOption>Snake</SelectOption>
-                      </SelectField>
+                <DateField label='Appointment Date' />
+                <SelectField label='Appointment slot'>
+                  <SelectOption>Aardvark</SelectOption>
+                  <SelectOption>Cat</SelectOption>
+                  <SelectOption>Dog</SelectOption>
+                  <SelectOption>Kangaroo</SelectOption>
+                  <SelectOption>Panda</SelectOption>
+                  <SelectOption>Snake</SelectOption>
+                </SelectField>
               </div>
               <TextField type='text' label='Company/Studio' />
-              <TextAreaField label='Whats the project about?' rows={4}/>
-              <DateField label="When is the deadline?" />
+              <TextAreaField label='Whats the project about?' rows={4} />
+              <DateField label='When is the deadline?' />
               <SelectField label='In which phase is the project?'>
-                   <SelectOption>Concept Development</SelectOption>
-                      <SelectOption>Design Development</SelectOption>
-                      <SelectOption>Presentation Submission</SelectOption>
-                      <SelectOption>Competition Submission</SelectOption>
-                      <SelectOption>Marketing</SelectOption>
-                      </SelectField>
+                <SelectOption>Concept Development</SelectOption>
+                <SelectOption>Design Development</SelectOption>
+                <SelectOption>Presentation Submission</SelectOption>
+                <SelectOption>Competition Submission</SelectOption>
+                <SelectOption>Marketing</SelectOption>
+              </SelectField>
               <div>
-              <Button className='min-w-2xs mt-10' size='large' variant='primary' surface='bg'>Submit</Button>
+                <Button className='min-w-2xs mt-10' size='large' variant='primary' surface='bg'>
+                  Submit
+                </Button>
               </div>
-               </div>
+            </div>
           </div>
         </ContentContainer>
       </div>

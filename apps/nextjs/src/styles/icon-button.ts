@@ -1,4 +1,4 @@
-import { tv, VariantProps } from "tailwind-variants";
+import { tv, type VariantProps } from 'tailwind-variants';
 
 export const iconButtonStyle = tv({
   base: 'rounded-full flex items-center  justify-center',
