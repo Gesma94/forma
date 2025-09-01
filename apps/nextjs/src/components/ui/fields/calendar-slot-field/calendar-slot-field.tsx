@@ -64,7 +64,7 @@ export function CalendarSlotField({ label }: Props) {
     <DialogTrigger>
       <Pressable>
         <div role="button">
-          <TextField label={label} />
+          <TextField label={label} tabIndex={-1} />
         </div>
       </Pressable>
        <Popover offset={0} placement='bottom left' maxHeight={2000} className='bg-bg rounded-md border border-bg-border'>

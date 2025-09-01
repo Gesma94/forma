@@ -1,0 +1,48 @@
+import { tv, VariantProps } from "tailwind-variants";
+
+export const iconButtonStyle = tv({
+  base: 'rounded-full flex items-center  justify-center',
+  variants: {
+    size: {
+      extrasmall: 'size-6',
+      small: 'size-8',
+      medium: 'size-10',
+      large: 'size-12'
+    },
+    variant: {
+      primary: ''
+    },
+    surface: {
+      bg: ''
+    },
+    isDisabled: {
+      true: '',
+      false: 'cursor-pointer'
+    }
+  },
+  compoundVariants: [
+    // Disabled states
+    {
+      variant: 'primary',
+      surface: 'bg',
+      isDisabled: true,
+      className: 'bg-primary-disabled text-primary-text-disabled'
+    },
+
+    // Default primary states
+    {
+      variant: 'primary',
+      surface: 'bg',
+      isDisabled: false,
+      isLoading: false,
+      className: `
+                bg-primary text-primary-text
+                hover:bg-primary-hover
+                active:bg-primary-active
+                focus-visible:outline-bg focus-visible:outline focus-visible:outline-offset-4
+                `
+    }
+  ]
+});
+
+export type TIconButtonStyle = VariantProps<typeof iconButtonStyle>;
