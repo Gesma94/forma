@@ -51,9 +51,6 @@ export default async function Page() {
         <ContentContainer>
           <div className='relative py-20 flex flex-col xl:grid xl:grid-cols-2 gap-20'>
             <div className='xl:sticky pt-20 top-20 mb-auto'>
-              <div className='absolute -bottom-10 right-10 rotate-12 opacity-10'>
-                <CalendarDotsIcon className='size-80 text-primary' />
-              </div>
               <div className='relative'>
                 <h1 className='text-9xl text-primary font-bold font-accent'>Book a call now!</h1>
                 <p className=' mt-10 prose-2xl prose-p:my-0 font-base font-light text-primary-text'>
