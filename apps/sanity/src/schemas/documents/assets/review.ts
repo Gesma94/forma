@@ -4,24 +4,31 @@ import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineImageField, defineRichEditorField } from '../../../fields';
 
-export const quoteDocumentType = defineType({
+export const reviewDocumentType = defineType({
   type: 'document',
-  title: 'Quote',
+  title: 'Review',
   icon: MessageSquareQuoteIcon,
-  name: DOCUMENT_SCHEMA_TYPES.quote,
+  name: DOCUMENT_SCHEMA_TYPES.review,
   preview: {
     select: {
       title: 'statement',
       authorName: 'authorName',
       authorRole: 'authorRole',
-      authorCompany: 'authorCompany'
+      authorCompany: 'authorCompany',
+      media: 'image'
     },
-    prepare: ({ title, authorName, authorRole, authorCompany }) => ({
-      title: textBlockToPlainText(title, 30),
+    prepare: ({ title, authorName, media, authorRole, authorCompany }) => ({
+      media,
+    title: textBlockToPlainText(title, 30),
       subtitle: `${authorName}, ${authorRole}, ${authorCompany}`
     })
   },
   fields: [
+    defineImageField({
+      name: 'image',
+      title: 'Image',
+      validation: rule => rule.required()
+    }),
     defineRichEditorField({
       name: 'statement',
       title: 'Statement',
@@ -50,6 +57,12 @@ export const quoteDocumentType = defineType({
       name: 'authorAvatar',
       title: 'Author Avatar',
       validation: rule => rule.required()
+    }),
+    defineField({
+        name: 'brand',
+        title: 'Brand',
+        type: 'reference',
+        to: [{ type: DOCUMENT_SCHEMA_TYPES.brand }]
     })
   ]
 });

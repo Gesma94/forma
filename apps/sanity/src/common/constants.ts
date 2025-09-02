@@ -7,10 +7,12 @@ export const DOCUMENT_SCHEMA_TYPES = {
   countersModule: 'countersModuleDocumentType',
   brandsModule: 'brandsModuleDocumentType',
   quotesModule: 'quotesModuleDocumentType',
+  reviewsModule: 'reviewsModuleDocumentType',
   textWithImageModule: 'textWithImageModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType',
   brand: 'brandDocumentType',
-  quote: 'quoteDocumentType'
+  quote: 'quoteDocumentType',
+  review: 'reviewDocumentType',
 } as const;
 
 export const OBJECT_SCHEMA_TYPES = {

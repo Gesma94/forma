@@ -5,7 +5,6 @@ type TProps = {
   title: string;
   note?: string;
   fieldset?: string;
-  allowColorMarkDecorator?: boolean;
   fields?: FieldDefinition[];
   validation?: ValidationBuilder<ImageRule, ImageValue>;
 };
