@@ -12,7 +12,7 @@ export function AnimatedValue({ value }: TProps) {
   const ref = useRef<HTMLSpanElement>(null);
 
   const count = useMotionValue(0);
-  const isInView = useInView(ref);
+  const isInView = useInView(ref, { once: true });
   const rounded = useTransform(() => Math.round(count.get()));
 
   useEffect(() => {
