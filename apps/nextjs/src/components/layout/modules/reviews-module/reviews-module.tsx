@@ -52,7 +52,7 @@ export async function ReviewsModule({ module }: TProps) {
           <div className='relative z-20'>
             <ReviewsCarousel reviews={reviewsWithImages} />
           </div>
-          <div className='absolute w-full h-[570px] bg-primary -bottom-20 z-10'></div>
+          <div className='absolute w-full h-[calc(82%_+_2.5rem)] md:h-[calc(82%_+_5rem)] bg-primary -bottom-10 md:-bottom-20 z-10'></div>
         </div>
       </div>
     </ModuleContentContainer>
