@@ -1,5 +1,4 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
-import { CalendarDotsIcon } from '@phosphor-icons/react/dist/ssr';
 import type { Viewport } from 'next';
 import { getCalendlyDaysAvailableSlots } from 'services/calendly';
 import { Topbar } from '@/layout/topbar/topbar';

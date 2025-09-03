@@ -27,8 +27,8 @@ export function Quote({
           <Image
             src={authorAvatarUrl}
             alt={authorAvatar.altText}
-            width={32}
-            height={32}
+            width={64}
+            height={64}
             className='size-16 rounded-full order-1 md:order-2'
           />
         </div>

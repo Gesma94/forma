@@ -31,7 +31,6 @@ export default async function Page() {
     <div>
       <Topbar variant='floating' />
       <ModuleRenderer modules={result.modules} />
-      <div className='h-[300px] bg-bg' />
     </div>
   );
 }

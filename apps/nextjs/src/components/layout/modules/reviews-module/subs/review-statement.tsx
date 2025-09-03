@@ -1,21 +1,18 @@
 import { MODULE_VARIANTS } from '@forma/common';
-import type { HTMLProps } from 'react';
 import { tv, type VariantProps } from 'tailwind-variants';
-import { PortableTextEmComponent, PortableTextStrongComponent } from './base-components';
-import { BasePortableText, type TBasePortableTextConsumerProps } from './base-portable-text';
+import { PortableTextEmComponent, PortableTextStrongComponent } from '@/ui/portable-text/base-components';
+import { BasePortableText, type TBasePortableTextConsumerProps } from '@/ui/portable-text/base-portable-text';
 
-export type TParagraphPortableTextProps = VariantProps<typeof style> &
-  TBasePortableTextConsumerProps &
-  Pick<HTMLProps<typeof HTMLDivElement>, 'className'>;
+export type TReviewStatementProps = VariantProps<typeof style> & TBasePortableTextConsumerProps;
 
-export function ParagraphPortableText({ value, variant = 'on-bg', className }: TParagraphPortableTextProps) {
+export function ReviewStatement({ value, variant }: TReviewStatementProps) {
   const { container, paragraph } = style({ variant });
+
   return (
-    <div className={container({ className })}>
+    <div className={container()}>
       <BasePortableText
         value={value}
         components={{
-          types: {},
           block: {
             normal: ({ children }) => <p className={paragraph()}>{children}</p>
           },
@@ -31,8 +28,8 @@ export function ParagraphPortableText({ value, variant = 'on-bg', className }: T
 
 const style = tv({
   slots: {
-    container: 'flex flex-col gap-4 max-w-5xl mx-auto',
-    paragraph: 'prose-xl md:prose-2xl prose-p:my-0 font-base font-light'
+    container: 'flex flex-col gap-2 max-w-5xl mx-auto',
+    paragraph: 'prose-xl prose-p:my-0 font-base font-light italic'
   },
   variants: {
     variant: {

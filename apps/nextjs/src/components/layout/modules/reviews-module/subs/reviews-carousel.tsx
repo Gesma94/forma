@@ -1,0 +1,102 @@
+'use client';
+
+import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
+import { MOTION_ANIMATION } from 'common/enums/motion-animation';
+import { AnimatePresence, type HTMLMotionProps, motion } from 'motion/react';
+import Image from 'next/image';
+import { useState } from 'react';
+import { IconButton } from '@/ui/buttons/icon-button/icon-button';
+import { MotionDiv } from '@/ui/motion/motion-div';
+import { ReviewStatement } from './review-statement';
+import type { TReview } from './types';
+
+type TProps = {
+  reviews: TReview[];
+};
+
+export function ReviewsCarousel({ reviews }: TProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const {
+    authorAvatar,
+    authorAvatarUrl,
+    authorCompany,
+    authorName,
+    id,
+    image,
+    reviewImageUrl,
+    authorRole,
+    statement,
+    brandImageUrl,
+    brand
+  } = reviews[currentIndex];
+
+  const handleNextClick = () => {
+    setCurrentIndex((currentIndex - 1 + reviews.length) % reviews.length);
+  };
+
+  const handlePreviousClick = () => {
+    setCurrentIndex((currentIndex + 1) % reviews.length);
+  };
+
+  return (
+    <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM}>
+      <div className='w-full h-[720px] grid grid-cols-[1fr_2fr] grid-rows-1 max-w-9xl mx-auto bg-primary shadow-2xl rounded-2xl overflow-hidden'>
+        <AnimatePresence initial={false}>
+          <div className='px-10 py-10 col-start-1 row-start-1 flex relative' key={id}>
+            <motion.div {...commonMotionProps} className='flex'>
+              <div className='flex flex-col justify-between'>
+                <div>
+                  <img src={brandImageUrl} alt={brand.logo.altText} className='h-16 w-auto invert-[88%]' />
+                </div>
+                <div>
+                  <ReviewStatement value={statement} variant='on-primary' />
+                  <div className='flex w-full items-center justify-center md:justify-start mx-auto gap-4 relative mt-4'>
+                    <div className='flex-col flex md:gap-4 items-center md:flex-row'>
+                      <Image
+                        src={authorAvatarUrl}
+                        alt={authorAvatar.altText}
+                        width={64}
+                        height={64}
+                        className='size-16 rounded-full order-1 md:order-1'
+                      />
+                      <div className='flex flex-col items-center md:justify-end md:items-start order-2 md:order-2'>
+                        <p className='prose-lg font-bold text-primary-text'>{authorName}</p>
+                        <p className='prose-sm font-light text-center text-primary-text'>
+                          {authorRole}, {authorCompany}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            <div className='absolute flex gap-2 bottom-[3.25rem] right-10'>
+              <IconButton surface='primary' icon={CaretLeftIcon} onClick={handlePreviousClick} />
+              <IconButton surface='primary' icon={CaretRightIcon} onClick={handleNextClick} />
+            </div>
+          </div>
+        </AnimatePresence>
+        <AnimatePresence initial={false}>
+          <div className='col-start-2row-start-1  relative' key={id}>
+            <motion.div className='absolute inset-0' {...commonMotionProps}>
+              <img src={reviewImageUrl} alt={image.altText} />
+            </motion.div>
+          </div>
+        </AnimatePresence>
+        <div className='mt-8 mx-auto md:mx-[unset] md:mt-0 md:absolute flex gap-2 bottom-3 left-4'></div>
+      </div>
+    </MotionDiv>
+  );
+}
+
+const commonMotionProps: HTMLMotionProps<'div'> = {
+  transition: { duration: 1 },
+  variants: {
+    start: { opacity: 0 },
+    animate: { opacity: 1 },
+    end: { opacity: 0 }
+  },
+  initial: 'start',
+  animate: 'animate',
+  exit: 'end'
+};
