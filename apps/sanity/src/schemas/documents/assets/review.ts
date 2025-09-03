@@ -19,7 +19,7 @@ export const reviewDocumentType = defineType({
     },
     prepare: ({ title, authorName, media, authorRole, authorCompany }) => ({
       media,
-    title: textBlockToPlainText(title, 30),
+      title: textBlockToPlainText(title, 30),
       subtitle: `${authorName}, ${authorRole}, ${authorCompany}`
     })
   },
@@ -59,10 +59,10 @@ export const reviewDocumentType = defineType({
       validation: rule => rule.required()
     }),
     defineField({
-        name: 'brand',
-        title: 'Brand',
-        type: 'reference',
-        to: [{ type: DOCUMENT_SCHEMA_TYPES.brand }]
+      name: 'brand',
+      title: 'Brand',
+      type: 'reference',
+      to: [{ type: DOCUMENT_SCHEMA_TYPES.brand }]
     })
   ]
 });

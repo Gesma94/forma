@@ -13,6 +13,8 @@ export const DOCUMENT_SCHEMA_TYPES = {
   brand: 'brandDocumentType',
   quote: 'quoteDocumentType',
   review: 'reviewDocumentType',
+  clientSecretPage: 'clientSecretPageDocumentType',
+  clientSecretPageVersion: 'clientSecretPageVersionDocumentType'
 } as const;
 
 export const OBJECT_SCHEMA_TYPES = {

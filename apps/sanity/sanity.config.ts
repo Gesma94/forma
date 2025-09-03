@@ -1,6 +1,6 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { visionTool } from '@sanity/vision';
-import { HomeIcon, type LucideProps, NotebookPenIcon, SparklesIcon, WavesIcon } from 'lucide-react';
+import { BookKeyIcon, HomeIcon, type LucideProps, NotebookPenIcon, SparklesIcon, WavesIcon } from 'lucide-react';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
@@ -55,6 +55,10 @@ export default defineConfig({
                     .documentId(pageItem.id)
                 )
             ),
+            S.listItem()
+              .title('Client Secret Pages')
+              .icon(BookKeyIcon)
+              .child(S.documentTypeList(DOCUMENT_SCHEMA_TYPES.clientSecretPage).title('Client Secret Pages')),
             S.divider().title('Singletons'),
             S.listItem()
               .icon(WavesIcon)
