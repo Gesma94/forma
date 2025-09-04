@@ -9,6 +9,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   quotesModule: 'quotesModuleDocumentType',
   reviewsModule: 'reviewsModuleDocumentType',
   textWithImageModule: 'textWithImageModuleDocumentType',
+  servicesModule: 'servicesModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType',
   brand: 'brandDocumentType',
   quote: 'quoteDocumentType',
