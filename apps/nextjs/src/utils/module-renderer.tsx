@@ -1,14 +1,15 @@
-import type { TAllSanityModuleSchemas } from 'types/sanity-types';
+import type { AllSanitySchemaTypes } from 'types/generated/sanity-types-generated';
 import { BrandsModule } from '@/layout/modules/brands-module/brands-module';
 import { CountersModule } from '@/layout/modules/counters-module/counters-module';
 import { HeroModule } from '@/layout/modules/hero-module/hero-module';
 import { QuotesModule } from '@/layout/modules/quotes-module/quotes-module';
 import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
+import { ServicesModule } from '@/layout/modules/services-module/services-module';
 import { StudioModule } from '@/layout/modules/studio-module/studio-module';
 import { TextWithImageModule } from '@/layout/modules/text-with-image-module/text-with-image-module';
 
 type TProps = {
-  modules: TAllSanityModuleSchemas[];
+  modules: AllSanitySchemaTypes[];
 };
 
 export function ModuleRenderer({ modules }: TProps) {
@@ -28,6 +29,10 @@ export function ModuleRenderer({ modules }: TProps) {
         return <QuotesModule key={module._id} module={module} />;
       case 'reviewsModuleDocumentType':
         return <ReviewsModule key={module._id} module={module} />;
+      case 'servicesModuleDocumentType':
+        return <ServicesModule key={module._id} module={module} />;
+      default:
+        return null;
     }
   });
 }
