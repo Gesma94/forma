@@ -30,33 +30,39 @@ export async function ServicesModule({ module }: TProps) {
   );
 
   return (
-    <ModuleContentContainer title={module.heading} skipContentContainer={true}>
-      <div>
+    <div className='pt-10 md:pt-20'>
+      <ModuleContentContainer title={module.heading} skipContentContainer={true} skipYPadding={true}>
         <div>
-          <ContentContainer>
-            <ParagraphPortableText value={module.subHeading} variant={MODULE_VARIANTS.ON_BG} className='text-center' />
-          </ContentContainer>
+          <div>
+            <ContentContainer>
+              <ParagraphPortableText
+                value={module.subHeading}
+                variant={MODULE_VARIANTS.ON_BG}
+                className='text-center'
+              />
+            </ContentContainer>
+          </div>
         </div>
-      </div>
-      <div className='mt-10'>
-        <ServicesBoard
-          stillImageServiceCard={{
-            title: module.stillImageServiceTitle,
-            content: module.stillImageServiceContent,
-            video: videos.stillImageServiceVideo
-          }}
-          vrServiceCard={{
-            title: module.vrServiceTitle,
-            content: module.vrServiceContent,
-            video: videos.vrServiceVideo
-          }}
-          animationsServiceCard={{
-            title: module.animationsServiceTitle,
-            content: module.animationsServiceContent,
-            video: videos.animationsServiceVideo
-          }}
-        />
-      </div>
-    </ModuleContentContainer>
+        <div className='mt-10'>
+          <ServicesBoard
+            stillImageServiceCard={{
+              title: module.stillImageServiceTitle,
+              content: module.stillImageServiceContent,
+              video: videos.stillImageServiceVideo
+            }}
+            vrServiceCard={{
+              title: module.vrServiceTitle,
+              content: module.vrServiceContent,
+              video: videos.vrServiceVideo
+            }}
+            animationsServiceCard={{
+              title: module.animationsServiceTitle,
+              content: module.animationsServiceContent,
+              video: videos.animationsServiceVideo
+            }}
+          />
+        </div>
+      </ModuleContentContainer>
+    </div>
   );
 }

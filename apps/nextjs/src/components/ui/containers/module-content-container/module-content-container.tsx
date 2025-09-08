@@ -10,12 +10,19 @@ import { ModuleContentContainerTitle } from './subs/module-content-container-tit
 type Props = PropsWithChildren<VariantProps<typeof style>> & {
   title?: string | TBasePortableTextValue;
   skipContentContainer?: boolean;
+  skipYPadding?: boolean;
 };
 
-export function ModuleContentContainer({ children, variant = 'on-bg', title, skipContentContainer = false }: Props) {
+export function ModuleContentContainer({
+  children,
+  variant = 'on-bg',
+  title,
+  skipContentContainer = false,
+  skipYPadding = false
+}: Props) {
   const Container = skipContentContainer ? Fragment : ContentContainer;
   return (
-    <div className={style({ variant })}>
+    <div className={style({ variant, skipYPadding })}>
       <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} className='grid grid-rows-[auto_auto]'>
         {title && (
           <div className='mb-4 md:mb-10'>
@@ -35,11 +42,15 @@ export function ModuleContentContainer({ children, variant = 'on-bg', title, ski
 }
 
 const style = tv({
-  base: 'py-10 md:py-20',
+  base: '',
   variants: {
     variant: {
       [MODULE_VARIANTS.ON_BG]: 'bg-bg text-bg-text',
       [MODULE_VARIANTS.ON_PRIMARY]: 'bg-primary text-primary-text'
+    },
+    skipYPadding: {
+      true: 'py-0',
+      false: 'py-10 md:py-20'
     }
   }
 });
