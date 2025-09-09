@@ -2,6 +2,7 @@ import { brandsModuleDocumentType } from './brands-module';
 import { countersModuleDocumentType } from './counters-module';
 import { halfHeroModuleDocumentType } from './half-hero-module';
 import { heroModuleDocumentType } from './hero-module';
+import { howItWorksModuleDocumentType } from './how-it-works-module';
 import { quotesModuleDocumentType } from './quotes-module';
 import { reviewsModuleDocumentType } from './reviews-module';
 import { servicesModuleDocumentType } from './services-module';
@@ -17,5 +18,6 @@ export const moduleDocumentSchemaTypes = [
   quotesModuleDocumentType,
   reviewsModuleDocumentType,
   textWithImageModuleDocumentType,
-  servicesModuleDocumentType
+  servicesModuleDocumentType,
+  howItWorksModuleDocumentType
 ];

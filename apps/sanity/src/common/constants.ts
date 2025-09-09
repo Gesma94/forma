@@ -1,5 +1,6 @@
 export const DOCUMENT_SCHEMA_TYPES = {
   footer: 'footerDocumentType',
+  howItWorksModule: 'howItWorksModuleDocumentType',
   heroModule: 'heroModuleDocumentType',
   halfHeroModule: 'halfHeroModuleDocumentType',
   studioModule: 'studioModuleDocumentType',
@@ -22,5 +23,6 @@ export const OBJECT_SCHEMA_TYPES = {
   link: 'linkObjectType',
   cta: 'ctaObjectType',
   contact: 'contactObjectType',
-  counter: 'counterObjectType'
+  counter: 'counterObjectType',
+  howItWorksStep: 'howItWorksStepObjectType'
 } as const;

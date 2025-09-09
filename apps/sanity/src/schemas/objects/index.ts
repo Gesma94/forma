@@ -1,6 +1,13 @@
 import { contactObjectType } from './contact';
 import { counterObjectType } from './counter';
 import { ctaObjectType } from './cta';
+import { howItWorksObjectType } from './how-it-works-step';
 import { linkObjectType } from './link';
 
-export const objectSchemaTypes = [ctaObjectType, contactObjectType, linkObjectType, counterObjectType];
+export const objectSchemaTypes = [
+  ctaObjectType,
+  contactObjectType,
+  linkObjectType,
+  counterObjectType,
+  howItWorksObjectType
+];
