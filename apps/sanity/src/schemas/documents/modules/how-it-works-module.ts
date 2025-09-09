@@ -34,8 +34,8 @@ export const howItWorksModuleDocumentType = defineType({
     }),
     defineField({
       type: 'array',
-      name: 'counters',
-      title: 'Counters',
+      name: 'steps',
+      title: 'Steps',
       of: [defineArrayMember({ type: OBJECT_SCHEMA_TYPES.howItWorksStep })]
     })
   ]
