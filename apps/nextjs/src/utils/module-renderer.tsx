@@ -1,5 +1,6 @@
 import type { AllSanitySchemaTypes } from 'types/generated/sanity-types-generated';
 import { BrandsModule } from '@/layout/modules/brands-module/brands-module';
+import { CardsModule } from '@/layout/modules/cards-module/cards-module';
 import { CountersModule } from '@/layout/modules/counters-module/counters-module';
 import { HeroModule } from '@/layout/modules/hero-module/hero-module';
 import { HowItWorksModule } from '@/layout/modules/how-it-works-module/how-it-works-module';
@@ -34,6 +35,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <ServicesModule key={module._id} module={module} />;
       case 'howItWorksModuleDocumentType':
         return <HowItWorksModule key={module._id} module={module} />;
+      case 'cardsModuleDocumentType':
+        return <CardsModule key={module._id} module={module} />;
       default:
         return null;
     }
