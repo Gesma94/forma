@@ -1,3 +1,4 @@
+import { cardObjectType } from './card';
 import { contactObjectType } from './contact';
 import { counterObjectType } from './counter';
 import { ctaObjectType } from './cta';
@@ -9,5 +10,6 @@ export const objectSchemaTypes = [
   contactObjectType,
   linkObjectType,
   counterObjectType,
-  howItWorksObjectType
+  howItWorksObjectType,
+  cardObjectType
 ];

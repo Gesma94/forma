@@ -11,6 +11,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   reviewsModule: 'reviewsModuleDocumentType',
   textWithImageModule: 'textWithImageModuleDocumentType',
   servicesModule: 'servicesModuleDocumentType',
+  cardsModule: 'cardsModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType',
   brand: 'brandDocumentType',
   quote: 'quoteDocumentType',
@@ -23,6 +24,7 @@ export const OBJECT_SCHEMA_TYPES = {
   link: 'linkObjectType',
   cta: 'ctaObjectType',
   contact: 'contactObjectType',
+  card: 'cardObjectType',
   counter: 'counterObjectType',
   howItWorksStep: 'howItWorksStepObjectType'
 } as const;
