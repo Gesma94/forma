@@ -9,23 +9,16 @@ export const bookModuleDocumentType = defineType({
   name: DOCUMENT_SCHEMA_TYPES.bookModule,
   preview: {
     select: {
-      title: 'subHeading',
-      media: 'image'
+      title: 'heading',
+      description: 'subHeading',
+      media: 'backgroundImage'
     },
-    prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Studio Module' })
+    prepare: ({ title, media, description }) => ({ title: textBlockToPlainText(title), media, subtitle: textBlockToPlainText(description, 30) })
   },
-  fieldsets: [
-    {
-      name: 'CTA',
-      title: 'Call to Action'
-    }
-  ],
   fields: [
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',
-      note: 'This text will be red by default',
-      allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
     defineRichEditorField({
@@ -35,31 +28,64 @@ export const bookModuleDocumentType = defineType({
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
-    defineRichEditorField({
-      name: 'content',
-      title: 'Content',
-      allowColorMarkDecorator: false,
-      validation: rule => rule.required()
-    }),
     defineImageField({
-      name: 'image',
-      title: 'Image',
+      name: 'backgroundImage',
+      title: 'Background Image',
       validation: rule => rule.required()
     }),
-    defineField({
-      name: 'showCta',
-      title: 'Show CTA',
-      type: 'boolean',
-      fieldset: 'CTA',
-      initialValue: true,
-      validation: rule => rule.required()
-    }),
-    defineField({
-      name: 'CtaLabel',
-      title: 'CTA Label',
-      fieldset: 'CTA',
-      type: 'string',
-      validation: rule => rule.required()
-    })
+    // defineField({
+    //   name: 'nameInputLabel',
+    //   title: 'Name Input Label',
+    //   type: 'string',
+    //   validation: rule => rule.required()
+    // }),
+    // defineField({
+    //   name: 'phoneNumberInputLabel',
+    //   title: 'Phone Number Input Label',
+    //   type: 'string',
+    //   validation: rule => rule.required()
+    // }),
+    // defineField({
+    //   name: 'emailInputLabel',
+    //   title: 'Email Input Label',
+    //   type: 'string',
+    //   validation: rule => rule.required()
+    // }),
+    // defineField({
+    //   name: 'appointmentDateInputLabel',
+    //   title: 'Appointment Date Input Label',
+    //   type: 'string',
+    //   validation: rule => rule.required()
+    // }),
+    // defineField({
+    //   name: 'appointmentSlotInputLabel',
+    //   title: 'Appointment Slot Input Label',
+    //   type: 'string',
+    //   validation: rule => rule.required()
+    // }),
+    // defineField({
+    //   name: 'studioNameInputLabel',
+    //   title: 'Studio Name Input Label',
+    //   type: 'string',
+    //   validation: rule => rule.required()
+    // }),
+    // defineField({
+    //   name: 'projectAboutInputLabel',
+    //   title: 'Project About Input Label',
+    //   type: 'string',
+    //   validation: rule => rule.required()
+    // }),
+    // defineField({
+    //   name: 'deadlineDateInputLabel',
+    //   title: 'Deadline Date Input Label',
+    //   type: 'string',
+    //   validation: rule => rule.required()
+    // }),
+    // defineField({
+    //   name: 'projectPhaseInputLabel',
+    //   title: 'Project Phase Input Label',
+    //   type: 'string',
+    //   validation: rule => rule.required()
+    // }),
   ]
 });

@@ -9,6 +9,7 @@ import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
 import { ServicesModule } from '@/layout/modules/services-module/services-module';
 import { StudioModule } from '@/layout/modules/studio-module/studio-module';
 import { TextWithImageModule } from '@/layout/modules/text-with-image-module/text-with-image-module';
+import { BookModule } from '@/layout/modules/book-module/book-module';
 
 type TProps = {
   modules: AllSanitySchemaTypes[];
@@ -37,6 +38,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <HowItWorksModule key={module._id} module={module} />;
       case 'cardsModuleDocumentType':
         return <CardsModule key={module._id} module={module} />;
+      case 'bookModuleDocumentType':
+        return <BookModule key={module._id} module={module} />;
       default:
         return null;
     }

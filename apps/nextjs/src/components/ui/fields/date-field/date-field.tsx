@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import { useRef, useState } from 'react';
 import {
   Label as AriaLabel,
+  CalendarProps,
   DateInput,
   DatePicker,
   type DatePickerProps,
@@ -22,9 +23,10 @@ const MotionLabel = motion.create(AriaLabel);
 
 type Props = DatePickerProps<DateValue> & {
   label: string;
+  isDateUnavailable?: CalendarProps<DateValue>['isDateUnavailable'];
 };
 
-export function DateField({ label }: Props) {
+export function DateField({ label, isDateUnavailable }: Props) {
   const { input, label: labelStyle } = style();
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -76,7 +78,7 @@ export function DateField({ label }: Props) {
       </Group>
       <Popover offset={0} placement='bottom left' className='bg-bg rounded-md border border-bg-border'>
         <Dialog className='h-full max-h-[inherit] overflow-y-auto px-4 py-4 flex flex-col gap-4'>
-          <Calendar />
+          <Calendar isDateUnavailable={isDateUnavailable} />
         </Dialog>
       </Popover>
     </DatePicker>

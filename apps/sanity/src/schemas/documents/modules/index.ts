@@ -1,3 +1,4 @@
+import { bookModuleDocumentType } from './book-module';
 import { brandsModuleDocumentType } from './brands-module';
 import { cardsModuleDocumentType } from './cards-module';
 import { countersModuleDocumentType } from './counters-module';
@@ -13,6 +14,7 @@ import { textWithImageModuleDocumentType } from './text-with-image-module';
 export const moduleDocumentSchemaTypes = [
   heroModuleDocumentType,
   halfHeroModuleDocumentType,
+  bookModuleDocumentType,
   studioModuleDocumentType,
   countersModuleDocumentType,
   brandsModuleDocumentType,

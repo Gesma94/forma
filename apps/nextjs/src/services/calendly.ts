@@ -32,8 +32,6 @@ export async function getCalendlyDaysAvailableSlots(days: number): Promise<TCale
         })
         .json();
 
-      console.log(calendlyData);
-
       return calendlyData.collection.map<TCalendlyAvailableSlot>(x => ({
         date: new Date(x.start_time),
         inviteesRemaining: x.invitees_remaining,

@@ -1,23 +1,29 @@
 'use client';
 
+import { isNil, isNotNil } from 'es-toolkit';
 import { motion } from 'motion/react';
-import { useMemo, useRef, useState } from 'react';
+import { forwardRef, Ref, RefObject, useMemo, useRef, useState } from 'react';
 import {
   Input as AriaInput,
   type InputProps as AriaInputProps,
   Label as AriaLabel,
-  TextField as AriaTextField
+  TextField as AriaTextField,
+  FieldError,
+  TextFieldProps
 } from 'react-aria-components';
+import { mergeRefs } from 'react-merge-refs';
 import { tv } from 'tailwind-variants';
 
 const MotionLabel = motion.create(AriaLabel);
+const MotionFieldError = motion.create(FieldError);
 
-type Props = AriaInputProps & {
+type Props = TextFieldProps & {
   label: string;
+  errorMessage?: string;
+  ref?: Ref<HTMLInputElement>;
 };
-
-export function TextField({ label, ...rest }: Props) {
-  const { input, label: labelStyle } = style();
+export function TextField({ label, errorMessage, ref, ...rest }: Props) {
+  const { input, label: labelStyle, fieldError } = style();
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -33,6 +39,7 @@ export function TextField({ label, ...rest }: Props) {
     if (rest.value) {
       return true;
     }
+
     if (isFocused) {
       return true;
     }
@@ -53,21 +60,25 @@ export function TextField({ label, ...rest }: Props) {
   }, [isFocused, rest.value]);
 
   return (
-    <AriaTextField className='relative'>
-      <MotionLabel
+    <AriaTextField className='relative' 
+        {...rest} aria-label={label}>
+      {isNil(errorMessage) && <MotionLabel
         className={labelStyle({ isLabelRaised })}
         initial={false}
         animate={isLabelRaised ? { translateY: '-105%', scale: 0.85, originX: 0 } : { translateY: '-50%', scale: 1 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >
         {label}
-      </MotionLabel>
+      </MotionLabel>}
+      {isNotNil(errorMessage) && <MotionFieldError 
+        initial={false}
+        animate={isLabelRaised ? { translateY: '-105%', scale: 0.85, originX: 0 } : { translateY: '-50%', scale: 1 }}
+        transition={{ duration: 0.25, ease: 'easeOut' }} className={fieldError()}>{errorMessage}</MotionFieldError>}
       <AriaInput
-        {...rest}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        ref={inputRef}
-        className={({ isFocused, isFocusVisible }) => input({ isFocused: isFocused || isFocusVisible })}
+        ref={mergeRefs([inputRef, ref])}
+        className={({ isFocused, isFocusVisible }) => input({ isFocused: isFocused || isFocusVisible, hasError: isNotNil(errorMessage) })}
       />
     </AriaTextField>
   );
@@ -76,9 +87,16 @@ export function TextField({ label, ...rest }: Props) {
 const style = tv({
   slots: {
     label: 'absolute left-4 top-1/2 text-text-muted pointer-events-none',
-    input: 'w-full bg-bg border-solid border border-bg-border rounded-md h-14 pt-3 px-4 text-lg font-base font-light'
+    input: 'w-full bg-bg border-solid border border-bg-border rounded-md h-14 pt-3 px-4 text-lg font-base font-light',
+    fieldError: 'absolute left-4 top-1/2 text-error pointer-events-none',
   },
   variants: {
+    hasError: {
+      true: {
+        input: 'outline-error outline-2 -outline-offset-[3px]'
+      },
+      false: {}
+    },
     isLabelRaised: {
       true: {
         // label: 'text-bg-text'
@@ -89,9 +107,24 @@ const style = tv({
     },
     isFocused: {
       true: {
-        input: 'outline-bg-border-active outline-2 -outline-offset-[3px]'
       },
       false: {}
     }
-  }
+  },
+  compoundVariants: [
+    {
+      isFocused: true,
+      hasError: false,
+      class: {
+        input:'outline-bg-border-active outline-2 -outline-offset-[3px]'
+      } 
+    },
+    {
+      isFocused: true,
+      hasError: true,
+      class: {
+        input: 'outline-error outline-2 -outline-offset-[3px]'
+      }
+    }
+  ]
 });
