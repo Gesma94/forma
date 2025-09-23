@@ -9,22 +9,36 @@ export function SelectOption(props: TProps) {
   return (
     <ListBoxItem
       {...props}
-      className={({ isHovered, isFocusVisible, isSelected }) => style({ isHovered, isFocusVisible, isSelected })}
+      className={({ isHovered, isFocusVisible, isSelected, isDisabled }) =>
+        style({ isHovered, isFocusVisible, isSelected, isDisabled })
+      }
     />
   );
 }
 
 const style = tv({
-  base: 'h-12 bg-bg flex items-center px-4 font-light outline-bg-border-active',
+  base: 'h-12 bg-bg flex items-center px-4 font-light outline-bg-border-active cursor-pointer',
   variants: {
     isHovered: {
-      true: 'bg-bg-hover'
+      true: '',
+      false: ''
+    },
+    isDisabled: {
+      true: 'bg-bg-disabled text-bg-text-disabled',
+      false: ''
     },
     isFocusVisible: {
       true: 'outline-2 -outline-offset-2'
     },
     isSelected: {
-      true: 'bg-bg-active font-bold'
+      true: 'bg-bg-active font-semibold'
     }
-  }
+  },
+  compoundVariants: [
+    {
+      isDisabled: false,
+      isHovered: true,
+      class: 'bg-bg-hover'
+    }
+  ]
 });

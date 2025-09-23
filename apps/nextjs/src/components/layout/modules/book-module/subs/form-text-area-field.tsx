@@ -2,14 +2,14 @@
 
 import type { ComponentProps } from 'react';
 import { Controller, type ControllerProps, type FieldPath, type FieldValues } from 'react-hook-form';
-import { TextField } from '@/ui/fields/text-field/text-field';
+import { TextAreaField } from '@/ui/fields/text-area-field/text-area-field';
 
 type TProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> = Omit<ControllerProps<TFieldValues, TName>, 'render'> & ComponentProps<typeof TextField>;
+> = Omit<ControllerProps<TFieldValues, TName>, 'render'> & ComponentProps<typeof TextAreaField>;
 
-export const FormTextField = <
+export const FormTextAreaField = <
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >({
@@ -27,7 +27,7 @@ export const FormTextField = <
     <Controller
       {...controllerProps}
       render={({ field: { disabled, ...fieldProps }, fieldState: { invalid, error } }) => (
-        <TextField
+        <TextAreaField
           {...textProps}
           {...fieldProps}
           isInvalid={invalid}

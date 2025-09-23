@@ -1,98 +1,129 @@
-'use client'
+'use client';
 
-import { TextField } from "@/ui/fields/text-field/text-field"
-import { DateValue, Form } from "react-aria-components"
-import { SelectField } from "@/ui/fields/select-field/select-field"
-import { SelectOption } from "@/ui/fields/select-field/select-option"
-import { TextAreaField } from "@/ui/fields/text-area-field/text-area-field"
-import { DateField } from "@/ui/fields/date-field/date-field"
-import { TCalendlyAvailableSlot } from "types/calendly"
-import { isSameDay } from "date-fns"
-import { Button } from "@/ui/buttons/button/button"
-import { FieldErrors, useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { bookFormSchema, BookFormSchema } from "data/book-form-schema"
-import { sendBookEmail } from "actions/send-book-email"
-import { useMemo, useState } from "react"
-import { FormTextField } from "./form-text-field"
-import { BookModuleDocumentType } from "types/generated/sanity-types-generated"
+import { type BookFormSchema, bookFormSchema } from 'data/book-form-schema';
+import { addMinutes, format } from 'date-fns';
+import { isNil } from 'es-toolkit';
+import { isEmpty } from 'es-toolkit/compat';
+import { useMemo, useState } from 'react';
+import { type DateValue, Form } from 'react-aria-components';
+import { type FieldErrors, useForm } from 'react-hook-form';
+import { postCalcomBooking } from 'services/cal-com';
+import type { TCalendarAvailabilities } from 'types/calendar';
+import { Button } from '@/ui/buttons/button/button';
+import { SelectOption } from '@/ui/fields/select-field/select-option';
+import { FormDateField } from './form-date-field';
+import { FormSelectField } from './form-select-field';
+import { FormTextAreaField } from './form-text-area-field';
+import { FormTextField } from './form-text-field';
 
 type TProps = {
-    availableSlots: TCalendlyAvailableSlot[];
-}
+  availablePhases: string[];
+  availableSlots: TCalendarAvailabilities;
+};
 
-export const BookModuleForm = ({ availableSlots }: TProps) => {
-    const [submitError, setSubmitError] = useState(false);
-    const { handleSubmit, control, watch, formState: { isValid } } = useForm<BookFormSchema>({
-        resolver: zodResolver(bookFormSchema),
-        defaultValues: {
-            fullName: '',
-            phoneNumber: '',
-            email: '',
-            appointmentDate: '',
-            appointmentSlot: undefined,
-            companyStudio: '',
-            projectAbout: '',
-            deadlineDate: '',
-            projectPhase: undefined
-        }
-    })
+export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
+  const [_, setSubmitError] = useState(false);
+  const {
+    handleSubmit,
+    control,
+    getValues,
+    watch,
+  } = useForm<BookFormSchema>({
+    resolver: zodResolver(bookFormSchema),
+    defaultValues: {
+      fullName: '',
+      phoneNumber: '',
+      email: '',
+      appointmentDate: null,
+      appointmentSlot: null,
+      companyStudio: '',
+      projectAbout: '',
+      deadlineDate: null,
+      projectPhase: null
+    }
+  });
 
-    const appointmentDate = watch('appointmentDate');
+  const appointmentDate = watch('appointmentDate');
 
-    const availableAppointmentSlots = useMemo(() => {
-        console.log("appointmentDate is: " + appointmentDate);
-        return availableSlots.filter(x => isSameDay(x.date, new Date(appointmentDate)));
-    }, [appointmentDate, availableSlots]);
-
-    const onValid = async (data: BookFormSchema) => {
-        setSubmitError(await sendBookEmail(data));
+  const availableAppointmentSlots = useMemo(() => {
+    if (isNil(appointmentDate)) {
+      return [];
     }
 
-    const onInvalid = (errors: FieldErrors<BookFormSchema>) => {
-        console.log(errors);
-    }
+    return availableSlots.availableSlots[appointmentDate.toString()];
+  }, [appointmentDate, availableSlots]);
 
-    const handleIsDateUnavailable = (date: DateValue) => {
-        return !availableSlots.some(x => isSameDay(x.date, date.toString()));
-    }
+  const onValid = async (data: BookFormSchema) => {
+    const { deadlineDate, ...bookingData } = data;
+    const intlOptions = Intl.DateTimeFormat().resolvedOptions();
+    setSubmitError(
+      !(await postCalcomBooking(bookingData, deadlineDate.toString(), {
+        language: intlOptions.locale,
+        timeZone: intlOptions.timeZone
+      }))
+    );
+  };
 
-    return (
-      <Form onSubmit={handleSubmit(onValid, onInvalid)} className="flex flex-col pt-20 gap-4 w-full max-w-2xl mx-auto">
-        <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
-            <FormTextField control={control} type="text" label='Full name' name='fullName' />
-            <FormTextField control={control} type="tel" label='Phone number' name='phoneNumber' />
-        </div>
-            <FormTextField control={control} type="email" label='Email' name='email' />
-        <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
-            <DateField label='Appointment Date' isDateUnavailable={handleIsDateUnavailable} />
-            <SelectField label='Appointment slot'>
-                {availableAppointmentSlots.map(x => (
-                <SelectOption>{x.startTime}</SelectOption>
-                ))}
-                {/* <SelectOption>Cat</SelectOption>
-                <SelectOption>Dog</SelectOption>
-                <SelectOption>Kangaroo</SelectOption>
-                <SelectOption>Panda</SelectOption>
-                <SelectOption>Snake</SelectOption> */}
-            </SelectField>
-        </div>
-        <FormTextField control={control} type='text' label='Company/Studio' name='companyStudio' />
-        <TextAreaField label='Whats the project about?' rows={4} />
-        <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
-            <DateField label='When is the deadline?' />
-            <SelectField label='In which phase is the project?'>
-                <SelectOption>Concept Development</SelectOption>
-                <SelectOption>Design Development</SelectOption>
-                <SelectOption>Presentation Submission</SelectOption>
-                <SelectOption>Competition Submission</SelectOption>
-                <SelectOption>Marketing</SelectOption>
-            </SelectField>
-        </div>
-        <div>
-            <Button type="submit" className='min-w-2xs mt-10' size='large' variant='primary' surface='bg'>
-                Submit
-            </Button>
-        </div>
-    </Form>)
-}
+  const onInvalid = (errors: FieldErrors<BookFormSchema>) => {
+    console.log(errors);
+  };
+
+  const handleIsDateUnavailable = (date: DateValue) => {
+    return availableSlots.daysWithAvailability[date.toString()] !== true;
+  };
+
+  const getSlotLabel = (startTime: Date) => {
+    const formatFn = (date: Date) => format(date, 'hh:mm a');
+    return `${formatFn(startTime)} - ${formatFn(addMinutes(startTime, 30))}`;
+  };
+
+  const getEmptyAppointmentSlotLabel = () => {
+    return isNil(appointmentDate) ? 'Select a date first' : 'No available slots for this date';
+  };
+
+  return (
+    <Form onSubmit={handleSubmit(onValid, onInvalid)} className='flex flex-col pt-20 gap-4 w-full max-w-2xl mx-auto'>
+      <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
+        <FormTextField control={control} type='text' label='Full name' name='fullName' />
+        <FormTextField control={control} type='tel' label='Phone number' name='phoneNumber' />
+      </div>
+      <FormTextField control={control} type='email' label='Email' name='email' />
+      <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
+        <FormDateField
+          control={control}
+          name='appointmentDate'
+          label='Appointment Date'
+          isDateUnavailable={handleIsDateUnavailable}
+        />
+        <FormSelectField control={control} name='appointmentSlot' label='Appointment slot'>
+          {availableAppointmentSlots.map(x => (
+            <SelectOption id={x.toISOString()} key={x.toISOString()}>
+              {getSlotLabel(x)}
+            </SelectOption>
+          ))}
+          {isEmpty(availableAppointmentSlots) && (
+            <SelectOption isDisabled={true}>{getEmptyAppointmentSlotLabel()}</SelectOption>
+          )}
+        </FormSelectField>
+      </div>
+      <FormTextField control={control} type='text' label='Company/Studio' name='companyStudio' />
+      <FormTextAreaField control={control} label='Whats the project about?' name='projectAbout' rows={4} />
+      <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
+        <FormDateField control={control} name='deadlineDate' label='When is the deadline?' />
+        <FormSelectField control={control} name='projectPhase' label='In which phase is the project?'>
+          {availablePhases.map(phase => (
+            <SelectOption id={phase} key={phase}>
+              {phase}
+            </SelectOption>
+          ))}
+        </FormSelectField>
+      </div>
+      <div>
+        <Button type='submit' className='min-w-2xs mt-10' size='large' variant='primary' surface='bg'>
+          Submit
+        </Button>
+      </div>
+    </Form>
+  );
+};

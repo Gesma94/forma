@@ -2,10 +2,10 @@
 
 import { CaretDownIcon } from '@phosphor-icons/react';
 import { motion } from 'motion/react';
-import { useRef, useState } from 'react';
+import { type Ref, useRef, useState } from 'react';
 import {
   Label as AriaLabel,
-  CalendarProps,
+  type CalendarProps,
   DateInput,
   DatePicker,
   type DatePickerProps,
@@ -15,6 +15,7 @@ import {
   Group,
   Popover
 } from 'react-aria-components';
+import { mergeRefs } from 'react-merge-refs';
 import { tv } from 'tailwind-variants';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
 import { Calendar } from '@/ui/inputs/calendar/calendar';
@@ -23,10 +24,12 @@ const MotionLabel = motion.create(AriaLabel);
 
 type Props = DatePickerProps<DateValue> & {
   label: string;
+  errorMessage?: string;
+  ref?: Ref<HTMLDivElement>;
   isDateUnavailable?: CalendarProps<DateValue>['isDateUnavailable'];
 };
 
-export function DateField({ label, isDateUnavailable }: Props) {
+export function DateField({ label, isDateUnavailable, ref, ...rest }: Props) {
   const { input, label: labelStyle } = style();
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -53,7 +56,13 @@ export function DateField({ label, isDateUnavailable }: Props) {
   const isLabelRaised = isFocused || hasValue();
 
   return (
-    <DatePicker className='relative' onFocus={handleInputFocus} onBlur={handleInputBlur} ref={datePickerRef}>
+    <DatePicker
+      {...rest}
+      className='relative'
+      ref={mergeRefs([ref, datePickerRef])}
+      onFocus={handleInputFocus}
+      onBlur={handleInputBlur}
+    >
       <MotionLabel
         className={labelStyle({ isLabelRaised })}
         initial={false}

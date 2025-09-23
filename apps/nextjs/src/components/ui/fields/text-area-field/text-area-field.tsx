@@ -1,27 +1,39 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { useMemo, useRef, useState } from 'react';
-import { Label as AriaLabel, TextField as AriaTextField, TextArea, type TextAreaProps } from 'react-aria-components';
+import { type FocusEvent, type Ref, useMemo, useRef, useState } from 'react';
+import {
+  Label as AriaLabel,
+  TextField as AriaTextField,
+  TextArea,
+  type TextAreaProps,
+  type TextFieldProps
+} from 'react-aria-components';
+import { mergeRefs } from 'react-merge-refs';
 import { tv } from 'tailwind-variants';
 
 const MotionLabel = motion.create(AriaLabel);
 
-type Props = TextAreaProps & {
+type Props = TextFieldProps & {
   label: string;
+  rows?: TextAreaProps['rows'];
+  errorMessage?: string;
+  ref?: Ref<HTMLTextAreaElement>;
 };
 
-export function TextAreaField({ label, ...rest }: Props) {
+export function TextAreaField({ label, ref, onFocus, onBlur, rows, ...rest }: Props) {
   const { input, label: labelStyle } = style();
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleInputFocus = () => {
+  const handleInputFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
     setIsFocused(true);
+    onFocus?.(e);
   };
 
-  const handleInputBlur = () => {
+  const handleInputBlur = (e: FocusEvent<HTMLInputElement, Element>) => {
     setIsFocused(false);
+    onBlur?.(e);
   };
 
   const isLabelRaised = useMemo<boolean>(() => {
@@ -48,7 +60,7 @@ export function TextAreaField({ label, ...rest }: Props) {
   }, [isFocused, rest.value]);
 
   return (
-    <AriaTextField className='relative flex'>
+    <AriaTextField {...rest} onFocus={handleInputFocus} onBlur={handleInputBlur} className='relative flex'>
       <div className='absolute top-0 h-14 w-full pointer-events-none'>
         <MotionLabel
           className={labelStyle({ isLabelRaised })}
@@ -60,10 +72,8 @@ export function TextAreaField({ label, ...rest }: Props) {
         </MotionLabel>
       </div>
       <TextArea
-        {...rest}
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        ref={inputRef}
+        rows={rows}
+        ref={mergeRefs([ref, inputRef])}
         className={({ isFocused, isFocusVisible }) => input({ isFocused: isFocused || isFocusVisible })}
       />
     </AriaTextField>

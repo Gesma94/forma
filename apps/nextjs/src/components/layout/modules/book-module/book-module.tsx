@@ -3,15 +3,15 @@ import { ContentContainer } from '@/ui/content-container/content-container';
 import { getSanityImageUrl } from '@/utils/groqd-client';
 import { BookModuleHeading } from './subs/book-module-heading';
 import { BookModuleSubHeading } from './subs/book-module-subheading';
-import { getCalendlyDaysAvailableSlots } from 'services/calendly';
 import { BookModuleForm } from './subs/book-module-form';
+import { getCalComAvailableSlots } from 'services/cal-com';
 
 type TProps = {
   module: BookModuleDocumentType;
 };
 
 export async function BookModule({ module }: TProps) {
-  const calendlyData = await getCalendlyDaysAvailableSlots(14);
+  const calComData = await getCalComAvailableSlots(14);
   const backgroundImageUrl = getSanityImageUrl(module.backgroundImage);
 
   return (
@@ -30,7 +30,7 @@ export async function BookModule({ module }: TProps) {
                 <BookModuleSubHeading value={module.subHeading} />
               </div>
             </div>
-            <BookModuleForm availableSlots={calendlyData} />
+            <BookModuleForm availableSlots={calComData} availablePhases={module.projectPhases} />
           </div>
         </ContentContainer>
       </div>

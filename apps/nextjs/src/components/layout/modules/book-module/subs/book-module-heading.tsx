@@ -1,7 +1,6 @@
 import { PortableText } from '@portabletext/react';
-import type { HeroModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { PortableTextEmComponent, PortableTextStrongComponent } from '@/ui/portable-text/base-components';
-import { TBasePortableTextConsumerProps } from '@/ui/portable-text/base-portable-text';
+import type { TBasePortableTextConsumerProps } from '@/ui/portable-text/base-portable-text';
 
 export function BookModuleHeading({ value }: TBasePortableTextConsumerProps) {
   return (

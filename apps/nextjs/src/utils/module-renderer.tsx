@@ -1,4 +1,5 @@
 import type { AllSanitySchemaTypes } from 'types/generated/sanity-types-generated';
+import { BookModule } from '@/layout/modules/book-module/book-module';
 import { BrandsModule } from '@/layout/modules/brands-module/brands-module';
 import { CardsModule } from '@/layout/modules/cards-module/cards-module';
 import { CountersModule } from '@/layout/modules/counters-module/counters-module';
@@ -9,7 +10,6 @@ import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
 import { ServicesModule } from '@/layout/modules/services-module/services-module';
 import { StudioModule } from '@/layout/modules/studio-module/studio-module';
 import { TextWithImageModule } from '@/layout/modules/text-with-image-module/text-with-image-module';
-import { BookModule } from '@/layout/modules/book-module/book-module';
 
 type TProps = {
   modules: AllSanitySchemaTypes[];

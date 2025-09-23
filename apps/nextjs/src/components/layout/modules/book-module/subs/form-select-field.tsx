@@ -2,14 +2,14 @@
 
 import type { ComponentProps } from 'react';
 import { Controller, type ControllerProps, type FieldPath, type FieldValues } from 'react-hook-form';
-import { TextField } from '@/ui/fields/text-field/text-field';
+import { SelectField } from '@/ui/fields/select-field/select-field';
 
 type TProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> = Omit<ControllerProps<TFieldValues, TName>, 'render'> & ComponentProps<typeof TextField>;
+> = Omit<ControllerProps<TFieldValues, TName>, 'render'> & ComponentProps<typeof SelectField>;
 
-export const FormTextField = <
+export const FormSelectField = <
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >({
@@ -19,19 +19,22 @@ export const FormTextField = <
   disabled,
   rules,
   shouldUnregister,
-  ...textProps
+  ...selectProps
 }: TProps<TFieldValues, TName>) => {
   const controllerProps = { name, control, defaultValue, disabled, rules, shouldUnregister };
 
   return (
     <Controller
       {...controllerProps}
-      render={({ field: { disabled, ...fieldProps }, fieldState: { invalid, error } }) => (
-        <TextField
-          {...textProps}
+      render={({ field: { disabled, value, onChange, ...fieldProps }, fieldState: { invalid, error } }) => (
+        <SelectField
+          {...selectProps}
           {...fieldProps}
-          isInvalid={invalid}
+          selectedKey={value}
           errorMessage={error?.message}
+          isDisabled={disabled || selectProps.isDisabled}
+          onSelectionChange={onChange}
+          isInvalid={invalid}
           validationBehavior='aria'
         />
       )}

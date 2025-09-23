@@ -16,20 +16,20 @@ export const viewport: Viewport = {
 
 export default async function Page() {
   const sanityData = await runQuery(
-      q
-        .parameters<TSanityQueryParams>()
-        .star.filterByType('pageLayoutDocumentType')
-        .filterBy('_id == $pageId')
-        .slice(0)
-        .project(sub => ({
-          modules: sub.field('modules[]').deref()
-        })),
-      { parameters: { pageId: SANITY_DOCUMENT_IDS.bookpage } }
-    );
+    q
+      .parameters<TSanityQueryParams>()
+      .star.filterByType('pageLayoutDocumentType')
+      .filterBy('_id == $pageId')
+      .slice(0)
+      .project(sub => ({
+        modules: sub.field('modules[]').deref()
+      })),
+    { parameters: { pageId: SANITY_DOCUMENT_IDS.bookpage } }
+  );
 
   return (
     <div>
-      <Topbar variant='floating' />    
+      <Topbar variant='floating' />
       <ModuleRenderer modules={sanityData.modules} />
     </div>
   );

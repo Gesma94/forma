@@ -2,14 +2,14 @@
 
 import type { ComponentProps } from 'react';
 import { Controller, type ControllerProps, type FieldPath, type FieldValues } from 'react-hook-form';
-import { TextField } from '@/ui/fields/text-field/text-field';
+import { DateField } from '@/ui/fields/date-field/date-field';
 
 type TProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> = Omit<ControllerProps<TFieldValues, TName>, 'render'> & ComponentProps<typeof TextField>;
+> = Omit<ControllerProps<TFieldValues, TName>, 'render'> & ComponentProps<typeof DateField>;
 
-export const FormTextField = <
+export const FormDateField = <
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >({
@@ -19,7 +19,7 @@ export const FormTextField = <
   disabled,
   rules,
   shouldUnregister,
-  ...textProps
+  ...dateFieldProps
 }: TProps<TFieldValues, TName>) => {
   const controllerProps = { name, control, defaultValue, disabled, rules, shouldUnregister };
 
@@ -27,11 +27,12 @@ export const FormTextField = <
     <Controller
       {...controllerProps}
       render={({ field: { disabled, ...fieldProps }, fieldState: { invalid, error } }) => (
-        <TextField
-          {...textProps}
+        <DateField
+          {...dateFieldProps}
           {...fieldProps}
-          isInvalid={invalid}
           errorMessage={error?.message}
+          isDisabled={disabled || dateFieldProps.isDisabled}
+          isInvalid={invalid}
           validationBehavior='aria'
         />
       )}
