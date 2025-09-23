@@ -65,7 +65,7 @@ export async function postCalcomBooking(
           timeZone: clientOptions.timeZone,
           name: data.fullName,
           email: data.email,
-          phone: data.phoneNumber
+          phoneNumber: data.phoneNumber
         },
         start: data.appointmentSlot,
         eventTypeId: Number(process.env.CAL_COM_EVENT_TYPE),
