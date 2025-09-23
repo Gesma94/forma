@@ -24,12 +24,7 @@ type TProps = {
 
 export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
   const [_, setSubmitError] = useState(false);
-  const {
-    handleSubmit,
-    control,
-    getValues,
-    watch,
-  } = useForm<BookFormSchema>({
+  const { handleSubmit, control, watch } = useForm<BookFormSchema>({
     resolver: zodResolver(bookFormSchema),
     defaultValues: {
       fullName: '',

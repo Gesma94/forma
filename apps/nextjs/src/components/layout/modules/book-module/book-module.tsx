@@ -1,10 +1,10 @@
+import { getCalComAvailableSlots } from 'services/cal-com';
 import type { BookModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { getSanityImageUrl } from '@/utils/groqd-client';
+import { BookModuleForm } from './subs/book-module-form';
 import { BookModuleHeading } from './subs/book-module-heading';
 import { BookModuleSubHeading } from './subs/book-module-subheading';
-import { BookModuleForm } from './subs/book-module-form';
-import { getCalComAvailableSlots } from 'services/cal-com';
 
 type TProps = {
   module: BookModuleDocumentType;
