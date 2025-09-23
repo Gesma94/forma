@@ -33,6 +33,13 @@ export const bookModuleDocumentType = defineType({
       title: 'Background Image',
       validation: rule => rule.required()
     }),
+    defineField({
+      name: 'projectPhases',
+      title: 'Project Phases',
+      type: 'array',
+      of: [ { type: 'string' } ],
+      validation: rule => rule.required()
+    }),
     // defineField({
     //   name: 'nameInputLabel',
     //   title: 'Name Input Label',
