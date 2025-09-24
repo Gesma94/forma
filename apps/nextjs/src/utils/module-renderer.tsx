@@ -7,6 +7,7 @@ import { HeroModule } from '@/layout/modules/hero-module/hero-module';
 import { HowItWorksModule } from '@/layout/modules/how-it-works-module/how-it-works-module';
 import { ImageModule } from '@/layout/modules/image-module/image-module';
 import { QuotesModule } from '@/layout/modules/quotes-module/quotes-module';
+import { ReasonsModule } from '@/layout/modules/reasons-module/reasons-module';
 import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
 import { ServicesModule } from '@/layout/modules/services-module/services-module';
 import { StudioModule } from '@/layout/modules/studio-module/studio-module';
@@ -43,6 +44,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <BookModule key={module._id} module={module} />;
       case 'imageModuleDocumentType':
         return <ImageModule key={module._id} module={module} />;
+      case 'reasonsModuleDocumentType':
+        return <ReasonsModule key={module._id} module={module} />;
       default:
         return null;
     }
