@@ -7,6 +7,7 @@ import { heroModuleDocumentType } from './hero-module';
 import { howItWorksModuleDocumentType } from './how-it-works-module';
 import { imageModuleDocumentType } from './image-module';
 import { quotesModuleDocumentType } from './quotes-module';
+import { reasonsModuleDocumentType } from './reasons-module';
 import { reviewsModuleDocumentType } from './reviews-module';
 import { servicesModuleDocumentType } from './services-module';
 import { studioModuleDocumentType } from './studio-module';
@@ -25,5 +26,6 @@ export const moduleDocumentSchemaTypes = [
   servicesModuleDocumentType,
   howItWorksModuleDocumentType,
   cardsModuleDocumentType,
-  imageModuleDocumentType
+  imageModuleDocumentType,
+  reasonsModuleDocumentType
 ];

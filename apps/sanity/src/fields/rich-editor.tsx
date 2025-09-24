@@ -4,6 +4,7 @@ import {
   type ArrayRule,
   type BlockDecoratorDefinition,
   type BlockDecoratorProps,
+  type BlockStyleDefinition,
   defineArrayMember,
   defineField,
   type ValidationBuilder
@@ -15,6 +16,7 @@ type TProps = {
   note?: string;
   fieldset?: string;
   allowColorMarkDecorator?: boolean;
+  allowHeaderMarks?: boolean;
   validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]>;
 };
 
@@ -24,6 +26,7 @@ export function defineRichEditorField({
   note,
   fieldset,
   allowColorMarkDecorator = true,
+  allowHeaderMarks = false,
   validation
 }: TProps): ReturnType<typeof defineField> {
   return defineField({
@@ -40,7 +43,7 @@ export function defineRichEditorField({
           annotations: []
         },
         lists: [],
-        styles: []
+        styles: getStyleDecorators(allowHeaderMarks)
       })
     ],
     validation
@@ -63,6 +66,23 @@ function getMarkDecorators(allowColorMarkDecorator: boolean) {
   }
 
   return baseDecorators;
+}
+
+function getStyleDecorators(allowHeaderMarks: boolean): BlockStyleDefinition[] {
+  const styleDecorators: BlockStyleDefinition[] = [];
+
+  if (allowHeaderMarks) {
+    styleDecorators.push({
+      title: 'Normal',
+      value: 'normal'
+    });
+    styleDecorators.push({
+      title: 'Title',
+      value: 'title'
+    });
+  }
+
+  return styleDecorators;
 }
 
 function ColorDecorator(props: BlockDecoratorProps) {

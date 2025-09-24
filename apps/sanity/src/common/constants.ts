@@ -7,6 +7,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   bookModule: 'bookModuleDocumentType',
   countersModule: 'countersModuleDocumentType',
   brandsModule: 'brandsModuleDocumentType',
+  reasonsModule: 'reasonsModuleDocumentType',
   quotesModule: 'quotesModuleDocumentType',
   reviewsModule: 'reviewsModuleDocumentType',
   textWithImageModule: 'textWithImageModuleDocumentType',
