@@ -13,7 +13,11 @@ export const bookModuleDocumentType = defineType({
       description: 'subHeading',
       media: 'backgroundImage'
     },
-    prepare: ({ title, media, description }) => ({ title: textBlockToPlainText(title), media, subtitle: textBlockToPlainText(description, 30) })
+    prepare: ({ title, media, description }) => ({
+      title: textBlockToPlainText(title),
+      media,
+      subtitle: textBlockToPlainText(description, 30)
+    })
   },
   fields: [
     defineRichEditorField({
@@ -37,9 +41,9 @@ export const bookModuleDocumentType = defineType({
       name: 'projectPhases',
       title: 'Project Phases',
       type: 'array',
-      of: [ { type: 'string' } ],
+      of: [{ type: 'string' }],
       validation: rule => rule.required()
-    }),
+    })
     // defineField({
     //   name: 'nameInputLabel',
     //   title: 'Name Input Label',
