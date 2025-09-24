@@ -5,6 +5,7 @@ import { CardsModule } from '@/layout/modules/cards-module/cards-module';
 import { CountersModule } from '@/layout/modules/counters-module/counters-module';
 import { HeroModule } from '@/layout/modules/hero-module/hero-module';
 import { HowItWorksModule } from '@/layout/modules/how-it-works-module/how-it-works-module';
+import { ImageModule } from '@/layout/modules/image-module/image-module';
 import { QuotesModule } from '@/layout/modules/quotes-module/quotes-module';
 import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
 import { ServicesModule } from '@/layout/modules/services-module/services-module';
@@ -40,6 +41,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <CardsModule key={module._id} module={module} />;
       case 'bookModuleDocumentType':
         return <BookModule key={module._id} module={module} />;
+      case 'imageModuleDocumentType':
+        return <ImageModule key={module._id} module={module} />;
       default:
         return null;
     }

@@ -2,6 +2,7 @@ import { IMAGE_X_POSITION, MODULE_VARIANTS } from '@forma/common';
 import { tv } from 'tailwind-variants';
 import type { TextWithImageModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { twoColumnLayout } from '@/styles/layouts';
+import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { ModuleContentContainerTitle } from '@/ui/containers/module-content-container/subs/module-content-container-title';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
@@ -35,15 +36,14 @@ export function TextWithImageModule({ module }: TProps) {
               <ModuleContentContainerTitle value={module.heading} alignment='left' variant={module.variant} />
             </div>
             <ParagraphPortableText value={module.content} variant={module.variant} />
+            {module.primaryCta.showCta && (
+              <div className='mt-8 grid xs:flex'>
+                <LinkButton href={module.primaryCta.url} size='large' variant='primary' surface='bg'>
+                  {module.primaryCta.caption}
+                </LinkButton>
+              </div>
+            )}
           </div>
-
-          {/* {module.showCta && (
-            <div className='mt-8 grid xs:block md:mx-auto xl:mx-[unset] xs:mr-auto'>
-              <Button size='large' variant='primary' surface='bg'>
-                {module.CtaLabel}
-              </Button>
-            </div>
-          )} */}
         </div>
       </div>
     </ModuleContentContainer>
