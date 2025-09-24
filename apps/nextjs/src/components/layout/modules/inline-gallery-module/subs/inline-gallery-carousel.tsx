@@ -36,21 +36,24 @@ export function InlineGalleryCarousel({ module, imagesUrl }: TProps) {
         className='flex gap-10 h-[720px] overflow-auto relative px-40'
         style={{ scrollbarWidth: 'none' }}
       >
-        {imagesUrl.map((imageUrl, i) => (
-          <div key={module.images[i]._key} className='h-full w-auto shrink-0 relative'>
-            <Image
-              src={imageUrl}
-              alt={module.images[i].altText}
-              height={1000}
-              width={1000}
-              className='rounded-2xl h-full w-auto brightness-50'
-            />
-            <div className='absolute bottom-10 left-6 text-fg-light flex flex-col gap-2'>
-              <p className='text-3xl font-lg'>Client Name</p>
-              <p className='text-xl'>Location Name</p>
+        {imagesUrl.map((imageUrl, i) => {
+          const image = module.images[i];
+          return (
+            <div key={image._key} className='h-full w-auto shrink-0 relative'>
+              <Image
+                src={imageUrl}
+                alt={image.altText}
+                height={1000}
+                width={1000}
+                className='rounded-2xl h-full w-auto'
+              />
+              <div className='absolute bottom-10 left-6 text-fg-light flex flex-col gap-2'>
+                <p className='bg-bg mr-auto px-4 py-1 rounded-2xl text-primary text-3xl font-lg'>{image.title}</p>
+                <p className='bg-bg mr-auto px-4 py-1 rounded-2xl text-bg-text text-xl'>{image.subtitle}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className='top-1/2 right-14 absolute -translate-y-1/2 z-10'>
         <IconButton icon={CaretRightIcon} size='large' surface='primary' />
