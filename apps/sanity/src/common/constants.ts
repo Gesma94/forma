@@ -13,6 +13,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   servicesModule: 'servicesModuleDocumentType',
   cardsModule: 'cardsModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType',
+  imageModule: 'imageModuleDocumentType',
   brand: 'brandDocumentType',
   quote: 'quoteDocumentType',
   review: 'reviewDocumentType',

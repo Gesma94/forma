@@ -28,6 +28,13 @@ export function defineImageField({
         type: 'string',
         validation: rule => rule.required()
       },
+      {
+        title: 'Brightness (%)',
+        name: 'brightness',
+        type: 'number',
+        initialValue: 100,
+        validation: rule => rule.min(0).max(100).required()
+      },
       ...(fields ?? [])
     ],
     validation
