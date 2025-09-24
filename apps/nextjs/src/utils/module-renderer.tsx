@@ -6,6 +6,7 @@ import { CountersModule } from '@/layout/modules/counters-module/counters-module
 import { HeroModule } from '@/layout/modules/hero-module/hero-module';
 import { HowItWorksModule } from '@/layout/modules/how-it-works-module/how-it-works-module';
 import { ImageModule } from '@/layout/modules/image-module/image-module';
+import { InlineGalleryModule } from '@/layout/modules/inline-gallery-module/inline-gallery-module';
 import { QuotesModule } from '@/layout/modules/quotes-module/quotes-module';
 import { ReasonsModule } from '@/layout/modules/reasons-module/reasons-module';
 import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
@@ -46,6 +47,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <ImageModule key={module._id} module={module} />;
       case 'reasonsModuleDocumentType':
         return <ReasonsModule key={module._id} module={module} />;
+      case 'inlineGalleryModuleDocumentType':
+        return <InlineGalleryModule key={module._id} module={module} />;
       default:
         return null;
     }
