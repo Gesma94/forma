@@ -6,6 +6,7 @@ import { halfHeroModuleDocumentType } from './half-hero-module';
 import { heroModuleDocumentType } from './hero-module';
 import { howItWorksModuleDocumentType } from './how-it-works-module';
 import { imageModuleDocumentType } from './image-module';
+import { inlineGalleryModuleDocumentType } from './inline-gallery';
 import { quotesModuleDocumentType } from './quotes-module';
 import { reasonsModuleDocumentType } from './reasons-module';
 import { reviewsModuleDocumentType } from './reviews-module';
@@ -27,5 +28,6 @@ export const moduleDocumentSchemaTypes = [
   howItWorksModuleDocumentType,
   cardsModuleDocumentType,
   imageModuleDocumentType,
+  inlineGalleryModuleDocumentType,
   reasonsModuleDocumentType
 ];
