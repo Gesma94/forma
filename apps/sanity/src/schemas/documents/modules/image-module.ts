@@ -10,10 +10,9 @@ export const imageModuleDocumentType = defineType({
   name: DOCUMENT_SCHEMA_TYPES.imageModule,
   preview: {
     select: {
-      title: 'image.altText',
-      media: 'image'
+      media: 'backgroundImage'
     },
-    prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Image Module' })
+    prepare: ({ media }) => ({ title: media.altText, media, subtitle: 'Image Module' })
   },
   fields: [
     defineImageField({
