@@ -57,7 +57,7 @@ export async function HeroModule({ module }: TProps) {
                   <HeroModuleSubHeadingPortableText value={module.subHeading} />
                 </div>
               </div>
-              <div className='h-[220px] grow-0 shrink-0 hidden lg:block'>
+              <div className='h-[178px] grow-0 shrink-0 hidden lg:block'>
                 <div className='flex flex-col items-center'>
                   <p className='pt-8 text-text-muted text-md font-body'>{module.firmsText}</p>
                   <div className='mt-2 flex gap-4 h-16' style={{ filter: 'invert(1) brightness(0.4)' }}>
