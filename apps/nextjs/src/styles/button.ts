@@ -10,7 +10,8 @@ export const buttonStyle = tv({
     },
     variant: {
       primary: '',
-      ghost: '',
+      ghost:
+        'relative after:absolute after:h-0.5 after:bg-primary-text after:bottom-1 after:transition-opacity after:duration-300',
       outline: 'border'
     },
     surface: {
@@ -31,6 +32,23 @@ export const buttonStyle = tv({
     }
   },
   compoundVariants: [
+    // underline ghost per size
+    {
+      size: 'small',
+      variant: 'ghost',
+      class: 'after:w-[calc(100%_-_1rem)]'
+    },
+    {
+      size: 'default',
+      variant: 'ghost',
+      class: 'after:w-[calc(100%_-_2rem)]'
+    },
+    {
+      size: 'large',
+      variant: 'ghost',
+      class: 'after:w-[calc(100%_-_4rem)]'
+    },
+
     // Disabled states
     {
       variant: 'primary',
@@ -83,6 +101,21 @@ export const buttonStyle = tv({
                 border-bg 
                 bg-primary text-primary-text
                 hover:bg-primary-hover
+                active:bg-primary-active
+                focus-visible:outline-bg focus-visible:outline focus-visible:outline-offset-4
+                `
+    },
+
+    // Default ghost states
+    {
+      variant: 'ghost',
+      surface: 'primary',
+      isDisabled: false,
+      isLoading: false,
+      className: `
+                border-primary
+                bg-primary text-primary-text
+                hover:bg-primary-hover hover:after:opacity-0
                 active:bg-primary-active
                 focus-visible:outline-bg focus-visible:outline focus-visible:outline-offset-4
                 `

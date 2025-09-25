@@ -1,7 +1,7 @@
 import { tv, type VariantProps } from 'tailwind-variants';
 
 export const iconButtonStyle = tv({
-  base: 'rounded-full flex items-center justify-center',
+  base: 'rounded-full flex items-center justify-center transition-colors duration-300',
   variants: {
     size: {
       extrasmall: 'size-6',
@@ -29,7 +29,12 @@ export const iconButtonStyle = tv({
       isDisabled: true,
       className: 'bg-primary-disabled text-primary-text-disabled'
     },
-
+    {
+      variant: 'primary',
+      surface: 'primary',
+      isDisabled: true,
+      className: 'bg-primary-disabled text-primary-text-disabled'
+    },
     // Default primary states
     {
       variant: 'primary',
