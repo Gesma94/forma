@@ -63,3 +63,9 @@
     }
   }
 }
+
+@custom-variant touch-device {
+  @media (pointer: coarse) {
+    @slot;
+  }
+}
