@@ -10,7 +10,7 @@ type TProps = {
 export function defineModuleVariantField({
   name = 'variant',
   title = 'Variant'
-}: TProps): ReturnType<typeof defineField> {
+}: TProps = {}): ReturnType<typeof defineField> {
   return defineField({
     type: 'string',
     title,

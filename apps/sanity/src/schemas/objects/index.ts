@@ -4,6 +4,7 @@ import { counterObjectType } from './counter';
 import { ctaObjectType } from './cta';
 import { howItWorksObjectType } from './how-it-works-step';
 import { linkObjectType } from './link';
+import { teamMemberObjectType } from './team-member';
 
 export const objectSchemaTypes = [
   ctaObjectType,
@@ -11,5 +12,6 @@ export const objectSchemaTypes = [
   linkObjectType,
   counterObjectType,
   howItWorksObjectType,
-  cardObjectType
+  cardObjectType,
+  teamMemberObjectType
 ];

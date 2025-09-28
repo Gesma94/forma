@@ -12,6 +12,7 @@ import { reasonsModuleDocumentType } from './reasons-module';
 import { reviewsModuleDocumentType } from './reviews-module';
 import { servicesModuleDocumentType } from './services-module';
 import { studioModuleDocumentType } from './studio-module';
+import { teamModuleDocumentType } from './team-module';
 import { textWithImageModuleDocumentType } from './text-with-image-module';
 
 export const moduleDocumentSchemaTypes = [
@@ -29,5 +30,6 @@ export const moduleDocumentSchemaTypes = [
   cardsModuleDocumentType,
   imageModuleDocumentType,
   inlineGalleryModuleDocumentType,
-  reasonsModuleDocumentType
+  reasonsModuleDocumentType,
+  teamModuleDocumentType
 ];

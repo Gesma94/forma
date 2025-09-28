@@ -20,7 +20,7 @@ export const brandsModuleDocumentType = defineType({
     })
   },
   fields: [
-    defineModuleVariantField({}),
+    defineModuleVariantField(),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',

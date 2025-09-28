@@ -23,7 +23,7 @@ export const textWithImageModuleDocumentType = defineType({
     })
   },
   fields: [
-    defineModuleVariantField({}),
+    defineModuleVariantField(),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',
