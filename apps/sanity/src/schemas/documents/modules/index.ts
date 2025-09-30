@@ -8,6 +8,7 @@ import { howItWorksModuleDocumentType } from './how-it-works-module';
 import { imageModuleDocumentType } from './image-module';
 import { inlineGalleryModuleDocumentType } from './inline-gallery';
 import { quotesModuleDocumentType } from './quotes-module';
+import { readyToStartModuleDocumentType } from './ready-to-start-module';
 import { reasonsModuleDocumentType } from './reasons-module';
 import { reviewsModuleDocumentType } from './reviews-module';
 import { servicesModuleDocumentType } from './services-module';
@@ -31,5 +32,6 @@ export const moduleDocumentSchemaTypes = [
   imageModuleDocumentType,
   inlineGalleryModuleDocumentType,
   reasonsModuleDocumentType,
+  readyToStartModuleDocumentType,
   teamModuleDocumentType
 ];
