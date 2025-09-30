@@ -23,7 +23,7 @@ export async function TeamModule({ module }: TProps) {
             <Header value={module.heading} variant={module.variant} />
             <ParagraphPortableText value={module.subHeading} variant={module.variant} />
           </div>
-          <TeamCarousel members={members} />
+          <TeamCarousel members={members} variant={module.variant} />
         </div>
       </ContentContainer>
     </ModuleContentContainer>

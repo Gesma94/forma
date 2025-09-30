@@ -1,3 +1,4 @@
+import { MODULE_VARIANTS, type TModuleVariants } from '@forma/common';
 import { motion, type Variants } from 'motion/react';
 import { tv } from 'tailwind-variants';
 import type { TDirection } from './types';
@@ -8,9 +9,10 @@ type TMemberCardProps = {
   role: string;
   isSecond: boolean;
   direction: TDirection;
+  variant: TModuleVariants;
 };
 
-export function MemberCard({ imageUrl, fullName, role, direction, isSecond }: TMemberCardProps) {
+export function MemberCard({ imageUrl, fullName, role, direction, isSecond, variant }: TMemberCardProps) {
   const {
     fullNameStyle,
     imageContainerStyle,
@@ -22,7 +24,7 @@ export function MemberCard({ imageUrl, fullName, role, direction, isSecond }: TM
     textsWrapperStyle,
     firstLineStyle,
     secondLineStyle
-  } = styles({ isSecond });
+  } = styles({ isSecond, variant });
 
   return (
     <motion.div
@@ -55,10 +57,10 @@ const styles = tv({
   slots: {
     motionStyle: 'relative w-full row-start-1',
     containerStyle: 'flex flex-col w-full',
-    imageContainerStyle: 'w-full max-w-full aspect-[9/16] max-h-[520px] bg-bg overflow-hidden shadow-inner relative',
+    imageContainerStyle: 'w-full max-w-full aspect-[9/16] max-h-[520px] overflow-hidden shadow-inner relative',
     imageStyle: 'size-full object-cover hover:scale-110 transition-transform duration-300',
-    firstLineStyle: 'bg-primary w-[110%] h-2 absolute bottom-10 left-1/2 -translate-x-1/2 rotate-12',
-    secondLineStyle: 'bg-primary w-[110%] h-2 absolute bottom-14 left-1/2 -translate-x-1/2 rotate-12',
+    firstLineStyle: 'w-[110%] h-2 absolute bottom-10 left-1/2 -translate-x-1/2 rotate-12',
+    secondLineStyle: 'w-[110%] h-2 absolute bottom-14 left-1/2 -translate-x-1/2 rotate-12',
     textsContainerStyle: 'mt-2 flex flex-col gap-1 min-w-0',
     fullNameStyle: 'text-3xl font-accent text-ellipsis overflow-hidden text-nowrap',
     roleStyle: 'text-sm uppercase font-light text-ellipsis overflow-hidden text-nowrap',
@@ -75,6 +77,18 @@ const styles = tv({
         motionStyle: 'col-start-2 hidden md:block',
         imageContainerStyle: 'rounded-br-[80px]',
         textsWrapperStyle: 'grid-cols-[1fr_6.5rem]'
+      }
+    },
+    variant: {
+      [MODULE_VARIANTS.ON_BG]: {
+        imageContainerStyle: 'bg-primary',
+        firstLineStyle: 'bg-bg',
+        secondLineStyle: 'bg-bg'
+      },
+      [MODULE_VARIANTS.ON_PRIMARY]: {
+        imageContainerStyle: 'bg-bg',
+        firstLineStyle: 'bg-primary',
+        secondLineStyle: 'bg-primary'
       }
     }
   }

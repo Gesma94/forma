@@ -1,19 +1,21 @@
 'use client';
 
+import type { TModuleVariants } from '@forma/common';
 import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
 import { isNotNil } from 'es-toolkit';
 import { AnimatePresence } from 'motion/react';
-import { useState } from 'react';
+import { type ComponentProps, useState } from 'react';
 import type { TeamMemberObjectType } from 'types/generated/sanity-types-generated';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
 import { MemberCard } from './member-card';
 import type { TDirection } from './types';
 
 type TProps = {
+  variant: TModuleVariants;
   members: Array<TeamMemberObjectType & { imageUrl: string; _key: string }>;
 };
 
-export function TeamCarousel({ members }: TProps) {
+export function TeamCarousel({ members, variant }: TProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<TDirection | null>(null);
 
@@ -30,12 +32,21 @@ export function TeamCarousel({ members }: TProps) {
     setCurrentIndex((currentIndex + 1) % members.length);
   };
 
+  const getIconButtonSurface = (): ComponentProps<typeof IconButton>['surface'] => {
+    if (variant === 'on-bg') {
+      return 'bg';
+    }
+
+    return 'primary';
+  };
+
   return (
     <div className='grid grid-cols-[1fr] md:grid-cols-2 grid-rows-1 gap-4 relative w-full max-w-96 md:max-w-3xl 2xl:w-3xl mx-auto'>
       <AnimatePresence initial={false} custom={direction}>
         <MemberCard
           imageUrl={firstMember.imageUrl}
           fullName={firstMember.fullName}
+          variant={variant}
           role={firstMember.role}
           isSecond={false}
           direction={direction}
@@ -45,6 +56,7 @@ export function TeamCarousel({ members }: TProps) {
           <MemberCard
             imageUrl={secondMember.imageUrl}
             fullName={secondMember.fullName}
+            variant={variant}
             role={secondMember.role}
             direction={direction}
             isSecond={true}
@@ -53,8 +65,8 @@ export function TeamCarousel({ members }: TProps) {
         )}
       </AnimatePresence>
       <div className='absolute flex gap-2 bottom-2 px-2 right-0'>
-        <IconButton icon={CaretLeftIcon} surface='primary' onClick={handleCaretLeftClick} />
-        <IconButton icon={CaretRightIcon} surface='primary' onClick={handleCaretRightClick} />
+        <IconButton icon={CaretLeftIcon} surface={getIconButtonSurface()} onClick={handleCaretLeftClick} />
+        <IconButton icon={CaretRightIcon} surface={getIconButtonSurface()} onClick={handleCaretRightClick} />
       </div>
     </div>
   );
