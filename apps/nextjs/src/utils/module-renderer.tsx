@@ -12,6 +12,7 @@ import { ReasonsModule } from '@/layout/modules/reasons-module/reasons-module';
 import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
 import { ServicesModule } from '@/layout/modules/services-module/services-module';
 import { StudioModule } from '@/layout/modules/studio-module/studio-module';
+import { TeamModule } from '@/layout/modules/team-module/team-module';
 import { TextWithImageModule } from '@/layout/modules/text-with-image-module/text-with-image-module';
 
 type TProps = {
@@ -49,6 +50,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <ReasonsModule key={module._id} module={module} />;
       case 'inlineGalleryModuleDocumentType':
         return <InlineGalleryModule key={module._id} module={module} />;
+      case 'teamModuleDocumentType':
+        return <TeamModule key={module._id} module={module} />;
       default:
         return null;
     }
