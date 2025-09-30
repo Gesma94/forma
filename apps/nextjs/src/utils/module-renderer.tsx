@@ -8,6 +8,7 @@ import { HowItWorksModule } from '@/layout/modules/how-it-works-module/how-it-wo
 import { ImageModule } from '@/layout/modules/image-module/image-module';
 import { InlineGalleryModule } from '@/layout/modules/inline-gallery-module/inline-gallery-module';
 import { QuotesModule } from '@/layout/modules/quotes-module/quotes-module';
+import { ReadyToStartModule } from '@/layout/modules/ready-to-start-module/ready-to-start-module';
 import { ReasonsModule } from '@/layout/modules/reasons-module/reasons-module';
 import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
 import { ServicesModule } from '@/layout/modules/services-module/services-module';
@@ -52,6 +53,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <InlineGalleryModule key={module._id} module={module} />;
       case 'teamModuleDocumentType':
         return <TeamModule key={module._id} module={module} />;
+      case 'readyToStartModuleDocumentType':
+        return <ReadyToStartModule key={module._id} module={module} />;
       default:
         return null;
     }

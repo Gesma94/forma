@@ -2,7 +2,7 @@ import { CirclePlayIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineRichEditorField } from '../../../fields';
+import { defineImageField, defineRichEditorField } from '../../../fields';
 
 export const readyToStartModuleDocumentType = defineType({
   type: 'document',
@@ -20,6 +20,11 @@ export const readyToStartModuleDocumentType = defineType({
     })
   },
   fields: [
+    defineImageField({
+        name: 'backgroundImage',
+        title: 'Background Image',
+        validation: rule => rule.required()
+      }),
     defineField({
       type: 'string',
       name: 'title',
