@@ -1,6 +1,14 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { visionTool } from '@sanity/vision';
-import { BookKeyIcon, HomeIcon, type LucideProps, NotebookPenIcon, SparklesIcon, WavesIcon } from 'lucide-react';
+import {
+  BookKeyIcon,
+  HomeIcon,
+  type LucideProps,
+  NotebookPenIcon,
+  RouteIcon,
+  SparklesIcon,
+  WavesIcon
+} from 'lucide-react';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
@@ -24,6 +32,11 @@ const pageItems: TPageItem[] = [
     id: SANITY_DOCUMENT_IDS.bookpage,
     icon: NotebookPenIcon,
     title: 'Book'
+  },
+  {
+    id: SANITY_DOCUMENT_IDS.processpage,
+    icon: RouteIcon,
+    title: 'Process'
   }
 ];
 

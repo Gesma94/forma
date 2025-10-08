@@ -21,10 +21,10 @@ export const readyToStartModuleDocumentType = defineType({
   },
   fields: [
     defineImageField({
-        name: 'backgroundImage',
-        title: 'Background Image',
-        validation: rule => rule.required()
-      }),
+      name: 'backgroundImage',
+      title: 'Background Image',
+      validation: rule => rule.required()
+    }),
     defineField({
       type: 'string',
       name: 'title',

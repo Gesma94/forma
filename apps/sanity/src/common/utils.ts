@@ -10,7 +10,10 @@ export function getPageTitleFromId(pageId: string): string {
     return 'Homepage';
   }
   if (pageId === SANITY_DOCUMENT_IDS.bookpage) {
-    return 'Book';
+    return 'Book Page';
+  }
+  if (pageId === SANITY_DOCUMENT_IDS.processpage) {
+    return 'Process Page';
   }
 
   return 'Unknown Page';

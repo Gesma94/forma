@@ -2,6 +2,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   footer: 'footerDocumentType',
   inlineGalleryModule: 'inlineGalleryModuleDocumentType',
   howItWorksModule: 'howItWorksModuleDocumentType',
+  processModule: 'processModuleDocumentType',
   heroModule: 'heroModuleDocumentType',
   halfHeroModule: 'halfHeroModuleDocumentType',
   studioModule: 'studioModuleDocumentType',
@@ -32,5 +33,6 @@ export const OBJECT_SCHEMA_TYPES = {
   card: 'cardObjectType',
   counter: 'counterObjectType',
   howItWorksStep: 'howItWorksStepObjectType',
+  processStep: 'processStepObjectType',
   teamMember: 'teamMemberObjectType'
 } as const;
