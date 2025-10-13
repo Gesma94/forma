@@ -1,5 +1,5 @@
 import type { Icon } from '@phosphor-icons/react';
-import { DesktopIcon, FlowArrowIcon, SlideshowIcon } from '@phosphor-icons/react/dist/ssr';
+import { FlowArrowIcon, SlideshowIcon } from '@phosphor-icons/react/dist/ssr';
 
 export const topbarCommonNavLinks: Array<{ label: string; url: string; icon: Icon }> = [
   { label: 'Process', url: '/process', icon: FlowArrowIcon },

@@ -3,10 +3,12 @@ import { BookModule } from '@/layout/modules/book-module/book-module';
 import { BrandsModule } from '@/layout/modules/brands-module/brands-module';
 import { CardsModule } from '@/layout/modules/cards-module/cards-module';
 import { CountersModule } from '@/layout/modules/counters-module/counters-module';
+import { HalfHeroModule } from '@/layout/modules/half-hero-module/half-hero-module';
 import { HeroModule } from '@/layout/modules/hero-module/hero-module';
 import { HowItWorksModule } from '@/layout/modules/how-it-works-module/how-it-works-module';
 import { ImageModule } from '@/layout/modules/image-module/image-module';
 import { InlineGalleryModule } from '@/layout/modules/inline-gallery-module/inline-gallery-module';
+import { ProcessModule } from '@/layout/modules/process-module/process-module';
 import { QuotesModule } from '@/layout/modules/quotes-module/quotes-module';
 import { ReadyToStartModule } from '@/layout/modules/ready-to-start-module/ready-to-start-module';
 import { ReasonsModule } from '@/layout/modules/reasons-module/reasons-module';
@@ -55,6 +57,10 @@ export function ModuleRenderer({ modules }: TProps) {
         return <TeamModule key={module._id} module={module} />;
       case 'readyToStartModuleDocumentType':
         return <ReadyToStartModule key={module._id} module={module} />;
+      case 'processModuleDocumentType':
+        return <ProcessModule key={module._id} module={module} />;
+      case 'halfHeroModuleDocumentType':
+        return <HalfHeroModule key={module._id} module={module} />;
       default:
         return null;
     }
