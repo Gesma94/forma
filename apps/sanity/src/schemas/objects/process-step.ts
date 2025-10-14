@@ -41,11 +41,6 @@ export const processObjectType = defineType({
       name: 'smallImage',
       title: 'smallImage',
       validation: rule => rule.required()
-    }),
-    defineImageField({
-      name: 'resultImage',
-      title: 'Result Image',
-      validation: rule => rule.required()
     })
   ]
 });
