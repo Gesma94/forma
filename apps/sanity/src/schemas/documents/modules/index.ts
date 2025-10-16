@@ -12,6 +12,7 @@ import { quotesModuleDocumentType } from './quotes-module';
 import { readyToStartModuleDocumentType } from './ready-to-start-module';
 import { reasonsModuleDocumentType } from './reasons-module';
 import { reviewsModuleDocumentType } from './reviews-module';
+import { scrollGalleryModuleDocumentType } from './scroll-gallery-module';
 import { servicesModuleDocumentType } from './services-module';
 import { studioModuleDocumentType } from './studio-module';
 import { teamModuleDocumentType } from './team-module';
@@ -35,5 +36,6 @@ export const moduleDocumentSchemaTypes = [
   reasonsModuleDocumentType,
   readyToStartModuleDocumentType,
   teamModuleDocumentType,
-  processModuleDocumentType
+  processModuleDocumentType,
+  scrollGalleryModuleDocumentType
 ];

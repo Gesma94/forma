@@ -5,6 +5,7 @@ import { ctaObjectType } from './cta';
 import { howItWorksObjectType } from './how-it-works-step';
 import { linkObjectType } from './link';
 import { processObjectType } from './process-step';
+import { scrollGalleryImageObjectType } from './scoll-gallery-image';
 import { teamMemberObjectType } from './team-member';
 
 export const objectSchemaTypes = [
@@ -15,5 +16,6 @@ export const objectSchemaTypes = [
   howItWorksObjectType,
   cardObjectType,
   teamMemberObjectType,
-  processObjectType
+  processObjectType,
+  scrollGalleryImageObjectType
 ];

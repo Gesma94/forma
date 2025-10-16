@@ -2,6 +2,7 @@ import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { visionTool } from '@sanity/vision';
 import {
   BookKeyIcon,
+  GalleryVerticalIcon,
   HomeIcon,
   type LucideProps,
   NotebookPenIcon,
@@ -37,6 +38,11 @@ const pageItems: TPageItem[] = [
     id: SANITY_DOCUMENT_IDS.processpage,
     icon: RouteIcon,
     title: 'Process'
+  },
+  {
+    id: SANITY_DOCUMENT_IDS.gallerypage,
+    icon: GalleryVerticalIcon,
+    title: 'Gallery'
   }
 ];
 

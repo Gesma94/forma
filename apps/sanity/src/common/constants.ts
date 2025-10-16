@@ -17,6 +17,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   servicesModule: 'servicesModuleDocumentType',
   cardsModule: 'cardsModuleDocumentType',
   teamModule: 'teamModuleDocumentType',
+  scrollGalleryModule: 'scrollGalleryModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType',
   imageModule: 'imageModuleDocumentType',
   brand: 'brandDocumentType',
@@ -34,5 +35,6 @@ export const OBJECT_SCHEMA_TYPES = {
   counter: 'counterObjectType',
   howItWorksStep: 'howItWorksStepObjectType',
   processStep: 'processStepObjectType',
-  teamMember: 'teamMemberObjectType'
+  teamMember: 'teamMemberObjectType',
+  scrollGalleryImage: 'scrollGalleryImageObjectType'
 } as const;
