@@ -58,7 +58,7 @@ const style = tv({
   variants: {
     variant: {
       solid: { container: 'bg-primary', link: 'text-primary-text' },
-      floating: { container: 'absolute top-0 z-10', link: 'text-primary-text' }
+      floating: { container: 'absolute top-0 z-50', link: 'text-primary-text' }
     }
   }
 });
