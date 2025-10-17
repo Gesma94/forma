@@ -13,6 +13,7 @@ import { QuotesModule } from '@/layout/modules/quotes-module/quotes-module';
 import { ReadyToStartModule } from '@/layout/modules/ready-to-start-module/ready-to-start-module';
 import { ReasonsModule } from '@/layout/modules/reasons-module/reasons-module';
 import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
+import { ScrollGalleryModule } from '@/layout/modules/scroll-gallery-module/scroll-gallery-module';
 import { ServicesModule } from '@/layout/modules/services-module/services-module';
 import { StudioModule } from '@/layout/modules/studio-module/studio-module';
 import { TeamModule } from '@/layout/modules/team-module/team-module';
@@ -61,6 +62,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <ProcessModule key={module._id} module={module} />;
       case 'halfHeroModuleDocumentType':
         return <HalfHeroModule key={module._id} module={module} />;
+      case 'scrollGalleryModuleDocumentType':
+        return <ScrollGalleryModule key={module._id} module={module} />;
       default:
         return null;
     }

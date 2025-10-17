@@ -37,8 +37,8 @@ export async function HalfHeroModule({ module }: TProps) {
 const styles = tv({
   slots: {
     containerTv: 'w-full relative sm:h-half-hero-height grid grid-cols-1 grid-rows-1',
-    bgImageTv: ['object-cover row-start-1 col-start-1', 'w-full sm:h-half-hero-height'],
-    contentWrapperTv: 'row-start-1 col-start-1 z-10',
+    bgImageTv: ['object-cover row-start-1 col-start-1', 'w-full h-full sm:h-half-hero-height'],
+    contentWrapperTv: ['row-start-1 col-start-1 z-10', 'pt-30 pb-20  sm:pt-[unset] sm:pb-[unset] sm:px-[unset]'],
     contentContainerTv: 'max-w-4xl h-full flex flex-col justify-center gap-4'
   }
 });
