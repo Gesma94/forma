@@ -70,7 +70,7 @@ const styles = tv({
     isSecond: {
       false: {
         motionStyle: 'col-start-1',
-        imageContainerStyle: 'rounded-tl-[80px] rounded-br-[80px] md:rounded-br-0',
+        imageContainerStyle: 'rounded-tl-[80px] rounded-br-[80px] md:rounded-br-none',
         textsWrapperStyle: 'grid-cols-[1fr_6.5rem] md:grid-cols-1'
       },
       true: {
