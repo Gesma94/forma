@@ -30,7 +30,7 @@ export function ProcessDescription({ value, variant }: ICardDescriptionProps) {
 
 const style = tv({
   slots: {
-    container: 'flex flex-col gap-2 max-w-5xl mx-auto',
+    container: 'flex flex-col gap-2 max-w-5xl',
     paragraph: 'prose-xl prose-p:my-0 font-base font-light'
   },
   variants: {

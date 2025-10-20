@@ -19,15 +19,9 @@ export const ProcessModule = ({ module }: TProcessModuleProps) => {
 
   return (
     <ol className='flex flex-col'>
-      {processSteps.map(({ key, ...step }, index) => (
-        <li key={key}>
-          <ProcessStep
-            isFirst={index === 0}
-            isLast={index === processSteps.length - 1}
-            key={key}
-            {...step}
-            index={index}
-          />
+      {processSteps.map((step, index) => (
+        <li key={module.steps[index]._key}>
+          <ProcessStep {...step} index={index} />
         </li>
       ))}
     </ol>
