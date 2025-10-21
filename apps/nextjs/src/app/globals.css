@@ -39,6 +39,8 @@
   --color-bg-border-disabled: #d6d3cc;
   --color-bg-border-error: #c0392b;
 
+  --color-bg-dark: #161616;
+
   --color-text-muted: #767676;
   --color-error: #c0392b;
 
@@ -70,4 +72,8 @@
   @media (pointer: coarse) {
     @slot;
   }
+}
+
+.disable-scrollbar-gutter {
+  scrollbar-gutter: auto !important;
 }

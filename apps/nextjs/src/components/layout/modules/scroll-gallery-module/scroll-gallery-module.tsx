@@ -17,9 +17,5 @@ export function ScrollGalleryModule({ module }: TProps) {
     tags: x.imageTags as TImageTag[]
   }));
 
-  // images =images.concat(JSON.parse(JSON.stringify(images.toReversed())));
-  // images = images.concat(JSON.parse(JSON.stringify(images)));
-  // images = images.concat(JSON.parse(JSON.stringify(images.toReversed())));
-
   return <ScrollGalleryClientModule images={images} />;
 }
