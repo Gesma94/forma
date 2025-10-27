@@ -87,9 +87,19 @@ export function InlineGalleryCarousel({ module, imagesUrl }: TProps) {
               className='h-full w-auto shrink-0 relative max-w-[calc(100vw-3rem)] sm:max-w-[calc(100vw-4rem)] snap-center'
             >
               <img src={imageUrl} alt={image.altText} className='rounded-2xl h-full w-auto object-cover' />
-              <div className='absolute bottom-10 left-6 text-fg-light flex flex-col gap-2'>
-                <p className='bg-bg mr-auto px-4 py-1 rounded-2xl text-primary text-3xl font-lg'>{image.title}</p>
-                <p className='bg-bg mr-auto px-4 py-1 rounded-2xl text-bg-text text-xl'>{image.subtitle}</p>
+              <div className='absolute bottom-6 left-4 text-fg-light flex flex-col' data-testid='texts-container'>
+                <p
+                  data-testid='title'
+                  className='bg-bg mr-auto px-4 py-1 rounded-xl rounded-bl-none text-primary text-xl font-lg'
+                >
+                  {image.title}
+                </p>
+                <p
+                  data-testid='subtitle'
+                  className='bg-bg mr-auto px-4 py-1 rounded-xl rounded-tl-none text-bg-text text-md'
+                >
+                  {image.subtitle}
+                </p>
               </div>
             </div>
           );
