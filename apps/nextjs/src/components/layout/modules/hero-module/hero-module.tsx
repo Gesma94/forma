@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import type { HeroModuleDocumentType } from 'types/generated/sanity-types-generated';
-import { Scrolldown } from '@/layout/scrolldown/Scrolldown';
+import { Scrolldown } from '@/layout/scrolldown/scrolldown';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
