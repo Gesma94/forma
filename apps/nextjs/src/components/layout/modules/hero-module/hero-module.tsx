@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import type { HeroModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { Scrolldown } from '@/layout/scrolldown/Scrolldown';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
@@ -22,7 +23,7 @@ export async function HeroModule({ module }: TProps) {
   );
 
   return (
-    <div className='w-full h-dvh relative sm:min-h-min-hero'>
+    <div className='w-full min-h-dvh relative flex justify-center'>
       <Image
         fill={true}
         src={imageUrl}
@@ -31,12 +32,12 @@ export async function HeroModule({ module }: TProps) {
         className='object-cover object-bottom bg-linear-30 brightness-[0.32]'
       />
 
-      <div className='h-full grid grid-rows-[1fr] relative'>
+      <div className='grid grid-rows-[1fr] relative pt-20 pb-4'>
         <div>
           <ContentContainer>
             <div className='h-full flex flex-col'>
               <div className='grow flex flex-col xs:items-center justify-center'>
-                <div className='hidden lg:block md:mt-10'>
+                <div className='hidden lg:block'>
                   <HeroModuleHeadingPortableText value={module.heading} />
                 </div>
                 <div className='block lg:hidden'>
@@ -76,7 +77,9 @@ export async function HeroModule({ module }: TProps) {
             </div>
           </ContentContainer>
         </div>
-        <div className='absolute bottom-4 w-full flex justify-center'>{/* <ScrollDown /> */}</div>
+        <div className='absolute bottom-4 w-full flex justify-center mt-4'>
+          <Scrolldown />
+        </div>
       </div>
     </div>
   );
