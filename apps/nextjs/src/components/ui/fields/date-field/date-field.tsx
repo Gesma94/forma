@@ -29,7 +29,7 @@ type Props = DatePickerProps<DateValue> & {
   isDateUnavailable?: CalendarProps<DateValue>['isDateUnavailable'];
 };
 
-export function DateField({ label, isDateUnavailable, ref, ...rest }: Props) {
+export function DateField({ label, isDateUnavailable, ref, isRequired, ...rest }: Props) {
   const { input, label: labelStyle } = style();
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -70,6 +70,7 @@ export function DateField({ label, isDateUnavailable, ref, ...rest }: Props) {
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >
         {label}
+        {isRequired && <sup className='ml-0.5'>*</sup>}
       </MotionLabel>
       <Group className={({ isFocusVisible, isFocusWithin }) => input({ isFocused: isFocusVisible || isFocusWithin })}>
         <DateInput data-testid='tet' className='size-full pt-4 flex items-center  px-4' ref={inputRef}>

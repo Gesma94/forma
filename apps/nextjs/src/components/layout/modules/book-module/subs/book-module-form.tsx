@@ -46,7 +46,7 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
       return [];
     }
 
-    return availableSlots.availableSlots[appointmentDate.toString()];
+    return availableSlots.availableSlots[appointmentDate.toString()] ?? [];
   }, [appointmentDate, availableSlots]);
 
   const onValid = async (data: BookFormSchema) => {
@@ -80,18 +80,19 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
   return (
     <Form onSubmit={handleSubmit(onValid, onInvalid)} className='flex flex-col pt-20 gap-4 w-full max-w-2xl mx-auto'>
       <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
-        <FormTextField control={control} type='text' label='Full name' name='fullName' />
-        <FormTextField control={control} type='tel' label='Phone number' name='phoneNumber' />
+        <FormTextField control={control} type='text' label='Full name' name='fullName' isRequired={true} />
+        <FormTextField control={control} type='tel' label='Phone number' name='phoneNumber' isRequired={true} />
       </div>
-      <FormTextField control={control} type='email' label='Email' name='email' />
+      <FormTextField control={control} type='email' label='Email' name='email' isRequired={true} />
       <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
         <FormDateField
           control={control}
+          isRequired={true}
           name='appointmentDate'
           label='Appointment Date'
           isDateUnavailable={handleIsDateUnavailable}
         />
-        <FormSelectField control={control} name='appointmentSlot' label='Appointment slot'>
+        <FormSelectField control={control} name='appointmentSlot' label='Appointment slot' isRequired={true}>
           {availableAppointmentSlots.map(x => (
             <SelectOption id={x.toISOString()} key={x.toISOString()}>
               {getSlotLabel(x)}
@@ -102,8 +103,14 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
           )}
         </FormSelectField>
       </div>
-      <FormTextField control={control} type='text' label='Company/Studio' name='companyStudio' />
-      <FormTextAreaField control={control} label='Whats the project about?' name='projectAbout' rows={4} />
+      <FormTextField control={control} type='text' label='Company/Studio' name='companyStudio' isRequired={true} />
+      <FormTextAreaField
+        control={control}
+        label='Whats the project about?'
+        name='projectAbout'
+        rows={4}
+        isRequired={true}
+      />
       <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
         <FormDateField control={control} name='deadlineDate' label='When is the deadline?' />
         <FormSelectField control={control} name='projectPhase' label='In which phase is the project?'>

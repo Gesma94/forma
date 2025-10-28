@@ -1,5 +1,6 @@
 'use client';
 
+import { isNotNil } from 'es-toolkit';
 import { motion } from 'motion/react';
 import { type FocusEvent, type Ref, useMemo, useRef, useState } from 'react';
 import {
@@ -21,7 +22,7 @@ type Props = TextFieldProps & {
   ref?: Ref<HTMLTextAreaElement>;
 };
 
-export function TextAreaField({ label, ref, onFocus, onBlur, rows, ...rest }: Props) {
+export function TextAreaField({ label, ref, onFocus, onBlur, rows, isRequired, errorMessage, ...rest }: Props) {
   const { input, label: labelStyle } = style();
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -60,7 +61,13 @@ export function TextAreaField({ label, ref, onFocus, onBlur, rows, ...rest }: Pr
   }, [isFocused, rest.value]);
 
   return (
-    <AriaTextField {...rest} onFocus={handleInputFocus} onBlur={handleInputBlur} className='relative flex'>
+    <AriaTextField
+      {...rest}
+      onFocus={handleInputFocus}
+      onBlur={handleInputBlur}
+      className='relative flex'
+      aria-label={isNotNil(errorMessage) ? label : undefined}
+    >
       <div className='absolute top-0 h-14 w-full pointer-events-none'>
         <MotionLabel
           className={labelStyle({ isLabelRaised })}
@@ -69,6 +76,7 @@ export function TextAreaField({ label, ref, onFocus, onBlur, rows, ...rest }: Pr
           transition={{ duration: 0.25, ease: 'easeOut' }}
         >
           {label}
+          {isRequired && <sup className='ml-0.5'>*</sup>}
         </MotionLabel>
       </div>
       <TextArea

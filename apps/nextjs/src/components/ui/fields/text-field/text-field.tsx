@@ -21,7 +21,7 @@ type Props = TextFieldProps & {
   errorMessage?: string;
   ref?: Ref<HTMLInputElement>;
 };
-export function TextField({ label, errorMessage, ref, ...rest }: Props) {
+export function TextField({ label, errorMessage, ref, isRequired, ...rest }: Props) {
   const { input, label: labelStyle, fieldError } = style();
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -59,7 +59,7 @@ export function TextField({ label, errorMessage, ref, ...rest }: Props) {
   }, [isFocused, rest.value]);
 
   return (
-    <AriaTextField className='relative' {...rest} aria-label={label}>
+    <AriaTextField className='relative' {...rest} aria-label={isNotNil(errorMessage) ? label : 'undefined'}>
       {isNil(errorMessage) && (
         <MotionLabel
           className={labelStyle({ isLabelRaised })}
@@ -68,6 +68,7 @@ export function TextField({ label, errorMessage, ref, ...rest }: Props) {
           transition={{ duration: 0.25, ease: 'easeOut' }}
         >
           {label}
+          {isRequired && <sup className='ml-0.5'>*</sup>}
         </MotionLabel>
       )}
       {isNotNil(errorMessage) && (

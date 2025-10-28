@@ -9,8 +9,8 @@ export const bookFormSchema = z.object({
   appointmentSlot: z.string().min(1, 'Appointment slot is required'),
   companyStudio: z.string().min(1, 'Company/Studio is required'),
   projectAbout: z.string().min(1, 'Project description is required'),
-  deadlineDate: z.instanceof(CalendarDate, { error: 'Appointment date is required' }),
-  projectPhase: z.string().min(1, 'Project phase is required')
+  deadlineDate: z.string().regex(/^\\d{2}-\\d{2}-\\d{4}$/, { error: 'Deadline must be in the format DD-MM-YYYY' }),
+  projectPhase: z.string().nullable()
 });
 
 export type BookFormSchema = z.infer<typeof bookFormSchema>;

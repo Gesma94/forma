@@ -31,6 +31,7 @@ export function SelectField<T extends object>({
   label,
   ref,
   selectedKey,
+  isRequired,
   errorMessage,
   children,
   onSelectionChange,
@@ -47,8 +48,9 @@ export function SelectField<T extends object>({
   return (
     <Select
       className='relative'
-      onSelectionChange={handleSelectionChange}
-      selectedKey={controlledSelectedKey}
+      onChange={handleSelectionChange}
+      value={controlledSelectedKey}
+      aria-label={isNotNil(errorMessage) ? label : undefined}
       {...rest}
     >
       {({ isOpen }) => {
@@ -66,6 +68,7 @@ export function SelectField<T extends object>({
                 transition={{ duration: 0.25, ease: 'easeOut' }}
               >
                 {label}
+                {isRequired && <sup className='ml-0.5'>*</sup>}
               </MotionLabel>
             )}
             {isNotNil(errorMessage) && (

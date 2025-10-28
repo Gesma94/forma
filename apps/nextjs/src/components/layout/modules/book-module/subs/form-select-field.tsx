@@ -30,10 +30,10 @@ export const FormSelectField = <
         <SelectField
           {...selectProps}
           {...fieldProps}
-          selectedKey={value}
+          value={value}
           errorMessage={error?.message}
           isDisabled={disabled || selectProps.isDisabled}
-          onSelectionChange={onChange}
+          onChange={onChange}
           isInvalid={invalid}
           validationBehavior='aria'
         />
