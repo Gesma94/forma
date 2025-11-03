@@ -1,1 +1,1 @@
-module.exports = { images: { domains: ['cdn.sanity.io'], formats: ['image/avif', 'image/webp'] } };
+module.exports = { images: { remotePatterns: [new URL('https://cdn.sanity.io/**')] } };
