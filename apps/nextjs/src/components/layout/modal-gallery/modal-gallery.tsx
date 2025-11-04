@@ -40,11 +40,7 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
   }, [currentIndex]);
   return isNil(currentImage) ? null : (
     <AriaModal className={modalTv()} isDismissable={false} isOpen={isNotNil(currentIndex)} onOpenChange={onOpenChange}>
-      <AriaDialog
-        aria-label={currentImage.title}
-        className={dialogTv()}
-        onAnimationEnd={() => console.log('animation end')}
-      >
+      <AriaDialog aria-label={currentImage.title} className={dialogTv()}>
         {({ close }) => (
           <div className={dialogContentContainerTv()}>
             {currentImage && (
