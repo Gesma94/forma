@@ -51,8 +51,8 @@ importers:
         specifier: ^1.7.1
         version: 1.7.1
       ky:
-        specifier: ^1.9.1
-        version: 1.9.1
+        specifier: ^1.14.0
+        version: 1.14.0
       motion:
         specifier: ^12.23.12
         version: 12.23.12(@emotion/is-prop-valid@1.2.2)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -4091,8 +4091,8 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  ky@1.9.1:
-    resolution: {integrity: sha512-WGzpBn57klhxsqRTEABAqF4tqTtqCuxoTIv9m6nIZtMMFTVcrHp7bRDWblzFIfqkb47+OhTztOgHn6A4xItmqg==}
+  ky@1.14.0:
+    resolution: {integrity: sha512-Rczb6FMM6JT0lvrOlP5WUOCB7s9XKxzwgErzhKlKde1bEV90FXplV1o87fpt4PU/asJFiqjYJxAJyzJhcrxOsQ==}
     engines: {node: '>=18'}
 
   lambda-runtimes@2.0.5:
@@ -10575,7 +10575,7 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  ky@1.9.1: {}
+  ky@1.14.0: {}
 
   lambda-runtimes@2.0.5: {}
 
