@@ -5,6 +5,7 @@ import './globals.css';
 import type { ReactNode } from 'react';
 import { tv } from 'tailwind-variants';
 import { ScrollAtTop } from '@/layout/scroll-at-top/scroll-at-top';
+import { ToastRegion } from '@/layout/toast-notification/toast-region';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const { bodyTv, mainDivTv } = stylesTv();
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang='en' className={getHtmlClassName()}>
+      <ToastRegion />
       <body className={bodyTv()}>
         <div className={mainDivTv()}>{children}</div>
         <Footer />

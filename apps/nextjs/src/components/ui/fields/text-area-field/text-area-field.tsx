@@ -1,11 +1,12 @@
 'use client';
 
-import { isNotNil } from 'es-toolkit';
+import { isNil, isNotNil } from 'es-toolkit';
 import { motion } from 'motion/react';
 import { type FocusEvent, type Ref, useMemo, useRef, useState } from 'react';
 import {
   Label as AriaLabel,
   TextField as AriaTextField,
+  FieldError,
   TextArea,
   type TextAreaProps,
   type TextFieldProps
@@ -14,6 +15,7 @@ import { mergeRefs } from 'react-merge-refs';
 import { tv } from 'tailwind-variants';
 
 const MotionLabel = motion.create(AriaLabel);
+const MotionFieldError = motion.create(FieldError);
 
 type Props = TextFieldProps & {
   label: string;
@@ -23,7 +25,7 @@ type Props = TextFieldProps & {
 };
 
 export function TextAreaField({ label, ref, onFocus, onBlur, rows, isRequired, errorMessage, ...rest }: Props) {
-  const { input, label: labelStyle } = style();
+  const { input, label: labelStyle, fieldError } = style();
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -69,20 +71,38 @@ export function TextAreaField({ label, ref, onFocus, onBlur, rows, isRequired, e
       aria-label={isNotNil(errorMessage) ? label : undefined}
     >
       <div className='absolute top-0 h-14 w-full pointer-events-none'>
-        <MotionLabel
-          className={labelStyle({ isLabelRaised })}
-          initial={false}
-          animate={isLabelRaised ? { translateY: '-105%', scale: 0.85, originX: 0 } : { translateY: '-50%', scale: 1 }}
-          transition={{ duration: 0.25, ease: 'easeOut' }}
-        >
-          {label}
-          {isRequired && <sup className='ml-0.5'>*</sup>}
-        </MotionLabel>
+        {isNil(errorMessage) && (
+          <MotionLabel
+            className={labelStyle({ isLabelRaised })}
+            initial={false}
+            animate={
+              isLabelRaised ? { translateY: '-105%', scale: 0.85, originX: 0 } : { translateY: '-50%', scale: 1 }
+            }
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+          >
+            {label}
+            {isRequired && <sup className='ml-0.5'>*</sup>}
+          </MotionLabel>
+        )}
+        {isNotNil(errorMessage) && (
+          <MotionFieldError
+            initial={false}
+            animate={
+              isLabelRaised ? { translateY: '-105%', scale: 0.85, originX: 0 } : { translateY: '-50%', scale: 1 }
+            }
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className={fieldError()}
+          >
+            {errorMessage}
+          </MotionFieldError>
+        )}
       </div>
       <TextArea
         rows={rows}
         ref={mergeRefs([ref, inputRef])}
-        className={({ isFocused, isFocusVisible }) => input({ isFocused: isFocused || isFocusVisible })}
+        className={({ isFocused, isFocusVisible }) =>
+          input({ isFocused: isFocused || isFocusVisible, hasError: isNotNil(errorMessage) })
+        }
       />
     </AriaTextField>
   );
@@ -91,10 +111,17 @@ export function TextAreaField({ label, ref, onFocus, onBlur, rows, isRequired, e
 const style = tv({
   slots: {
     label: 'absolute left-4 top-1/2 text-text-muted pointer-events-none',
+    fieldError: 'absolute left-4 top-1/2 text-error pointer-events-none',
     input:
       'w-full bg-bg border-solid border border-bg-border rounded-md min-h-14 pt-5 px-4 text-lg font-base font-light'
   },
   variants: {
+    hasError: {
+      true: {
+        input: 'outline-error outline-2 -outline-offset-[3px]'
+      },
+      false: {}
+    },
     isLabelRaised: {
       true: {
         // label: 'text-bg-text'
@@ -104,10 +131,25 @@ const style = tv({
       }
     },
     isFocused: {
-      true: {
-        input: 'outline-bg-border-active outline-2 -outline-offset-[3px]'
-      },
+      true: {},
       false: {}
     }
-  }
+  },
+
+  compoundVariants: [
+    {
+      isFocused: true,
+      hasError: false,
+      class: {
+        input: 'outline-bg-border-active outline-2 -outline-offset-[3px]'
+      }
+    },
+    {
+      isFocused: true,
+      hasError: true,
+      class: {
+        input: 'outline-error outline-2 -outline-offset-[3px]'
+      }
+    }
+  ]
 });

@@ -16,13 +16,19 @@ import { IconButton } from '@/ui/buttons/icon-button/icon-button';
 
 type TProps = CalendarProps<DateValue>;
 
-export function Calendar({ isDateUnavailable }: TProps) {
+export function Calendar({ isDateUnavailable, value, onChange }: TProps) {
   const monthToCalendar = (number: number): string => {
     return format(setMonth(new Date(), number - 1), 'LLLL');
   };
 
   return (
-    <AriaCalendar aria-label='Appointment date' className='mx-auto w-min' isDateUnavailable={isDateUnavailable}>
+    <AriaCalendar
+      aria-label='Appointment date'
+      className='mx-auto w-min'
+      isDateUnavailable={isDateUnavailable}
+      value={value}
+      onChange={onChange}
+    >
       {x => (
         <>
           {' '}

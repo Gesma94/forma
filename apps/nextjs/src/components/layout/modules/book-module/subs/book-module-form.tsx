@@ -5,13 +5,15 @@ import { type BookFormSchema, bookFormSchema } from 'data/book-form-schema';
 import { addMinutes, format } from 'date-fns';
 import { isNil } from 'es-toolkit';
 import { isEmpty } from 'es-toolkit/compat';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { type DateValue, Form } from 'react-aria-components';
 import { type FieldErrors, useForm } from 'react-hook-form';
 import { postCalcomBooking } from 'services/cal-com';
 import type { TCalendarAvailabilities } from 'types/calendar';
+import { toastQueue } from '@/layout/toast-notification/subs/toast-queue';
 import { Button } from '@/ui/buttons/button/button';
 import { SelectOption } from '@/ui/fields/select-field/select-option';
+import { FormCalendarField } from './form-calendar-field';
 import { FormDateField } from './form-date-field';
 import { FormSelectField } from './form-select-field';
 import { FormTextAreaField } from './form-text-area-field';
@@ -23,8 +25,7 @@ type TProps = {
 };
 
 export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
-  const [_, setSubmitError] = useState(false);
-  const { handleSubmit, control, watch } = useForm<BookFormSchema>({
+  const { handleSubmit, control, watch, getValues } = useForm<BookFormSchema>({
     resolver: zodResolver(bookFormSchema),
     defaultValues: {
       fullName: '',
@@ -38,7 +39,6 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
       projectPhase: null
     }
   });
-
   const appointmentDate = watch('appointmentDate');
 
   const availableAppointmentSlots = useMemo(() => {
@@ -52,16 +52,37 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
   const onValid = async (data: BookFormSchema) => {
     const { deadlineDate, ...bookingData } = data;
     const intlOptions = Intl.DateTimeFormat().resolvedOptions();
-    setSubmitError(
-      !(await postCalcomBooking(bookingData, deadlineDate.toString(), {
-        language: intlOptions.locale,
-        timeZone: intlOptions.timeZone
-      }))
-    );
+    const result = await postCalcomBooking(bookingData, deadlineDate?.toString(), {
+      language: intlOptions.locale,
+      timeZone: intlOptions.timeZone
+    });
+
+    if (result) {
+      console.log('result true');
+      toastQueue.add(
+        {
+          kind: 'success',
+          title: 'Booking successful',
+          description: `Your booking for ${format(bookingData.appointmentSlot, "dd/MM/yyyy 'at' hh:mm")} has been created`
+        },
+        { timeout: 5000 }
+      );
+    } else {
+      console.log('result false');
+      toastQueue.add(
+        {
+          kind: 'error',
+          title: 'Booking failed',
+          description: 'There was an error creating your booking, please try again'
+        },
+        { timeout: 5000 }
+      );
+    }
   };
 
   const onInvalid = (errors: FieldErrors<BookFormSchema>) => {
     console.log(errors);
+    console.log(getValues());
   };
 
   const handleIsDateUnavailable = (date: DateValue) => {
@@ -85,7 +106,7 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
       </div>
       <FormTextField control={control} type='email' label='Email' name='email' isRequired={true} />
       <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
-        <FormDateField
+        <FormCalendarField
           control={control}
           isRequired={true}
           name='appointmentDate'

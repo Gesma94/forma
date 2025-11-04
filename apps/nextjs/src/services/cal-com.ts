@@ -2,7 +2,8 @@
 
 import type { BookFormSchema } from 'data/book-form-schema';
 import { addDays, format } from 'date-fns';
-import ky from 'ky';
+import { isNotNil } from 'es-toolkit';
+import ky, { isHTTPError, isKyError, isTimeoutError } from 'ky';
 import type { TCalComBookingClientOptions, TCalComBookingResponse, TCalComSlotsResponse } from 'types/cal-com';
 import type { TCalendarAvailabilities } from 'types/calendar';
 
@@ -54,34 +55,41 @@ export async function postCalcomBooking(
   deadlineDateIso: string,
   clientOptions: TCalComBookingClientOptions
 ): Promise<boolean> {
-  const result = await kyCalCom
-    .post<TCalComBookingResponse>('bookings', {
-      headers: {
-        'cal-api-version': '2024-08-13'
-      },
-      json: {
-        attendee: {
-          language: clientOptions.language,
-          timeZone: clientOptions.timeZone,
-          name: data.fullName,
-          email: data.email,
-          phoneNumber: data.phoneNumber
+  try {
+    const result = await kyCalCom
+      .post<TCalComBookingResponse>('bookings', {
+        headers: {
+          'cal-api-version': '2024-08-13'
         },
-        start: data.appointmentSlot,
-        eventTypeId: Number(process.env.CAL_COM_EVENT_TYPE),
-        bookingFieldsResponses: {
-          projectPhase: data.projectPhase,
-          deadlineDate: format(deadlineDateIso, 'yyyy-MM-dd'),
-          companyStudioName: data.companyStudio,
-          projectAbout: data.projectAbout
+        json: {
+          attendee: {
+            language: clientOptions.language,
+            timeZone: clientOptions.timeZone,
+            name: data.fullName,
+            email: data.email,
+            phoneNumber: data.phoneNumber
+          },
+          start: data.appointmentSlot,
+          eventTypeId: Number(process.env.CAL_COM_EVENT_TYPE),
+          bookingFieldsResponses: {
+            projectPhase: data.projectPhase ?? undefined,
+            deadlineDate: isNotNil(deadlineDateIso) ? format(deadlineDateIso, 'yyyy-MM-dd') : undefined,
+            companyStudioName: data.companyStudio,
+            projectAbout: data.projectAbout ?? 'FAKE'
+          }
         }
-      }
-    })
-    .json();
+      })
+      .json();
 
-  if (result.status === 'success') {
-    return true;
+    return result.status === 'success';
+  } catch (error) {
+    if (isHTTPError(error)) {
+      console.log(await error.response.json());
+    } else if (isKyError(error)) {
+      console.log(error);
+    } else if (isTimeoutError(error)) {
+      console.log('Timeout error during cal.com booking');
+    }
+    return false;
   }
-
-  return false;
 }

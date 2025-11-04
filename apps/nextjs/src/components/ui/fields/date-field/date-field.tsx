@@ -1,32 +1,24 @@
 'use client';
 
-import { CaretDownIcon } from '@phosphor-icons/react';
 import { motion } from 'motion/react';
 import { type Ref, useRef, useState } from 'react';
 import {
+  DateField as AriaDateField,
   Label as AriaLabel,
-  type CalendarProps,
+  type DateFieldProps,
   DateInput,
-  DatePicker,
-  type DatePickerProps,
   DateSegment,
-  type DateValue,
-  Dialog,
-  Group,
-  Popover
+  type DateValue
 } from 'react-aria-components';
 import { mergeRefs } from 'react-merge-refs';
 import { tv } from 'tailwind-variants';
-import { IconButton } from '@/ui/buttons/icon-button/icon-button';
-import { Calendar } from '@/ui/inputs/calendar/calendar';
 
 const MotionLabel = motion.create(AriaLabel);
 
-type Props = DatePickerProps<DateValue> & {
+type Props = DateFieldProps<DateValue> & {
   label: string;
   errorMessage?: string;
   ref?: Ref<HTMLDivElement>;
-  isDateUnavailable?: CalendarProps<DateValue>['isDateUnavailable'];
 };
 
 export function DateField({ label, isDateUnavailable, ref, isRequired, ...rest }: Props) {
@@ -56,7 +48,7 @@ export function DateField({ label, isDateUnavailable, ref, isRequired, ...rest }
   const isLabelRaised = isFocused || hasValue();
 
   return (
-    <DatePicker
+    <AriaDateField
       {...rest}
       className='relative'
       ref={mergeRefs([ref, datePickerRef])}
@@ -72,26 +64,21 @@ export function DateField({ label, isDateUnavailable, ref, isRequired, ...rest }
         {label}
         {isRequired && <sup className='ml-0.5'>*</sup>}
       </MotionLabel>
-      <Group className={({ isFocusVisible, isFocusWithin }) => input({ isFocused: isFocusVisible || isFocusWithin })}>
-        <DateInput data-testid='tet' className='size-full pt-4 flex items-center  px-4' ref={inputRef}>
-          {segment => (
-            <DateSegment
-              ref={dateSegmentRef}
-              className={({ isPlaceholder, isFocused }) =>
-                dateSegmentStyle({ isPlaceholder, isHidden: !isFocused && !hasValue() })
-              }
-              segment={segment}
-            />
-          )}
-        </DateInput>
-        <IconButton size='extrasmall' icon={CaretDownIcon} className='ml-auto' />
-      </Group>
-      <Popover offset={0} placement='bottom left' className='bg-bg rounded-md border border-bg-border'>
-        <Dialog className='h-full max-h-[inherit] overflow-y-auto px-4 py-4 flex flex-col gap-4'>
-          <Calendar isDateUnavailable={isDateUnavailable} />
-        </Dialog>
-      </Popover>
-    </DatePicker>
+      <DateInput
+        className={({ isFocusVisible, isFocusWithin }) => input({ isFocused: isFocusVisible || isFocusWithin })}
+        ref={inputRef}
+      >
+        {segment => (
+          <DateSegment
+            ref={dateSegmentRef}
+            className={({ isPlaceholder, isFocused }) =>
+              dateSegmentStyle({ isPlaceholder, isHidden: !isFocused && !hasValue() })
+            }
+            segment={segment}
+          />
+        )}
+      </DateInput>
+    </AriaDateField>
   );
 }
 
@@ -113,7 +100,8 @@ const dateSegmentStyle = tv({
 const style = tv({
   slots: {
     label: 'absolute left-4 top-1/2  text-text-muted ',
-    input: 'flex items-center w-full border-none  bg-bg  rounded-md h-14 pr-4 text-lg font-base font-light',
+    input:
+      'flex items-center w-full border-none  bg-bg  rounded-md h-14 size-full pt-4 px-4 text-lg font-base font-light',
     segment: ''
   },
   variants: {

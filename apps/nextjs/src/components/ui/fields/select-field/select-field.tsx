@@ -35,14 +35,15 @@ export function SelectField<T extends object>({
   errorMessage,
   children,
   onSelectionChange,
+  onChange,
   ...rest
 }: TProps<T>) {
-  const { input, icon, label: labelStyle, fieldError } = style();
+  const { input, icon, label: labelStyle, fieldError } = style({ hasError: isNotNil(errorMessage) });
   const [controlledSelectedKey, setControlledSelectedKey] = useState<Key>(selectedKey);
 
   const handleSelectionChange = (key: Key) => {
     setControlledSelectedKey(key);
-    onSelectionChange?.(key);
+    onChange?.(key);
   };
 
   return (
