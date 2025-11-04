@@ -27,8 +27,6 @@ export default async function Page() {
     { parameters: { pageId: SANITY_DOCUMENT_IDS.gallerypage } }
   );
 
-  console.log(sanityData);
-
   return (
     <div>
       <Topbar variant='floating' />
