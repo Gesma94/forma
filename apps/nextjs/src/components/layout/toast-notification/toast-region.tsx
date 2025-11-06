@@ -6,23 +6,25 @@ import { tv } from 'tailwind-variants';
 import { toastQueue } from './subs/toast-queue';
 
 export function ToastRegion() {
-  const { toastContentTv, toastRegionTv, headerContainerTv, titleTv, descriptionTv } = stylesTv();
+  const { toastContentTv, toastRegionTv, innerToastContentTv, headerContainerTv, titleTv, descriptionTv } = stylesTv();
   return (
     <UNSTABLE_ToastRegion queue={toastQueue} className={toastRegionTv()}>
       {({ toast }) => (
         <UNSTABLE_Toast toast={toast}>
           <UNSTABLE_ToastContent className={toastContentTv({ kind: toast.content.kind })}>
-            <div className={headerContainerTv()}>
-              <Text slot='title' className={titleTv({ kind: toast.content.kind })}>
-                {toast.content.title}
+            <div className={innerToastContentTv({ kind: toast.content.kind })}>
+              <div className={headerContainerTv()}>
+                <Text slot='title' className={titleTv({ kind: toast.content.kind })}>
+                  {toast.content.title}
+                </Text>
+                <Button slot='close' className='cursor-pointer'>
+                  <X className='size-4' />
+                </Button>
+              </div>
+              <Text slot='description' className={descriptionTv({ kind: toast.content.kind })}>
+                {toast.content.description}
               </Text>
-              <Button slot='close' className='cursor-pointer'>
-                <X className='size-5' />
-              </Button>
             </div>
-            <Text slot='description' className={descriptionTv({ kind: toast.content.kind })}>
-              {toast.content.description}
-            </Text>
           </UNSTABLE_ToastContent>
         </UNSTABLE_Toast>
       )}
@@ -33,18 +35,21 @@ export function ToastRegion() {
 const stylesTv = tv({
   slots: {
     toastRegionTv: 'fixed bottom-4 right-4 flex flex-col-reverse gap-2 outline-none z-50',
-    toastContentTv: 'flex flex-col gap-1 max-w-[calc(100vw-2rem)] w-sm rounded-xl p-4',
+    toastContentTv: 'bg-bg border-l-4',
+    innerToastContentTv: 'flex flex-col gap-1 max-w-[calc(100vw-2rem)] w-sm p-4',
     headerContainerTv: 'flex items-center justify-between gap-2',
-    titleTv: 'text-lg font-bold',
-    descriptionTv: 'text-sm'
+    titleTv: 'text-md font-bold',
+    descriptionTv: 'text-sm font-light'
   },
   variants: {
     kind: {
       success: {
-        toastContentTv: 'bg-success text-bg'
+        toastContentTv: 'text-bg-text border-l-success',
+        innerToastContentTv: 'bg-success/10'
       },
       error: {
-        toastContentTv: 'bg-error text-bg'
+        innerToastContentTv: 'bg-error/10',
+        toastContentTv: 'text-bg-text border-l-error'
       }
     }
   }

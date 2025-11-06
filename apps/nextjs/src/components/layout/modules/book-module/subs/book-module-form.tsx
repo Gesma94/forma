@@ -2,12 +2,13 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type BookFormSchema, bookFormSchema } from 'data/book-form-schema';
-import { addMinutes, format } from 'date-fns';
-import { isNil } from 'es-toolkit';
+import { addMinutes, differenceInMinutes, format } from 'date-fns';
+import { isNil, isNotNil } from 'es-toolkit';
 import { isEmpty } from 'es-toolkit/compat';
 import { useMemo } from 'react';
 import { type DateValue, Form } from 'react-aria-components';
 import { type FieldErrors, useForm } from 'react-hook-form';
+import { useLocalStorage } from 'react-use';
 import { postCalcomBooking } from 'services/cal-com';
 import type { TCalendarAvailabilities } from 'types/calendar';
 import { toastQueue } from '@/layout/toast-notification/subs/toast-queue';
@@ -24,8 +25,23 @@ type TProps = {
   availableSlots: TCalendarAvailabilities;
 };
 
+type TLastBookingDetails = {
+  timestamp: string;
+  bookedSlot: string;
+};
+
 export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
-  const { handleSubmit, control, watch, getValues } = useForm<BookFormSchema>({
+  const [lastBookingTimestamp, setLastBookingTimestamp] = useLocalStorage<TLastBookingDetails>(
+    'last-booking-timestamp',
+    null
+  );
+  const {
+    handleSubmit,
+    control,
+    watch,
+    getValues,
+    formState: { isSubmitting }
+  } = useForm<BookFormSchema>({
     resolver: zodResolver(bookFormSchema),
     defaultValues: {
       fullName: '',
@@ -50,6 +66,20 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
   }, [appointmentDate, availableSlots]);
 
   const onValid = async (data: BookFormSchema) => {
+    if (isNotNil(lastBookingTimestamp?.bookedSlot) && isNotNil(lastBookingTimestamp.timestamp)) {
+      const lastBookingTimestampDate = new Date(lastBookingTimestamp.timestamp);
+      const bookedSlotDate = format(lastBookingTimestamp.bookedSlot, "dd/MM/yyyy 'at' hh:mm");
+      const diff = differenceInMinutes(new Date(), lastBookingTimestampDate);
+
+      if (
+        diff < 15 &&
+        !confirm(
+          `You have already booked an appointment for ${bookedSlotDate} within the last 15 minutes. Would you like to book another appointment?`
+        )
+      ) {
+        return;
+      }
+    }
     const { deadlineDate, ...bookingData } = data;
     const intlOptions = Intl.DateTimeFormat().resolvedOptions();
     const result = await postCalcomBooking(bookingData, deadlineDate?.toString(), {
@@ -58,7 +88,7 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
     });
 
     if (result) {
-      console.log('result true');
+      setLastBookingTimestamp({ timestamp: new Date().toISOString(), bookedSlot: bookingData.appointmentSlot });
       toastQueue.add(
         {
           kind: 'success',
@@ -143,8 +173,15 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
         </FormSelectField>
       </div>
       <div>
-        <Button type='submit' className='min-w-2xs mt-10' size='large' variant='primary' surface='bg'>
-          Submit
+        <Button
+          type='submit'
+          className='min-w-2xs mt-10'
+          size='large'
+          variant='primary'
+          surface='bg'
+          isDisabled={isSubmitting}
+        >
+          {isSubmitting ? 'Submitting...' : 'Submit'}
         </Button>
       </div>
     </Form>
