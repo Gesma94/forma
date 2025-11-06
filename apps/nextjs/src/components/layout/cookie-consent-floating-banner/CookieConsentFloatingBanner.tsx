@@ -4,12 +4,29 @@ import { X } from '@phosphor-icons/react';
 import Link from 'next/link';
 import { tv } from 'tailwind-variants';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
+import Cookies from 'js-cookie';
+import { useState } from 'react';
 
 export function CookieConsentFloatingBanner() {
   const { containerTv, textTv, linkTv } = stylesTv();
-  const shouldShow = !document.cookie.includes('cookie-consent=true');
+  const [hasClickedClose, setHasClickedClose] = useState(false);
 
-  return !shouldShow ? null : (
+  const shouldShow = Cookies.get('cookie-consent') !== "accepted";
+
+  const handleClose = () => {
+    setHasClickedClose(true);
+    Cookies.set('cookie-consent', 'accepted', { expires: 30 });
+  };
+
+  if (!shouldShow) {
+    return null;
+  }
+
+  if (hasClickedClose) {
+    return null;
+  }
+
+  return (
     <div className={containerTv()}>
       <span className={textTv()}>
         This website uses cookies.&nbsp;
@@ -17,7 +34,7 @@ export function CookieConsentFloatingBanner() {
           Learn more
         </Link>
       </span>
-      <IconButton icon={X} variant='outline' surface='primary' size='extrasmall' />
+      <IconButton onClick={handleClose} icon={X} variant='outline' surface='primary' size='extrasmall' />
     </div>
   );
 }
