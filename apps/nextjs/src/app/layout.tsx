@@ -4,6 +4,7 @@ import { Roobert } from '../utils/fonts/roobert';
 import './globals.css';
 import type { ReactNode } from 'react';
 import { tv } from 'tailwind-variants';
+import { CookieConsentFloatingBanner } from '@/layout/cookie-consent-floating-banner/CookieConsentFloatingBanner';
 import { ScrollAtTop } from '@/layout/scroll-at-top/scroll-at-top';
 import { ToastRegion } from '@/layout/toast-notification/toast-region';
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <div className={mainDivTv()}>{children}</div>
         <Footer />
         <ScrollAtTop />
+        <CookieConsentFloatingBanner />
       </body>
     </html>
   );

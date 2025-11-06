@@ -10,7 +10,8 @@ export const iconButtonStyle = tv({
       large: 'size-12'
     },
     variant: {
-      primary: ''
+      primary: '',
+      outline: ''
     },
     surface: {
       bg: '',
@@ -57,6 +58,18 @@ export const iconButtonStyle = tv({
                 bg-bg text-primary
                 hover:bg-bg-hover
                 active:bg-bg-active
+                focus-visible:outline-bg focus-visible:outline focus-visible:outline-offset-4
+                `
+    },
+    {
+      variant: 'outline',
+      surface: 'primary',
+      isDisabled: false,
+      isLoading: false,
+      className: `
+                border border-bg text-bg bg-primary
+                hover:bg-primary-hover
+                active:bg-primary-active
                 focus-visible:outline-bg focus-visible:outline focus-visible:outline-offset-4
                 `
     }
