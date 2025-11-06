@@ -7,6 +7,7 @@ import { heroModuleDocumentType } from './hero-module';
 import { howItWorksModuleDocumentType } from './how-it-works-module';
 import { imageModuleDocumentType } from './image-module';
 import { inlineGalleryModuleDocumentType } from './inline-gallery';
+import { parallaxImagesModuleDocumentType } from './parallax-images-module';
 import { processModuleDocumentType } from './process-module';
 import { quotesModuleDocumentType } from './quotes-module';
 import { readyToStartModuleDocumentType } from './ready-to-start-module';
@@ -37,5 +38,6 @@ export const moduleDocumentSchemaTypes = [
   readyToStartModuleDocumentType,
   teamModuleDocumentType,
   processModuleDocumentType,
-  scrollGalleryModuleDocumentType
+  scrollGalleryModuleDocumentType,
+  parallaxImagesModuleDocumentType
 ];

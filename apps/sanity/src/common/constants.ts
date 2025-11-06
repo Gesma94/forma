@@ -20,6 +20,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   scrollGalleryModule: 'scrollGalleryModuleDocumentType',
   pageLayout: 'pageLayoutDocumentType',
   imageModule: 'imageModuleDocumentType',
+  parallaxImagesModule: 'parallaxImagesModuleDocumentType',
   brand: 'brandDocumentType',
   quote: 'quoteDocumentType',
   review: 'reviewDocumentType',
@@ -28,6 +29,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
 } as const;
 
 export const OBJECT_SCHEMA_TYPES = {
+  imagePair: 'imagePairObjectType',
   link: 'linkObjectType',
   cta: 'ctaObjectType',
   contact: 'contactObjectType',

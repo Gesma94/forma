@@ -3,6 +3,7 @@ import { contactObjectType } from './contact';
 import { counterObjectType } from './counter';
 import { ctaObjectType } from './cta';
 import { howItWorksObjectType } from './how-it-works-step';
+import { imagePairObjectType } from './image-pair';
 import { linkObjectType } from './link';
 import { processObjectType } from './process-step';
 import { scrollGalleryImageObjectType } from './scoll-gallery-image';
@@ -17,5 +18,6 @@ export const objectSchemaTypes = [
   cardObjectType,
   teamMemberObjectType,
   processObjectType,
-  scrollGalleryImageObjectType
+  scrollGalleryImageObjectType,
+  imagePairObjectType
 ];
