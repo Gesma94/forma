@@ -1,6 +1,7 @@
 'use client';
 
 import { X } from '@phosphor-icons/react';
+import { useIsClient } from 'hooks/use-is-client/use-is-client';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -8,6 +9,7 @@ import { tv } from 'tailwind-variants';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
 
 export function CookieConsentFloatingBanner() {
+  const isClient = useIsClient();
   const { containerTv, textTv, linkTv } = stylesTv();
   const [hasClickedClose, setHasClickedClose] = useState(false);
 
@@ -17,6 +19,10 @@ export function CookieConsentFloatingBanner() {
     setHasClickedClose(true);
     Cookies.set('cookie-consent', 'accepted', { expires: 30 });
   };
+
+  if (!isClient) {
+    return null;
+  }
 
   if (!shouldShow) {
     return null;
