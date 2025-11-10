@@ -98,7 +98,6 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
         { timeout: 5000 }
       );
     } else {
-      console.log('result false');
       toastQueue.add(
         {
           kind: 'error',
