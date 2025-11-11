@@ -17,7 +17,8 @@
     "typegen:extract": "pnpm dlx sanity schema extract --path ./generated/schemas/sanity-schema.json --enforce-required-fields",
     "typegen:generate": "pnpm dlx sanity typegen generate",
     "typegen:copy": "cpy \"./generated/types/**/*\" \"../nextjs/src/types/generated\"",
-    "typegen": "pnpm run typegen:create-generate-folders && pnpm run typegen:extract && pnpm run typegen:generate && pnpm run typegen:copy"
+    "typegen": "pnpm run typegen:create-generate-folders && pnpm run typegen:extract && pnpm run typegen:generate && pnpm run typegen:copy",
+    "build:dep:common": "cd ../../packages/common && pnpm install && pnpm build"
   },
   "dependencies": {
     "@forma/common": "workspace:*",
