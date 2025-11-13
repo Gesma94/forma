@@ -58,6 +58,7 @@ const style = tv({
   variants: {
     variant: {
       solid: { container: 'bg-primary', link: 'text-primary-text' },
+      solidWhite: {container: 'bg-bg', link: 'text-bg-text' }, 
       floating: { container: 'absolute top-0 z-50', link: 'text-primary-text' }
     }
   }

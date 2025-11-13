@@ -17,8 +17,8 @@ import { SelectOption } from '@/ui/fields/select-field/select-option';
 import { FormCalendarField } from './form-calendar-field';
 import { FormDateField } from './form-date-field';
 import { FormSelectField } from './form-select-field';
-import { FormTextAreaField } from './form-text-area-field';
-import { FormTextField } from './form-text-field';
+import { FormTextAreaField } from '../../../../ui/form-fields/form-text-area-field/form-text-area-field';
+import { FormTextField } from '../../../../ui/form-fields/form-text-field/form-text-field';
 
 type TProps = {
   availablePhases: string[];
