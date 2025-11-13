@@ -26,6 +26,6 @@ export function StepDescription({ value }: TBasePortableTextConsumerProps) {
 const style = tv({
   slots: {
     container: 'flex flex-col gap-2 max-w-5xl mx-auto',
-    paragraph: 'prose-xl prose-p:my-0 font-base font-light'
+    paragraph: 'prose-xl prose-p:my-0'
   }
 });

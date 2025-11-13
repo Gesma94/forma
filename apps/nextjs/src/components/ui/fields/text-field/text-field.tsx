@@ -96,7 +96,7 @@ export function TextField({ label, errorMessage, ref, isRequired, ...rest }: Pro
 const style = tv({
   slots: {
     label: 'absolute left-4 top-1/2 text-text-muted pointer-events-none',
-    input: 'w-full bg-bg border-solid border border-bg-border rounded-md h-14 pt-3 px-4 text-lg font-base font-light',
+    input: 'w-full bg-bg border-solid border border-bg-border rounded-md h-14 pt-3 px-4 text-lg',
     fieldError: 'absolute left-4 top-1/2 text-error pointer-events-none'
   },
   variants: {

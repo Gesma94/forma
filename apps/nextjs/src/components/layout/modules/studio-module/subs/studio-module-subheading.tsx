@@ -7,7 +7,7 @@ export function StudioModuleSubHeading({ value }: TBasePortableTextConsumerProps
       value={value}
       components={{
         block: {
-          normal: ({ children }) => <h3 className='text-4xl leading-12 font-accent text-primary'>{children}</h3>
+          normal: ({ children }) => <h3 className='text-4xl leading-12 text-primary'>{children}</h3>
         },
         marks: {
           em: PortableTextEmComponent,

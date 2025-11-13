@@ -39,7 +39,7 @@ const stylesTv = tv({
     innerToastContentTv: 'flex flex-col gap-1 max-w-[calc(100vw-2rem)] w-sm p-4',
     headerContainerTv: 'flex items-center justify-between gap-2',
     titleTv: 'text-md font-bold',
-    descriptionTv: 'text-sm font-light'
+    descriptionTv: 'text-sm '
   },
   variants: {
     kind: {

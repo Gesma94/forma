@@ -62,7 +62,7 @@ export function ReviewsCarousel({ reviews }: TProps) {
                         />
                         <div className='flex flex-col items-center md:justify-end md:items-start order-2 md:order-2'>
                           <p className='prose-lg font-bold text-primary-text'>{authorName}</p>
-                          <p className='prose-sm font-light text-center text-primary-text'>
+                          <p className='prose-sm text-center text-primary-text'>
                             {authorRole}, {authorCompany}
                           </p>
                         </div>

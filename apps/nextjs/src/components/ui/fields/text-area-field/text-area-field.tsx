@@ -113,7 +113,7 @@ const style = tv({
     label: 'absolute left-4 top-1/2 text-text-muted pointer-events-none',
     fieldError: 'absolute left-4 top-1/2 text-error pointer-events-none',
     input:
-      'w-full bg-bg border-solid border border-bg-border rounded-md min-h-14 pt-5 px-4 text-lg font-base font-light'
+      'w-full bg-bg border-solid border border-bg-border rounded-md min-h-14 pt-5 px-4 text-lg'
   },
   variants: {
     hasError: {

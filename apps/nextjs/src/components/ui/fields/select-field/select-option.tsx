@@ -17,7 +17,7 @@ export function SelectOption(props: TProps) {
 }
 
 const style = tv({
-  base: 'h-12 bg-bg flex items-center px-4 font-light outline-bg-border-active cursor-pointer',
+  base: 'h-12 bg-bg flex items-center px-4 outline-bg-border-active cursor-pointer',
   variants: {
     isHovered: {
       true: '',

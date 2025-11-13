@@ -60,12 +60,12 @@ const tvStyles = tv({
   slots: {
     contentContainerWrapperTv: '2xl:h-[640px]',
     mainContainerTv: 'h-full grid relative grid-cols-1 2xl:grid-cols-2 2xl:gap-20',
-    stepNumberWrapperTv: 'row-start-1 sm:col-start-1 sm:row-start-1 text-9xl font-accent font-bold relative border-r-2',
+    stepNumberWrapperTv: 'row-start-1 sm:col-start-1 sm:row-start-1 text-9xl font-bold relative border-r-2',
     stepNumberTv: 'mt-4 2xl:mt-24',
     contentContainerTv: 'grid grid-rows-[auto_auto_auto] sm:grid-cols-[6rem_1fr] sm:grid-rows-[auto_auto] gap-x-10',
     textsContainerTv: 'row-start-2 sm:col-start-2 sm:row-start-1 flex flex-col gap-4',
-    estimatedDaysWrapperTv: 'row-start-3sm:col-start-1 sm:col-span-2 sm:row-start-2 uppercase text-sm font-light my-10',
-    titleTv: 'uppercase font-accent text-7xl font-bold 2xl:mt-16',
+    estimatedDaysWrapperTv: 'row-start-3sm:col-start-1 sm:col-span-2 sm:row-start-2 uppercase text-sm my-10',
+    titleTv: 'uppercase text-7xl font-bold 2xl:mt-16',
     imageWrapperTv: 'relative 2xl:row-start-1',
     coverImageTv: 'max-h-96 min-h-72 w-full 2xl:max-h-full h-full object-cover rounded-2xl'
   },

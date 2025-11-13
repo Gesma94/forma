@@ -84,7 +84,7 @@ const styleTv = tv({
     bottomSectionContainerTv: 'row-start-3 flex flex-col gap-6 sm:gap-0 sm:grid sm:grid-cols-[10rem_1fr_10rem]',
     imageWrapperTv: 'row-start-2 min-h-0',
     imageTv: 'size-full object-contain',
-    titleTv: 'text-primary-text text-center text-2xl font-accent',
+    titleTv: 'text-primary-text text-center text-2xl',
     spacerIndexTv: 'text-primary-text text-lg invisible',
     indexTv: 'text-primary-text text-lg',
     titleIndexContainerTv:

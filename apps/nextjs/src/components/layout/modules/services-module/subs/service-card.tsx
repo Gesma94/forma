@@ -77,7 +77,7 @@ const style = tv({
     buttonStyle: 'size-full relative overflow-hidden',
     videoStyle: 'absolute inset-0 size-full object-cover transition-all duration-300',
     contentContainerStyle: 'size-full flex flex-col items-center justify-center relative px-10 xl:px-20',
-    h2Style: 'text-3xl xl:text-5xl text-primary-text font-accent',
+    h2Style: 'text-3xl xl:text-5xl text-primary-text',
     contentWrapperStyle: 'hidden lg:block mt-10'
   },
   variants: {

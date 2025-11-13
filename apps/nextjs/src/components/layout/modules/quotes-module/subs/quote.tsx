@@ -20,7 +20,7 @@ export function Quote({
         <div className='flex-col flex md:gap-4 items-center md:flex-row'>
           <div className='flex flex-col items-center md:justify-end md:items-end order-2 md:order-1'>
             <p className='prose-lg font-bold'>{authorName}</p>
-            <p className='prose-sm font-light text-center'>
+            <p className='prose-sm text-center'>
               {authorRole}, {authorCompany}
             </p>
           </div>

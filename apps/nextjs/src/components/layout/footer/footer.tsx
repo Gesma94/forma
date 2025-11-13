@@ -20,7 +20,7 @@ export async function Footer() {
                 <div className='absolute h-8 top-1 -left-2 -translate-x-full'>
                   <LogoIcon variant='on-brand' />
                 </div>
-                <p className='text-4xl font-accent font-bold text-primary-text'>{result.heading}</p>
+                <p className='text-4xl font-bold text-primary-text'>{result.heading}</p>
               </div>
               <div className='mt-4 w-fit'>
                 <FooterCta label={result.CtaLabel} />
