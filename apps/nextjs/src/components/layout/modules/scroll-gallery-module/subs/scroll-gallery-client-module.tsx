@@ -96,7 +96,7 @@ const stylesTv = tv({
     imageItem: 'w-full mb-4 rounded-2xl overflow-hidden',
     listItemButtonTv: 'relative cursor-pointer block',
     tagContainerTv: 'hidden md:flex absolute left-2 bottom-2 gap-2 pl-2',
-    tagTv: 'text-primary-text text-sm text-nowrap text-shadow-[0_0_5px_black]',
+    tagTv: 'text-primary-text text-sm text-nowrap text-shadow-xl',
     emptyListTv: 'py-10 flex items-center justify-center w-full text-center',
     emptyListTextTv: 'text-bg-text text-3xl py-40'
   }

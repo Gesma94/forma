@@ -50,6 +50,8 @@
   --animate-backdrop-blur: backdrop-blur 0.5s forwards;
   --animate-backdrop-blur-reverse: backdrop-blur-reverse 0.5s forwards;
 
+  --text-shadow-xl: 0px 0px 5px black;
+
   @keyframes backdrop-blur {
     0% {
       backdrop-filter: blur(0);
