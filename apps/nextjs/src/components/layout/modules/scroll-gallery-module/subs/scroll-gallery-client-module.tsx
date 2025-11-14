@@ -98,6 +98,6 @@ const stylesTv = tv({
     tagContainerTv: 'hidden md:flex absolute left-2 bottom-2 gap-2 pl-2',
     tagTv: 'text-primary-text text-sm text-nowrap text-shadow-[0_0_5px_black]',
     emptyListTv: 'py-10 flex items-center justify-center w-full text-center',
-    emptyListTextTv: 'text-bg-text text-3xl'
+    emptyListTextTv: 'text-bg-text text-3xl py-40'
   }
 });
