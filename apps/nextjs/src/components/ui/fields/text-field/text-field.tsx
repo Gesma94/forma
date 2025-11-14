@@ -59,7 +59,7 @@ export function TextField({ label, errorMessage, ref, isRequired, ...rest }: Pro
   }, [isFocused, rest.value]);
 
   return (
-    <AriaTextField className='relative' {...rest} aria-label={isNotNil(errorMessage) ? label : 'undefined'}>
+    <AriaTextField className='relative' {...rest} aria-label={isNotNil(errorMessage) ? label : undefined}>
       {isNil(errorMessage) && (
         <MotionLabel
           className={labelStyle({ isLabelRaised })}
