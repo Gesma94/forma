@@ -56,7 +56,7 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
                     <p className={spacerIndexTv()}>
                       {currentIndex + 1}/{images.length}
                     </p>
-                    <p className={titleTv()}>{currentImage.title}</p>
+                    {isNotNil(currentImage.title) && <p className={titleTv()}>{currentImage.title}</p>}
                     <p className={indexTv()}>
                       {currentIndex + 1}/{images.length}
                     </p>
@@ -84,9 +84,9 @@ const styleTv = tv({
     bottomSectionContainerTv: 'row-start-3 flex flex-col gap-6 sm:gap-0 sm:grid sm:grid-cols-[10rem_1fr_10rem]',
     imageWrapperTv: 'row-start-2 min-h-0',
     imageTv: 'size-full object-contain',
-    titleTv: 'text-primary-text text-center text-2xl',
-    spacerIndexTv: 'text-primary-text text-lg invisible',
-    indexTv: 'text-primary-text text-lg',
+    titleTv: 'text-primary-text text-center text-2xl col-start-2',
+    spacerIndexTv: 'text-primary-text text-lg invisible col-start-1',
+    indexTv: 'text-primary-text text-lg col-start-3',
     titleIndexContainerTv:
       'col-start-2 flex flex-col sm:grid grid-cols-[auto_1fr_auto] justify-center items-center gap-2',
     changeIndexButtonsContainerTv:
