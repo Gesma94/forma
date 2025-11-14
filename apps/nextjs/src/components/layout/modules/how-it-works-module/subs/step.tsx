@@ -48,11 +48,7 @@ const styles = tv({
       'flex-col justify-center items-center relative text-center',
       'group'
     ],
-    numberStyle: [
-      'col-start-2 row-start-1',
-      'lg:col-start-1 lg:row-start-1',
-      'text-4xl text-primary text-center'
-    ],
+    numberStyle: ['col-start-2 row-start-1', 'lg:col-start-1 lg:row-start-1', 'text-4xl text-primary text-center'],
     titleStyle: [
       'col-start-2 row-start-2',
       'lg:col-start-1 lg:row-start-2 lg:mt-3',

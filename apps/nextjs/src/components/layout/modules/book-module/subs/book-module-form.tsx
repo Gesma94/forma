@@ -128,7 +128,7 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onValid, onInvalid)} className='flex flex-col pt-4 gap-4 w-full max-w-2xl mx-auto'>
+    <Form onSubmit={handleSubmit(onValid, onInvalid)} className='xl:mr-0 flex flex-col pt-4 gap-4 w-full max-w-2xl mx-auto'>
       <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
         <FormTextField control={control} type='text' label='Full name' name='fullName' isRequired={true} />
         <FormTextField control={control} type='tel' label='Phone number' name='phoneNumber' isRequired={true} />
