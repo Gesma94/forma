@@ -1,5 +1,5 @@
-import { defineField, defineType } from 'sanity';
-import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineImageField, defineRichEditorField } from '../../../fields';
 
@@ -40,6 +40,31 @@ export const studioModuleDocumentType = defineType({
       validation: rule => rule.required()
     }),
     defineField({
+      name: 'CtaLabel',
+      title: 'CTA Label',
+      fieldset: 'CTA',
+      type: 'string',
+      validation: rule => rule.required()
+    }),
+    defineRichEditorField({
+      name: 'forClientSubHeading',
+      title: 'For Client Subheading',
+      allowColorMarkDecorator: false,
+      validation: rule => rule.required()
+    }),    
+    defineImageField({
+      name: 'problemsImage',
+      title: 'Problems Image',
+      validation: rule => rule.required()
+    }),
+    defineField({
+      name: 'problems',
+      title: 'Problems',
+      type: 'array',
+      of: [defineArrayMember({ type: OBJECT_SCHEMA_TYPES.listTextItem })],
+      validation: rule => rule.required().min(1)
+    }),
+    defineField({
       name: 'showCta',
       title: 'Show CTA',
       type: 'boolean',
@@ -47,12 +72,5 @@ export const studioModuleDocumentType = defineType({
       initialValue: true,
       validation: rule => rule.required()
     }),
-    defineField({
-      name: 'CtaLabel',
-      title: 'CTA Label',
-      fieldset: 'CTA',
-      type: 'string',
-      validation: rule => rule.required()
-    })
   ]
 });
