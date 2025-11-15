@@ -16,27 +16,25 @@ export function defineImageField({
   title,
   fieldset,
   fields,
-  validation,
-  skipAltText = false,
-  skipBrightness = false
+  validation
 }: TProps): ReturnType<typeof defineField> {
   const computedFields: FieldDefinition[] = [];
 
-    computedFields.push({
-      title: 'Alternative Text',
-      name: 'altText',
-      type: 'string',
-      validation: rule => rule
-    });
+  computedFields.push({
+    title: 'Alternative Text',
+    name: 'altText',
+    type: 'string',
+    validation: rule => rule
+  });
 
-    computedFields.push({
-      title: 'Brightness (%)',
-      name: 'brightness',
-      type: 'number',
-      initialValue: 100,
-      validation: rule => rule.min(0).max(100)
-    });
-    
+  computedFields.push({
+    title: 'Brightness (%)',
+    name: 'brightness',
+    type: 'number',
+    initialValue: 100,
+    validation: rule => rule.min(0).max(100)
+  });
+
   return defineField({
     name,
     title,

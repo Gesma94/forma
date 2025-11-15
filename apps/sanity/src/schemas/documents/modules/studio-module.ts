@@ -51,7 +51,7 @@ export const studioModuleDocumentType = defineType({
       title: 'For Client Subheading',
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
-    }),    
+    }),
     defineImageField({
       name: 'problemsImage',
       title: 'Problems Image',
@@ -71,6 +71,6 @@ export const studioModuleDocumentType = defineType({
       fieldset: 'CTA',
       initialValue: true,
       validation: rule => rule.required()
-    }),
+    })
   ]
 });

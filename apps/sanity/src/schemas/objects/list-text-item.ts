@@ -1,8 +1,8 @@
 import { ListIcon } from 'lucide-react';
-import { defineField, defineType } from 'sanity';
+import { defineType } from 'sanity';
 import { OBJECT_SCHEMA_TYPES } from '../../common/constants';
-import { defineRichEditorField } from '../../fields';
 import { textBlockToPlainText } from '../../common/utils';
+import { defineRichEditorField } from '../../fields';
 
 export const listTextItemObjectType = defineType({
   type: 'object',
@@ -19,18 +19,17 @@ export const listTextItemObjectType = defineType({
     })
   },
   fields: [
-    
     defineRichEditorField({
-        title: 'Heading',
-        name: 'heading',
-        allowColorMarkDecorator: false,
-        validation: rule => rule.required()
-      }),
-      defineRichEditorField({
+      title: 'Heading',
+      name: 'heading',
+      allowColorMarkDecorator: false,
+      validation: rule => rule.required()
+    }),
+    defineRichEditorField({
       title: 'Caption',
       name: 'caption',
-        allowColorMarkDecorator: false,
-        validation: rule => rule.required()
-    }),
+      allowColorMarkDecorator: false,
+      validation: rule => rule.required()
+    })
   ]
 });
