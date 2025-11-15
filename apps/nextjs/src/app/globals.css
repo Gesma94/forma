@@ -80,3 +80,9 @@
 .disable-scrollbar-gutter {
   scrollbar-gutter: auto !important;
 }
+
+@media (min-height: 45rem) {
+  .hide-on-more-half-hero-height {
+    display: none;
+  }
+}

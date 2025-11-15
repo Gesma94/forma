@@ -1,5 +1,6 @@
 import { tv } from 'tailwind-variants';
 import type { HalfHeroModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { Scrolldown } from '@/layout/scrolldown/scrolldown';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { getSanityImageUrl } from '@/utils/groqd-client';
 import { HalfHeroHeading } from './subs/half-hero-heading';
@@ -29,6 +30,9 @@ export async function HalfHeroModule({ module }: TProps) {
             <HalfHeroSubHeading value={module.subHeading} />
           </div>
         </ContentContainer>
+      </div>
+      <div className='absolute bottom-4 w-full flex justify-center mt-4 hide-on-more-half-hero-height'>
+        <Scrolldown />
       </div>
     </div>
   );
