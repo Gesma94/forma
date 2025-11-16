@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 const stylesTv = tv({
   slots: {
-    bodyTv: 'flex flex-col font-base bg-primary min-h-dvh',
+    bodyTv: 'flex flex-col font-accent bg-primary min-h-dvh',
     mainDivTv: 'grow bg-bg'
   }
 });

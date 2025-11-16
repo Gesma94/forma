@@ -38,7 +38,7 @@ export function Topbar({ variant }: SetRequired<VariantProps<typeof style>, 'var
               </Link>
             ))}
             <LinkButton variant='primary' surface={linkButtonSurface} size='default' href='/book'>
-              Book now
+              Book a call
             </LinkButton>
           </nav>
           <div className='block lg:hidden'>

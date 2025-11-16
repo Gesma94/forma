@@ -30,6 +30,6 @@ export function SubContent({ value, className }: TParagraphPortableTextProps) {
 const style = tv({
   slots: {
     container: 'flex flex-col gap-4 max-w-5xl mx-auto',
-    paragraph: 'prose-xl md:prose-xl prose-p:my-0 font-base font-light'
+    paragraph: 'prose-xl md:prose-xl prose-p:my-0'
   }
 });

@@ -26,6 +26,6 @@ const styles = tv({
     containerStyle: 'bg-bg rounded-2xl shadow-2xl overflow-hidden',
     imageStyle: 'w-full h-96 object-cover',
     contentContainerStyle: 'py-6 px-6 flex flex-col gap-2',
-    titleStyle: 'text-4xl text-primary font-bold font-accent'
+    titleStyle: 'text-4xl text-primary font-bold'
   }
 });

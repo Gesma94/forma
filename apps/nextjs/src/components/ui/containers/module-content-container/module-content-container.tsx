@@ -28,7 +28,7 @@ export function ModuleContentContainer({
           <div className='mb-4 md:mb-10'>
             <ContentContainer>
               {typeof title === 'string' ? (
-                <h2 className='text-5xl md:text-8xl font-accent text-center'>{title}</h2>
+                <h2 className='text-5xl md:text-8xl text-center'>{title}</h2>
               ) : (
                 <ModuleContentContainerTitle value={title} variant={variant} />
               )}

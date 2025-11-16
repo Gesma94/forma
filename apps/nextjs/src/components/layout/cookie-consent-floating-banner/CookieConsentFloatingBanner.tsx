@@ -48,7 +48,7 @@ export function CookieConsentFloatingBanner() {
 const stylesTv = tv({
   slots: {
     containerTv:
-      'fixed bottom-8 left-1/2 -translate-x-1/2 bg-primary pl-4 pr-2 py-2 rounded-full shadow-[0_0_15px_-5px_black] flex gap-2 items-center',
+      'fixed bottom-8 left-1/2 -translate-x-1/2 bg-primary pl-4 pr-2 py-2 rounded-full shadow-[0_0_15px_-5px_black] flex gap-2 items-center z-50',
     textTv: 'uppercase text-primary-text text-xs',
     linkTv: 'underline underline-offset-4'
   }

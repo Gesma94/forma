@@ -4,7 +4,6 @@
 
 @theme {
   --font-\*: initial;
-  --font-base: Inter, sans-serif;
   --font-accent: Roobert, sans-serif;
 
   --container-8xl: 88rem;
@@ -13,6 +12,7 @@
   --spacing-ready-to-start: 36rem;
   --spacing-image-side-spacing: 2.5rem;
   --spacing-half-hero-height: 36rem;
+  --spacing-10xl: 107.5rem;
 
   --breakpoint-xs: 30rem;
 
@@ -50,6 +50,10 @@
   --animate-backdrop-blur: backdrop-blur 0.5s forwards;
   --animate-backdrop-blur-reverse: backdrop-blur-reverse 0.5s forwards;
 
+  --text-shadow-xl: 0px 0px 5px black;
+
+  --shadow-image: 0 0px 30px -5px black;
+
   @keyframes backdrop-blur {
     0% {
       backdrop-filter: blur(0);
@@ -77,4 +81,10 @@
 
 .disable-scrollbar-gutter {
   scrollbar-gutter: auto !important;
+}
+
+@media (min-height: 45rem) {
+  .hide-on-more-half-hero-height {
+    display: none;
+  }
 }

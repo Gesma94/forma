@@ -119,7 +119,7 @@ const style = tv({
     label: 'absolute left-4 top-1/2 text-text-muted z-10 pointer-events-none',
     fieldError: 'absolute left-4 top-1/2 text-error pointer-events-none',
     input:
-      'w-full bg-bg border-solid border border-bg-border rounded-md h-14 pt-3 px-4 text-lg font-base font-light flex items-center justify-between',
+      'w-full bg-bg border-solid border border-bg-border rounded-md h-14 pt-3 px-4 text-lg flex items-center justify-between',
     icon: 'size-1/2 transition-transform duration-300'
   },
   variants: {

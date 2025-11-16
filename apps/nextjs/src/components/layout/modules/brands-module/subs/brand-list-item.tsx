@@ -26,7 +26,8 @@ const style = tv({
   variants: {
     variant: {
       [MODULE_VARIANTS.ON_BG]: '',
-      [MODULE_VARIANTS.ON_PRIMARY]: 'invert-[88%]'
+      [MODULE_VARIANTS.ON_PRIMARY]:
+        'invert-[95%] sepia-[14%] saturate-[596%] hue-rotate-[348deg] brightness-[107%] contrast-[93%]'
     }
   }
 });

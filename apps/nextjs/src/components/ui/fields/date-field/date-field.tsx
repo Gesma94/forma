@@ -100,8 +100,7 @@ const dateSegmentStyle = tv({
 const style = tv({
   slots: {
     label: 'absolute left-4 top-1/2  text-text-muted ',
-    input:
-      'flex items-center w-full border-none  bg-bg  rounded-md h-14 size-full pt-4 px-4 text-lg font-base font-light',
+    input: 'flex items-center w-full border-none bg-bg rounded-md h-14 size-full pt-4 px-4 text-lg',
     segment: ''
   },
   variants: {

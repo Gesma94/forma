@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import type { TImageTag } from '@forma/common';
 import type { ScrollGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { getSanityImageUrl } from '@/utils/groqd-client';
@@ -16,6 +17,15 @@ export function ScrollGalleryModule({ module }: TProps) {
     iamgeUrl: getSanityImageUrl(x.image),
     tags: x.imageTags as TImageTag[]
   }));
+  const targetLength = 50;
+  const result: IScrollGalleryImage[] = [];
 
-  return <ScrollGalleryClientModule images={images} />;
+  while (result.length < targetLength) {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    const element = structuredClone(images[randomIndex]);
+    element.key = randomUUID();
+    result.push(element);
+  }
+
+  return <ScrollGalleryClientModule images={result} />;
 }

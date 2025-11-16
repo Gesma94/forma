@@ -15,7 +15,7 @@ export function ProcessStep({ title, mainText, estimatedDays, coverImage, coverI
     titleTv,
     stepNumberTv,
     contentContainerWrapperTv,
-    estimatedDaysWrapperTv,
+    estimatedDaysTv,
     textsContainerTv,
     contentContainerTv,
     imageWrapperTv,
@@ -41,9 +41,7 @@ export function ProcessStep({ title, mainText, estimatedDays, coverImage, coverI
                 <div>
                   <ProcessDescription variant={variant} value={mainText} />
                 </div>
-              </div>
-              <div className={estimatedDaysWrapperTv()}>
-                <p>Estimated Days: {estimatedDays} days</p>
+                <p className={estimatedDaysTv()}>Estimated Days: {estimatedDays} days</p>
               </div>
             </div>
             <div className={imageWrapperTv()}>
@@ -58,28 +56,30 @@ export function ProcessStep({ title, mainText, estimatedDays, coverImage, coverI
 
 const tvStyles = tv({
   slots: {
-    contentContainerWrapperTv: '2xl:h-[640px]',
-    mainContainerTv: 'h-full grid relative grid-cols-1 2xl:grid-cols-2 2xl:gap-20',
-    stepNumberWrapperTv: 'row-start-1 sm:col-start-1 sm:row-start-1 text-9xl font-accent font-bold relative border-r-2',
+    contentContainerWrapperTv: '',
+    mainContainerTv: 'h-full grid relative grid-cols-1 2xl:gap-20',
+    stepNumberWrapperTv: 'row-start-1 sm:col-start-1 sm:row-start-1 text-9xl font-bold relative border-r-2',
     stepNumberTv: 'mt-4 2xl:mt-24',
-    contentContainerTv: 'grid grid-rows-[auto_auto_auto] sm:grid-cols-[6rem_1fr] sm:grid-rows-[auto_auto] gap-x-10',
+    contentContainerTv: 'grid sm:grid-cols-[6rem_1fr] gap-x-10 mb-auto',
     textsContainerTv: 'row-start-2 sm:col-start-2 sm:row-start-1 flex flex-col gap-4',
-    estimatedDaysWrapperTv: 'row-start-3sm:col-start-1 sm:col-span-2 sm:row-start-2 uppercase text-sm font-light my-10',
-    titleTv: 'uppercase font-accent text-7xl font-bold 2xl:mt-16',
+    estimatedDaysTv: 'uppercase text-sm mt-4',
+    titleTv: 'uppercase text-7xl font-bold 2xl:mt-16',
     imageWrapperTv: 'relative 2xl:row-start-1',
-    coverImageTv: 'max-h-96 min-h-72 w-full 2xl:max-h-full h-full object-cover rounded-2xl'
+    coverImageTv: 'w-full h-[48rem] object-cover rounded-2xl'
   },
   variants: {
     isEven: {
       true: {
-        contentContainerWrapperTv: 'bg-bg 2xl:col-start-1',
+        mainContainerTv: '2xl:grid-cols-[1fr_2fr]',
+        contentContainerWrapperTv: 'bg-bg',
         imageWrapperTv: '2xl:col-start-2',
         titleTv: 'text-primary',
         stepNumberWrapperTv: ' text-primary border-r-primary',
         estimatedDaysWrapperTv: 'text-text-muted'
       },
       false: {
-        contentContainerWrapperTv: 'bg-primary 2xl:col-start-2',
+        mainContainerTv: '2xl:grid-cols-[2fr_1fr]',
+        contentContainerWrapperTv: 'bg-primary',
         imageWrapperTv: '2xl:col-start-1',
         titleTv: 'text-primary-text',
         stepNumberWrapperTv: ' text-primary-text border-r-primary-text',

@@ -44,7 +44,7 @@ export function TopbarMobileMenu() {
             </div>
 
             <nav className='mt-4 flex flex-col'>
-              <Link href='/' className='px-8 h-20 flex gap-4 items-center text-2xl font-light text-bg-text'>
+              <Link href='/' className='px-8 h-20 flex gap-4 items-center text-2xl text-bg-text'>
                 <HouseIcon className='size-8' />
                 Home
               </Link>
@@ -54,7 +54,7 @@ export function TopbarMobileMenu() {
                   <Link
                     key={link.url}
                     href={link.url}
-                    className='px-8 h-20 flex gap-4 items-center text-2xl font-light text-bg-text'
+                    className='px-8 h-20 flex gap-4 items-center text-2xl text-bg-text'
                   >
                     <Icon className='size-8' />
                     {link.label}

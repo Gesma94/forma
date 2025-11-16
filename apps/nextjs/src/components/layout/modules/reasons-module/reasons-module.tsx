@@ -24,7 +24,7 @@ export async function ReasonsModule({ module }: TProps) {
       <div className='mt-4 md:mt-10 w-full overflow-hidden'>
         <div
           className={twoColumnLayout({
-            class: 'grid-rows-[auto_auto] gap-8 md:gap-20 grid-cols-1 xl:grid-rows-1 xl:grid-cols-2'
+            class: 'grid grid-rows-[auto_auto] gap-8 md:gap-20 grid-cols-1 xl:grid-rows-1 xl:grid-cols-[2fr_1fr]'
           })}
         >
           <div className={imageWrapper()}>
@@ -67,8 +67,8 @@ export async function ReasonsModule({ module }: TProps) {
 }
 const style = tv({
   slots: {
-    imageWrapper: '',
-    textWrapper: 'flex gap-8 my-auto flex-col xl:py-image-side-spacing'
+    imageWrapper: 'contain-size',
+    textWrapper: 'flex gap-8 my-auto flex-col'
   },
   variants: {
     imagePosition: {

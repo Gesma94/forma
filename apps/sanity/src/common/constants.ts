@@ -38,5 +38,6 @@ export const OBJECT_SCHEMA_TYPES = {
   howItWorksStep: 'howItWorksStepObjectType',
   processStep: 'processStepObjectType',
   teamMember: 'teamMemberObjectType',
-  scrollGalleryImage: 'scrollGalleryImageObjectType'
+  scrollGalleryImage: 'scrollGalleryImageObjectType',
+  listTextItem: 'listTextItemObjectType'
 } as const;

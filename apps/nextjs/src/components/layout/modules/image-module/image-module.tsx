@@ -1,4 +1,5 @@
 import { BACKGROUND_COLOR, IMAGE_SIZE } from '@forma/common';
+import { isNotNil } from 'es-toolkit';
 import Image from 'next/image';
 import { tv } from 'tailwind-variants';
 import type { ImageModuleDocumentType } from 'types/generated/sanity-types-generated';
@@ -10,7 +11,7 @@ type TProps = {
 };
 
 export async function ImageModule({ module }: TProps) {
-  const { imageWrapperStyle, outerContainerStyle, lowerBackgroundStyle, upperBackgroundStyle, titleStyle } = style({
+  const { imageWrapperStyle, outerContainerStyle, lowerBackgroundStyle, upperBackgroundStyle } = style({
     size: module.size,
     upperBackground: module.upperBackground,
     lowerBackground: module.lowerBackground
@@ -31,7 +32,11 @@ export async function ImageModule({ module }: TProps) {
             className='object-cover md:shadow-[0_25px_50px_-12px_rgb(0_0_0/_78%)] rounded-2xl'
             style={{ filter: `brightness(${module.backgroundImage.brightness}%)` }}
           />
-          <p className={titleStyle()}>{module.title}</p>
+          {isNotNil(module.title) && (
+            <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-lg'>
+              <p className='text-md'>{module.title}</p>
+            </div>
+          )}
         </div>
       </div>
     </ModuleContentContainer>
@@ -43,10 +48,7 @@ const style = tv({
     outerContainerStyle: 'max-h-dvh grid grid-rows-2 grid-cols-1',
     upperBackgroundStyle: 'row-start-1 col-start-1',
     lowerBackgroundStyle: 'row-start-2 col-start-1',
-    imageWrapperStyle: 'relative rounded-2xl row-start-1 row-span-2 col-start-1 my-4 md:my-20 mx-4',
-    titleStyle: `absolute bottom-2 md:bottom-10 left-2 md:left-10 bg-bg text-bg-text  px-4 py-2 rounded-2xl max-w-[calc(100%-1rem)]
-      text-2xl leading-8 md:text-4xl md:leading-12
-    `
+    imageWrapperStyle: 'relative rounded-2xl row-start-1 row-span-2 col-start-1 my-4 md:my-20 mx-4'
   },
   variants: {
     size: {

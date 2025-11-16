@@ -7,7 +7,7 @@ export function CounterContent({ value }: TBasePortableTextConsumerProps) {
       value={value}
       components={{
         block: {
-          normal: ({ children }) => <p className='prose-xl font-base text-bg-text font-light'>{children}</p>
+          normal: ({ children }) => <p className='prose-xl text-bg-text'>{children}</p>
         },
         marks: {
           em: PortableTextEmComponent,
