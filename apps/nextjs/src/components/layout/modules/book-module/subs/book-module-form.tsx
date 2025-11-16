@@ -14,11 +14,11 @@ import type { TCalendarAvailabilities } from 'types/calendar';
 import { toastQueue } from '@/layout/toast-notification/subs/toast-queue';
 import { Button } from '@/ui/buttons/button/button';
 import { SelectOption } from '@/ui/fields/select-field/select-option';
+import { FormTextAreaField } from '../../../../ui/form-fields/form-text-area-field/form-text-area-field';
+import { FormTextField } from '../../../../ui/form-fields/form-text-field/form-text-field';
 import { FormCalendarField } from './form-calendar-field';
 import { FormDateField } from './form-date-field';
 import { FormSelectField } from './form-select-field';
-import { FormTextAreaField } from '../../../../ui/form-fields/form-text-area-field/form-text-area-field';
-import { FormTextField } from '../../../../ui/form-fields/form-text-field/form-text-field';
 
 type TProps = {
   availablePhases: string[];
