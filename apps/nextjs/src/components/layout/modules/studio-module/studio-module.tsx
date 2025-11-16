@@ -3,9 +3,9 @@ import { getImageAltText } from 'common/utils/get-image-alt-text';
 import type { StudioModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { Button } from '@/ui/buttons/button/button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
-import { ListText, type TListTextProps } from '@/ui/list-text/list-text';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { getSanityImageUrl } from '@/utils/groqd-client';
+import { ListTextItem } from './subs/list-text-item';
 import { StudioModuleSubHeading } from './subs/studio-module-subheading';
 
 type TProps = {
@@ -15,12 +15,6 @@ type TProps = {
 export function StudioModule({ module }: TProps) {
   const imageUrl = getSanityImageUrl(module.image);
   const problemsImageUrl = getSanityImageUrl(module.problemsImage);
-
-  const keyedListItems = module.problems.map<TListTextProps['items'][number]>(p => ({
-    caption: p.caption,
-    heading: p.heading,
-    key: p._key
-  }));
 
   return (
     <ModuleContentContainer variant={MODULE_VARIANTS.ON_BG}>
@@ -64,8 +58,15 @@ export function StudioModule({ module }: TProps) {
               src={problemsImageUrl}
             />
           </div>
-          <div className='flex flex-col min-w-0'>
-            <ListText items={keyedListItems} />
+          <div className='flex flex-col gap-10'>
+            <div>
+              <StudioModuleSubHeading value={module.forClientSubHeading} />
+            </div>
+            <div className='flex gap-8 my-auto flex-col'>
+              {module.problems.map(item => (
+                <ListTextItem key={item._key} caption={item.caption} heading={item.heading} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

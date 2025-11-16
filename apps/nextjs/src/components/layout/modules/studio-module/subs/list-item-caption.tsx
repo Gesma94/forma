@@ -2,11 +2,11 @@ import { tv } from 'tailwind-variants';
 import { PortableTextEmComponent, PortableTextStrongComponent } from '@/ui/portable-text/base-components';
 import { BasePortableText, type TBasePortableTextValue } from '@/ui/portable-text/base-portable-text';
 
-type TCaptionProps = {
+type TListItemCaptionProps = {
   value: string | TBasePortableTextValue;
 };
 
-export function Caption({ value }: TCaptionProps) {
+export function ListItemCaption({ value }: TListItemCaptionProps) {
   const { container, paragraph } = style();
   return (
     <div className={container()}>

@@ -2,11 +2,11 @@ import { tv } from 'tailwind-variants';
 import { PortableTextEmComponent, PortableTextStrongComponent } from '@/ui/portable-text/base-components';
 import { BasePortableText, type TBasePortableTextValue } from '@/ui/portable-text/base-portable-text';
 
-type THeadingProps = {
+type TListItemHeadingProps = {
   value: string | TBasePortableTextValue;
 };
 
-export function Heading({ value }: THeadingProps) {
+export function ListItemHeading({ value }: TListItemHeadingProps) {
   const { container, text } = style();
   return (
     <div className={container()}>
@@ -33,7 +33,7 @@ export function Heading({ value }: THeadingProps) {
 
 const style = tv({
   slots: {
-    container: 'flex flex-col gap-4 max-w-5xl mx-auto',
-    text: 'text-primary leading-10 text-4xl'
+    container: 'flex flex-col gap-4 max-w-5xl',
+    text: 'text-primary leading-10 text-2xl'
   }
 });

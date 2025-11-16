@@ -1,6 +1,6 @@
 import type { TBasePortableTextValue } from '@/ui/portable-text/base-portable-text';
-import { Caption } from './caption';
-import { Heading } from './heading';
+import { ListItemCaption } from './list-item-caption';
+import { ListItemHeading } from './list-item-heading';
 
 export type TListTextItemProps = {
   heading: TBasePortableTextValue | string;
@@ -9,11 +9,9 @@ export type TListTextItemProps = {
 
 export function ListTextItem({ caption, heading }: TListTextItemProps) {
   return (
-    <div className='border-l-primary border-l-4 pl-8'>
-      <div className='mb-4'>
-        <Heading value={heading} />
-      </div>
-      <Caption value={caption} />
+    <div className='border-l-primary border-l-4 pl-8 flex flex-col gap-2'>
+      <ListItemHeading value={heading} />
+      <ListItemCaption value={caption} />
     </div>
   );
 }
