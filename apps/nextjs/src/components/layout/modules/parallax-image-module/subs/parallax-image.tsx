@@ -44,7 +44,12 @@ export function ParallaxImage({ altText, imageUrl }: TProps) {
       className='size-full contain-size shadow-image rounded-2xl'
       style={{ transform: `translateY(${-xTranslate}px)` }}
     >
-      <img ref={imageRef} src={imageUrl} alt={altText} className='size-full object-cover rounded-2xl' />
+      <img
+        ref={imageRef}
+        src={imageUrl}
+        alt={altText ?? 'Forma Artwork'}
+        className='size-full object-cover rounded-2xl'
+      />
       {hasAltText && (
         <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
           <p className='text-md'>{altText}</p>

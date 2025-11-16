@@ -1,5 +1,4 @@
 import { MODULE_VARIANTS } from '@forma/common';
-import { getImageAltText } from 'common/utils/get-image-alt-text';
 import { tv } from 'tailwind-variants';
 import type { ParallaxImagesModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
@@ -34,14 +33,14 @@ export function ParallaxImageModule({ module }: TProps) {
                   <div className={bigImageWrapperTv({ isEven: i % 2 === 0 })}>
                     <ParallaxImage
                       imageUrl={imagesUrls[i].leftImageUrl}
-                      altText={getImageAltText(m.leftImage)}
+                      altText={m.leftImage.altText}
                       isSmallImage={false}
                     />
                   </div>
                   <div className={smallImageWrapperTv({ isEven: i % 2 === 0 })}>
                     <ParallaxImage
                       imageUrl={imagesUrls[i].rightImageUrl}
-                      altText={getImageAltText(m.rightImage)}
+                      altText={m.rightImage.altText}
                       isSmallImage={true}
                     />
                   </div>
