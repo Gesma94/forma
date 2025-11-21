@@ -23,7 +23,7 @@ export function ModuleContentContainerTitle({ value, variant = 'on-bg', alignmen
 }
 
 const style = tv({
-  base: 'text-5xl md:text-8xl text-center',
+  base: 'text-5xl md:text-8xl font-bold text-center',
   variants: {
     variant: {
       [MODULE_VARIANTS.ON_BG]: 'text-primary',

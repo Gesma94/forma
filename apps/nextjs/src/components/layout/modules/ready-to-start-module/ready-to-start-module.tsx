@@ -23,7 +23,7 @@ export async function ReadyToStartModule({ module }: TProps) {
           style={{ filter: `brightness(${module.backgroundImage.brightness}%)` }}
         />
         <div className='flex flex-col gap-4 relative z-10  justify-center items-center size-full'>
-          <h3 className='text-6xl md:text-7xl text-bg text-center'>{module.title}</h3>
+          <h3 className='text-6xl md:text-7xl text-bg font-bold text-center'>{module.title}</h3>
           <Subtitle value={module.subtitle} />
           <div className='grid sm:grid-cols-2 gap-4'>
             <LinkButton href='/book' size='large' variant='primary' surface='bg'>

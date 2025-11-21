@@ -23,7 +23,7 @@ export function Header({ value, variant = 'on-bg' }: TProps) {
 }
 
 const style = tv({
-  base: 'text-5xl md:text-8xl',
+  base: 'text-5xl md:text-8xl font-bold',
   variants: {
     variant: {
       [MODULE_VARIANTS.ON_BG]: 'text-primary',
