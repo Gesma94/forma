@@ -15,10 +15,10 @@ const sanityClient = createClient({
   dataset: process.env.SANITY_PROJECT_DATASET,
   apiVersion: '2024-01-01',
   useCdn: false,
-  ...(process.env.ENV !== 'preview') ? {} : {
+  ...(process.env.ENV === 'preview') ? {
     perspective: 'drafts',
     token: process.env.SANITY_TOKEN
-  }
+  } : {}
 });
 
 const sanityImageUrlBuilder = imageUrlBuilder(sanityClient);
@@ -26,9 +26,9 @@ const sanityImageUrlBuilder = imageUrlBuilder(sanityClient);
 export const q = createGroqBuilder<SchemaConfig>({});
 export const runQuery = makeSafeQueryRunner((query, options) =>
   sanityClient.fetch(query, options.parameters, {
-    cache: process.env.ENV === 'production' ? 'force-cache' : 'no-cache',
+    cache: process.env.ENV === 'production' ? 'force-cache' : 'no-store',
     next: {
-      revalidate:  process.env.ENV === 'production' ? 3600 : 1 
+      revalidate:  process.env.ENV === 'production' ? 3600 : 0
     }
   })
 );
