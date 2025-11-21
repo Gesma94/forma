@@ -24,8 +24,7 @@ export function StudioModule({ module }: TProps) {
             <h2 className='text-7xl md:text-8xl text-primary flex flex-col'>
               <span className='text-5xl md:text-6xl'>This is</span>
               <span className='flex flex-col font-bold'>
-                <span>Forma</span>
-                <span className='ml-10'>Studio</span>
+                Forma
               </span>
             </h2>
             <div className='mt-2'>
