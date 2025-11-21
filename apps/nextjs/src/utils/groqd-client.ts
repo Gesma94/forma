@@ -28,7 +28,7 @@ export const runQuery = makeSafeQueryRunner((query, options) =>
   sanityClient.fetch(query, options.parameters, {
     cache: process.env.ENV === 'production' ? 'force-cache' : 'no-cache',
     next: {
-      revalidate:  process.env.ENV === 'production' ? 1 : 3600 
+      revalidate:  process.env.ENV === 'production' ? 3600 : 1 
     }
   })
 );
