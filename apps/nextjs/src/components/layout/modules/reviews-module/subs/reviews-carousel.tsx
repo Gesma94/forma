@@ -39,8 +39,8 @@ export function ReviewsCarousel({ reviews }: TProps) {
   };
 
   return (
-    <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} className='px-4 md:px-10'>
-      <div className='w-full lg:h-[720px] grid grid-cols-1 lg:grid-cols-[minmax(512px,1fr)_2fr] grid-rows-[400px_auto] lg:grid-rows-1 max-w-9xl mx-auto bg-primary shadow-2xl rounded-2xl overflow-hidden'>
+    <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM}>
+      <div className='w-full lg:h-[720px] grid grid-cols-1 lg:grid-cols-[minmax(512px,1fr)_2fr] grid-rows-[400px_auto] lg:grid-rows-1 bg-primary overflow-hidden'>
         <div className='col-start-1 row-start-2 lg:row-start-1 relative grid grid-cols-1 grid-rows-1'>
           <AnimatePresence initial={false}>
             <div key={id} className='py-4 px-6 md:py-10 md:px-10 flex col-start-1 row-start-1'>

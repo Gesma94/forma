@@ -41,7 +41,8 @@ export async function ReviewsModule({ module }: TProps) {
   }));
 
   return (
-    <ModuleContentContainer title={module.heading} skipContentContainer={true}>
+    <div className='pt-10 md:pt-20'>
+    <ModuleContentContainer title={module.heading} skipContentContainer={true} skipYPadding={true}>
       <div>
         <div>
           <ContentContainer>
@@ -49,12 +50,10 @@ export async function ReviewsModule({ module }: TProps) {
           </ContentContainer>
         </div>
         <div className='mt-10 relative'>
-          <div className='relative z-20'>
             <ReviewsCarousel reviews={reviewsWithImages} />
-          </div>
-          <div className='absolute w-full h-[calc(82%_+_2.5rem)] md:h-[calc(82%_+_5rem)] bg-primary -bottom-10 md:-bottom-20 z-10'></div>
         </div>
       </div>
     </ModuleContentContainer>
+    </div>
   );
 }
