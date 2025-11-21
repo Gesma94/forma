@@ -1,4 +1,4 @@
-import { createClient } from '@sanity/client';
+import { createClient } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url';
 import type { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
@@ -14,7 +14,13 @@ const sanityClient = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_PROJECT_DATASET,
   apiVersion: '2024-01-01',
-  useCdn: false
+  useCdn: false,
+  ...(process.env.ENV !== 'preview') ? {} : {
+    stega: {
+      enabled: true,
+      studioUrl: 'https://forma-sanity.vercel.app',
+    }
+  }
 });
 const sanityImageUrlBuilder = imageUrlBuilder(sanityClient);
 
