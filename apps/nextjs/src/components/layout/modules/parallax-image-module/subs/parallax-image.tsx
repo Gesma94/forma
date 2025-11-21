@@ -41,7 +41,7 @@ export function ParallaxImage({ altText, imageUrl }: TProps) {
 
   return (
     <div
-      className='size-full contain-size shadow-image rounded-2xl'
+      className='size-full contain-size rounded-2xl'
       style={{ transform: `translateY(${-xTranslate}px)` }}
     >
       <img
