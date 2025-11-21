@@ -26,9 +26,9 @@ const sanityImageUrlBuilder = imageUrlBuilder(sanityClient);
 export const q = createGroqBuilder<SchemaConfig>({});
 export const runQuery = makeSafeQueryRunner((query, options) =>
   sanityClient.fetch(query, options.parameters, {
-    cache: 'force-cache',
+    cache: process.env.ENV === 'production' ? 'force-cache' : 'no-cache',
     next: {
-      revalidate: 60
+      revalidate:  process.env.ENV === 'production' ? 1 : 3600 
     }
   })
 );
