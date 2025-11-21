@@ -22,6 +22,7 @@ const sanityClient = createClient({
     }
   }
 });
+
 const sanityImageUrlBuilder = imageUrlBuilder(sanityClient);
 
 export const q = createGroqBuilder<SchemaConfig>({});
