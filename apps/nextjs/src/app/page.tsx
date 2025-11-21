@@ -26,6 +26,9 @@ export default async function Page() {
       })),
     { parameters: { pageId: SANITY_DOCUMENT_IDS.homepage } }
   );
+    
+  console.warn(`process.env.ENV: ${process.env.ENV}`);
+  console.warn(`process.env.USE_PREVIEW: ${process.env.USE_PREVIEW}`);
 
   return (
     <div>
