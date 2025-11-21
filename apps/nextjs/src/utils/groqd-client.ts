@@ -16,10 +16,8 @@ const sanityClient = createClient({
   apiVersion: '2024-01-01',
   useCdn: false,
   ...(process.env.ENV !== 'preview') ? {} : {
-    stega: {
-      enabled: true,
-      studioUrl: 'https://forma-sanity.vercel.app',
-    }
+    perspective: 'drafts',
+    token: process.env.SANITY_TOKEN
   }
 });
 
