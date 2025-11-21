@@ -29,7 +29,7 @@ export async function ReadyToStartModule({ module }: TProps) {
             <LinkButton href='/book' size='large' variant='primary' surface='bg'>
               {module.primaryCtaLabel}
             </LinkButton>
-            <LinkButton href={`@mailto:${module.emailCta}`} size='large' variant='primary' surface='primary'>
+            <LinkButton href='/contact-us' size='large' variant='primary' surface='primary'>
               {module.emailCta}
             </LinkButton>
           </div>
