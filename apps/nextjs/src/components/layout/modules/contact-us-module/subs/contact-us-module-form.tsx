@@ -9,6 +9,7 @@ import { toastQueue } from '@/layout/toast-notification/subs/toast-queue';
 import { Button } from '@/ui/buttons/button/button';
 import { FormTextAreaField } from '@/ui/form-fields/form-text-area-field/form-text-area-field';
 import { FormTextField } from '@/ui/form-fields/form-text-field/form-text-field';
+import { sendEmail } from 'services/resend';
 
 export const ContactUsModuleForm = () => {
   const {
@@ -27,7 +28,7 @@ export const ContactUsModuleForm = () => {
   });
 
   const onValid = async (data: ContactUsFormSchema) => {
-    const result = isNotNil(console.log('send email'));
+    const result = sendEmail({ email: data.email, fullName: data.fullName, message: data.message, company: data.companyName });
     console.log(data);
 
     if (result) {
@@ -57,7 +58,7 @@ export const ContactUsModuleForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onValid, onInvalid)} className='flex flex-col gap-4 w-full mx-auto'>
+    <Form onSubmit={handleSubmit(onValid, onInvalid)} className='flex flex-col gap-4 w-full mx-auto text-bg-text'>
       <div className='flex flex-col sm:grid sm:grid-cols-2 gap-4'>
         <FormTextField control={control} type='text' label='Full name' name='fullName' isRequired={true} />
         <FormTextField control={control} type='text' label='Company/Studio' name='companyName' />
@@ -67,7 +68,7 @@ export const ContactUsModuleForm = () => {
       <div>
         <Button
           type='submit'
-          className='min-w-2xs mt-10'
+          className='min-w-2xs mt-2'
           size='large'
           variant='primary'
           surface='primary'

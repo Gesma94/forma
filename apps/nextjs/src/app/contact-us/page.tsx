@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 export default async function Page() {
   return (
     <div>
-      <Topbar variant='solid' />
+      <Topbar variant='floating' />
       <ContactUsModule />
       {/* <ModuleRenderer modules={sanityData.modules} /> */}
     </div>
