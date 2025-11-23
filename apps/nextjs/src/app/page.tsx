@@ -14,8 +14,6 @@ export const viewport: Viewport = {
   initialScale: 1
 };
 
-export const dynamic = 'force-dynamic';
-
 export default async function Page() {
   const result = await runQuery(
     q

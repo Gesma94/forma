@@ -10,15 +10,12 @@ type SchemaConfig = {
   referenceSymbol: typeof SanityTypes.internalGroqTypeReferenceTo;
 };
 
-console.log(process.env.ENV);
-console.log(process.env.USE_PREVIEW);
-
 const sanityClient = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_PROJECT_DATASET,
   apiVersion: '2024-01-01',
   useCdn: false,
-  ...(process.env.USE_PREVIEW === 'true') ? {
+  ...(process.env.DEV_ENV === 'staging') ? {
     perspective: 'drafts',
     token: process.env.SANITY_TOKEN
   } : {}
@@ -29,8 +26,9 @@ const sanityImageUrlBuilder = imageUrlBuilder(sanityClient);
 export const q = createGroqBuilder<SchemaConfig>({});
 export const runQuery = makeSafeQueryRunner((query, options) =>
   sanityClient.fetch(query, options.parameters, {
+    cache: 'force-cache',
     next: {
-      revalidate:  process.env.USE_PREVIEW === 'true' ? 1 : 3600
+      revalidate: 1
     }
   })
 );
