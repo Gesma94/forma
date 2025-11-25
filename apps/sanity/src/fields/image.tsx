@@ -46,19 +46,12 @@ export function defineImageField({
   });
 }
 
-export function defineImageField2({
-  name,
-  title,
-  fieldset,
-  fields,
-  validation
-}: TProps) {
+export function defineImageField2({ name, title, fieldset }: TProps) {
   return defineField({
     name,
     title,
     fieldset,
     type: 'reference',
-    to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }],
-  
-  })
+    to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }]
+  });
 }

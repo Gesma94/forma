@@ -1,8 +1,8 @@
+import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import type { Viewport } from 'next';
 import { Topbar } from '@/layout/topbar/topbar';
-import { ModuleRenderer } from '@/utils/module-renderer';
 import { q, runQuery } from '@/utils/groqd-client';
-import { SANITY_DOCUMENT_IDS } from '@forma/common';
+import { ModuleRenderer } from '@/utils/module-renderer';
 
 type TSanityQueryParams = {
   pageId: string;

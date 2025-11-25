@@ -23,9 +23,7 @@ export function StudioModule({ module }: TProps) {
           <div className='flex flex-col min-w-0'>
             <h2 className='text-7xl md:text-8xl text-primary flex flex-col'>
               <span className='text-5xl md:text-6xl'>This is</span>
-              <span className='flex flex-col font-bold'>
-                Forma
-              </span>
+              <span className='flex flex-col font-bold'>Forma</span>
             </h2>
             <div className='mt-2'>
               <StudioModuleSubHeading value={module.subHeading} />

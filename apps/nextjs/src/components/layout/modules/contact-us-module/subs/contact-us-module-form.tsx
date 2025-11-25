@@ -2,18 +2,17 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type ContactUsFormSchema, contactUsFormSchema } from 'data/contact-us-form-schema';
-import { isNotNil } from 'es-toolkit';
 import { Form } from 'react-aria-components';
 import { type FieldErrors, useForm } from 'react-hook-form';
+import { sendEmail } from 'services/resend';
 import { toastQueue } from '@/layout/toast-notification/subs/toast-queue';
 import { Button } from '@/ui/buttons/button/button';
 import { FormTextAreaField } from '@/ui/form-fields/form-text-area-field/form-text-area-field';
 import { FormTextField } from '@/ui/form-fields/form-text-field/form-text-field';
-import { sendEmail } from 'services/resend';
 
 type TProps = {
   ctaLabel: string;
-}
+};
 
 export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
   const {
@@ -32,7 +31,12 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
   });
 
   const onValid = async (data: ContactUsFormSchema) => {
-    const result = sendEmail({ email: data.email, fullName: data.fullName, message: data.message, company: data.companyName });
+    const result = sendEmail({
+      email: data.email,
+      fullName: data.fullName,
+      message: data.message,
+      company: data.companyName
+    });
     console.log(data);
 
     if (result) {

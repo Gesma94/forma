@@ -42,18 +42,18 @@ export async function ReviewsModule({ module }: TProps) {
 
   return (
     <div className='pt-10 md:pt-20'>
-    <ModuleContentContainer title={module.heading} skipContentContainer={true} skipYPadding={true}>
-      <div>
+      <ModuleContentContainer title={module.heading} skipContentContainer={true} skipYPadding={true}>
         <div>
-          <ContentContainer>
-            <ParagraphPortableText value={module.content} variant={MODULE_VARIANTS.ON_BG} className='text-center' />
-          </ContentContainer>
-        </div>
-        <div className='mt-10 relative'>
+          <div>
+            <ContentContainer>
+              <ParagraphPortableText value={module.content} variant={MODULE_VARIANTS.ON_BG} className='text-center' />
+            </ContentContainer>
+          </div>
+          <div className='mt-10 relative'>
             <ReviewsCarousel reviews={reviewsWithImages} />
+          </div>
         </div>
-      </div>
-    </ModuleContentContainer>
+      </ModuleContentContainer>
     </div>
   );
 }

@@ -13,7 +13,11 @@ export const contactUsDocumentType = defineType({
       subtitle: 'subHeading',
       media: 'backgroundImage'
     },
-    prepare: ({ title, subtitle, media }) => ({ title: textBlockToPlainText(title), media, subtitle: textBlockToPlainText(subtitle) })
+    prepare: ({ title, subtitle, media }) => ({
+      title: textBlockToPlainText(title),
+      media,
+      subtitle: textBlockToPlainText(subtitle)
+    })
   },
   fields: [
     defineField({

@@ -1,8 +1,8 @@
-import { createClient } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url';
 import type { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { createGroqBuilder, makeSafeQueryRunner } from 'groqd';
+import { createClient } from 'next-sanity';
 import type * as SanityTypes from './../types/generated/sanity-types-generated';
 
 type SchemaConfig = {
@@ -15,10 +15,12 @@ const sanityClient = createClient({
   dataset: process.env.SANITY_PROJECT_DATASET,
   apiVersion: '2024-01-01',
   useCdn: false,
-  ...(process.env.DEV_ENV === 'staging') ? {
-    perspective: 'drafts',
-    token: process.env.SANITY_TOKEN
-  } : {}
+  ...(process.env.DEV_ENV === 'staging'
+    ? {
+        perspective: 'drafts',
+        token: process.env.SANITY_TOKEN
+      }
+    : {})
 });
 
 const sanityImageUrlBuilder = imageUrlBuilder(sanityClient);

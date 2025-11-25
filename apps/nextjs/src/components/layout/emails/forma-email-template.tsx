@@ -1,15 +1,13 @@
-import { isNotNil } from "es-toolkit";
-import * as React from 'react';
+import { isNotNil } from 'es-toolkit';
 
 export type TFormaEmailTemplateProps = {
   fullName: string;
   company?: string;
   email: string;
   message: string;
-}
+};
 
-export function FormaEmailTemplate({ email, fullName, company, message
- }: TFormaEmailTemplateProps) {
+export function FormaEmailTemplate({ email, fullName, company, message }: TFormaEmailTemplateProps) {
   return (
     <div>
       <h1>New email from {fullName}!</h1>

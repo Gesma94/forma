@@ -2,6 +2,7 @@ import type { AllSanitySchemaTypes } from 'types/generated/sanity-types-generate
 import { BookModule } from '@/layout/modules/book-module/book-module';
 import { BrandsModule } from '@/layout/modules/brands-module/brands-module';
 import { CardsModule } from '@/layout/modules/cards-module/cards-module';
+import { ContactUsModule } from '@/layout/modules/contact-us-module/contact-us-module';
 import { CountersModule } from '@/layout/modules/counters-module/counters-module';
 import { HalfHeroModule } from '@/layout/modules/half-hero-module/half-hero-module';
 import { HeroModule } from '@/layout/modules/hero-module/hero-module';
@@ -19,7 +20,6 @@ import { ServicesModule } from '@/layout/modules/services-module/services-module
 import { StudioModule } from '@/layout/modules/studio-module/studio-module';
 import { TeamModule } from '@/layout/modules/team-module/team-module';
 import { TextWithImageModule } from '@/layout/modules/text-with-image-module/text-with-image-module';
-import { ContactUsModule } from '@/layout/modules/contact-us-module/contact-us-module';
 
 type TProps = {
   modules: AllSanitySchemaTypes[];
@@ -69,7 +69,7 @@ export function ModuleRenderer({ modules }: TProps) {
       case 'parallaxImagesModuleDocumentType':
         return <ParallaxImageModule key={module._id} module={module} />;
       case 'contactUsModuleDocumentType':
-        return <ContactUsModule key={module._id} module={module} />
+        return <ContactUsModule key={module._id} module={module} />;
       default:
         return null;
     }

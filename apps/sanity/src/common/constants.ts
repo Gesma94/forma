@@ -27,8 +27,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   formaImageAsset: 'formaImageAssetDocumentType',
   contactUsModule: 'contactUsModuleDocumentType',
   clientSecretPage: 'clientSecretPageDocumentType',
-  clientSecretPageVersion: 'clientSecretPageVersionDocumentType',
-
+  clientSecretPageVersion: 'clientSecretPageVersionDocumentType'
 } as const;
 
 export const OBJECT_SCHEMA_TYPES = {

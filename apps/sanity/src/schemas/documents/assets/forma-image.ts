@@ -12,14 +12,14 @@ export const formaImageDocumentType = defineType({
       title: 'altText',
       media: 'image'
     },
-    prepare: ({ title, media }) => ({ title: title ?? media.asset._ref ?? 'Unnamed Image', media }) 
+    prepare: ({ title, media }) => ({ title: title ?? media.asset._ref ?? 'Unnamed Image', media })
   },
   fields: [
     defineField({
-        title: 'Alternative Text',
-        name: 'altText',
-        type: 'string',
-    }),    
+      title: 'Alternative Text',
+      name: 'altText',
+      type: 'string'
+    }),
     defineField({
       name: 'image',
       title: 'Image',

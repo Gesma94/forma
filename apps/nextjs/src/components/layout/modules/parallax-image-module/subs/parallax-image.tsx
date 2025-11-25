@@ -40,10 +40,7 @@ export function ParallaxImage({ altText, imageUrl }: TProps) {
   // }, [handleDocumentScroll]);
 
   return (
-    <div
-      className='size-full contain-size rounded-2xl'
-      style={{ transform: `translateY(${-xTranslate}px)` }}
-    >
+    <div className='size-full contain-size rounded-2xl' style={{ transform: `translateY(${-xTranslate}px)` }}>
       <img
         ref={imageRef}
         src={imageUrl}

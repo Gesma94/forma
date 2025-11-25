@@ -16,22 +16,22 @@ export const formaImageInstanceObjectType = defineType({
   },
   fields: [
     defineField({
-        name: 'image',
-        title: 'Forma Image',
-        type: 'reference',
-        to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }],
-      }),
+      name: 'image',
+      title: 'Forma Image',
+      type: 'reference',
+      to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }]
+    }),
     defineField({
       type: 'string',
       title: 'Override AltText',
-      name: 'overrideAltText',
-    }),    
-  defineField({
-    title: 'Brightness (%)',
-    name: 'brightness',
-    type: 'number',
-    initialValue: 100,
-    validation: rule => rule.min(0).max(100)
-  })
+      name: 'overrideAltText'
+    }),
+    defineField({
+      title: 'Brightness (%)',
+      name: 'brightness',
+      type: 'number',
+      initialValue: 100,
+      validation: rule => rule.min(0).max(100)
+    })
   ]
 });

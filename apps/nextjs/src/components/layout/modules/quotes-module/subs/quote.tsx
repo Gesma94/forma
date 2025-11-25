@@ -18,7 +18,7 @@ export function Quote({
       </div>
       <div className='flex w-full items-center justify-center md:justify-start mx-auto gap-4 relative mt-16'>
         <div className='flex-col flex md:gap-4 items-center md:flex-row md:ml-4'>
-        <Image
+          <Image
             src={authorAvatarUrl}
             alt={authorAvatar.altText}
             width={64}
@@ -31,7 +31,6 @@ export function Quote({
               {authorRole}, {authorCompany}
             </p>
           </div>
-        
         </div>
       </div>
     </div>

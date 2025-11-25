@@ -6,10 +6,10 @@ import {
   HomeIcon,
   type LucideProps,
   NotebookPenIcon,
+  PhoneCallIcon,
   RouteIcon,
   SparklesIcon,
-  WavesIcon,
-  PhoneCallIcon
+  WavesIcon
 } from 'lucide-react';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { defineConfig } from 'sanity';
@@ -44,7 +44,7 @@ const pageItems: TPageItem[] = [
     id: SANITY_DOCUMENT_IDS.gallerypage,
     icon: GalleryVerticalIcon,
     title: 'Gallery'
-  },  
+  },
   {
     id: SANITY_DOCUMENT_IDS.contactUsPage,
     icon: PhoneCallIcon,
