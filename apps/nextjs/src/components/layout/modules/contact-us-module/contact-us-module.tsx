@@ -18,8 +18,6 @@ export async function ContactUsModule({ module }: TProps) {
     getFormaImageAsset(module.cardBackgroundImage)
   ]);
 
-  console.log(backgroundImageAsset);
-
   const backgroundImageUrl = getSanityImageUrl(backgroundImageAsset.image);
   const cardBackgroundImageUrl = getSanityImageUrl(cardBackgroundImageAsset.image);
 
