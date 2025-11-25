@@ -2,6 +2,7 @@ import { cardObjectType } from './card';
 import { contactObjectType } from './contact';
 import { counterObjectType } from './counter';
 import { ctaObjectType } from './cta';
+import { formaImageInstanceObjectType } from './forma-image-instance';
 import { howItWorksObjectType } from './how-it-works-step';
 import { imagePairObjectType } from './image-pair';
 import { linkObjectType } from './link';
@@ -21,5 +22,6 @@ export const objectSchemaTypes = [
   processObjectType,
   scrollGalleryImageObjectType,
   imagePairObjectType,
-  listTextItemObjectType
+  listTextItemObjectType,
+  formaImageInstanceObjectType
 ];

@@ -24,13 +24,17 @@ export const DOCUMENT_SCHEMA_TYPES = {
   brand: 'brandDocumentType',
   quote: 'quoteDocumentType',
   review: 'reviewDocumentType',
+  formaImageAsset: 'formaImageAssetDocumentType',
+  contactUsModule: 'contactUsModuleDocumentType',
   clientSecretPage: 'clientSecretPageDocumentType',
-  clientSecretPageVersion: 'clientSecretPageVersionDocumentType'
+  clientSecretPageVersion: 'clientSecretPageVersionDocumentType',
+
 } as const;
 
 export const OBJECT_SCHEMA_TYPES = {
   imagePair: 'imagePairObjectType',
   link: 'linkObjectType',
+  formaImageInstance: 'formaImageInstanceObjectType',
   cta: 'ctaObjectType',
   contact: 'contactObjectType',
   card: 'cardObjectType',

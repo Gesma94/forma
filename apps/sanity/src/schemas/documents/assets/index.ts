@@ -1,5 +1,6 @@
 import { brandDocumentType } from './brand';
+import { formaImageDocumentType } from './forma-image';
 import { quoteDocumentType } from './quote';
 import { reviewDocumentType } from './review';
 
-export const assetDocumentTypes = [brandDocumentType, quoteDocumentType, reviewDocumentType];
+export const assetDocumentTypes = [brandDocumentType, quoteDocumentType, reviewDocumentType, formaImageDocumentType];

@@ -15,6 +15,9 @@ export function getPageTitleFromId(pageId: string): string {
   if (pageId === SANITY_DOCUMENT_IDS.processpage) {
     return 'Process Page';
   }
+  if (pageId === SANITY_DOCUMENT_IDS.contactUsPage) {
+    return 'Contact Us';
+  }
 
   return 'Unknown Page';
 }
