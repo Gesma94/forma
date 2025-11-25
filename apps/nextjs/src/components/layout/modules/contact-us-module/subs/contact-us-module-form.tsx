@@ -21,7 +21,7 @@ export const ContactUsModuleForm = () => {
     resolver: zodResolver(contactUsFormSchema),
     defaultValues: {
       fullName: '',
-      companyName: null,
+      companyName: '',
       email: '',
       message: ''
     }
