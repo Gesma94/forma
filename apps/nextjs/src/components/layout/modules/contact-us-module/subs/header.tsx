@@ -8,14 +8,14 @@ type TProps = {
 
 export function Header({ value }: TProps) {
   return typeof value === 'string' ? 
-  <h1 className='text-left text-primary-text text-7xl sm:leading-none sm:text-8xl'>{value}</h1>
+  <h1 className='text-left text-primary-text text-7xl sm:text-8xl'>{value}</h1>
   :(
     <PortableText
       value={value}
       components={{
         block: {
           normal: ({ children }) => (
-            <h1 className='text-left text-primary-text text-7xl leading-16 sm:text-center sm:leading-none sm:text-8xl 2xl:text-9xl'>
+            <h1 className='text-left text-primary-text text-7xl sm:text-8xl'>
               {children}
             </h1>
           )

@@ -19,6 +19,7 @@ import { ServicesModule } from '@/layout/modules/services-module/services-module
 import { StudioModule } from '@/layout/modules/studio-module/studio-module';
 import { TeamModule } from '@/layout/modules/team-module/team-module';
 import { TextWithImageModule } from '@/layout/modules/text-with-image-module/text-with-image-module';
+import { ContactUsModule } from '@/layout/modules/contact-us-module/contact-us-module';
 
 type TProps = {
   modules: AllSanitySchemaTypes[];
@@ -67,6 +68,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <ScrollGalleryModule key={module._id} module={module} />;
       case 'parallaxImagesModuleDocumentType':
         return <ParallaxImageModule key={module._id} module={module} />;
+      case 'contactUsModuleDocumentType':
+        return <ContactUsModule key={module._id} module={module} />
       default:
         return null;
     }

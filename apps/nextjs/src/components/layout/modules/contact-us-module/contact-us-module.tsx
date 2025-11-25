@@ -2,31 +2,48 @@ import { tv } from 'tailwind-variants';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { ContactUsModuleForm } from './subs/contact-us-module-form';
 import { Header } from './subs/header';
+import { ContactUsModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { getSanityImageUrl } from '@/utils/groqd-client';
+import { getImageAltText2 } from 'common/utils/get-image-alt-text';
+import { getFormaImageAsset } from 'services/sanity';
+import { Subheading } from './subs/subheading';
 
-export async function ContactUsModule() {
-  const { outerContainerTv, bgImageTv, floatingContainerTv, floatingInnerContainerTv, formContainerTv, subH1Tv } =
+type TProps = {
+  module: ContactUsModuleDocumentType;
+};
+
+export async function ContactUsModule({ module }: TProps) {
+  const [backgroundImageAsset, cardBackgroundImageAsset] = await Promise.all([
+    getFormaImageAsset(module.backgroundImage),
+    getFormaImageAsset(module.cardBackgroundImage),
+  ]);
+
+  console.log(backgroundImageAsset);
+
+  const backgroundImageUrl = getSanityImageUrl(backgroundImageAsset.image);
+  const cardBackgroundImageUrl = getSanityImageUrl(cardBackgroundImageAsset.image);
+
+
+  const { outerContainerTv, bgImageTv, floatingContainerTv, floatingInnerContainerTv, formContainerTv } =
     styleTv();
   return (
     <div className={outerContainerTv()}>
-      <img className={bgImageTv()} src='https://cdn.sanity.io/images/8gia4a8i/production/28f5f20c855adcbe96456510b6bf060eee931967-1200x922.webp' />
+      <img className={bgImageTv()} src={backgroundImageUrl} alt={await getImageAltText2(module.backgroundImage, backgroundImageAsset)} />
       <div className={floatingContainerTv()}>
         <ContentContainer>
           <div className={floatingInnerContainerTv()}>
             <div className='contain-size'>
               <img
-                alt='test'
-                src='https://cdn.sanity.io/images/8gia4a8i/production/28f5f20c855adcbe96456510b6bf060eee931967-1200x922.webp'
+                src={cardBackgroundImageUrl} alt={await getImageAltText2(module.cardBackgroundImage, cardBackgroundImageAsset)}
                 className='object-cover size-full'
               />
             </div>
             <div className={formContainerTv()}>
               <div className='mb-4'>
-                <Header value="Contact us" />
+                <Header value={module.heading} />
               </div>
-              <p className={subH1Tv()}>
-                Not sure what you are looking for? Let us know and we will help you find the perfect solution.
-              </p>
-              <ContactUsModuleForm />
+              <Subheading value={module.subHeading} />
+              <ContactUsModuleForm ctaLabel={module.CtaLabel} />
             </div>
       </div>
       </ContentContainer>
@@ -42,6 +59,5 @@ const styleTv = tv({
     floatingContainerTv: 'row-start-2 w-full z-10',
     floatingInnerContainerTv: 'size-full grid grid-cols-[3fr_2fr]  rounded-2xl overflow-hidden',
     formContainerTv: 'bg-primary text-primary-text p-10 flex flex-col',
-    subH1Tv: 'prose-xl mb-4',
   }
 });

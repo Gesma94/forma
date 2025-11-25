@@ -11,7 +11,11 @@ import { FormTextAreaField } from '@/ui/form-fields/form-text-area-field/form-te
 import { FormTextField } from '@/ui/form-fields/form-text-field/form-text-field';
 import { sendEmail } from 'services/resend';
 
-export const ContactUsModuleForm = () => {
+type TProps = {
+  ctaLabel: string;
+}
+
+export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
   const {
     handleSubmit,
     control,
@@ -74,7 +78,7 @@ export const ContactUsModuleForm = () => {
           surface='primary'
           isDisabled={isSubmitting}
         >
-          {isSubmitting ? 'Submitting...' : 'Submit'}
+          {isSubmitting ? 'Submitting...' : ctaLabel}
         </Button>
       </div>
     </Form>
