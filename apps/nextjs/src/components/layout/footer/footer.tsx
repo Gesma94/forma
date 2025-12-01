@@ -11,7 +11,7 @@ export async function Footer() {
   const result = await runQuery(q.star.filterByType('footerDocumentType').slice(0));
 
   return (
-    <footer className='w-full bg-primary pt-32 pb-6'>
+    <footer className='w-full bg-primary pt-14 pb-6'>
       <ContentContainer>
         <div className='flex flex-col gap-10 md:gap-20 xl:flex-row'>
           <div className='grow flex flex-col gap-10 md:flex-row md:gap-0'>
