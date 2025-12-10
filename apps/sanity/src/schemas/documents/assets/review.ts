@@ -2,7 +2,7 @@ import { MessageSquareQuoteIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineImageField, defineRichEditorField } from '../../../fields';
+import { defineFormaImageField, defineImageField, defineRichEditorField } from '../../../fields';
 
 export const reviewDocumentType = defineType({
   type: 'document',
@@ -24,7 +24,7 @@ export const reviewDocumentType = defineType({
     })
   },
   fields: [
-    defineImageField({
+    defineFormaImageField({
       name: 'image',
       title: 'Image',
       validation: rule => rule.required()

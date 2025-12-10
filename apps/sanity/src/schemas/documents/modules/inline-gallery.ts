@@ -1,7 +1,6 @@
 import { GalleryHorizontalIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
-import { defineImageField } from '../../../fields';
 
 export const inlineGalleryModuleDocumentType = defineType({
   type: 'document',
@@ -29,28 +28,7 @@ export const inlineGalleryModuleDocumentType = defineType({
       name: 'images',
       title: 'Images',
       type: 'array',
-      of: [
-        {
-          ...defineImageField({
-            name: 'image',
-            title: 'Image',
-            fields: [
-              defineField({
-                title: 'Title',
-                name: 'title',
-                type: 'string',
-                validation: rule => rule.required()
-              }),
-              defineField({
-                title: 'Subtitle',
-                name: 'subtitle',
-                type: 'string',
-                validation: rule => rule.required()
-              })
-            ]
-          })
-        }
-      ],
+      of: [{ type: 'reference', to: { type: DOCUMENT_SCHEMA_TYPES.formaImageAsset } }],
       validation: rule => rule.required()
     }),
     defineField({

@@ -2,7 +2,7 @@ import { LayoutListIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineImageField, defineRichEditorField } from '../../../fields';
+import { defineFormaImageField, defineRichEditorField } from '../../../fields';
 
 export const reasonsModuleDocumentType = defineType({
   type: 'document',
@@ -12,8 +12,8 @@ export const reasonsModuleDocumentType = defineType({
   preview: {
     select: {
       title: 'heading',
-      media: 'leftImage',
-      subtitle: 'content'
+      subtitle: 'content',
+      media: 'leftImage.formaImage.image'
     },
     prepare: ({ title, media, subtitle }) => ({
       media,
@@ -44,7 +44,7 @@ export const reasonsModuleDocumentType = defineType({
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
-    defineImageField({
+    defineFormaImageField({
       name: 'leftImage',
       title: 'Left Image',
       fieldset: 'leftGroup',
@@ -76,7 +76,7 @@ export const reasonsModuleDocumentType = defineType({
       fieldset: 'leftGroup',
       validation: rule => rule.required()
     }),
-    defineImageField({
+    defineFormaImageField({
       name: 'rightImage',
       title: 'Right Image',
       fieldset: 'rightGroup',

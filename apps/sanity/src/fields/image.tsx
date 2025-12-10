@@ -1,5 +1,23 @@
-import { defineField, type FieldDefinition, type ImageRule, type ImageValue, type ValidationBuilder } from 'sanity';
-import { DOCUMENT_SCHEMA_TYPES } from '../common/constants';
+import {
+  defineField,
+  type FieldDefinition,
+  type ImageRule,
+  type ImageValue,
+  type SchemaValidationValue,
+  type ValidationBuilder
+} from 'sanity';
+import { OBJECT_SCHEMA_TYPES } from '../common/constants';
+
+type TProps2 = {
+  name: string;
+  title: string;
+  note?: string;
+  fieldset?: string;
+  fields?: FieldDefinition[];
+  validation?: SchemaValidationValue;
+  skipAltText?: boolean;
+  skipBrightness?: boolean;
+};
 
 type TProps = {
   name: string;
@@ -46,12 +64,12 @@ export function defineImageField({
   });
 }
 
-export function defineImageField2({ name, title, fieldset }: TProps) {
+export function defineFormaImageField({ name, title, fieldset, validation }: TProps2) {
   return defineField({
     name,
     title,
     fieldset,
-    type: 'reference',
-    to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }]
+    validation,
+    type: OBJECT_SCHEMA_TYPES.formaImageInstance
   });
 }

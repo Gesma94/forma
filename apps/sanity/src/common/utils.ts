@@ -52,3 +52,21 @@ export function getVariantTitle(variant: TModuleVariants) {
       return 'On Primary';
   }
 }
+
+export function getFormaImageAssetName(imageTitle: string, clientName: string): string | null {
+  const elements: string[] = [];
+
+  if (clientName) {
+    elements.push(clientName);
+  }
+
+  if (imageTitle) {
+    elements.push(imageTitle);
+  }
+
+  if (elements.length > 0) {
+    return elements.join(' - ');
+  }
+
+  return null;
+}

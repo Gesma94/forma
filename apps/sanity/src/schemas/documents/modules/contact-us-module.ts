@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
-import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
+import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineRichEditorField } from '../../../fields';
+import { defineFormaImageField, defineRichEditorField } from '../../../fields';
 
 export const contactUsDocumentType = defineType({
   type: 'document',
@@ -11,25 +11,23 @@ export const contactUsDocumentType = defineType({
     select: {
       title: 'heading',
       subtitle: 'subHeading',
-      media: 'backgroundImage'
+      media: 'backgroundImage.formaImage.image'
     },
     prepare: ({ title, subtitle, media }) => ({
-      title: textBlockToPlainText(title),
       media,
+      title: textBlockToPlainText(title),
       subtitle: textBlockToPlainText(subtitle)
     })
   },
   fields: [
-    defineField({
+    defineFormaImageField({
       name: 'backgroundImage',
       title: 'Background Image',
-      type: OBJECT_SCHEMA_TYPES.formaImageInstance,
       validation: rule => rule.required()
     }),
-    defineField({
+    defineFormaImageField({
       name: 'cardBackgroundImage',
       title: 'Card Background Image',
-      type: OBJECT_SCHEMA_TYPES.formaImageInstance,
       validation: rule => rule.required()
     }),
     defineRichEditorField({

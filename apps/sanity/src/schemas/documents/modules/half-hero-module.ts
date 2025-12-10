@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineImageField, defineRichEditorField } from '../../../fields';
+import { defineFormaImageField, defineRichEditorField } from '../../../fields';
 
 export const halfHeroModuleDocumentType = defineType({
   type: 'document',
@@ -10,12 +10,17 @@ export const halfHeroModuleDocumentType = defineType({
   preview: {
     select: {
       title: 'heading',
-      media: 'backgroundImage'
+      subtitle: 'subHeading',
+      media: 'backgroundImage.formaImage.image'
     },
-    prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Half hero Module' })
+    prepare: ({ title, subtitle, media }) => ({
+      title: textBlockToPlainText(title),
+      media,
+      subtitle: textBlockToPlainText(subtitle, 30)
+    })
   },
   fields: [
-    defineImageField({
+    defineFormaImageField({
       name: 'backgroundImage',
       title: 'Background Image',
       validation: rule => rule.required()

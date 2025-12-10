@@ -1,7 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineImageField, defineRichEditorField } from '../../../fields';
+import { defineFormaImageField, defineRichEditorField } from '../../../fields';
 
 export const studioModuleDocumentType = defineType({
   type: 'document',
@@ -9,10 +9,15 @@ export const studioModuleDocumentType = defineType({
   name: DOCUMENT_SCHEMA_TYPES.studioModule,
   preview: {
     select: {
+      content: 'content',
       title: 'subHeading',
-      media: 'image'
+      media: 'image.formaImage.image'
     },
-    prepare: ({ title, media }) => ({ title: textBlockToPlainText(title), media, subtitle: 'Studio Module' })
+    prepare: ({ title, media, content }) => ({
+      title: textBlockToPlainText(title),
+      media,
+      subtitle: textBlockToPlainText(content, 30)
+    })
   },
   fieldsets: [
     {
@@ -34,7 +39,7 @@ export const studioModuleDocumentType = defineType({
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
-    defineImageField({
+    defineFormaImageField({
       name: 'image',
       title: 'Image',
       validation: rule => rule.required()
@@ -52,7 +57,7 @@ export const studioModuleDocumentType = defineType({
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
-    defineImageField({
+    defineFormaImageField({
       name: 'problemsImage',
       title: 'Problems Image',
       validation: rule => rule.required()
