@@ -1,9 +1,9 @@
 import { MODULE_VARIANTS } from '@forma/common';
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { CardsModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { ContentContainer } from '@/ui/content-container/content-container';
-import { getSanityImageUrl } from '@/utils/groqd-client';
 import { Card } from './subs/card';
 import type { ICard } from './subs/types';
 
@@ -11,21 +11,22 @@ type TProps = {
   module: CardsModuleDocumentType;
 };
 
-export function CardsModule({ module }: TProps) {
+export async function CardsModule({ module }: TProps) {
   const { listStyle, bgImageStyle, moduleWrapperStyle, contentContainerWrapperStyle } = styles();
-  const bgImageUrl = getSanityImageUrl(module.backgroundImage);
-  const cards = module.cards.map<ICard>(card => ({
-    title: card.title,
-    description: card.description,
-    image: card.image,
-    imageUrl: getSanityImageUrl(card.image),
-    key: card._key
-  }));
+  const backgroundImageData = await getFormaImageData(module.backgroundImage);
+  const cards = await Promise.all(
+    module.cards.map<Promise<ICard>>(async card => ({
+      key: card._key,
+      title: card.title,
+      description: card.description,
+      imageData: await getFormaImageData(card.image)
+    }))
+  );
 
   return (
     <ModuleContentContainer title={module.heading} variant={MODULE_VARIANTS.ON_PRIMARY} skipContentContainer={true}>
       <div className={moduleWrapperStyle()}>
-        <img src={bgImageUrl} alt={module.backgroundImage.altText} className={bgImageStyle()} />
+        <img src={backgroundImageData.imageUrl} alt={backgroundImageData.imageAltText} className={bgImageStyle()} />
         <div className={contentContainerWrapperStyle()}>
           <ContentContainer>
             <ul className={listStyle()}>

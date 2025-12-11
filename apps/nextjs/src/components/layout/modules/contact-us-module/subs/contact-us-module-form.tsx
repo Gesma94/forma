@@ -37,7 +37,6 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
       message: data.message,
       company: data.companyName
     });
-    console.log(data);
 
     if (result) {
       toastQueue.add(

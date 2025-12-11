@@ -1,18 +1,17 @@
 'use client';
 
 import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react/dist/ssr';
+import type { IFormImageAsset } from 'common/utils/get-forma-image';
 import { isNil } from 'es-toolkit';
 import { useInView } from 'motion/react';
 import { type UIEventHandler, useLayoutEffect, useRef, useState } from 'react';
-import type { InlineGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
 
 type TProps = {
-  module: InlineGalleryModuleDocumentType;
-  imagesUrl: string[];
+  images: (IFormImageAsset & { key: string })[];
 };
 
-export function InlineGalleryCarousel({ module, imagesUrl }: TProps) {
+export function InlineGalleryCarousel({ images }: TProps) {
   const [isCaretLeftDisabled, setIsCaretLeftDisabled] = useState(false);
   const [isCaretRightDisabled, setIsCaretRightDisabled] = useState(false);
   const scrollableElementRef = useRef<HTMLDivElement>(null);
@@ -79,17 +78,16 @@ export function InlineGalleryCarousel({ module, imagesUrl }: TProps) {
         className='flex gap-4 sm:gap-10 h-[720px] overflow-auto relative px-4 sm:px-20 lg:px-40 snap-x snap-mandatory touch-pan-x'
         style={{ scrollbarWidth: 'none' }}
       >
-        {imagesUrl.map((imageUrl, i) => {
-          const image = module.images[i];
+        {images.map(image => {
           return (
             <div
-              key={image._key}
+              key={image.key}
               className='h-full w-auto shrink-0 relative max-w-[calc(100vw-3rem)] sm:max-w-[calc(100vw-4rem)] snap-center'
             >
-              <img src={imageUrl} alt={image.altText} className='rounded-2xl h-full w-auto object-cover' />
+              <img src={image.imageUrl} alt={image.imageAltText} className='rounded-2xl h-full w-auto object-cover' />
               <div className='absolute bottom-4 left-4 text-shadow-xl text-md'>
-                <p className='text-md'>{image.title}</p>
-                <p className='text-sm'>{image.subtitle}</p>
+                <p className='text-md'>{image.imageTitle}</p>
+                <p className='text-sm'>{image.clientName}</p>
               </div>
             </div>
           );

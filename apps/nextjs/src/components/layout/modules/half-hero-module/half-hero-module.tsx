@@ -1,8 +1,8 @@
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { HalfHeroModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { Scrolldown } from '@/layout/scrolldown/scrolldown';
 import { ContentContainer } from '@/ui/content-container/content-container';
-import { getSanityImageUrl } from '@/utils/groqd-client';
 import { HalfHeroHeading } from './subs/half-hero-heading';
 import { HalfHeroSubHeading } from './subs/half-hero-subheading';
 
@@ -12,13 +12,13 @@ type TProps = {
 
 export async function HalfHeroModule({ module }: TProps) {
   const { bgImageTv, containerTv, contentWrapperTv, contentContainerTv } = styles();
-  const imageUrl = getSanityImageUrl(module.backgroundImage);
+  const backgroundImageData = await getFormaImageData(module.backgroundImage);
 
   return (
     <div className={containerTv()}>
       <img
-        src={imageUrl}
-        alt={module.backgroundImage.altText}
+        src={backgroundImageData.imageUrl}
+        alt={backgroundImageData.imageAltText}
         className={bgImageTv()}
         style={{ filter: `brightness(${module.backgroundImage.brightness}%)` }}
       />

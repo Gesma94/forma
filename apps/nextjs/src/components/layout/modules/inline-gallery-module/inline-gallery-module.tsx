@@ -1,7 +1,7 @@
+import { fetchFormaImageAssetDocument } from 'common/utils/get-forma-image';
 import type { InlineGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
-import { getSanityImageUrl } from '@/utils/groqd-client';
 import { InlineGalleryCarousel } from './subs/inline-gallery-carousel';
 
 type TProps = {
@@ -9,11 +9,13 @@ type TProps = {
 };
 
 export async function InlineGalleryModule({ module }: TProps) {
-  const imagesUrl = await Promise.all(module.images.map(x => getSanityImageUrl(x)));
+  const images = await Promise.all(
+    module.images.map(async x => ({ ...(await fetchFormaImageAssetDocument(x._ref)), key: x._key }))
+  );
 
   return (
     <ModuleContentContainer variant='on-primary' title={module.heading} skipContentContainer={true}>
-      <InlineGalleryCarousel module={module} imagesUrl={imagesUrl} />
+      <InlineGalleryCarousel images={images} />
       {(module.primaryCta.showCta || module.secondaryCta.showCta) && (
         <div className='mt-10 mx-auto flex gap-8'>
           {module.primaryCta.showCta && (

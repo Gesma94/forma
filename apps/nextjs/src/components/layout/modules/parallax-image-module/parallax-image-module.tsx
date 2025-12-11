@@ -1,22 +1,24 @@
 import { MODULE_VARIANTS } from '@forma/common';
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { ParallaxImagesModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { ContentContainer } from '@/ui/content-container/content-container';
-import { getSanityImageUrl } from '@/utils/groqd-client';
 import { ParallaxImage } from './subs/parallax-image';
 
 type TProps = {
   module: ParallaxImagesModuleDocumentType;
 };
 
-export function ParallaxImageModule({ module }: TProps) {
+export async function ParallaxImageModule({ module }: TProps) {
   const { smallImageWrapperTv, bigImageWrapperTv, pairContainerTv, imagesContainerTv } = styleTv();
 
-  const imagesUrls = module.imagePairs.map(x => ({
-    leftImageUrl: getSanityImageUrl(x.leftImage),
-    rightImageUrl: getSanityImageUrl(x.rightImage)
-  }));
+  const imagesData = await Promise.all(
+    module.imagePairs.map(async x => ({
+      leftImageData: await getFormaImageData(x.leftImage),
+      rightImageData: await getFormaImageData(x.rightImage)
+    }))
+  );
 
   return (
     <ModuleContentContainer skipContentContainer={true} skipYPadding={true}>
@@ -32,15 +34,15 @@ export function ParallaxImageModule({ module }: TProps) {
                 <div className={imagesContainerTv({ isEven })}>
                   <div className={bigImageWrapperTv({ isEven: i % 2 === 0 })}>
                     <ParallaxImage
-                      imageUrl={imagesUrls[i].leftImageUrl}
-                      altText={m.leftImage.altText}
+                      imageUrl={imagesData[i].leftImageData.imageUrl}
+                      altText={imagesData[i].leftImageData.imageAltText}
                       isSmallImage={false}
                     />
                   </div>
                   <div className={smallImageWrapperTv({ isEven: i % 2 === 0 })}>
                     <ParallaxImage
-                      imageUrl={imagesUrls[i].rightImageUrl}
-                      altText={m.rightImage.altText}
+                      imageUrl={imagesData[i].rightImageData.imageUrl}
+                      altText={imagesData[i].rightImageData.imageAltText}
                       isSmallImage={true}
                     />
                   </div>

@@ -9,7 +9,7 @@ interface IProcessStepProps extends IProcessStep {
   index: number;
 }
 
-export function ProcessStep({ title, mainText, estimatedDays, coverImage, coverImageUrl, index }: IProcessStepProps) {
+export function ProcessStep({ title, mainText, estimatedDays, coverImageData, index }: IProcessStepProps) {
   const {
     mainContainerTv,
     titleTv,
@@ -45,7 +45,7 @@ export function ProcessStep({ title, mainText, estimatedDays, coverImage, coverI
               </div>
             </div>
             <div className={imageWrapperTv()}>
-              <img src={coverImageUrl} alt={coverImage.altText} className={coverImageTv()} />
+              <img src={coverImageData.imageUrl} alt={coverImageData.imageAltText} className={coverImageTv()} />
             </div>
           </div>
         </ContentContainer>

@@ -1,8 +1,8 @@
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import Image from 'next/image';
 import type { ReadyToStartModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
-import { getSanityImageUrl } from '@/utils/groqd-client';
 import { Subtitle } from './subs/subtitle';
 
 type TProps = {
@@ -10,14 +10,14 @@ type TProps = {
 };
 
 export async function ReadyToStartModule({ module }: TProps) {
-  const imageUrl = getSanityImageUrl(module.backgroundImage);
+  const backgroundImageData = await getFormaImageData(module.backgroundImage);
 
   return (
     <ModuleContentContainer skipContentContainer={true} skipYPadding={true}>
       <div className='h-ready-to-start w-full relative'>
         <Image
-          src={imageUrl}
-          alt={module.backgroundImage.altText}
+          src={backgroundImageData.imageUrl}
+          alt={backgroundImageData.imageAltText}
           fill
           className='object-cover'
           style={{ filter: `brightness(${module.backgroundImage.brightness}%)` }}

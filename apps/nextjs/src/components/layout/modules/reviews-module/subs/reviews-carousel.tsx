@@ -22,8 +22,7 @@ export function ReviewsCarousel({ reviews }: TProps) {
     authorCompany,
     authorName,
     id,
-    image,
-    reviewImageUrl,
+    reviewImageData,
     authorRole,
     statement,
     brandImageUrl,
@@ -81,7 +80,11 @@ export function ReviewsCarousel({ reviews }: TProps) {
         <AnimatePresence initial={false}>
           <div className='col-start-1 lg:col-start-2 row-start-1 relative' key={id}>
             <motion.div className='absolute inset-0' {...commonMotionProps}>
-              <img src={reviewImageUrl} alt={image.altText} className='size-full object-cover' />
+              <img
+                src={reviewImageData.imageUrl}
+                alt={reviewImageData.imageAltText}
+                className='size-full object-cover'
+              />
             </motion.div>
           </div>
         </AnimatePresence>

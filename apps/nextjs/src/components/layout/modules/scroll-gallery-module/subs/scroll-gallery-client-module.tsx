@@ -38,7 +38,7 @@ export function ScrollGalleryClientModule({ images }: IScrollGalleryClientModule
   }, [images, filters]);
 
   const filteredModalImages = useMemo<IModalGalleryImage[]>(() => {
-    return filteredImages.map(x => ({ imageUrl: x.iamgeUrl, title: x.title }));
+    return filteredImages.map(x => ({ imageUrl: x.imageUrl, title: x.imageAltText }));
   }, [filteredImages]);
 
   const handleChangeCurrentIndex = (index: number) => {
@@ -63,7 +63,7 @@ export function ScrollGalleryClientModule({ images }: IScrollGalleryClientModule
               <Fragment key={x.key}>
                 <li className={imageItem()}>
                   <Button onClick={() => setSelectedImageIndex(i)} className={listItemButtonTv()}>
-                    <img src={x.iamgeUrl} alt={x.title} className={imageTv()} />
+                    <img src={x.imageUrl} alt={x.imageAltText} className={imageTv()} />
                     <div className={tagContainerTv()}>
                       {x.tags.map(tag => (
                         <p key={tag} className={tagTv()}>

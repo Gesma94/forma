@@ -4,6 +4,7 @@
   "author": "Matteo Gesmundo",
   "scripts": {
     "dev": "next dev",
+    "typecheck": "tsc --pretty --noEmit",
     "build:dep:common": "cd ../../packages/common && pnpm install && pnpm build",
     "build:dep:sanity": "cd ../../apps/sanity && pnpm install && pnpm typegen",
     "build": "next build",

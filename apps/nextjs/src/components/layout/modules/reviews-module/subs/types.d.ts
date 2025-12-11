@@ -1,3 +1,5 @@
+import { IFormImageInstance } from 'common/utils/get-forma-image';
+
 export type TFullReview = ReviewDocumentType & {
   reviewImageUrl: string;
   authorAvatarUrl: string;
@@ -14,7 +16,7 @@ export type TReview = {
   authorCompany: string;
   authorAvatar: ReviewDocumentType['authorAvatar'];
   brand: BrandDocumentType;
-  reviewImageUrl: string;
+  reviewImageData: IFormImageInstance;
   authorAvatarUrl: string;
   brandImageUrl: string;
 };

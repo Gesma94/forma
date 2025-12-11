@@ -1,10 +1,10 @@
 import { IMAGE_X_POSITION } from '@forma/common';
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { ReasonsModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { twoColumnLayout } from '@/styles/layouts';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
-import { getSanityImageUrl } from '@/utils/groqd-client';
 import { SubContent } from './subs/sub-content';
 import { SubHeading } from './subs/sub-heading';
 
@@ -14,7 +14,7 @@ type TProps = {
 
 export async function ReasonsModule({ module }: TProps) {
   const { imageWrapper, textWrapper } = style({ imagePosition: IMAGE_X_POSITION.LEFT });
-  const leftImageUrl = getSanityImageUrl(module.leftImage);
+  const leftImageData = await getFormaImageData(module.leftImage);
 
   return (
     <ModuleContentContainer title={module.heading}>
@@ -30,8 +30,8 @@ export async function ReasonsModule({ module }: TProps) {
           <div className={imageWrapper()}>
             <img
               className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl shadow-2xl'
-              alt={module.leftImage.altText}
-              src={leftImageUrl}
+              alt={leftImageData.imageAltText}
+              src={leftImageData.imageUrl}
             />
           </div>
           <div className={textWrapper()}>

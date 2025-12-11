@@ -7,12 +7,12 @@ type TCardProps = {
 };
 
 export function Card({ card }: TCardProps) {
-  const { title, description, image, imageUrl } = card;
+  const { title, description, imageData } = card;
   const { containerStyle, imageStyle, contentContainerStyle, titleStyle } = styles();
 
   return (
     <li className={containerStyle()}>
-      <img src={imageUrl} alt={image.altText} className={imageStyle()} />
+      <img src={imageData.imageUrl} alt={imageData.imageAltText} className={imageStyle()} />
       <div className={contentContainerStyle()}>
         <p className={titleStyle()}>{title}</p>
         <CardDescription value={description} />
