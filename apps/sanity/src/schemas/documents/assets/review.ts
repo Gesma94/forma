@@ -15,7 +15,7 @@ export const reviewDocumentType = defineType({
       authorName: 'authorName',
       authorRole: 'authorRole',
       authorCompany: 'authorCompany',
-      media: 'image'
+      media: 'image.formaImage.image'
     },
     prepare: ({ title, authorName, media, authorRole, authorCompany }) => ({
       media,
@@ -62,6 +62,7 @@ export const reviewDocumentType = defineType({
       name: 'brand',
       title: 'Brand',
       type: 'reference',
+      validation: rule => rule.required(),
       to: [{ type: DOCUMENT_SCHEMA_TYPES.brand }]
     })
   ]
