@@ -25,6 +25,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   quote: 'quoteDocumentType',
   review: 'reviewDocumentType',
   formaImageAsset: 'formaImageAssetDocumentType',
+  formaVideoAsset: 'formaVideoAssetDocumentType',
   contactUsModule: 'contactUsModuleDocumentType',
   clientSecretPage: 'clientSecretPageDocumentType',
   clientSecretPageVersion: 'clientSecretPageVersionDocumentType'
@@ -34,6 +35,7 @@ export const OBJECT_SCHEMA_TYPES = {
   imagePair: 'imagePairObjectType',
   link: 'linkObjectType',
   formaImageInstance: 'formaImageInstanceObjectType',
+  formaMediaInstance: 'formaMediaInstanceObjectType',
   cta: 'ctaObjectType',
   contact: 'contactObjectType',
   card: 'cardObjectType',

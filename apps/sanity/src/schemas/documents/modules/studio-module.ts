@@ -2,6 +2,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineFormaImageField, defineRichEditorField } from '../../../fields';
+import { defineFormaMediaField } from '../../../fields/media';
 
 export const studioModuleDocumentType = defineType({
   type: 'document',
@@ -39,9 +40,9 @@ export const studioModuleDocumentType = defineType({
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
-    defineFormaImageField({
-      name: 'image',
-      title: 'Image',
+    defineFormaMediaField({
+      name: 'media',
+      title: 'Media',
       validation: rule => rule.required()
     }),
     defineField({

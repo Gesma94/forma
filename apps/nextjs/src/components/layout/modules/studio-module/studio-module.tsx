@@ -3,6 +3,7 @@ import { getFormaImageData } from 'common/utils/get-forma-image';
 import type { StudioModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { Button } from '@/ui/buttons/button/button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
+import { FormaMedia } from '@/ui/forma-media/forma-media';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { ListTextItem } from './subs/list-text-item';
 import { StudioModuleSubHeading } from './subs/studio-module-subheading';
@@ -12,7 +13,9 @@ type TProps = {
 };
 
 export async function StudioModule({ module }: TProps) {
-  const imageData = await getFormaImageData(module.image);
+  console.log(module);
+
+  // const imageData = await getFormaImageData(module.media);
   const problemsImageData = await getFormaImageData(module.problemsImage);
 
   return (
@@ -39,10 +42,9 @@ export async function StudioModule({ module }: TProps) {
             )}
           </div>
           <div className='relative contain-size'>
-            <img
+            <FormaMedia
+              formaMedia={module.media}
               className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
-              alt={imageData.imageAltText}
-              src={imageData.imageUrl}
             />
           </div>
         </div>
