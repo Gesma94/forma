@@ -12,7 +12,7 @@ export const formaVideoDocumentType = defineType({
     select: {
       videoTitle: 'videoTitle',
       clientName: 'clientName',
-      media: 'image'
+      media: 'thumbnail'
     },
     prepare: ({ clientName, videoTitle, media }) => ({
       title: getFormaImageAssetName(videoTitle, clientName) ?? media.asset._ref ?? 'Unnamed Video',
@@ -34,6 +34,12 @@ export const formaVideoDocumentType = defineType({
       name: 'video',
       title: 'Video',
       type: 'file',
+      validation: rule => rule.required()
+    }),
+    defineField({
+      name: 'thumbnail',
+      title: 'Thumbnail',
+      type: 'image',
       validation: rule => rule.required()
     })
   ]
