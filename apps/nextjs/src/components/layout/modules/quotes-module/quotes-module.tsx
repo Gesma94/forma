@@ -3,6 +3,7 @@ import { ModuleContentContainer } from '@/ui/containers/module-content-container
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { QuotesCarousel } from './subs/quotes-carousel';
 import type { TQuoteWithAvatarUrl } from './subs/types';
+import { isNotNil } from 'es-toolkit';
 
 type TProps = {
   module: QuotesModuleDocumentType;
@@ -25,7 +26,7 @@ export async function QuotesModule({ module }: TProps) {
   return (
     <ModuleContentContainer title={module.heading} skipContentContainer={true}>
       <div className='px-16 md:px-24'>
-        <QuotesCarousel quotes={quotesWithImages} />
+        <QuotesCarousel quotes={quotesWithImages} hasTitle={isNotNil(module.heading)} />
       </div>
     </ModuleContentContainer>
   );

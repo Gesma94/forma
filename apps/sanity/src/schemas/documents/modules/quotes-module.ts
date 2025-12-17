@@ -12,19 +12,25 @@ export const quotesModuleDocumentType = defineType({
   preview: {
     select: {
       title: 'heading',
-      quotes: 'quotes'
+      quotes: 'quotes',
+      friendlyName: 'friendlyName'
     },
-    prepare: ({ title, quotes }) => ({
-      title: textBlockToPlainText(title),
+    prepare: ({ title, quotes, friendlyName }) => ({
+      title: title ? textBlockToPlainText(title) : (friendlyName ?? 'Unnamed Quotes Module'),
       subtitle: `Selected ${quotes.length} quote(s)`
     })
   },
   fields: [
+    defineField({
+      name: 'friendlyName',
+      title: 'Friendly Name',
+      type: 'string',
+      description: 'used only to identify the module when heading is not defined'
+    }),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',
       allowColorMarkDecorator: false,
-      validation: rule => rule.required()
     }),
     defineField({
       name: 'quotes',

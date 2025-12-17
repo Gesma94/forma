@@ -1,17 +1,20 @@
 import Image from 'next/image';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import type { TQuoteWithAvatarUrl } from './types';
+import { tv } from 'tailwind-variants';
 
 type TProps = {
+  hasMarginTop: boolean;
   quote: TQuoteWithAvatarUrl;
 };
 
-export function Quote({
+export function Quote({hasMarginTop, 
   quote: { authorAvatar, authorCompany, authorName, authorRole, statement, authorAvatarUrl }
 }: TProps) {
+  const {mainContainerTv} = stylesTv({ hasMarginTop });
   return (
     <div>
-      <div className='mx-auto max-w-3xl text-center flex items-center justify-center relative mt-20'>
+      <div className={mainContainerTv()}>
         <p className='opacity-30 absolute -top-10 text-8xl -left-10 md:-left-20 md:text-9xl text-primary'>“</p>
         <ParagraphPortableText value={statement} />
         <p className='opacity-30 absolute -bottom-10 text-8xl -right-10 md:-right-20 md:text-9xl text-primary'>„</p>
@@ -36,3 +39,19 @@ export function Quote({
     </div>
   );
 }
+
+const stylesTv = tv({
+  slots: {
+    mainContainerTv: 'mx-auto max-w-3xl text-center flex items-center justify-center relative',
+  },
+  variants: {
+    hasMarginTop: {
+      true: {
+        mainContainerTv: 'mt-20'
+      },
+      false: {
+        mainContainerTv: 'mt-6'
+      }
+    }
+  }
+})

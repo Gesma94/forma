@@ -9,10 +9,11 @@ import type { TQuoteWithAvatarUrl } from './types';
 
 type Direction = 'left' | 'right';
 type TProps = {
+  hasTitle: boolean;
   quotes: TQuoteWithAvatarUrl[];
 };
 
-export function QuotesCarousel({ quotes }: TProps) {
+export function QuotesCarousel({ quotes, hasTitle }: TProps) {
   const [direction, setDirection] = useState<Direction | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -42,7 +43,7 @@ export function QuotesCarousel({ quotes }: TProps) {
             exit='exit'
             key={currentQuote._id}
           >
-            <Quote quote={currentQuote} />
+            <Quote quote={currentQuote} hasMarginTop={hasTitle} />
           </motion.div>
         </AnimatePresence>
         <div className='mt-8 mx-auto md:mx-[unset] md:mt-0 md:absolute flex gap-2 bottom-3 right-8'>
