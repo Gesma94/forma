@@ -9,7 +9,7 @@ export function BookModuleSubHeading({ value }: TBasePortableTextConsumerProps) 
       components={{
         block: {
           normal: ({ children }) => (
-            <h1 className='prose-xl font-inter text-left text-primary-text md:prose-xl 2xl:prose-2xl'>{children}</h1>
+            <h1 className='prose-lg font-inter text-left text-primary-text'>{children}</h1>
           )
         },
         marks: {
