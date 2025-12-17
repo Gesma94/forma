@@ -22,7 +22,6 @@ export const inlineGalleryModuleDocumentType = defineType({
       name: 'heading',
       title: 'Heading',
       type: 'string',
-      validation: rule => rule.required()
     }),
     defineField({
       name: 'images',

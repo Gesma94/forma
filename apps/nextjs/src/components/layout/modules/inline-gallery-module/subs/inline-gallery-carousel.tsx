@@ -61,7 +61,7 @@ export function InlineGalleryCarousel({ images }: TProps) {
   }, [isInView]);
 
   return (
-    <div className='relative mt-10'>
+    <div className='relative'>
       <div className='top-1/2 left-2 sm:left-14 absolute -translate-y-1/2 z-10 touch-device:hidden'>
         <IconButton
           icon={CaretLeftIcon}
