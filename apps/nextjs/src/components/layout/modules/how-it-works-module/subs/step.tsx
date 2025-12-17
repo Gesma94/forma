@@ -79,7 +79,7 @@ const styles = tv({
     ],
     descriptionContainerStyle: [
       'col-start-2 row-start-4',
-      'lg:col-start-1 lg:row-start-5 lg:mt-4',
+      'lg:col-start-1 lg:row-start-5',
       'max-w-md mx-auto h-full'
     ]
   }
