@@ -77,10 +77,6 @@ const styles = tv({
       'lg:col-start-1 lg:row-start-4 lg:mt-2',
       'prose-sm uppercase text-text-muted'
     ],
-    descriptionContainerStyle: [
-      'col-start-2 row-start-4',
-      'lg:col-start-1 lg:row-start-5',
-      'max-w-md mx-auto h-full'
-    ]
+    descriptionContainerStyle: ['col-start-2 row-start-4', 'lg:col-start-1 lg:row-start-5', 'max-w-md mx-auto h-full']
   }
 });

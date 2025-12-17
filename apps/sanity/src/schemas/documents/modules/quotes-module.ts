@@ -30,7 +30,7 @@ export const quotesModuleDocumentType = defineType({
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',
-      allowColorMarkDecorator: false,
+      allowColorMarkDecorator: false
     }),
     defineField({
       name: 'quotes',

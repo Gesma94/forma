@@ -1,23 +1,24 @@
 import { fetchFormaImageAssetDocument } from 'common/utils/get-forma-image';
+import { isNotNil } from 'es-toolkit';
+import type { ComponentProps } from 'react';
+import { tv } from 'tailwind-variants';
 import type { InlineGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { InlineGalleryCarousel } from './subs/inline-gallery-carousel';
-import { tv } from 'tailwind-variants';
-import { isNotNil } from 'es-toolkit';
-import { ComponentProps } from 'react';
 
 type TProps = {
   module: InlineGalleryModuleDocumentType;
 };
 
 export async function InlineGalleryModule({ module }: TProps) {
-  const { inlineGalleryWrapperTv } = stylesTv({ withTitle: isNotNil(module.heading)});
+  const { inlineGalleryWrapperTv } = stylesTv({ withTitle: isNotNil(module.heading) });
   const images = await Promise.all(
     module.images.map(async x => ({ ...(await fetchFormaImageAssetDocument(x._ref)), key: x._key }))
   );
 
-  const buttonSurface : ComponentProps<typeof LinkButton>['surface'] = module.variant === 'on-primary' ? 'primary' : 'bg';
+  const buttonSurface: ComponentProps<typeof LinkButton>['surface'] =
+    module.variant === 'on-primary' ? 'primary' : 'bg';
 
   return (
     <ModuleContentContainer variant={module.variant} title={module.heading} skipContentContainer={true}>
@@ -49,8 +50,8 @@ const stylesTv = tv({
   variants: {
     withTitle: {
       true: {
-        inlineGalleryWrapperTv: 'mt-10',
+        inlineGalleryWrapperTv: 'mt-10'
       }
     }
   }
-})
+});

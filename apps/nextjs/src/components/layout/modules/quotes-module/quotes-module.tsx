@@ -1,9 +1,9 @@
+import { isNotNil } from 'es-toolkit';
 import type { QuotesModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { QuotesCarousel } from './subs/quotes-carousel';
 import type { TQuoteWithAvatarUrl } from './subs/types';
-import { isNotNil } from 'es-toolkit';
 
 type TProps = {
   module: QuotesModuleDocumentType;

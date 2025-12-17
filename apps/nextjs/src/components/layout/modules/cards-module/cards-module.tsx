@@ -26,7 +26,9 @@ export async function CardsModule({ module }: TProps) {
   return (
     <ModuleContentContainer title={module.heading} variant={MODULE_VARIANTS.ON_PRIMARY} skipContentContainer={true}>
       <div className={moduleWrapperStyle()}>
-        {module.showBgImage && <img src={backgroundImageData.imageUrl} alt={backgroundImageData.imageAltText} className={bgImageStyle()} />}
+        {module.showBgImage && (
+          <img src={backgroundImageData.imageUrl} alt={backgroundImageData.imageAltText} className={bgImageStyle()} />
+        )}
         <div className={contentContainerWrapperStyle()}>
           <ContentContainer>
             <ul className={listStyle()}>

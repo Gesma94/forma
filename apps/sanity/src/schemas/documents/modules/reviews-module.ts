@@ -30,12 +30,12 @@ export const reviewsModuleDocumentType = defineType({
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',
-      allowColorMarkDecorator: false,
+      allowColorMarkDecorator: false
     }),
     defineRichEditorField({
       name: 'content',
       title: 'Content',
-      allowColorMarkDecorator: false,
+      allowColorMarkDecorator: false
     }),
     defineField({
       name: 'reviews',

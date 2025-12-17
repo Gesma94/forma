@@ -31,7 +31,7 @@ export const cardsModuleDocumentType = defineType({
     defineFormaImageField({
       name: 'backgroundImage',
       title: 'Background Image',
-      validation: rule => rule.required(),
+      validation: rule => rule.required()
     }),
     defineField({
       type: 'boolean',

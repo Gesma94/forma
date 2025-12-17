@@ -2,15 +2,15 @@
 
 import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
 import { MOTION_ANIMATION } from 'common/enums/motion-animation';
+import { secondsToMilliseconds } from 'date-fns';
 import { AnimatePresence, type HTMLMotionProps, motion } from 'motion/react';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useInterval } from 'react-use';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
 import { MotionDiv } from '@/ui/motion/motion-div';
 import { ReviewStatement } from './review-statement';
 import type { TReview } from './types';
-import { useInterval } from 'react-use';
-import { secondsToMilliseconds } from 'date-fns';
 
 type TProps = {
   reviews: TReview[];
@@ -42,16 +42,20 @@ export function ReviewsCarousel({ reviews }: TProps) {
 
   const handleMouseEnter = () => {
     setHasMouseEntered(true);
-  }
+  };
 
   const handleMouseLeave = () => {
     setHasMouseEntered(false);
-  }
+  };
 
   useInterval(() => handleNextClick(), hasMouseEntered ? null : secondsToMilliseconds(6));
 
   return (
-    <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <MotionDiv
+      animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className='w-full lg:h-[720px] grid grid-cols-1 lg:grid-cols-[minmax(512px,1fr)_2fr] grid-rows-[400px_auto] lg:grid-rows-1 bg-primary overflow-hidden'>
         <div className='col-start-1 row-start-2 lg:row-start-1 relative grid grid-cols-1 grid-rows-1'>
           <AnimatePresence initial={false}>

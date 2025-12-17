@@ -1,5 +1,7 @@
 import { MODULE_VARIANTS } from '@forma/common';
 import { getFormaImageData } from 'common/utils/get-forma-image';
+import { isNotNil } from 'es-toolkit';
+import { tv } from 'tailwind-variants';
 import type { ReviewsModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { ContentContainer } from '@/ui/content-container/content-container';
@@ -7,8 +9,6 @@ import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-tex
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { ReviewsCarousel } from './subs/reviews-carousel';
 import type { TReview } from './subs/types';
-import { tv } from 'tailwind-variants';
-import { isNotNil } from 'es-toolkit';
 
 type TProps = {
   module: ReviewsModuleDocumentType;
@@ -19,7 +19,7 @@ type TSanityQueryParams = {
 };
 
 export async function ReviewsModule({ module }: TProps) {
-  const { containerTv } = stylesTv({ hasTitle: isNotNil(module.heading)});
+  const { containerTv } = stylesTv({ hasTitle: isNotNil(module.heading) });
   const reviews = await runQuery(
     q
       .parameters<TSanityQueryParams>()
@@ -67,7 +67,7 @@ export async function ReviewsModule({ module }: TProps) {
 
 const stylesTv = tv({
   slots: {
-    containerTv: '',
+    containerTv: ''
   },
   variants: {
     hasTitle: {
@@ -76,4 +76,4 @@ const stylesTv = tv({
       }
     }
   }
-})
+});

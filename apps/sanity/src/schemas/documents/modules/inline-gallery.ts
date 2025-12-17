@@ -24,7 +24,7 @@ export const inlineGalleryModuleDocumentType = defineType({
     defineField({
       name: 'heading',
       title: 'Heading',
-      type: 'string',
+      type: 'string'
     }),
     defineField({
       name: 'friendlyName',

@@ -1,17 +1,18 @@
 import Image from 'next/image';
+import { tv } from 'tailwind-variants';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import type { TQuoteWithAvatarUrl } from './types';
-import { tv } from 'tailwind-variants';
 
 type TProps = {
   hasMarginTop: boolean;
   quote: TQuoteWithAvatarUrl;
 };
 
-export function Quote({hasMarginTop, 
+export function Quote({
+  hasMarginTop,
   quote: { authorAvatar, authorCompany, authorName, authorRole, statement, authorAvatarUrl }
 }: TProps) {
-  const {mainContainerTv} = stylesTv({ hasMarginTop });
+  const { mainContainerTv } = stylesTv({ hasMarginTop });
   return (
     <div>
       <div className={mainContainerTv()}>
@@ -42,7 +43,7 @@ export function Quote({hasMarginTop,
 
 const stylesTv = tv({
   slots: {
-    mainContainerTv: 'mx-auto max-w-3xl text-center flex items-center justify-center relative',
+    mainContainerTv: 'mx-auto max-w-3xl text-center flex items-center justify-center relative'
   },
   variants: {
     hasMarginTop: {
@@ -54,4 +55,4 @@ const stylesTv = tv({
       }
     }
   }
-})
+});
