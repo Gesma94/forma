@@ -4,18 +4,22 @@ import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react/dist/ssr';
 import type { IFormImageAsset } from 'common/utils/get-forma-image';
 import { isNil } from 'es-toolkit';
 import { useInView } from 'motion/react';
-import { type UIEventHandler, useLayoutEffect, useRef, useState } from 'react';
+import { ComponentProps, type UIEventHandler, useLayoutEffect, useRef, useState } from 'react';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
+import { TModuleVariants } from '@forma/common';
 
 type TProps = {
+  variant: TModuleVariants;
   images: (IFormImageAsset & { key: string })[];
 };
 
-export function InlineGalleryCarousel({ images }: TProps) {
+export function InlineGalleryCarousel({ images, variant }: TProps) {
   const [isCaretLeftDisabled, setIsCaretLeftDisabled] = useState(false);
   const [isCaretRightDisabled, setIsCaretRightDisabled] = useState(false);
   const scrollableElementRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(scrollableElementRef, { once: true });
+
+  const buttonSurface : ComponentProps<typeof IconButton>['surface'] = variant === 'on-primary' ? 'primary' : 'bg';
 
   const handleCaretLeftClick = () => {
     const scrollableElement = scrollableElementRef.current;
@@ -66,7 +70,7 @@ export function InlineGalleryCarousel({ images }: TProps) {
         <IconButton
           icon={CaretLeftIcon}
           size='large'
-          surface='primary'
+          surface={buttonSurface}
           onClick={handleCaretLeftClick}
           isDisabled={isCaretLeftDisabled}
         />
@@ -85,7 +89,7 @@ export function InlineGalleryCarousel({ images }: TProps) {
               className='h-full w-auto shrink-0 relative max-w-[calc(100vw-3rem)] sm:max-w-[calc(100vw-4rem)] snap-center'
             >
               <img src={image.imageUrl} alt={image.imageAltText} className='rounded-2xl h-full w-auto object-cover' />
-              <div className='absolute bottom-4 left-4 text-shadow-xl text-md'>
+              <div className='absolute bottom-4 left-4 text-shadow-xl text-md text-primary-text'>
                 <p className='text-md'>{image.imageTitle}</p>
                 <p className='text-sm'>{image.clientName}</p>
               </div>
@@ -97,7 +101,7 @@ export function InlineGalleryCarousel({ images }: TProps) {
         <IconButton
           icon={CaretRightIcon}
           size='large'
-          surface='primary'
+          surface={buttonSurface}
           onClick={handleCaretRightClick}
           isDisabled={isCaretRightDisabled}
         />

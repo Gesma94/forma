@@ -1,6 +1,7 @@
 import { GalleryHorizontalIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
+import { defineModuleVariantField } from '../../../fields';
 
 export const inlineGalleryModuleDocumentType = defineType({
   type: 'document',
@@ -10,18 +11,26 @@ export const inlineGalleryModuleDocumentType = defineType({
   preview: {
     select: {
       title: 'heading',
-      images: 'images'
+      images: 'images',
+      friendlyName: 'friendlyName'
     },
-    prepare: ({ title, images }) => ({
-      title,
+    prepare: ({ title, images, friendlyName }) => ({
+      title: title ?? friendlyName ?? 'Unnamed Inline Gallery Module',
       subtitle: `Selected ${images.length} image(s)`
     })
   },
   fields: [
+    defineModuleVariantField(),
     defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',
+    }),
+    defineField({
+      name: 'friendlyName',
+      title: 'Friendly Name',
+      type: 'string',
+      description: 'used only to identify the module when heading is not defined'
     }),
     defineField({
       name: 'images',
