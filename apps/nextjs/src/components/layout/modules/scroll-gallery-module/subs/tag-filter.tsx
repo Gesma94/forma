@@ -25,8 +25,8 @@ export function TagFilter({ isSelected, label, onChange, isIndeterminate }: ITag
 const stylesTv = tv({
   slots: {
     containerTv: 'flex items-center gap-2 cursor-pointer',
-    labelTv: 'text-md text-primary-text',
-    checkboxTv: 'size-6 border bg-bg border-bg rounded-sm flex items-center justify-center',
+    labelTv: 'text-sm text-primary-text',
+    checkboxTv: 'size-5 border bg-bg border-bg rounded-sm flex items-center justify-center',
     checkIconTv: 'hidden'
   },
   variants: {

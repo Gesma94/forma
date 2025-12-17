@@ -1,7 +1,6 @@
 import { ImageIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
-import { OBJECT_SCHEMA_TYPES } from '../../common/constants';
-import { defineImageField } from '../../fields';
+import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../common/constants';
 import { defineImageTagsField } from '../../fields/image-tags';
 
 export const scrollGalleryImageObjectType = defineType({
@@ -10,9 +9,9 @@ export const scrollGalleryImageObjectType = defineType({
   name: OBJECT_SCHEMA_TYPES.scrollGalleryImage,
   preview: {
     select: {
-      title: 'title',
+      title: 'image.clientName',
       imageTags: 'imageTags',
-      media: 'image'
+      media: 'image.image'
     },
     prepare: ({ title, imageTags, media }) => ({
       title,
@@ -21,17 +20,11 @@ export const scrollGalleryImageObjectType = defineType({
     })
   },
   fields: [
-    defineImageField({
+    defineField({
       name: 'image',
       title: 'Image',
-      skipAltText: true,
-      skipBrightness: true,
-      validation: rule => rule.required()
-    }),
-    defineField({
-      type: 'string',
-      title: 'Title',
-      name: 'title',
+      type: 'reference',
+      to: { type: DOCUMENT_SCHEMA_TYPES.formaImageAsset },
       validation: rule => rule.required()
     }),
     defineImageTagsField()

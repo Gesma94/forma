@@ -38,7 +38,7 @@ export function ScrollGalleryClientModule({ images }: IScrollGalleryClientModule
   }, [images, filters]);
 
   const filteredModalImages = useMemo<IModalGalleryImage[]>(() => {
-    return filteredImages.map(x => ({ imageUrl: x.iamgeUrl, title: x.title }));
+    return filteredImages.map(x => ({ imageUrl: x.imageUrl, title: x.imageAltText }));
   }, [filteredImages]);
 
   const handleChangeCurrentIndex = (index: number) => {
@@ -63,7 +63,7 @@ export function ScrollGalleryClientModule({ images }: IScrollGalleryClientModule
               <Fragment key={x.key}>
                 <li className={imageItem()}>
                   <Button onClick={() => setSelectedImageIndex(i)} className={listItemButtonTv()}>
-                    <img src={x.iamgeUrl} alt={x.title} className={imageTv()} />
+                    <img src={x.imageUrl} alt={x.imageAltText} className={imageTv()} />
                     <div className={tagContainerTv()}>
                       {x.tags.map(tag => (
                         <p key={tag} className={tagTv()}>
@@ -90,7 +90,7 @@ export function ScrollGalleryClientModule({ images }: IScrollGalleryClientModule
 
 const stylesTv = tv({
   slots: {
-    filterWrapper: 'min-h-24 sticky top-0 z-10',
+    filterWrapper: 'sticky top-0 z-10',
     imageList: 'bg-bg w-full columns-1 md:columns-2 lg:columns-3 2xl:columns-4 py-10 md:py-20 px-10 lg:px-20',
     imageTv: 'size-full object-cover',
     imageItem: 'w-full mb-4 rounded-2xl overflow-hidden',

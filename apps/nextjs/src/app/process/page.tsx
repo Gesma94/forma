@@ -29,7 +29,7 @@ export default async function Page() {
 
   return (
     <div>
-      <Topbar variant='solid' />
+      <Topbar variant='floating' />
       <ModuleRenderer modules={sanityData.modules} />
     </div>
   );

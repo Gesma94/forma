@@ -22,17 +22,17 @@
   },
   "dependencies": {
     "@forma/common": "workspace:*",
-    "@sanity/vision": "^4.6.1",
-    "lucide-react": "^0.540.0",
-    "react": "^19.1",
-    "react-dom": "^19.1",
-    "sanity": "^4.6.1",
-    "styled-components": "^6.1.18"
+    "@sanity/vision": "^4.21.0",
+    "lucide-react": "^0.559.0",
+    "react": "^19.2",
+    "react-dom": "^19.2",
+    "sanity": "^4.21.0",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "@types/react": "^19.1",
+    "@types/react": "^19.2",
     "cpy-cli": "^6.0.0",
     "mkdirp": "^3.0.1",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.1.2"
   }
 }

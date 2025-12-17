@@ -1,7 +1,8 @@
 import { BACKGROUND_COLOR, IMAGE_SIZE } from '@forma/common';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
-import { defineImageField } from '../../../fields';
+import { getFormaImageAssetName } from '../../../common/utils';
+import { defineFormaImageField } from '../../../fields';
 
 export const imageModuleDocumentType = defineType({
   type: 'document',
@@ -10,12 +11,18 @@ export const imageModuleDocumentType = defineType({
   preview: {
     select: {
       title: 'title',
-      media: 'backgroundImage'
+      media: 'backgroundImage.formaImage.image',
+      formImageTitle: 'backgroundImage.formaImage.imageTitle',
+      formImageClientName: 'backgroundImage.formaImage.clientName'
     },
-    prepare: ({ title, media }) => ({ title, media, subtitle: 'Image Module' })
+    prepare: ({ title, media, formImageTitle, formImageClientName }) => ({
+      title,
+      media,
+      subtitle: getFormaImageAssetName(formImageTitle, formImageClientName) ?? undefined
+    })
   },
   fields: [
-    defineImageField({
+    defineFormaImageField({
       skipAltText: true,
       name: 'backgroundImage',
       title: 'Background Image',

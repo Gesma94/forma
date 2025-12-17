@@ -1,8 +1,8 @@
 import { RectangleHorizontalIcon } from 'lucide-react';
 import { defineType } from 'sanity';
 import { OBJECT_SCHEMA_TYPES } from '../../common/constants';
-import { getVariantTitle } from '../../common/utils';
-import { defineImageField, defineModuleVariantField } from '../../fields';
+import { getFormaImageAssetName, getVariantTitle } from '../../common/utils';
+import { defineFormaImageField, defineModuleVariantField } from '../../fields';
 
 export const imagePairObjectType = defineType({
   type: 'object',
@@ -10,24 +10,34 @@ export const imagePairObjectType = defineType({
   name: OBJECT_SCHEMA_TYPES.imagePair,
   preview: {
     select: {
-      leftImage: 'leftImage',
-      rightImage: 'rightImage',
-      variant: 'variant'
+      variant: 'variant',
+      media: 'leftImage.formaImage.image',
+      leftFormaImageTitle: 'leftImage.formaImage.imageTitle',
+      leftFormaImageClientName: 'leftImage.formaImage.clientName',
+      rightFormaImageTitle: 'rightImage.formaImage.imageTitle',
+      rightFormaImageClientName: 'rightImage.formaImage.clientName'
     },
-    prepare: ({ leftImage, rightImage, variant }) => ({
+    prepare: ({
+      leftFormaImageClientName,
+      leftFormaImageTitle,
+      rightFormaImageClientName,
+      rightFormaImageTitle,
+      media,
+      variant
+    }) => ({
+      media,
       title: `Image Pair - ${getVariantTitle(variant)}`,
-      subtitle: `${leftImage.altText} and ${rightImage.altText}`,
-      media: leftImage
+      subtitle: `${getFormaImageAssetName(leftFormaImageTitle, leftFormaImageClientName)} || ${getFormaImageAssetName(rightFormaImageTitle, rightFormaImageClientName)}`
     })
   },
   fields: [
     defineModuleVariantField(),
-    defineImageField({
+    defineFormaImageField({
       name: 'leftImage',
       title: 'Left Image',
       validation: rule => rule.required()
     }),
-    defineImageField({
+    defineFormaImageField({
       name: 'rightImage',
       title: 'Right Image',
       validation: rule => rule.required()

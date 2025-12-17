@@ -6,7 +6,7 @@ export const formaImageInstanceObjectType = defineType({
   name: OBJECT_SCHEMA_TYPES.formaImageInstance,
   preview: {
     select: {
-      image: 'image',
+      image: 'formaImage',
       overrideAltText: 'overrideAltText'
     },
     prepare: ({ overrideAltText, image }) => ({
@@ -16,7 +16,7 @@ export const formaImageInstanceObjectType = defineType({
   },
   fields: [
     defineField({
-      name: 'image',
+      name: 'formaImage',
       title: 'Forma Image',
       type: 'reference',
       to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }]

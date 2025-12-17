@@ -1,24 +1,27 @@
 'use client';
 
 import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react/dist/ssr';
+import type { IFormImageAsset } from 'common/utils/get-forma-image';
 import { isNil } from 'es-toolkit';
 import { useInView } from 'motion/react';
-import { type UIEventHandler, useLayoutEffect, useRef, useState } from 'react';
-import type { InlineGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { ComponentProps, type UIEventHandler, useLayoutEffect, useRef, useState } from 'react';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
 import { motion } from 'motion/react';
+import { TModuleVariants } from '@forma/common';
 
 type TProps = {
-  module: InlineGalleryModuleDocumentType;
-  imagesUrl: string[];
+  variant: TModuleVariants;
+  images: (IFormImageAsset & { key: string })[];
 };
 
-export function InlineGalleryCarousel({ module, imagesUrl }: TProps) {
+export function InlineGalleryCarousel({ images, variant }: TProps) {
   const [isCaretLeftDisabled, setIsCaretLeftDisabled] = useState(false);
   const [isCaretRightDisabled, setIsCaretRightDisabled] = useState(false);
   const scrollableElementRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(scrollableElementRef, { once: true });
   const constraintsRef = useRef(null)
+
+  const buttonSurface : ComponentProps<typeof IconButton>['surface'] = variant === 'on-primary' ? 'primary' : 'bg';
 
   const handleCaretLeftClick = () => {
     const scrollableElement = scrollableElementRef.current;
@@ -65,12 +68,12 @@ export function InlineGalleryCarousel({ module, imagesUrl }: TProps) {
   }, [isInView]);
 
   return (
-    <div className='relative mt-10 flex overflow-x-hidden' ref={constraintsRef}>
+    <div className='relative flex overflow-x-hidden' ref={constraintsRef}>
       <div className='top-1/2 left-2 sm:left-14 absolute -translate-y-1/2 z-10 touch-device:hidden'>
         <IconButton
           icon={CaretLeftIcon}
           size='large'
-          surface='primary'
+          surface={buttonSurface}
           onClick={handleCaretLeftClick}
           isDisabled={isCaretLeftDisabled}
         />
@@ -85,17 +88,16 @@ export function InlineGalleryCarousel({ module, imagesUrl }: TProps) {
         className='min-w-max flex gap-4 sm:gap-10 h-[720px] relative px-4 sm:px-20 lg:px-40 snap-x snap-mandatory'
         style={{ scrollbarWidth: 'none' }}
       >
-        {imagesUrl.map((imageUrl, i) => {
-          const image = module.images[i];
+        {images.map(image => {
           return (
             <div
-              key={image._key}
+              key={image.key}
               className='h-full w-auto shrink-0 relative max-w-[calc(100vw-3rem)] sm:max-w-[calc(100vw-4rem)] snap-center'
             >
-              <img src={imageUrl} alt={image.altText} draggable={false} className='rounded-2xl h-full w-auto object-cover' />
-              <div className='absolute bottom-4 left-4 text-shadow-xl text-md'>
-                <p className='text-md'>{image.title}</p>
-                <p className='text-sm'>{image.subtitle}</p>
+              <img src={image.imageUrl} alt={image.imageAltText} draggable={false} className='rounded-2xl h-full w-auto object-cover' />
+              <div className='absolute bottom-4 left-4 text-shadow-xl text-md text-primary-text'>
+                <p className='text-md'>{image.imageTitle}</p>
+                <p className='text-sm'>{image.clientName}</p>
               </div>
             </div>
           );
@@ -108,7 +110,7 @@ export function InlineGalleryCarousel({ module, imagesUrl }: TProps) {
         <IconButton
           icon={CaretRightIcon}
           size='large'
-          surface='primary'
+          surface={buttonSurface}
           onClick={handleCaretRightClick}
           isDisabled={isCaretRightDisabled}
         />

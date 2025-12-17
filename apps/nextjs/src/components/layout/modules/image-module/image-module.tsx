@@ -1,10 +1,10 @@
 import { BACKGROUND_COLOR, IMAGE_SIZE } from '@forma/common';
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import { isNotNil } from 'es-toolkit';
 import Image from 'next/image';
 import { tv } from 'tailwind-variants';
 import type { ImageModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
-import { getSanityImageUrl } from '@/utils/groqd-client';
 
 type TProps = {
   module: ImageModuleDocumentType;
@@ -16,7 +16,7 @@ export async function ImageModule({ module }: TProps) {
     upperBackground: module.upperBackground,
     lowerBackground: module.lowerBackground
   });
-  const imageUrl = getSanityImageUrl(module.backgroundImage);
+  const backgroundImageData = await getFormaImageData(module.backgroundImage);
 
   return (
     <ModuleContentContainer skipContentContainer={true} skipYPadding={true}>
@@ -26,9 +26,9 @@ export async function ImageModule({ module }: TProps) {
         <div className={imageWrapperStyle()}>
           <Image
             fill={true}
-            src={imageUrl}
             priority={false}
-            alt={module.title}
+            src={backgroundImageData.imageUrl}
+            alt={backgroundImageData.imageAltText}
             className='object-cover md:shadow-[0_25px_50px_-12px_rgb(0_0_0/_78%)] rounded-2xl'
             style={{ filter: `brightness(${module.backgroundImage.brightness}%)` }}
           />

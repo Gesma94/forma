@@ -1,6 +1,7 @@
 import { ImageIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
+import { getFormaImageAssetName } from '../../../common/utils';
 
 export const formaImageDocumentType = defineType({
   type: 'document',
@@ -9,15 +10,24 @@ export const formaImageDocumentType = defineType({
   name: DOCUMENT_SCHEMA_TYPES.formaImageAsset,
   preview: {
     select: {
-      title: 'altText',
+      imageTitle: 'imageTitle',
+      clientName: 'clientName',
       media: 'image'
     },
-    prepare: ({ title, media }) => ({ title: title ?? media.asset._ref ?? 'Unnamed Image', media })
+    prepare: ({ clientName, imageTitle, media }) => ({
+      title: getFormaImageAssetName(imageTitle, clientName) ?? media.asset._ref ?? 'Unnamed Image',
+      media
+    })
   },
   fields: [
     defineField({
-      title: 'Alternative Text',
-      name: 'altText',
+      title: 'Client Name',
+      name: 'clientName',
+      type: 'string'
+    }),
+    defineField({
+      title: 'Image Title',
+      name: 'imageTitle',
       type: 'string'
     }),
     defineField({

@@ -9,6 +9,8 @@ import { IconButton } from '@/ui/buttons/icon-button/icon-button';
 import { MotionDiv } from '@/ui/motion/motion-div';
 import { ReviewStatement } from './review-statement';
 import type { TReview } from './types';
+import { useInterval } from 'react-use';
+import { secondsToMilliseconds } from 'date-fns';
 
 type TProps = {
   reviews: TReview[];
@@ -16,19 +18,21 @@ type TProps = {
 
 export function ReviewsCarousel({ reviews }: TProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [hasMouseEntered, setHasMouseEntered] = useState(false);
   const {
     authorAvatar,
     authorAvatarUrl,
     authorCompany,
     authorName,
     id,
-    image,
-    reviewImageUrl,
+    reviewImageData,
     authorRole,
     statement,
     brandImageUrl,
     brand
   } = reviews[currentIndex];
+
+  console.log(reviews);
 
   const handleNextClick = () => {
     setCurrentIndex((currentIndex - 1 + reviews.length) % reviews.length);
@@ -38,8 +42,18 @@ export function ReviewsCarousel({ reviews }: TProps) {
     setCurrentIndex((currentIndex + 1) % reviews.length);
   };
 
+  const handleMouseEnter = () => {
+    setHasMouseEntered(true);
+  }
+
+  const handleMouseLeave = () => {
+    setHasMouseEntered(false);
+  }
+  authorAvatar
+  useInterval(() => handleNextClick(), hasMouseEntered ? null : secondsToMilliseconds(6));
+
   return (
-    <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} drag="x" onDragStart={x => console.log(x)}>
+    <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} drag="x" onDragStart={x => console.log(x)} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className='w-full lg:h-[720px] grid grid-cols-1 lg:grid-cols-[minmax(512px,1fr)_2fr] grid-rows-[400px_auto] lg:grid-rows-1 bg-primary overflow-hidden'>
         <div className='col-start-1 row-start-2 lg:row-start-1 relative grid grid-cols-1 grid-rows-1'>
           <AnimatePresence initial={false}>
@@ -55,7 +69,7 @@ export function ReviewsCarousel({ reviews }: TProps) {
                       <div className='flex-col flex md:gap-4 items-center md:flex-row'>
                         <Image
                           src={authorAvatarUrl}
-                          alt={authorAvatar.altText}
+                          alt={authorAvatar.altText ?? authorName}
                           width={64}
                           height={64}
                           className='size-16 rounded-full order-1 md:order-1'
@@ -81,7 +95,11 @@ export function ReviewsCarousel({ reviews }: TProps) {
         <AnimatePresence initial={false}>
           <div className='col-start-1 lg:col-start-2 row-start-1 relative' key={id}>
             <motion.div className='absolute inset-0' {...commonMotionProps}>
-              <img src={reviewImageUrl} alt={image.altText} className='size-full object-cover' />
+              <img
+                src={reviewImageData.imageUrl}
+                alt={reviewImageData.imageAltText}
+                className='size-full object-cover'
+              />
             </motion.div>
           </div>
         </AnimatePresence>

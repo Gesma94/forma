@@ -1,10 +1,7 @@
 import { TImageTag } from '@forma/common';
-import { ScrollGalleryImageObjectType } from 'types/generated/sanity-types-generated';
+import { IFormImageAsset } from 'common/utils/get-forma-image';
 
-export interface IScrollGalleryImage {
+export interface IScrollGalleryImage extends IFormImageAsset {
   key: string;
-  title: string;
-  iamgeUrl: string;
   tags: TImageTag[];
-  image: ScrollGalleryImageObjectType['image'];
 }

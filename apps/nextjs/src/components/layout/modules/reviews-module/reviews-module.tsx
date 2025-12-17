@@ -1,4 +1,5 @@
 import { MODULE_VARIANTS } from '@forma/common';
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import type { ReviewsModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { ContentContainer } from '@/ui/content-container/content-container';
@@ -33,12 +34,15 @@ export async function ReviewsModule({ module }: TProps) {
       })),
     { parameters: { reviewIds: module.reviews.map(x => x._ref) } }
   );
-  const reviewsWithImages = reviews.map<TReview>(review => ({
-    ...review,
-    brandImageUrl: getSanityImageUrl(review.brand.logo),
-    reviewImageUrl: getSanityImageUrl(review.image),
-    authorAvatarUrl: getSanityImageUrl(review.authorAvatar)
-  }));
+
+  const reviewsWithImages = await Promise.all(
+    reviews.map<Promise<TReview>>(async review => ({
+      ...review,
+      brandImageUrl: getSanityImageUrl(review.brand.logo),
+      reviewImageData: await getFormaImageData(review.image),
+      authorAvatarUrl: getSanityImageUrl(review.authorAvatar)
+    }))
+  );
 
   return (
     <div className='pt-10 md:pt-20'>

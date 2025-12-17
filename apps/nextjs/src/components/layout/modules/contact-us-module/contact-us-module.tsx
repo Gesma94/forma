@@ -1,9 +1,7 @@
-import { getImageAltText2 } from 'common/utils/get-image-alt-text';
-import { getFormaImageAsset } from 'services/sanity';
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { ContactUsModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ContentContainer } from '@/ui/content-container/content-container';
-import { getSanityImageUrl } from '@/utils/groqd-client';
 import { ContactUsModuleForm } from './subs/contact-us-module-form';
 import { Header } from './subs/header';
 import { Subheading } from './subs/subheading';
@@ -13,29 +11,22 @@ type TProps = {
 };
 
 export async function ContactUsModule({ module }: TProps) {
-  const [backgroundImageAsset, cardBackgroundImageAsset] = await Promise.all([
-    getFormaImageAsset(module.backgroundImage),
-    getFormaImageAsset(module.cardBackgroundImage)
+  const [backgroundImageData, cardBackgroundImageData] = await Promise.all([
+    getFormaImageData(module.backgroundImage),
+    getFormaImageData(module.cardBackgroundImage)
   ]);
-
-  const backgroundImageUrl = getSanityImageUrl(backgroundImageAsset.image);
-  const cardBackgroundImageUrl = getSanityImageUrl(cardBackgroundImageAsset.image);
 
   const { outerContainerTv, bgImageTv, floatingContainerTv, floatingInnerContainerTv, formContainerTv } = styleTv();
   return (
     <div className={outerContainerTv()}>
-      <img
-        className={bgImageTv()}
-        src={backgroundImageUrl}
-        alt={await getImageAltText2(module.backgroundImage, backgroundImageAsset)}
-      />
+      <img className={bgImageTv()} src={backgroundImageData.imageUrl} alt={backgroundImageData.imageAltText} />
       <div className={floatingContainerTv()}>
         <ContentContainer>
           <div className={floatingInnerContainerTv()}>
             <div className='contain-size'>
               <img
-                src={cardBackgroundImageUrl}
-                alt={await getImageAltText2(module.cardBackgroundImage, cardBackgroundImageAsset)}
+                src={cardBackgroundImageData.imageUrl}
+                alt={cardBackgroundImageData.imageAltText}
                 className='object-cover size-full'
               />
             </div>

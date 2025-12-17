@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineImageField, defineRichEditorField } from '../../../fields';
+import { defineFormaImageField, defineRichEditorField } from '../../../fields';
 
 export const bookModuleDocumentType = defineType({
   type: 'document',
@@ -11,7 +11,7 @@ export const bookModuleDocumentType = defineType({
     select: {
       title: 'heading',
       description: 'subHeading',
-      media: 'backgroundImage'
+      media: 'backgroundImage.formaImage.image'
     },
     prepare: ({ title, media, description }) => ({
       title: textBlockToPlainText(title),
@@ -32,7 +32,7 @@ export const bookModuleDocumentType = defineType({
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
-    defineImageField({
+    defineFormaImageField({
       name: 'backgroundImage',
       title: 'Background Image',
       validation: rule => rule.required()
@@ -44,59 +44,5 @@ export const bookModuleDocumentType = defineType({
       of: [{ type: 'string' }],
       validation: rule => rule.required()
     })
-    // defineField({
-    //   name: 'nameInputLabel',
-    //   title: 'Name Input Label',
-    //   type: 'string',
-    //   validation: rule => rule.required()
-    // }),
-    // defineField({
-    //   name: 'phoneNumberInputLabel',
-    //   title: 'Phone Number Input Label',
-    //   type: 'string',
-    //   validation: rule => rule.required()
-    // }),
-    // defineField({
-    //   name: 'emailInputLabel',
-    //   title: 'Email Input Label',
-    //   type: 'string',
-    //   validation: rule => rule.required()
-    // }),
-    // defineField({
-    //   name: 'appointmentDateInputLabel',
-    //   title: 'Appointment Date Input Label',
-    //   type: 'string',
-    //   validation: rule => rule.required()
-    // }),
-    // defineField({
-    //   name: 'appointmentSlotInputLabel',
-    //   title: 'Appointment Slot Input Label',
-    //   type: 'string',
-    //   validation: rule => rule.required()
-    // }),
-    // defineField({
-    //   name: 'studioNameInputLabel',
-    //   title: 'Studio Name Input Label',
-    //   type: 'string',
-    //   validation: rule => rule.required()
-    // }),
-    // defineField({
-    //   name: 'projectAboutInputLabel',
-    //   title: 'Project About Input Label',
-    //   type: 'string',
-    //   validation: rule => rule.required()
-    // }),
-    // defineField({
-    //   name: 'deadlineDateInputLabel',
-    //   title: 'Deadline Date Input Label',
-    //   type: 'string',
-    //   validation: rule => rule.required()
-    // }),
-    // defineField({
-    //   name: 'projectPhaseInputLabel',
-    //   title: 'Project Phase Input Label',
-    //   type: 'string',
-    //   validation: rule => rule.required()
-    // }),
   ]
 });

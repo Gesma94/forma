@@ -2,7 +2,7 @@ import { TouchpadIcon } from 'lucide-react';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
-import { defineImageField, defineRichEditorField } from '../../../fields';
+import { defineFormaImageField, defineRichEditorField } from '../../../fields';
 
 export const cardsModuleDocumentType = defineType({
   type: 'document',
@@ -12,9 +12,11 @@ export const cardsModuleDocumentType = defineType({
   preview: {
     select: {
       title: 'heading',
-      cards: 'cards'
+      cards: 'cards',
+      media: 'backgroundImage.formaImage.image'
     },
-    prepare: ({ title, cards }) => ({
+    prepare: ({ title, cards, media }) => ({
+      media,
       title: textBlockToPlainText(title),
       subtitle: `Contained ${cards.length} card(s)`
     })
@@ -26,9 +28,16 @@ export const cardsModuleDocumentType = defineType({
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
-    defineImageField({
+    defineFormaImageField({
       name: 'backgroundImage',
       title: 'Background Image',
+      validation: rule => rule.required(),
+    }),
+    defineField({
+      type: 'boolean',
+      name: 'showBgImage',
+      initialValue: false,
+      title: 'Show Background Image',
       validation: rule => rule.required()
     }),
     defineField({

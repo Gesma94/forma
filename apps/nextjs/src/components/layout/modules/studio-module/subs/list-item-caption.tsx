@@ -33,7 +33,7 @@ export function ListItemCaption({ value }: TListItemCaptionProps) {
 
 const style = tv({
   slots: {
-    container: 'flex flex-col gap-4 max-w-5xl mx-auto',
+    container: 'flex flex-col gap-4 max-w-5xl',
     paragraph: 'prose-xl md:prose-xl prose-p:my-0'
   }
 });

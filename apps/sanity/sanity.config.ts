@@ -97,11 +97,13 @@ export default defineConfig({
                   .documentId(SANITY_DOCUMENT_IDS.footer)
               ),
             S.divider().title('Modules'),
-            ...moduleDocumentSchemaTypes.map(x =>
-              S.listItem()
-                .title(x.title ?? `Module ${x.name}`)
-                .child(S.documentList().schemaType(x.name).filter(`_type == "${x.name}"`).id(x.name))
-            ),
+            ...moduleDocumentSchemaTypes
+              .toSorted((x1, x2) => ((x1.title ?? '') < (x2.title ?? '') ? -1 : 1))
+              .map(x =>
+                S.listItem()
+                  .title(x.title ?? `Module ${x.name}`)
+                  .child(S.documentList().schemaType(x.name).filter(`_type == "${x.name}"`).id(x.name))
+              ),
             S.divider().title('Assets'),
             ...assetDocumentTypes.map(x =>
               S.listItem()

@@ -1,10 +1,10 @@
 import { MODULE_VARIANTS } from '@forma/common';
-import { getImageAltText } from 'common/utils/get-image-alt-text';
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import type { StudioModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { Button } from '@/ui/buttons/button/button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
+import { FormaMedia } from '@/ui/forma-media/forma-media';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
-import { getSanityImageUrl } from '@/utils/groqd-client';
 import { ListTextItem } from './subs/list-text-item';
 import { StudioModuleSubHeading } from './subs/studio-module-subheading';
 
@@ -12,9 +12,11 @@ type TProps = {
   module: StudioModuleDocumentType;
 };
 
-export function StudioModule({ module }: TProps) {
-  const imageUrl = getSanityImageUrl(module.image);
-  const problemsImageUrl = getSanityImageUrl(module.problemsImage);
+export async function StudioModule({ module }: TProps) {
+  console.log(module);
+
+  // const imageData = await getFormaImageData(module.media);
+  const problemsImageData = await getFormaImageData(module.problemsImage);
 
   return (
     <ModuleContentContainer variant={MODULE_VARIANTS.ON_BG}>
@@ -40,10 +42,9 @@ export function StudioModule({ module }: TProps) {
             )}
           </div>
           <div className='relative contain-size'>
-            <img
+            <FormaMedia
+              formaMedia={module.media}
               className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
-              alt={module.image.altText}
-              src={imageUrl}
             />
           </div>
         </div>
@@ -51,8 +52,8 @@ export function StudioModule({ module }: TProps) {
           <div className='contain-size'>
             <img
               className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
-              alt={getImageAltText(module.problemsImage)}
-              src={problemsImageUrl}
+              alt={problemsImageData.imageAltText}
+              src={problemsImageData.imageUrl}
             />
           </div>
           <div className='flex flex-col gap-10'>

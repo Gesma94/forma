@@ -1,3 +1,4 @@
+import { getFormaImageData } from 'common/utils/get-forma-image';
 import Image from 'next/image';
 import type { HeroModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { Scrolldown } from '@/layout/scrolldown/scrolldown';
@@ -16,7 +17,7 @@ type TSanityQueryParams = {
 };
 
 export async function HeroModule({ module }: TProps) {
-  const imageUrl = getSanityImageUrl(module.backgroundImage);
+  const backgroundImageData = await getFormaImageData(module.backgroundImage);
   const firms = await runQuery(
     q.parameters<TSanityQueryParams>().star.filterByType('brandDocumentType').filterRaw('_id in $firmIds'),
     { parameters: { firmIds: module.firmImages.map(x => x._ref) } }
@@ -26,9 +27,9 @@ export async function HeroModule({ module }: TProps) {
     <div className='w-full min-h-dvh relative flex justify-center'>
       <Image
         fill={true}
-        src={imageUrl}
+        src={backgroundImageData.imageUrl}
         priority={true}
-        alt={module.backgroundImage.altText}
+        alt={backgroundImageData.imageAltText}
         className='object-cover object-bottom bg-linear-30 brightness-[0.32]'
       />
 
