@@ -22,7 +22,7 @@ export async function InlineGalleryModule({ module }: TProps) {
   return (
     <ModuleContentContainer variant={module.variant} title={module.heading} skipContentContainer={true}>
       <div className={inlineGalleryWrapperTv()}>
-        <InlineGalleryCarousel images={images} />
+        <InlineGalleryCarousel images={images} variant={module.variant} />
       </div>
       {(module.primaryCta.showCta || module.secondaryCta.showCta) && (
         <div className='mt-10 mx-auto flex gap-8'>
@@ -44,7 +44,7 @@ export async function InlineGalleryModule({ module }: TProps) {
 
 const stylesTv = tv({
   slots: {
-    inlineGalleryWrapperTv: ''
+    inlineGalleryWrapperTv: 'min-w-0'
   },
   variants: {
     withTitle: {

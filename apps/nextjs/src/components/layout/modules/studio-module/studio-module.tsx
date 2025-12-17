@@ -13,8 +13,6 @@ type TProps = {
 };
 
 export async function StudioModule({ module }: TProps) {
-  console.log(module);
-
   // const imageData = await getFormaImageData(module.media);
   const problemsImageData = await getFormaImageData(module.problemsImage);
 

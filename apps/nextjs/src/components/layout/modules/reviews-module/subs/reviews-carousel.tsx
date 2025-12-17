@@ -32,8 +32,6 @@ export function ReviewsCarousel({ reviews }: TProps) {
     brand
   } = reviews[currentIndex];
 
-  console.log(reviews);
-
   const handleNextClick = () => {
     setCurrentIndex((currentIndex - 1 + reviews.length) % reviews.length);
   };
@@ -49,11 +47,11 @@ export function ReviewsCarousel({ reviews }: TProps) {
   const handleMouseLeave = () => {
     setHasMouseEntered(false);
   }
-  authorAvatar
+
   useInterval(() => handleNextClick(), hasMouseEntered ? null : secondsToMilliseconds(6));
 
   return (
-    <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} drag="x" onDragStart={x => console.log(x)} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} drag="x" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className='w-full lg:h-[720px] grid grid-cols-1 lg:grid-cols-[minmax(512px,1fr)_2fr] grid-rows-[400px_auto] lg:grid-rows-1 bg-primary overflow-hidden'>
         <div className='col-start-1 row-start-2 lg:row-start-1 relative grid grid-cols-1 grid-rows-1'>
           <AnimatePresence initial={false}>
