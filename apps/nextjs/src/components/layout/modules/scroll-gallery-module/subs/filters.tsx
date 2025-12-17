@@ -62,6 +62,6 @@ export function Filters({ areSelected, onChange }: IFiltersProps) {
 
 const stylesTv = tv({
   slots: {
-    containerTv: 'min-h-24 flex-wrap bg-primary size-full z-10 flex items-center gap-x-10 gap-y-2 justify-center py-2'
+    containerTv: 'min-h-12 flex-wrap bg-primary size-full z-10 flex items-center gap-x-10 gap-y-2 justify-center py-2'
   }
 });
