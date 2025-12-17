@@ -7,6 +7,8 @@ import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-tex
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { ReviewsCarousel } from './subs/reviews-carousel';
 import type { TReview } from './subs/types';
+import { tv } from 'tailwind-variants';
+import { isNotNil } from 'es-toolkit';
 
 type TProps = {
   module: ReviewsModuleDocumentType;
@@ -17,6 +19,7 @@ type TSanityQueryParams = {
 };
 
 export async function ReviewsModule({ module }: TProps) {
+  const { containerTv } = stylesTv({ hasTitle: isNotNil(module.heading)});
   const reviews = await runQuery(
     q
       .parameters<TSanityQueryParams>()
@@ -45,7 +48,7 @@ export async function ReviewsModule({ module }: TProps) {
   );
 
   return (
-    <div className='pt-10 md:pt-20'>
+    <div className={containerTv()}>
       <ModuleContentContainer title={module.heading} skipContentContainer={true} skipYPadding={true}>
         <div>
           <div>
@@ -53,7 +56,7 @@ export async function ReviewsModule({ module }: TProps) {
               <ParagraphPortableText value={module.content} variant={MODULE_VARIANTS.ON_BG} className='text-center' />
             </ContentContainer>
           </div>
-          <div className='mt-10 relative'>
+          <div className='relative'>
             <ReviewsCarousel reviews={reviewsWithImages} />
           </div>
         </div>
@@ -61,3 +64,16 @@ export async function ReviewsModule({ module }: TProps) {
     </div>
   );
 }
+
+const stylesTv = tv({
+  slots: {
+    containerTv: '',
+  },
+  variants: {
+    hasTitle: {
+      true: {
+        containerTv: 'pt-10 md:pt-20'
+      }
+    }
+  }
+})

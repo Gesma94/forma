@@ -12,25 +12,30 @@ export const reviewsModuleDocumentType = defineType({
   preview: {
     select: {
       title: 'heading',
-      reviews: 'reviews'
+      reviews: 'reviews',
+      friendlyName: 'friendlyName'
     },
-    prepare: ({ title, reviews }) => ({
-      title: textBlockToPlainText(title),
+    prepare: ({ title, reviews, friendlyName }) => ({
+      title: title ? textBlockToPlainText(title) : (friendlyName ?? 'Unnamed Reviews Module'),
       subtitle: `Selected ${reviews.length} review(s)`
     })
   },
   fields: [
+    defineField({
+      name: 'friendlyName',
+      title: 'Friendly Name',
+      type: 'string',
+      description: 'used only to identify the module when heading is not defined'
+    }),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',
       allowColorMarkDecorator: false,
-      validation: rule => rule.required()
     }),
     defineRichEditorField({
       name: 'content',
       title: 'Content',
       allowColorMarkDecorator: false,
-      validation: rule => rule.required()
     }),
     defineField({
       name: 'reviews',
