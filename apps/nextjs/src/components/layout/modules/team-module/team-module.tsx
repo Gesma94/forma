@@ -33,6 +33,6 @@ export async function TeamModule({ module }: TProps) {
 const styles = tv({
   slots: {
     containerStyle: ['grid', 'grid-rows-[auto_auto] gap-8', '2xl:grid-rows-1 2xl:grid-cols-[auto_auto] 2xl:gap-20'],
-    moduleTextsContainerStyle: ['flex flex-col gap-4 md:gap-10 text-center', '2xl:text-left 2xl:mt-20']
+    moduleTextsContainerStyle: ['flex flex-col gap-4 md:gap-10 text-center', '2xl:text-left']
   }
 });
