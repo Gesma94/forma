@@ -1,4 +1,5 @@
 import { IFormImageInstance } from 'common/utils/get-forma-image';
+import { ReviewDocumentType } from 'types/generated/sanity-types-generated';
 
 export type TFullReview = ReviewDocumentType & {
   reviewImageUrl: string;
