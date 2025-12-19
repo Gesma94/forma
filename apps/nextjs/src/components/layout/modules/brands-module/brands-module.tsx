@@ -6,6 +6,7 @@ import { MotionUl } from '@/ui/motion/motion-ul';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { q, runQuery } from '@/utils/groqd-client';
 import { BrandListItem } from './subs/brand-list-item';
+import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 
 type TProps = {
   module: BrandsModuleDocumentType;
@@ -22,6 +23,7 @@ export async function BrandsModule({ module }: TProps) {
   );
 
   return (
+      <VerticalPaddingContainer variant={module.variant} {...module.paddings}>
     <ModuleContentContainer variant={module.variant} title={module.heading} skipContentContainer={true}>
       <ContentContainer>
         <div className='max-w-5xl mx-auto'>
@@ -39,5 +41,6 @@ export async function BrandsModule({ module }: TProps) {
         </MotionUl>
       </div>
     </ModuleContentContainer>
+      </VerticalPaddingContainer>
   );
 }

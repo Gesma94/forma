@@ -3,6 +3,7 @@ import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineRichEditorField } from '../../../fields';
+import { defineSpacingField } from '../../../fields/spacing';
 
 export const reviewsModuleDocumentType = defineType({
   type: 'document',
@@ -21,6 +22,7 @@ export const reviewsModuleDocumentType = defineType({
     })
   },
   fields: [
+    defineSpacingField(),
     defineField({
       name: 'friendlyName',
       title: 'Friendly Name',

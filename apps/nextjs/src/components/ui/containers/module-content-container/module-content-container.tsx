@@ -18,11 +18,10 @@ export function ModuleContentContainer({
   variant = 'on-bg',
   title,
   skipContentContainer = false,
-  skipYPadding = false
 }: Props) {
   const Container = skipContentContainer ? Fragment : ContentContainer;
   return (
-    <div className={style({ variant, skipYPadding })}>
+    <div className={style({ variant })}>
       <MotionDiv animation={MOTION_ANIMATION.TRANSLATE_FROM_BOTTOM} className='grid grid-rows-[auto_auto]'>
         {title && (
           <div className='mb-4 md:mb-10'>
@@ -47,10 +46,6 @@ const style = tv({
     variant: {
       [MODULE_VARIANTS.ON_BG]: 'bg-bg text-bg-text',
       [MODULE_VARIANTS.ON_PRIMARY]: 'bg-primary text-primary-text'
-    },
-    skipYPadding: {
-      true: 'py-0',
-      false: 'py-10 md:py-20'
     }
   }
 });

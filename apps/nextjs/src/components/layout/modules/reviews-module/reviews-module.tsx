@@ -9,6 +9,7 @@ import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-tex
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { ReviewsCarousel } from './subs/reviews-carousel';
 import type { TReview } from './subs/types';
+import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 
 type TProps = {
   module: ReviewsModuleDocumentType;
@@ -48,7 +49,7 @@ export async function ReviewsModule({ module }: TProps) {
   );
 
   return (
-    <div className={containerTv()}>
+    <VerticalPaddingContainer variant={MODULE_VARIANTS.ON_BG} {...module.paddings}>
       <ModuleContentContainer title={module.heading} skipContentContainer={true} skipYPadding={true}>
         <div>
           <div>
@@ -61,7 +62,7 @@ export async function ReviewsModule({ module }: TProps) {
           </div>
         </div>
       </ModuleContentContainer>
-    </div>
+    </VerticalPaddingContainer>
   );
 }
 

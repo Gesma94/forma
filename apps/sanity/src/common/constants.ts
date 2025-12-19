@@ -44,5 +44,6 @@ export const OBJECT_SCHEMA_TYPES = {
   processStep: 'processStepObjectType',
   teamMember: 'teamMemberObjectType',
   scrollGalleryImage: 'scrollGalleryImageObjectType',
-  listTextItem: 'listTextItemObjectType'
+  listTextItem: 'listTextItemObjectType',
+  spacing: 'spacingObjectType',
 } as const;
