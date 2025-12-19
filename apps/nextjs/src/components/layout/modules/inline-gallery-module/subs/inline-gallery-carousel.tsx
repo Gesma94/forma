@@ -85,7 +85,7 @@ export function InlineGalleryCarousel({ images }: TProps) {
           drag='x'
           dragControls={controls}
           dragConstraints={constraintsRef}
-          initial={{ x: '-44%' }}
+          // initial={{ x: '-44%' }}
           className='min-w-max flex gap-4 sm:gap-10 h-[720px] relative px-4 sm:px-20 lg:px-40 snap-x snap-mandatory'
           style={{ scrollbarWidth: 'none', x: handleX }}
         >
