@@ -32,21 +32,25 @@ export async function FormaMedia({ formaMedia, videoProps, imgProps, className }
     const imageAltText = `${mediaAsset.clientName} - ${mediaAsset.imageTitle}`;
 
     return (
-      <img
-        src={imageUrl}
-        alt={imageAltText}
-        style={brightnessStyle}
-        {...imgProps}
-        className={className ?? imgProps.className}
-      />
+      <div>
+        <img
+          src={imageUrl}
+          alt={imageAltText}
+          style={brightnessStyle}
+          {...imgProps}
+          className={className ?? imgProps.className}
+        />
+      </div>
     );
   } else if (mediaAsset._type === 'formaVideoAssetDocumentType') {
+    const videoAltText = `${mediaAsset.clientName} - ${mediaAsset.videoTitle}`;
     const video = await runQuery(
       q.parameters<TSanityQueryParams>().star.filterByType('sanity.fileAsset').filterRaw('_id == $documentId').slice(0),
       { parameters: { documentId: mediaAsset.video.asset._ref } }
     );
 
     return (
+      <div className='contents relative'>
       <video
         preload='metadata'
         style={brightnessStyle}
@@ -59,6 +63,10 @@ export async function FormaMedia({ formaMedia, videoProps, imgProps, className }
       >
         <source src={video.url} type='video/mp4' />
       </video>
+        {formaMedia.showMediaTitle && <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
+          <p className='text-md'>{videoAltText}</p>
+        </div>}
+      </div>
     );
   }
 }

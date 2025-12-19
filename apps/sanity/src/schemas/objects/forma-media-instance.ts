@@ -16,7 +16,8 @@ export const formaMediaInstanceObjectType = defineType({
   },
   fieldsets: [
     { name: 'commonProperties', title: 'Common Properties' },
-    { name: 'videoProperties', title: 'Video Properties', options: { collapsible: true, collapsed: true } }
+    { name: 'videoProperties', title: 'Video Properties', options: { collapsible: true, collapsed: true } },
+    { name: 'imageProperties', title: 'Image Properties', options: { collapsible: true, collapsed: true } }
   ],
   fields: [
     defineField({
@@ -24,6 +25,14 @@ export const formaMediaInstanceObjectType = defineType({
       title: 'Forma Media',
       type: 'reference',
       to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }, { type: DOCUMENT_SCHEMA_TYPES.formaVideoAsset }]
+    }),
+    defineField({
+      title: 'Show Media Title',
+      name: 'showMediaTitle',
+      type: 'boolean',
+      initialValue: true,
+      fieldset: 'commonProperties',
+      validation: rule => rule.required()
     }),
     defineField({
       type: 'string',
