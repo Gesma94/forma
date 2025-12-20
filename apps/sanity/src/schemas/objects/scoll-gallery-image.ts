@@ -19,7 +19,7 @@ export const scrollGalleryImageObjectType = defineType({
       formaMediaOverrideAltText: 'formaMedia.overrideAltText',
       formaMediaImage: 'formaMedia.formaMedia.image',
       formaMediaVideoThumbnail: 'formaMedia.formaMedia.thumbnail',
-      imageTags: 'imageTags'
+      imageTags: 'imageTags.displayName'
     },
     prepare: ({
       imageTags,

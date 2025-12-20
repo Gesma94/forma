@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
-import type { TImageTag } from '@forma/common';
 import { getFormaMediaData } from 'common/utils/get-forma-media';
 import type { ScrollGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { q, runQuery } from '@/utils/groqd-client';
 import { ScrollGalleryClientModule } from './subs/scroll-gallery-client-module';
 import type { TScrollGalleryMedia } from './subs/types';
 
@@ -10,25 +10,17 @@ type TProps = {
 };
 
 export async function ScrollGalleryModule({ module }: TProps) {
+  const filters = await runQuery(q.star.filterByType('mediaTagAssetDocumentType'));
   const medias = await Promise.all(
     module.scrollGalleryImages.map<Promise<TScrollGalleryMedia>>(async x => {
       const mediaData = await getFormaMediaData(x.formaMedia);
       return {
         key: x._key,
         ...mediaData,
-        tags: x.imageTags as TImageTag[]
+        tags: x.imageTags
       };
     })
   );
-  const targetLength = 50;
-  const result: TScrollGalleryMedia[] = [];
 
-  while (result.length < targetLength) {
-    const randomIndex = Math.floor(Math.random() * medias.length);
-    const element = structuredClone(medias[randomIndex]);
-    element.key = randomUUID();
-    result.push(element);
-  }
-
-  return <ScrollGalleryClientModule medias={medias} />;
+  return <ScrollGalleryClientModule medias={medias} filters={filters} />;
 }

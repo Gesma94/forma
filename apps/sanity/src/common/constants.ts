@@ -25,6 +25,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   quote: 'quoteDocumentType',
   review: 'reviewDocumentType',
   formaImageAsset: 'formaImageAssetDocumentType',
+  mediaTagAsset: 'mediaTagAssetDocumentType',
   formaVideoAsset: 'formaVideoAssetDocumentType',
   contactUsModule: 'contactUsModuleDocumentType',
   clientSecretPage: 'clientSecretPageDocumentType',

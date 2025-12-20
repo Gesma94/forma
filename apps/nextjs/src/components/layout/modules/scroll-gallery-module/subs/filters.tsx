@@ -1,40 +1,42 @@
-import { IMAGE_TAG, type TImageTag } from '@forma/common';
 import { useMemo } from 'react';
 import { tv } from 'tailwind-variants';
+import type { MediaTagAssetDocumentType } from 'types/generated/sanity-types-generated';
 import { TagFilter } from './tag-filter';
-import { getFilterTagLabel } from './utils';
 
 interface IFiltersProps {
-  areSelected: Record<TImageTag, boolean>;
-  onChange: (newAreSelected: Record<TImageTag, boolean>) => void;
+  areSelected: Record<string, boolean>;
+  onChange: (newAreSelected: Record<string, boolean>) => void;
+  filters: MediaTagAssetDocumentType[];
 }
 
-export function Filters({ areSelected, onChange }: IFiltersProps) {
+export function Filters({ filters, areSelected, onChange }: IFiltersProps) {
   const { containerTv } = stylesTv();
 
   const isAllSelected = useMemo<boolean>(() => Object.values(areSelected).every(Boolean), [areSelected]);
   const isAllIndeterminate = useMemo<boolean>(() => Object.values(areSelected).some(Boolean), [areSelected]);
 
-  const handleFilterChange = (tag: TImageTag, isSelected: boolean) => {
+  const handleFilterChange = (tag: MediaTagAssetDocumentType, isSelected: boolean) => {
     onChange({
       ...areSelected,
-      [tag]: isSelected
+      [tag._id]: isSelected
     });
   };
 
   const handleAllChange = () => {
     if (isAllSelected) {
-      onChange({
-        [IMAGE_TAG.ARCHITECTURAL_STILLS]: false,
-        [IMAGE_TAG.VIDEO_ANIMATIONS]: false,
-        [IMAGE_TAG.VR_360]: false
-      });
+      onChange(
+        filters.reduce((acc, curr) => {
+          acc[curr._id] = false;
+          return acc;
+        }, {})
+      );
     } else {
-      onChange({
-        [IMAGE_TAG.ARCHITECTURAL_STILLS]: true,
-        [IMAGE_TAG.VIDEO_ANIMATIONS]: true,
-        [IMAGE_TAG.VR_360]: true
-      });
+      onChange(
+        filters.reduce((acc, curr) => {
+          acc[curr._id] = true;
+          return acc;
+        }, {})
+      );
     }
   };
 
@@ -47,15 +49,17 @@ export function Filters({ areSelected, onChange }: IFiltersProps) {
         onChange={handleAllChange}
       />
 
-      {Object.values(IMAGE_TAG).map(tag => (
-        <TagFilter
-          key={tag}
-          isSelected={areSelected[tag]}
-          isIndeterminate={false}
-          label={getFilterTagLabel(tag)}
-          onChange={isSelected => handleFilterChange(tag, isSelected)}
-        />
-      ))}
+      {filters
+        .filter(tag => !tag.isHidden)
+        .map(tag => (
+          <TagFilter
+            key={tag._id}
+            isSelected={areSelected[tag._id]}
+            isIndeterminate={false}
+            label={tag.displayName}
+            onChange={isSelected => handleFilterChange(tag, isSelected)}
+          />
+        ))}
     </div>
   );
 }

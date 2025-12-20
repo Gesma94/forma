@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@portabletext/types": "^2.0.15",
+    "@sanity/types": "^5.0.1",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@types/js-cookie": "^3.0.6",

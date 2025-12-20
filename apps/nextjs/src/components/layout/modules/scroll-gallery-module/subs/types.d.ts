@@ -1,7 +1,7 @@
-import { TImageTag } from '@forma/common';
-import { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
+import type { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
+import type { MediaTagAssetDocumentType } from 'types/generated/sanity-types-generated';
 
 export type TScrollGalleryMedia = TFormaMediaUnwrapped & {
   key: string;
-  tags: TImageTag[];
+  tags: MediaTagAssetDocumentType[];
 };

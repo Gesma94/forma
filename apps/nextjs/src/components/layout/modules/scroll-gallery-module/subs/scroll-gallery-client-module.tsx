@@ -1,9 +1,10 @@
 'use client';
 
-import { IMAGE_TAG, type TImageTag } from '@forma/common';
+import { isNil } from 'es-toolkit';
 import { Fragment, useMemo, useState } from 'react';
 import { Button } from 'react-aria-components';
 import { tv } from 'tailwind-variants';
+import type { MediaTagAssetDocumentType } from 'types/generated/sanity-types-generated';
 import { ModalGallery } from '@/layout/modal-gallery/modal-gallery';
 import type { IModalGalleryImage } from '@/layout/modal-gallery/subs/types';
 import { ContentContainer } from '@/ui/content-container/content-container';
@@ -12,22 +13,31 @@ import { Filters } from './filters';
 import type { TScrollGalleryMedia } from './types';
 
 interface IScrollGalleryClientModuleProps {
+  filters: MediaTagAssetDocumentType[];
   medias: TScrollGalleryMedia[];
 }
 
-export function ScrollGalleryClientModule({ medias }: IScrollGalleryClientModuleProps) {
+export function ScrollGalleryClientModule({ medias, filters }: IScrollGalleryClientModuleProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-  const [filters, setFilters] = useState<Record<TImageTag, boolean>>({
-    [IMAGE_TAG.ARCHITECTURAL_STILLS]: true,
-    [IMAGE_TAG.VIDEO_ANIMATIONS]: true,
-    [IMAGE_TAG.VR_360]: true
-  });
+  const [filtersSelection, setFiltersSelection] = useState<Record<string, boolean>>(
+    filters.reduce((acc, curr) => {
+      acc[curr._id] = true;
+      return acc;
+    }, {})
+  );
   const { filterWrapper, imageList, imageItem, tagContainerTv, tagTv, emptyListTv, emptyListTextTv, listItemButtonTv } =
     stylesTv();
 
+  const filtersMapMemoized = useMemo(() => {
+    return filters.reduce((acc, curr) => {
+      acc.set(curr._id, curr);
+      return acc;
+    }, new Map<string, MediaTagAssetDocumentType>());
+  }, [filters]);
+
   const filteredImages = useMemo<TScrollGalleryMedia[]>(() => {
-    return medias.filter(x => x.tags.some(tag => filters[tag]));
-  }, [medias, filters]);
+    return medias.filter(x => x.tags.some(tag => filtersSelection[tag._id]));
+  }, [medias, filtersSelection]);
 
   const filteredModalImages = useMemo<IModalGalleryImage[]>(() => {
     return []; // filteredImages.map(x => ({ imageUrl: x.imageUrl, title: x.imageAltText }));
@@ -40,7 +50,7 @@ export function ScrollGalleryClientModule({ medias }: IScrollGalleryClientModule
     <>
       <div>
         <div className={filterWrapper()}>
-          <Filters areSelected={filters} onChange={setFilters} />
+          <Filters filters={filters} areSelected={filtersSelection} onChange={setFiltersSelection} />
         </div>
         {filteredImages.length === 0 && (
           <div className={emptyListTv()}>
@@ -59,11 +69,19 @@ export function ScrollGalleryClientModule({ medias }: IScrollGalleryClientModule
                     <Button onClick={() => setSelectedImageIndex(i)} className={listItemButtonTv()}>
                       <FormaMediaClientSide {...mediaProps} forceHideMediaTitle={true} />
                       <div className={tagContainerTv()}>
-                        {tags.map(tag => (
-                          <p key={tag} className={tagTv()}>
-                            &bull; {tag}
-                          </p>
-                        ))}
+                        {tags.map(tag => {
+                          const baseTag = filtersMapMemoized.get(tag._id);
+
+                          if (isNil(baseTag) || baseTag.isHidden) {
+                            return null;
+                          }
+
+                          return (
+                            <p key={baseTag._id} className={tagTv()}>
+                              &bull; {baseTag.displayName}
+                            </p>
+                          );
+                        })}
                       </div>
                     </Button>
                   </li>
