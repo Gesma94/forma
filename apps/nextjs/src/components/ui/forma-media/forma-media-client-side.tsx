@@ -57,7 +57,7 @@ export function FormaMediaClientSide(props: TProps) {
           {...videoProps}
           className={className ?? videoProps?.className}
         >
-          <source src={videoUrl} type='video/mp4' />
+          <source src={`${videoUrl}#t=0.1`} type='video/mp4' />
         </video>
         {shouldDisplayMediaTitle && (
           <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
