@@ -1,8 +1,7 @@
 import { ImageIcon } from 'lucide-react';
-import { defineType } from 'sanity';
-import { OBJECT_SCHEMA_TYPES } from '../../common/constants';
+import { defineField, defineType } from 'sanity';
+import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../common/constants';
 import { getFormaMediaMedia, getFormaMediaTitle } from '../../common/utils';
-import { defineImageTagsField } from '../../fields/image-tags';
 import { defineFormaMediaField } from '../../fields/media';
 
 export const scrollGalleryImageObjectType = defineType({
@@ -46,5 +45,13 @@ export const scrollGalleryImageObjectType = defineType({
       };
     }
   },
-  fields: [defineFormaMediaField(), defineImageTagsField()]
+  fields: [defineFormaMediaField(),
+    defineField({
+      title: 'Media Tags',
+      name: 'mediaTags',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: DOCUMENT_SCHEMA_TYPES.mediaTagAsset } }],
+      validation: rule => rule.required(),
+    })
+  ]
 });

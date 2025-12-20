@@ -36,7 +36,7 @@ export function ScrollGalleryClientModule({ medias, filters }: IScrollGalleryCli
   }, [filters]);
 
   const filteredImages = useMemo<TScrollGalleryMedia[]>(() => {
-    return medias.filter(x => x.tags.some(tag => filtersSelection[tag._id]));
+    return medias.filter(x => x.tagReferences.some(tag => filtersSelection[tag._ref]));
   }, [medias, filtersSelection]);
 
   const filteredModalImages = useMemo<IModalGalleryImage[]>(() => {
@@ -46,6 +46,7 @@ export function ScrollGalleryClientModule({ medias, filters }: IScrollGalleryCli
   const handleChangeCurrentIndex = (index: number) => {
     setSelectedImageIndex(index <= -1 ? filteredModalImages.length - 1 : index % filteredModalImages.length);
   };
+
   return (
     <>
       <div>
@@ -62,15 +63,15 @@ export function ScrollGalleryClientModule({ medias, filters }: IScrollGalleryCli
         {filteredImages.length > 0 && (
           <ul className={imageList()}>
             {filteredImages.map((x, i) => {
-              const { key, tags, ...mediaProps } = x;
+              const { key, tagReferences, ...mediaProps } = x;
               return (
                 <Fragment key={key}>
                   <li className={imageItem()}>
                     <Button onClick={() => setSelectedImageIndex(i)} className={listItemButtonTv()}>
                       <FormaMediaClientSide {...mediaProps} forceHideMediaTitle={true} />
                       <div className={tagContainerTv()}>
-                        {tags.map(tag => {
-                          const baseTag = filtersMapMemoized.get(tag._id);
+                        {tagReferences.map(tagReference => {
+                          const baseTag = filtersMapMemoized.get(tagReference._ref);
 
                           if (isNil(baseTag) || baseTag.isHidden) {
                             return null;

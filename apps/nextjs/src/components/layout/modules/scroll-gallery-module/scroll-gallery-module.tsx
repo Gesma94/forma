@@ -17,10 +17,10 @@ export async function ScrollGalleryModule({ module }: TProps) {
       return {
         key: x._key,
         ...mediaData,
-        tags: x.imageTags
+        tagReferences: x.mediaTags
       };
     })
   );
-
+  
   return <ScrollGalleryClientModule medias={medias} filters={filters} />;
 }
