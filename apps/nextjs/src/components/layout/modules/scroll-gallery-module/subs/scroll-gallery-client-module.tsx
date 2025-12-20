@@ -7,39 +7,31 @@ import { tv } from 'tailwind-variants';
 import { ModalGallery } from '@/layout/modal-gallery/modal-gallery';
 import type { IModalGalleryImage } from '@/layout/modal-gallery/subs/types';
 import { ContentContainer } from '@/ui/content-container/content-container';
+import { FormaMediaClientSide } from '@/ui/forma-media/forma-media-client-side';
 import { Filters } from './filters';
-import type { IScrollGalleryImage } from './types';
+import type { TScrollGalleryMedia } from './types';
 
 interface IScrollGalleryClientModuleProps {
-  images: IScrollGalleryImage[];
+  medias: TScrollGalleryMedia[];
 }
 
-export function ScrollGalleryClientModule({ images }: IScrollGalleryClientModuleProps) {
+export function ScrollGalleryClientModule({ medias }: IScrollGalleryClientModuleProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [filters, setFilters] = useState<Record<TImageTag, boolean>>({
     [IMAGE_TAG.ARCHITECTURAL_STILLS]: true,
     [IMAGE_TAG.VIDEO_ANIMATIONS]: true,
     [IMAGE_TAG.VR_360]: true
   });
-  const {
-    filterWrapper,
-    imageList,
-    imageItem,
-    tagContainerTv,
-    tagTv,
-    imageTv,
-    emptyListTv,
-    emptyListTextTv,
-    listItemButtonTv
-  } = stylesTv();
+  const { filterWrapper, imageList, imageItem, tagContainerTv, tagTv, emptyListTv, emptyListTextTv, listItemButtonTv } =
+    stylesTv();
 
-  const filteredImages = useMemo<IScrollGalleryImage[]>(() => {
-    return images.filter(x => x.tags.some(tag => filters[tag]));
-  }, [images, filters]);
+  const filteredImages = useMemo<TScrollGalleryMedia[]>(() => {
+    return medias.filter(x => x.tags.some(tag => filters[tag]));
+  }, [medias, filters]);
 
   const filteredModalImages = useMemo<IModalGalleryImage[]>(() => {
-    return filteredImages.map(x => ({ imageUrl: x.imageUrl, title: x.imageAltText }));
-  }, [filteredImages]);
+    return []; // filteredImages.map(x => ({ imageUrl: x.imageUrl, title: x.imageAltText }));
+  }, []);
 
   const handleChangeCurrentIndex = (index: number) => {
     setSelectedImageIndex(index <= -1 ? filteredModalImages.length - 1 : index % filteredModalImages.length);
@@ -59,22 +51,25 @@ export function ScrollGalleryClientModule({ images }: IScrollGalleryClientModule
         )}
         {filteredImages.length > 0 && (
           <ul className={imageList()}>
-            {filteredImages.map((x, i) => (
-              <Fragment key={x.key}>
-                <li className={imageItem()}>
-                  <Button onClick={() => setSelectedImageIndex(i)} className={listItemButtonTv()}>
-                    <img src={x.imageUrl} alt={x.imageAltText} className={imageTv()} />
-                    <div className={tagContainerTv()}>
-                      {x.tags.map(tag => (
-                        <p key={tag} className={tagTv()}>
-                          &bull; {tag}
-                        </p>
-                      ))}
-                    </div>
-                  </Button>
-                </li>
-              </Fragment>
-            ))}
+            {filteredImages.map((x, i) => {
+              const { key, tags, ...mediaProps } = x;
+              return (
+                <Fragment key={key}>
+                  <li className={imageItem()}>
+                    <Button onClick={() => setSelectedImageIndex(i)} className={listItemButtonTv()}>
+                      <FormaMediaClientSide {...mediaProps} forceHideMediaTitle={true} />
+                      <div className={tagContainerTv()}>
+                        {tags.map(tag => (
+                          <p key={tag} className={tagTv()}>
+                            &bull; {tag}
+                          </p>
+                        ))}
+                      </div>
+                    </Button>
+                  </li>
+                </Fragment>
+              );
+            })}
           </ul>
         )}
       </div>

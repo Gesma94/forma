@@ -51,21 +51,23 @@ export async function FormaMedia({ formaMedia, videoProps, imgProps, className }
 
     return (
       <div className='contents relative'>
-      <video
-        preload='metadata'
-        style={brightnessStyle}
-        muted={formaMedia.isMuted}
-        loop={formaMedia.isLoopEnabled}
-        autoPlay={formaMedia.isAutoplayEnabled}
-        controls={formaMedia.areControlsEnabled}
-        {...videoProps}
-        className={className ?? videoProps.className}
-      >
-        <source src={video.url} type='video/mp4' />
-      </video>
-        {formaMedia.showMediaTitle && <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
-          <p className='text-md'>{videoAltText}</p>
-        </div>}
+        <video
+          preload='metadata'
+          style={brightnessStyle}
+          muted={formaMedia.isMuted}
+          loop={formaMedia.isLoopEnabled}
+          autoPlay={formaMedia.isAutoplayEnabled}
+          controls={formaMedia.areControlsEnabled}
+          {...videoProps}
+          className={className ?? videoProps.className}
+        >
+          <source src={video.url} type='video/mp4' />
+        </video>
+        {formaMedia.showMediaTitle && (
+          <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
+            <p className='text-md'>{videoAltText}</p>
+          </div>
+        )}
       </div>
     );
   }

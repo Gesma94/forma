@@ -1,5 +1,8 @@
 import { MODULE_VARIANTS, SANITY_DOCUMENT_IDS, type TModuleVariants } from '@forma/common';
+import { FileImageIcon } from 'lucide-react';
+import type { ReactNode } from 'react';
 import { isPortableTextTextBlock, type PortableTextBlock } from 'sanity';
+import { DOCUMENT_SCHEMA_TYPES } from './constants';
 
 export function getPageTitleFromId(pageId: string): string {
   if (pageId.startsWith('drafts.')) {
@@ -69,4 +72,68 @@ export function getFormaImageAssetName(imageTitle: string, clientName: string): 
   }
 
   return null;
+}
+
+type TGetFormaMediaTitleParams = {
+  formaMediaType: string;
+  formaImageClientName?: string;
+  formaImageTitle?: string;
+  formaVideoClientName?: string;
+  formaVideoTitle?: string;
+  formaMediaOverrideAltText?: string;
+};
+
+export function getFormaMediaTitle({
+  formaMediaType,
+  formaImageClientName,
+  formaImageTitle,
+  formaMediaOverrideAltText,
+  formaVideoClientName,
+  formaVideoTitle
+}: TGetFormaMediaTitleParams): string {
+  if (formaMediaOverrideAltText) {
+    return formaMediaOverrideAltText;
+  }
+
+  const elements: string[] = [];
+
+  if (formaMediaType === DOCUMENT_SCHEMA_TYPES.formaImageAsset) {
+    if (formaImageClientName) {
+      elements.push(formaImageClientName);
+    }
+
+    if (formaImageTitle) {
+      elements.push(formaImageTitle);
+    }
+  } else if (formaMediaType === DOCUMENT_SCHEMA_TYPES.formaVideoAsset) {
+    if (formaVideoClientName) {
+      elements.push(formaVideoClientName);
+    }
+
+    if (formaVideoTitle) {
+      elements.push(formaVideoTitle);
+    }
+  }
+
+  return elements.length > 0 ? elements.join(' - ') : 'Unnamed Forma Media';
+}
+
+type TGetFormaMediaMediaParams = {
+  formaMediaType: string;
+  formaMediaImage: ReactNode;
+  formaMediaVideoThumbnail: ReactNode;
+};
+
+export function getFormaMediaMedia({
+  formaMediaImage,
+  formaMediaType,
+  formaMediaVideoThumbnail
+}: TGetFormaMediaMediaParams) {
+  if (formaMediaType === DOCUMENT_SCHEMA_TYPES.formaImageAsset) {
+    return formaMediaImage;
+  } else if (formaMediaType === DOCUMENT_SCHEMA_TYPES.formaVideoAsset) {
+    return formaMediaVideoThumbnail;
+  }
+
+  return FileImageIcon;
 }

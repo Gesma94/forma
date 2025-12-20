@@ -13,12 +13,7 @@ type Props = PropsWithChildren<VariantProps<typeof style>> & {
   skipYPadding?: boolean;
 };
 
-export function ModuleContentContainer({
-  children,
-  variant = 'on-bg',
-  title,
-  skipContentContainer = false,
-}: Props) {
+export function ModuleContentContainer({ children, variant = 'on-bg', title, skipContentContainer = false }: Props) {
   const Container = skipContentContainer ? Fragment : ContentContainer;
   return (
     <div className={style({ variant })}>

@@ -1,7 +1,7 @@
 import { TImageTag } from '@forma/common';
-import { IFormImageAsset } from 'common/utils/get-forma-image';
+import { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
 
-export interface IScrollGalleryImage extends IFormImageAsset {
+export type TScrollGalleryMedia = TFormaMediaUnwrapped & {
   key: string;
   tags: TImageTag[];
-}
+};

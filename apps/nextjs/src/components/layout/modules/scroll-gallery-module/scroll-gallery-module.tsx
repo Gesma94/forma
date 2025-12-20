@@ -1,34 +1,34 @@
 import { randomUUID } from 'node:crypto';
 import type { TImageTag } from '@forma/common';
-import { fetchFormaImageAssetDocument } from 'common/utils/get-forma-image';
+import { getFormaMediaData } from 'common/utils/get-forma-media';
 import type { ScrollGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ScrollGalleryClientModule } from './subs/scroll-gallery-client-module';
-import type { IScrollGalleryImage } from './subs/types';
+import type { TScrollGalleryMedia } from './subs/types';
 
 type TProps = {
   module: ScrollGalleryModuleDocumentType;
 };
 
 export async function ScrollGalleryModule({ module }: TProps) {
-  const images = await Promise.all(
-    module.scrollGalleryImages.map<Promise<IScrollGalleryImage>>(async x => {
-      const imageData = await fetchFormaImageAssetDocument(x.image._ref);
+  const medias = await Promise.all(
+    module.scrollGalleryImages.map<Promise<TScrollGalleryMedia>>(async x => {
+      const mediaData = await getFormaMediaData(x.formaMedia);
       return {
         key: x._key,
-        ...imageData,
+        ...mediaData,
         tags: x.imageTags as TImageTag[]
       };
     })
   );
   const targetLength = 50;
-  const result: IScrollGalleryImage[] = [];
+  const result: TScrollGalleryMedia[] = [];
 
   while (result.length < targetLength) {
-    const randomIndex = Math.floor(Math.random() * images.length);
-    const element = structuredClone(images[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * medias.length);
+    const element = structuredClone(medias[randomIndex]);
     element.key = randomUUID();
     result.push(element);
   }
 
-  return <ScrollGalleryClientModule images={result} />;
+  return <ScrollGalleryClientModule medias={medias} />;
 }

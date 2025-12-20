@@ -45,5 +45,5 @@ export const OBJECT_SCHEMA_TYPES = {
   teamMember: 'teamMemberObjectType',
   scrollGalleryImage: 'scrollGalleryImageObjectType',
   listTextItem: 'listTextItemObjectType',
-  spacing: 'spacingObjectType',
+  spacing: 'spacingObjectType'
 } as const;

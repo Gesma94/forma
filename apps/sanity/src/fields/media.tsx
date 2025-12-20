@@ -12,7 +12,12 @@ type TProps = {
   skipBrightness?: boolean;
 };
 
-export function defineFormaMediaField({ name, title, fieldset, validation }: TProps) {
+export function defineFormaMediaField(
+  { name = 'formaMedia', title = 'Forma Media', fieldset, validation }: TProps = {
+    name: 'formaMedia',
+    title: 'Forma Media'
+  }
+) {
   return defineField({
     name,
     title,
