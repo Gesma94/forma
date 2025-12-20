@@ -21,6 +21,9 @@ export function getPageTitleFromId(pageId: string): string {
   if (pageId === SANITY_DOCUMENT_IDS.contactUsPage) {
     return 'Contact Us';
   }
+  if (pageId === SANITY_DOCUMENT_IDS.gallerypage) {
+    return 'Gallery Page';
+  }
 
   return 'Unknown Page';
 }
