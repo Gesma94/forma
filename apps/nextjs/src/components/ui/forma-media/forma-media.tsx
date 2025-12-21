@@ -10,19 +10,21 @@ type TProps = {
   formaMedia: FormaMediaInstanceObjectType;
   imgProps?: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
   videoProps?: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>;
+  forceHideMediaTitle?: true;
 };
 
 type TSanityQueryParams = {
   documentId: string;
 };
 
-export async function FormaMedia({ formaMedia, videoProps, imgProps, className }: TProps) {
+export async function FormaMedia({ formaMedia, videoProps, imgProps, className, forceHideMediaTitle }: TProps) {
+  const shouldHideMediaTitle = forceHideMediaTitle === true || !formaMedia.showMediaTitle;
+  const shouldDisplayMediaTitle = !shouldHideMediaTitle;
   const brightnessStyle: CSSProperties = isNotNil(formaMedia.brightness)
     ? {
         filter: `brightness(${formaMedia.brightness}%)`
       }
     : {};
-
   const mediaAsset = await runQuery(q.parameters<TSanityQueryParams>().star.filterRaw('_id == $documentId').slice(0), {
     parameters: { documentId: formaMedia.formaMedia._ref }
   });
@@ -32,14 +34,19 @@ export async function FormaMedia({ formaMedia, videoProps, imgProps, className }
     const imageAltText = `${mediaAsset.clientName} - ${mediaAsset.imageTitle}`;
 
     return (
-      <div>
+      <div className='relative size-full'>
         <img
           src={imageUrl}
           alt={imageAltText}
           style={brightnessStyle}
           {...imgProps}
-          className={className ?? imgProps.className}
+          className={className ?? imgProps?.className}
         />
+        {shouldDisplayMediaTitle && (
+          <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
+            <p className='text-md'>{imageAltText}</p>
+          </div>
+        )}
       </div>
     );
   } else if (mediaAsset._type === 'formaVideoAssetDocumentType') {
@@ -50,7 +57,7 @@ export async function FormaMedia({ formaMedia, videoProps, imgProps, className }
     );
 
     return (
-      <div className='contents relative'>
+      <div className='relative size-full'>
         <video
           preload='metadata'
           style={brightnessStyle}
@@ -59,7 +66,7 @@ export async function FormaMedia({ formaMedia, videoProps, imgProps, className }
           autoPlay={formaMedia.isAutoplayEnabled}
           controls={formaMedia.areControlsEnabled}
           {...videoProps}
-          className={className ?? videoProps.className}
+          className={className ?? videoProps?.className}
         >
           <source src={video.url} type='video/mp4' />
         </video>

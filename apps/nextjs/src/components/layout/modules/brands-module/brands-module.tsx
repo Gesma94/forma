@@ -32,8 +32,11 @@ export async function BrandsModule({ module }: TProps) {
               <ParagraphPortableText value={module.content} variant={module.variant} className='text-center' />
             </div>
           </ContentContainer>
-          <div className='mt-4 w-full overflow-hidden'>
-            <MotionUl animation={MOTION_ANIMATION.SCROLL_X_INFINITY} className='flex gap-4 w-fit'>
+          <div className='mt-16 w-full overflow-hidden'>
+            <MotionUl
+              animation={MOTION_ANIMATION.SCROLL_X_INFINITY}
+              className='flex gap-4 w-fit border-y-2 border-primary'
+            >
               {brands.map(x => (
                 <BrandListItem key={`${x._id}-1`} brand={x} variant={module.variant} />
               ))}

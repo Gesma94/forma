@@ -14,6 +14,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
   quotesModule: 'quotesModuleDocumentType',
   reviewsModule: 'reviewsModuleDocumentType',
   textWithImageModule: 'textWithImageModuleDocumentType',
+  listWithImageModule: 'listWithImageModuleDocumentType',
   servicesModule: 'servicesModuleDocumentType',
   cardsModule: 'cardsModuleDocumentType',
   teamModule: 'teamModuleDocumentType',
@@ -48,3 +49,14 @@ export const OBJECT_SCHEMA_TYPES = {
   listTextItem: 'listTextItemObjectType',
   spacing: 'spacingObjectType'
 } as const;
+
+export const FORMA_MEDIA_SELECT_PROPS = {
+  formaMediaType: 'formaMedia.formaMedia._type',
+  formaImageClientName: 'formaMedia.formaMedia.clientName',
+  formaVideoClientName: 'formaMedia.formaMedia.clientName',
+  formaImageTitle: 'formaMedia.formaMedia.imageTitle',
+  formaVideoTitle: 'formaMedia.formaMedia.videoTitle',
+  formaMediaOverrideAltText: 'formaMedia.overrideAltText',
+  formaMediaImage: 'formaMedia.formaMedia.image',
+  formaMediaVideoThumbnail: 'formaMedia.formaMedia.thumbnail'
+};

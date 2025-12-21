@@ -9,6 +9,7 @@ import { HeroModule } from '@/layout/modules/hero-module/hero-module';
 import { HowItWorksModule } from '@/layout/modules/how-it-works-module/how-it-works-module';
 import { ImageModule } from '@/layout/modules/image-module/image-module';
 import { InlineGalleryModule } from '@/layout/modules/inline-gallery-module/inline-gallery-module';
+import { ListWithImageModule } from '@/layout/modules/list-with-image-module/list-with-image-module';
 import { ParallaxImageModule } from '@/layout/modules/parallax-image-module/parallax-image-module';
 import { ProcessModule } from '@/layout/modules/process-module/process-module';
 import { QuotesModule } from '@/layout/modules/quotes-module/quotes-module';
@@ -70,6 +71,8 @@ export function ModuleRenderer({ modules }: TProps) {
         return <ParallaxImageModule key={module._id} module={module} />;
       case 'contactUsModuleDocumentType':
         return <ContactUsModule key={module._id} module={module} />;
+      case 'listWithImageModuleDocumentType':
+        return <ListWithImageModule key={module._id} module={module} />;
       default:
         return null;
     }

@@ -1,7 +1,7 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineFormaImageField, defineRichEditorField } from '../../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineRichEditorField } from '../../../fields';
 import { defineFormaMediaField } from '../../../fields/media';
 import { defineSpacingField } from '../../../fields/spacing';
 
@@ -13,11 +13,11 @@ export const studioModuleDocumentType = defineType({
     select: {
       content: 'content',
       title: 'subHeading',
-      media: 'image.formaImage.image'
+      ...getFormaMediaSelectProps('media')
     },
-    prepare: ({ title, media, content }) => ({
+    prepare: ({ title, content, ...formaMediaProps }) => ({
       title: textBlockToPlainText(title),
-      media,
+      media: getFormaMediaMedia(formaMediaProps),
       subtitle: textBlockToPlainText(content, 30)
     })
   },
@@ -48,36 +48,9 @@ export const studioModuleDocumentType = defineType({
       validation: rule => rule.required()
     }),
     defineField({
-      name: 'CtaLabel',
-      title: 'CTA Label',
-      fieldset: 'CTA',
-      type: 'string',
-      validation: rule => rule.required()
-    }),
-    defineRichEditorField({
-      name: 'forClientSubHeading',
-      title: 'For Client Subheading',
-      allowColorMarkDecorator: false,
-      validation: rule => rule.required()
-    }),
-    defineFormaImageField({
-      name: 'problemsImage',
-      title: 'Problems Image',
-      validation: rule => rule.required()
-    }),
-    defineField({
-      name: 'problems',
-      title: 'Problems',
-      type: 'array',
-      of: [defineArrayMember({ type: OBJECT_SCHEMA_TYPES.listTextItem })],
-      validation: rule => rule.required().min(1)
-    }),
-    defineField({
-      name: 'showCta',
-      title: 'Show CTA',
-      type: 'boolean',
-      fieldset: 'CTA',
-      initialValue: true,
+      name: 'primaryCta',
+      title: 'Primary CTA',
+      type: OBJECT_SCHEMA_TYPES.cta,
       validation: rule => rule.required()
     })
   ]

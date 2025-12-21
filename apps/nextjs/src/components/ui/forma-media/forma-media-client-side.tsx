@@ -27,7 +27,7 @@ export function FormaMediaClientSide(props: TProps) {
   if (mediaType === 'formaImageAssetDocumentType') {
     const { imageUrl, imageAltText, imgProps } = props;
     return (
-      <div className='contents relative'>
+      <div className='relative size-full'>
         <img
           src={imageUrl}
           alt={imageAltText}
@@ -46,7 +46,7 @@ export function FormaMediaClientSide(props: TProps) {
     const { isMuted, isLoopEnabled, isAutoplayEnabled, areControlsEnabled, videoUrl, videoAltText, videoProps } = props;
 
     return (
-      <div className='contents relative'>
+      <div className='relative size-full'>
         <video
           preload='metadata'
           style={brightnessStyle}

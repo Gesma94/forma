@@ -2,7 +2,7 @@ import { MODULE_VARIANTS, SANITY_DOCUMENT_IDS, type TModuleVariants } from '@for
 import { FileImageIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { isPortableTextTextBlock, type PortableTextBlock } from 'sanity';
-import { DOCUMENT_SCHEMA_TYPES } from './constants';
+import { DOCUMENT_SCHEMA_TYPES, type FORMA_MEDIA_SELECT_PROPS } from './constants';
 
 export function getPageTitleFromId(pageId: string): string {
   if (pageId.startsWith('drafts.')) {
@@ -139,4 +139,17 @@ export function getFormaMediaMedia({
   }
 
   return FileImageIcon;
+}
+
+export function getFormaMediaSelectProps(fieldName: string): typeof FORMA_MEDIA_SELECT_PROPS {
+  return {
+    formaMediaType: `${fieldName}.formaMedia._type`,
+    formaImageClientName: `${fieldName}.formaMedia.clientName`,
+    formaVideoClientName: `${fieldName}.formaMedia.clientName`,
+    formaImageTitle: `${fieldName}.formaMedia.imageTitle`,
+    formaVideoTitle: `${fieldName}.formaMedia.videoTitle`,
+    formaMediaOverrideAltText: `${fieldName}.overrideAltText`,
+    formaMediaImage: `${fieldName}.formaMedia.image`,
+    formaMediaVideoThumbnail: `${fieldName}.formaMedia.thumbnail`
+  };
 }

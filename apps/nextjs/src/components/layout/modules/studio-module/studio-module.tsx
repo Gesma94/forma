@@ -1,13 +1,11 @@
 import { MODULE_VARIANTS } from '@forma/common';
-import { getFormaImageData } from 'common/utils/get-forma-image';
 import type { StudioModuleDocumentType } from 'types/generated/sanity-types-generated';
-import { Button } from '@/ui/buttons/button/button';
+import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 import { FormaMedia } from '@/ui/forma-media/forma-media';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
-import { ListTextItem } from './subs/list-text-item';
 import { StudioModuleSubHeading } from './subs/studio-module-subheading';
 
 type TProps = {
@@ -16,58 +14,36 @@ type TProps = {
 
 export async function StudioModule({ module }: TProps) {
   const variant = MODULE_VARIANTS.ON_BG;
-  const problemsImageData = await getFormaImageData(module.problemsImage);
 
   return (
     <BackgroundVariantContainer variant={variant}>
       <VerticalPaddingContainer {...module.paddings}>
         <ModuleContentContainer variant={variant}>
-          <div className='grid grid-rows-2 gap-20'>
-            <div className='grid gap-20 grid-rows-[auto_auto] xl:grid-rows-1  grid-cols-1 xl:grid-cols-[1fr_2fr]'>
-              <div className='flex flex-col min-w-0'>
-                <h2 className='text-7xl md:text-8xl text-primary flex flex-col'>
-                  <span className='text-5xl md:text-6xl'>This is</span>
-                  <span className='flex flex-col font-bold'>Forma</span>
-                </h2>
-                <div className='mt-2'>
-                  <StudioModuleSubHeading value={module.subHeading} />
-                </div>
-                <div className='mt-8'>
-                  <ParagraphPortableText value={module.content} variant={MODULE_VARIANTS.ON_BG} />
-                </div>
-                {module.showCta && (
-                  <div className='mt-8 grid xs:block md:mx-auto xl:mx-[unset] xs:mr-auto'>
-                    <Button size='large' variant='primary' surface='bg'>
-                      {module.CtaLabel}
-                    </Button>
-                  </div>
-                )}
+          <div className='grid gap-20 xl:grid-cols-[1fr_2fr]'>
+            <div className='flex flex-col min-w-0'>
+              <h2 className='text-7xl md:text-8xl text-primary flex flex-col'>
+                <span className='text-5xl md:text-6xl'>This is</span>
+                <span className='flex flex-col font-bold'>Forma</span>
+              </h2>
+              <div className='mt-2'>
+                <StudioModuleSubHeading value={module.subHeading} />
               </div>
-              <div className='relative contain-size'>
-                <FormaMedia
-                  formaMedia={module.media}
-                  className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
-                />
+              <div className='mt-8'>
+                <ParagraphPortableText value={module.content} variant={MODULE_VARIANTS.ON_BG} />
               </div>
+              {module.primaryCta.showCta && (
+                <div className='mt-8 grid xs:flex'>
+                  <LinkButton href={module.primaryCta.url} size='large' variant='primary' surface='bg'>
+                    {module.primaryCta.caption}
+                  </LinkButton>
+                </div>
+              )}
             </div>
-            <div className='grid gap-20 grid-rows-[auto_auto] xl:grid-rows-1 grid-cols-1 xl:grid-cols-[2fr_1fr]'>
-              <div className='contain-size'>
-                <img
-                  className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
-                  alt={problemsImageData.imageAltText}
-                  src={problemsImageData.imageUrl}
-                />
-              </div>
-              <div className='flex flex-col gap-10'>
-                <div>
-                  <StudioModuleSubHeading value={module.forClientSubHeading} />
-                </div>
-                <div className='flex gap-8 my-auto flex-col'>
-                  {module.problems.map(item => (
-                    <ListTextItem key={item._key} caption={item.caption} heading={item.heading} />
-                  ))}
-                </div>
-              </div>
+            <div className='relative contain-size'>
+              <FormaMedia
+                formaMedia={module.media}
+                className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
+              />
             </div>
           </div>
         </ModuleContentContainer>

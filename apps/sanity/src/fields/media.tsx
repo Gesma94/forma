@@ -2,8 +2,8 @@ import { defineField, type FieldDefinition, type SchemaValidationValue } from 's
 import { OBJECT_SCHEMA_TYPES } from '../common/constants';
 
 type TProps = {
-  name: string;
-  title: string;
+  name?: string;
+  title?: string;
   note?: string;
   fieldset?: string;
   fields?: FieldDefinition[];

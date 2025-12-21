@@ -20,7 +20,7 @@ export const textWithImageModuleDocumentType = defineType({
     prepare: ({ title, media, variant }) => ({
       media,
       title: textBlockToPlainText(title),
-      subtitle: `Text with Image Module- ${getVariantTitle(variant)}`
+      subtitle: `Text with Image Module - ${getVariantTitle(variant)}`
     })
   },
   fields: [
