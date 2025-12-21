@@ -13,7 +13,6 @@ import { parallaxImagesModuleDocumentType } from './parallax-images-module';
 import { processModuleDocumentType } from './process-module';
 import { quotesModuleDocumentType } from './quotes-module';
 import { readyToStartModuleDocumentType } from './ready-to-start-module';
-import { reasonsModuleDocumentType } from './reasons-module';
 import { reviewsModuleDocumentType } from './reviews-module';
 import { scrollGalleryModuleDocumentType } from './scroll-gallery-module';
 import { servicesModuleDocumentType } from './services-module';
@@ -37,7 +36,6 @@ export const moduleDocumentSchemaTypes = [
   cardsModuleDocumentType,
   imageModuleDocumentType,
   inlineGalleryModuleDocumentType,
-  reasonsModuleDocumentType,
   readyToStartModuleDocumentType,
   teamModuleDocumentType,
   processModuleDocumentType,

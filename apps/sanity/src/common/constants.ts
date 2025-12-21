@@ -10,7 +10,6 @@ export const DOCUMENT_SCHEMA_TYPES = {
   countersModule: 'countersModuleDocumentType',
   brandsModule: 'brandsModuleDocumentType',
   readyToStartModule: 'readyToStartModuleDocumentType',
-  reasonsModule: 'reasonsModuleDocumentType',
   quotesModule: 'quotesModuleDocumentType',
   reviewsModule: 'reviewsModuleDocumentType',
   textWithImageModule: 'textWithImageModuleDocumentType',

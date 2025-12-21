@@ -14,7 +14,6 @@ import { ParallaxImageModule } from '@/layout/modules/parallax-image-module/para
 import { ProcessModule } from '@/layout/modules/process-module/process-module';
 import { QuotesModule } from '@/layout/modules/quotes-module/quotes-module';
 import { ReadyToStartModule } from '@/layout/modules/ready-to-start-module/ready-to-start-module';
-import { ReasonsModule } from '@/layout/modules/reasons-module/reasons-module';
 import { ReviewsModule } from '@/layout/modules/reviews-module/reviews-module';
 import { ScrollGalleryModule } from '@/layout/modules/scroll-gallery-module/scroll-gallery-module';
 import { ServicesModule } from '@/layout/modules/services-module/services-module';
@@ -53,8 +52,6 @@ export function ModuleRenderer({ modules }: TProps) {
         return <BookModule key={module._id} module={module} />;
       case 'imageModuleDocumentType':
         return <ImageModule key={module._id} module={module} />;
-      case 'reasonsModuleDocumentType':
-        return <ReasonsModule key={module._id} module={module} />;
       case 'inlineGalleryModuleDocumentType':
         return <InlineGalleryModule key={module._id} module={module} />;
       case 'teamModuleDocumentType':
