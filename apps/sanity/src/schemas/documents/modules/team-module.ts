@@ -4,6 +4,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineModuleVariantField, defineRichEditorField } from '../../../fields';
+import { defineSpacingField } from '../../../fields/spacing';
 
 export const teamModuleDocumentType = defineType({
   type: 'document',
@@ -22,6 +23,7 @@ export const teamModuleDocumentType = defineType({
   },
   fields: [
     defineModuleVariantField(),
+    defineSpacingField(),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',

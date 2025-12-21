@@ -4,7 +4,9 @@ import type { ComponentProps } from 'react';
 import { tv } from 'tailwind-variants';
 import type { InlineGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
+import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
+import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 import { InlineGalleryCarousel } from './subs/inline-gallery-carousel';
 
 type TProps = {
@@ -21,25 +23,29 @@ export async function InlineGalleryModule({ module }: TProps) {
     module.variant === 'on-primary' ? 'primary' : 'bg';
 
   return (
-    <ModuleContentContainer variant={module.variant} title={module.heading} skipContentContainer={true}>
-      <div className={inlineGalleryWrapperTv()}>
-        <InlineGalleryCarousel images={images} variant={module.variant} />
-      </div>
-      {(module.primaryCta.showCta || module.secondaryCta.showCta) && (
-        <div className='mt-10 mx-auto flex gap-8'>
-          {module.primaryCta.showCta && (
-            <LinkButton href={module.primaryCta.url} size='large' variant='primary' surface={buttonSurface}>
-              {module.primaryCta.caption}
-            </LinkButton>
+    <BackgroundVariantContainer variant={module.variant}>
+      <VerticalPaddingContainer {...module.paddings}>
+        <ModuleContentContainer variant={module.variant} title={module.heading} skipContentContainer={true}>
+          <div className={inlineGalleryWrapperTv()}>
+            <InlineGalleryCarousel images={images} variant={module.variant} />
+          </div>
+          {(module.primaryCta.showCta || module.secondaryCta.showCta) && (
+            <div className='mt-10 mx-auto flex gap-8'>
+              {module.primaryCta.showCta && (
+                <LinkButton href={module.primaryCta.url} size='large' variant='primary' surface={buttonSurface}>
+                  {module.primaryCta.caption}
+                </LinkButton>
+              )}
+              {module.secondaryCta.showCta && (
+                <LinkButton href={module.secondaryCta.url} size='large' variant='ghost' surface={buttonSurface}>
+                  {module.secondaryCta.caption}
+                </LinkButton>
+              )}
+            </div>
           )}
-          {module.secondaryCta.showCta && (
-            <LinkButton href={module.secondaryCta.url} size='large' variant='ghost' surface={buttonSurface}>
-              {module.secondaryCta.caption}
-            </LinkButton>
-          )}
-        </div>
-      )}
-    </ModuleContentContainer>
+        </ModuleContentContainer>
+      </VerticalPaddingContainer>
+    </BackgroundVariantContainer>
   );
 }
 

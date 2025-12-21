@@ -2,7 +2,6 @@ import { MODULE_VARIANTS } from '@forma/common';
 import { getFormaImageData } from 'common/utils/get-forma-image';
 import type { ReviewsModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
-import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
@@ -35,7 +34,6 @@ export async function ReviewsModule({ module }: TProps) {
       })),
     { parameters: { reviewIds: module.reviews.map(x => x._ref) } }
   );
-
   const reviewsWithImages = await Promise.all(
     reviews.map<Promise<TReview>>(async review => ({
       ...review,
@@ -46,19 +44,17 @@ export async function ReviewsModule({ module }: TProps) {
   );
 
   return (
-    <VerticalPaddingContainer variant={MODULE_VARIANTS.ON_BG} {...module.paddings}>
-      <ModuleContentContainer title={module.heading} skipContentContainer={true} skipYPadding={true}>
+    <ModuleContentContainer title={module.heading} skipContentContainer={true} variant={MODULE_VARIANTS.ON_BG}>
+      <div>
         <div>
-          <div>
-            <ContentContainer>
-              <ParagraphPortableText value={module.content} variant={MODULE_VARIANTS.ON_BG} className='text-center' />
-            </ContentContainer>
-          </div>
-          <div className='relative'>
-            <ReviewsCarousel reviews={reviewsWithImages} />
-          </div>
+          <ContentContainer>
+            <ParagraphPortableText value={module.content} variant={MODULE_VARIANTS.ON_BG} className='text-center' />
+          </ContentContainer>
         </div>
-      </ModuleContentContainer>
-    </VerticalPaddingContainer>
+        <div className='relative'>
+          <ReviewsCarousel reviews={reviewsWithImages} />
+        </div>
+      </div>
+    </ModuleContentContainer>
   );
 }

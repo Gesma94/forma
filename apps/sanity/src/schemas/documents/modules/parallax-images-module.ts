@@ -1,5 +1,8 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { ELEMENT_X_POSITION } from '@forma/common';
+import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
+import { defineModuleVariantField } from '../../../fields';
+import { defineSpacingField } from '../../../fields/spacing';
 
 export const parallaxImagesModuleDocumentType = defineType({
   type: 'document',
@@ -7,12 +10,28 @@ export const parallaxImagesModuleDocumentType = defineType({
   name: DOCUMENT_SCHEMA_TYPES.parallaxImagesModule,
   preview: {
     select: {
-      title: 'friendlyName',
-      pairs: 'imagePairs'
+      title: 'friendlyName'
     },
-    prepare: ({ title, pairs }) => ({ title, subtitle: `${pairs.length} pair(s)` })
+    prepare: ({ title }) => ({ title })
   },
   fields: [
+    defineSpacingField(),
+    defineModuleVariantField(),
+    defineField({
+      type: 'string',
+      name: 'bigImagePosition',
+      description: 'Defines where the big image is positioned',
+      title: 'Big Image Position',
+      validation: rule => rule.required(),
+      initialValue: ELEMENT_X_POSITION.LEFT,
+      options: {
+        layout: 'radio',
+        list: [
+          { title: 'Left', value: ELEMENT_X_POSITION.LEFT },
+          { title: 'Right', value: ELEMENT_X_POSITION.RIGHT }
+        ]
+      }
+    }),
     defineField({
       type: 'string',
       name: 'friendlyName',
@@ -21,11 +40,10 @@ export const parallaxImagesModuleDocumentType = defineType({
       validation: rule => rule.required()
     }),
     defineField({
-      name: 'imagePairs',
-      title: 'Image Pairs',
-      type: 'array',
-      of: [defineArrayMember({ type: OBJECT_SCHEMA_TYPES.imagePair })],
-      validation: rule => rule.required().min(2)
+      name: 'imagePair',
+      title: 'Image Pair',
+      type: OBJECT_SCHEMA_TYPES.imagePair,
+      validation: rule => rule.required()
     })
   ]
 });

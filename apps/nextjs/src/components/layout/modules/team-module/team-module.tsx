@@ -1,7 +1,9 @@
 import { ELEMENT_X_POSITION } from '@forma/common';
 import { tv } from 'tailwind-variants';
 import type { TeamModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
+import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { getSanityImageUrl } from '@/utils/groqd-client';
 import { Header } from './subs/header';
@@ -18,17 +20,21 @@ export async function TeamModule({ module }: TProps) {
   const members = await Promise.all(module.teamMembers.map(x => ({ ...x, imageUrl: getSanityImageUrl(x.image) })));
 
   return (
-    <ModuleContentContainer variant={module.variant}>
-      <div className={containerStyle()}>
-        <div className={moduleTextsContainerStyle()}>
-          <Header value={module.heading} variant={module.variant} />
-          <ParagraphPortableText value={module.subHeading} variant={module.variant} />
-        </div>
-        <div className={carouselWrapper()}>
-          <TeamCarousel members={members} variant={module.variant} />
-        </div>
-      </div>
-    </ModuleContentContainer>
+    <BackgroundVariantContainer variant={module.variant}>
+      <VerticalPaddingContainer {...module.paddings}>
+        <ModuleContentContainer variant={module.variant}>
+          <div className={containerStyle()}>
+            <div className={moduleTextsContainerStyle()}>
+              <Header value={module.heading} variant={module.variant} />
+              <ParagraphPortableText value={module.subHeading} variant={module.variant} />
+            </div>
+            <div className={carouselWrapper()}>
+              <TeamCarousel members={members} variant={module.variant} />
+            </div>
+          </div>
+        </ModuleContentContainer>
+      </VerticalPaddingContainer>
+    </BackgroundVariantContainer>
   );
 }
 

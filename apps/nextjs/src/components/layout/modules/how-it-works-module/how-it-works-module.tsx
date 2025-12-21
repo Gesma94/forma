@@ -1,7 +1,9 @@
 import { MODULE_VARIANTS } from '@forma/common';
 import { tv } from 'tailwind-variants';
 import type { HowItWorksModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
+import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { Step } from './subs/step';
 
@@ -10,19 +12,24 @@ type TProps = {
 };
 
 export function HowItWorksModule({ module }: TProps) {
+  const variant = MODULE_VARIANTS.ON_BG;
   const { listStyle } = styles();
 
   return (
-    <ModuleContentContainer title={module.heading}>
-      <ParagraphPortableText value={module.subHeading} variant={MODULE_VARIANTS.ON_BG} className='text-center' />
-      <div className='mt-10'>
-        <ol className={listStyle()}>
-          {module.steps.map((step, index) => (
-            <Step step={step} key={step._key} number={index + 1} />
-          ))}
-        </ol>
-      </div>
-    </ModuleContentContainer>
+    <BackgroundVariantContainer variant={variant}>
+      <VerticalPaddingContainer {...module.paddings}>
+        <ModuleContentContainer title={module.heading} variant={variant}>
+          <ParagraphPortableText value={module.subHeading} variant={MODULE_VARIANTS.ON_BG} className='text-center' />
+          <div className='mt-10'>
+            <ol className={listStyle()}>
+              {module.steps.map((step, index) => (
+                <Step step={step} key={step._key} number={index + 1} />
+              ))}
+            </ol>
+          </div>
+        </ModuleContentContainer>
+      </VerticalPaddingContainer>
+    </BackgroundVariantContainer>
   );
 }
 

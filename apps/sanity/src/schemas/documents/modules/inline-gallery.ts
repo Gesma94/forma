@@ -2,6 +2,7 @@ import { GalleryHorizontalIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { defineModuleVariantField } from '../../../fields';
+import { defineSpacingField } from '../../../fields/spacing';
 
 export const inlineGalleryModuleDocumentType = defineType({
   type: 'document',
@@ -21,6 +22,7 @@ export const inlineGalleryModuleDocumentType = defineType({
   },
   fields: [
     defineModuleVariantField(),
+    defineSpacingField(),
     defineField({
       name: 'heading',
       title: 'Heading',

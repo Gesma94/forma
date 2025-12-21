@@ -2,7 +2,9 @@ import { MODULE_VARIANTS } from '@forma/common';
 import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { CardsModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
+import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { Card } from './subs/card';
 import type { ICard } from './subs/types';
@@ -12,6 +14,7 @@ type TProps = {
 };
 
 export async function CardsModule({ module }: TProps) {
+  const variant = MODULE_VARIANTS.ON_PRIMARY;
   const { listStyle, bgImageStyle, moduleWrapperStyle, contentContainerWrapperStyle } = styles();
   const backgroundImageData = await getFormaImageData(module.backgroundImage);
   const cards = await Promise.all(
@@ -24,22 +27,30 @@ export async function CardsModule({ module }: TProps) {
   );
 
   return (
-    <ModuleContentContainer title={module.heading} variant={MODULE_VARIANTS.ON_PRIMARY} skipContentContainer={true}>
-      <div className={moduleWrapperStyle()}>
-        {module.showBgImage && (
-          <img src={backgroundImageData.imageUrl} alt={backgroundImageData.imageAltText} className={bgImageStyle()} />
-        )}
-        <div className={contentContainerWrapperStyle()}>
-          <ContentContainer>
-            <ul className={listStyle()}>
-              {cards.map(card => (
-                <Card card={card} key={card.key} />
-              ))}
-            </ul>
-          </ContentContainer>
-        </div>
-      </div>
-    </ModuleContentContainer>
+    <BackgroundVariantContainer variant={variant}>
+      <VerticalPaddingContainer {...module.paddings}>
+        <ModuleContentContainer title={module.heading} variant={variant} skipContentContainer={true}>
+          <div className={moduleWrapperStyle()}>
+            {module.showBgImage && (
+              <img
+                src={backgroundImageData.imageUrl}
+                alt={backgroundImageData.imageAltText}
+                className={bgImageStyle()}
+              />
+            )}
+            <div className={contentContainerWrapperStyle()}>
+              <ContentContainer>
+                <ul className={listStyle()}>
+                  {cards.map(card => (
+                    <Card card={card} key={card.key} />
+                  ))}
+                </ul>
+              </ContentContainer>
+            </div>
+          </div>
+        </ModuleContentContainer>
+      </VerticalPaddingContainer>
+    </BackgroundVariantContainer>
   );
 }
 

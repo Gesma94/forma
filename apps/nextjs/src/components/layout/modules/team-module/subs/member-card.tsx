@@ -63,7 +63,7 @@ const styles = tv({
     secondLineStyle: 'w-[110%] h-2 absolute bottom-14 left-1/2 -translate-x-1/2 rotate-12',
     textsContainerStyle: 'mt-2 flex flex-col gap-1 min-w-0',
     fullNameStyle: 'text-3xl text-ellipsis overflow-hidden text-nowrap',
-    roleStyle: 'text-sm uppercase text-ellipsis overflow-hidden text-nowrap',
+    roleStyle: 'text-md text-ellipsis overflow-hidden text-nowrap text-text-muted',
     textsWrapperStyle: 'grid'
   },
   variants: {

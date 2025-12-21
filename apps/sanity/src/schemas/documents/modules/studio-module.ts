@@ -3,6 +3,7 @@ import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/cons
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineFormaImageField, defineRichEditorField } from '../../../fields';
 import { defineFormaMediaField } from '../../../fields/media';
+import { defineSpacingField } from '../../../fields/spacing';
 
 export const studioModuleDocumentType = defineType({
   type: 'document',
@@ -27,6 +28,7 @@ export const studioModuleDocumentType = defineType({
     }
   ],
   fields: [
+    defineSpacingField(),
     defineRichEditorField({
       name: 'subHeading',
       title: 'Subheading',

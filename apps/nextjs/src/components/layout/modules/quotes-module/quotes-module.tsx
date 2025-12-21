@@ -1,6 +1,9 @@
+import { MODULE_VARIANTS } from '@forma/common';
 import { isNotNil } from 'es-toolkit';
 import type { QuotesModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
+import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { QuotesCarousel } from './subs/quotes-carousel';
 import type { TQuoteWithAvatarUrl } from './subs/types';
@@ -14,6 +17,7 @@ type TSanityQueryParams = {
 };
 
 export async function QuotesModule({ module }: TProps) {
+  const variant = MODULE_VARIANTS.ON_BG;
   const quotes = await runQuery(
     q.parameters<TSanityQueryParams>().star.filterByType('quoteDocumentType').filterRaw('_id in $quoteIds'),
     { parameters: { quoteIds: module.quotes.map(x => x._ref) } }
@@ -24,10 +28,14 @@ export async function QuotesModule({ module }: TProps) {
   }));
 
   return (
-    <ModuleContentContainer title={module.heading} skipContentContainer={true}>
-      <div className='px-16 md:px-24'>
-        <QuotesCarousel quotes={quotesWithImages} hasTitle={isNotNil(module.heading)} />
-      </div>
-    </ModuleContentContainer>
+    <BackgroundVariantContainer variant={variant}>
+      <VerticalPaddingContainer {...module.paddings}>
+        <ModuleContentContainer title={module.heading} variant={variant} skipContentContainer={true}>
+          <div className='px-16 md:px-24'>
+            <QuotesCarousel quotes={quotesWithImages} hasTitle={isNotNil(module.heading)} />
+          </div>
+        </ModuleContentContainer>
+      </VerticalPaddingContainer>
+    </BackgroundVariantContainer>
   );
 }

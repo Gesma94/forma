@@ -4,6 +4,7 @@ import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { getVariantTitle, textBlockToPlainText } from '../../../common/utils';
 import { defineFormaImageField, defineModuleVariantField, defineRichEditorField } from '../../../fields';
+import { defineSpacingField } from '../../../fields/spacing';
 
 export const textWithImageModuleDocumentType = defineType({
   type: 'document',
@@ -24,6 +25,7 @@ export const textWithImageModuleDocumentType = defineType({
   },
   fields: [
     defineModuleVariantField(),
+    defineSpacingField(),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',

@@ -3,6 +3,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineFormaImageField, defineRichEditorField } from '../../../fields';
+import { defineSpacingField } from '../../../fields/spacing';
 
 export const cardsModuleDocumentType = defineType({
   type: 'document',
@@ -22,6 +23,7 @@ export const cardsModuleDocumentType = defineType({
     })
   },
   fields: [
+    defineSpacingField(),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',

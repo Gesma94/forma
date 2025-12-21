@@ -3,6 +3,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineRichEditorField } from '../../../fields';
+import { defineSpacingField } from '../../../fields/spacing';
 
 export const countersModuleDocumentType = defineType({
   type: 'document',
@@ -16,6 +17,7 @@ export const countersModuleDocumentType = defineType({
     prepare: ({ title }) => ({ title: textBlockToPlainText(title) })
   },
   fields: [
+    defineSpacingField(),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',

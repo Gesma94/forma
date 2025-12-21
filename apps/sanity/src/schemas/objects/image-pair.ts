@@ -1,8 +1,8 @@
 import { RectangleHorizontalIcon } from 'lucide-react';
 import { defineType } from 'sanity';
 import { OBJECT_SCHEMA_TYPES } from '../../common/constants';
-import { getFormaImageAssetName, getVariantTitle } from '../../common/utils';
-import { defineFormaImageField, defineModuleVariantField } from '../../fields';
+import { getFormaImageAssetName } from '../../common/utils';
+import { defineFormaImageField } from '../../fields';
 
 export const imagePairObjectType = defineType({
   type: 'object',
@@ -10,7 +10,6 @@ export const imagePairObjectType = defineType({
   name: OBJECT_SCHEMA_TYPES.imagePair,
   preview: {
     select: {
-      variant: 'variant',
       media: 'leftImage.formaImage.image',
       leftFormaImageTitle: 'leftImage.formaImage.imageTitle',
       leftFormaImageClientName: 'leftImage.formaImage.clientName',
@@ -22,16 +21,14 @@ export const imagePairObjectType = defineType({
       leftFormaImageTitle,
       rightFormaImageClientName,
       rightFormaImageTitle,
-      media,
-      variant
+      media
     }) => ({
       media,
-      title: `Image Pair - ${getVariantTitle(variant)}`,
+      title: `Image Pair`,
       subtitle: `${getFormaImageAssetName(leftFormaImageTitle, leftFormaImageClientName)} || ${getFormaImageAssetName(rightFormaImageTitle, rightFormaImageClientName)}`
     })
   },
   fields: [
-    defineModuleVariantField(),
     defineFormaImageField({
       name: 'leftImage',
       title: 'Left Image',
