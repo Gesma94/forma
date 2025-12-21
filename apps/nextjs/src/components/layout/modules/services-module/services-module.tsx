@@ -5,37 +5,19 @@ import { ModuleContentContainer } from '@/ui/containers/module-content-container
 import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
-import { q, runQuery } from '@/utils/groqd-client';
-import { ServicesBoard } from './subs/services-board';
+import { ServiceCard } from './subs/service-card';
 
 type TProps = {
   module: ServicesModuleDocumentType;
 };
 
-type TSanityQueryParams = {
-  moduleId: string;
-};
-
 export async function ServicesModule({ module }: TProps) {
   const variant = MODULE_VARIANTS.ON_BG;
-  const videos = await runQuery(
-    q
-      .parameters<TSanityQueryParams>()
-      .star.filterByType('servicesModuleDocumentType')
-      .filterBy('_id == $moduleId')
-      .slice(0)
-      .project(sub => ({
-        animationsServiceVideo: sub.field('animationsServiceVideo').field('asset').deref(),
-        stillImageServiceVideo: sub.field('stillImageServiceVideo').field('asset').deref(),
-        vrServiceVideo: sub.field('vrServiceVideo').field('asset').deref()
-      })),
-    { parameters: { moduleId: module._id } }
-  );
 
   return (
     <BackgroundVariantContainer variant={variant}>
       <VerticalPaddingContainer {...module.paddings}>
-        <ModuleContentContainer title={module.heading} skipContentContainer={true} variant={variant}>
+        <ModuleContentContainer title={module.heading} variant={variant}>
           <div>
             <div>
               <ContentContainer>
@@ -47,24 +29,10 @@ export async function ServicesModule({ module }: TProps) {
               </ContentContainer>
             </div>
           </div>
-          <div className='mt-10'>
-            <ServicesBoard
-              stillImageServiceCard={{
-                title: module.stillImageServiceTitle,
-                content: module.stillImageServiceContent,
-                video: videos.stillImageServiceVideo
-              }}
-              vrServiceCard={{
-                title: module.vrServiceTitle,
-                content: module.vrServiceContent,
-                video: videos.vrServiceVideo
-              }}
-              animationsServiceCard={{
-                title: module.animationsServiceTitle,
-                content: module.animationsServiceContent,
-                video: videos.animationsServiceVideo
-              }}
-            />
+          <div className='mt-10 grid grid-cols-3 gap-4'>
+            <ServiceCard service={module.services.at(0)} />
+            <ServiceCard service={module.services.at(1)} />
+            <ServiceCard service={module.services.at(2)} />
           </div>
         </ModuleContentContainer>
       </VerticalPaddingContainer>

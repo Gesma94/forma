@@ -2,7 +2,7 @@ import { tv } from 'tailwind-variants';
 import { PortableTextEmComponent, PortableTextStrongComponent } from '@/ui/portable-text/base-components';
 import { BasePortableText, type TBasePortableTextConsumerProps } from '@/ui/portable-text/base-portable-text';
 
-export function ServiceCardContent({ value }: TBasePortableTextConsumerProps) {
+export function CardDescription({ value }: TBasePortableTextConsumerProps) {
   const { container, paragraph } = style();
 
   return (

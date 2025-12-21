@@ -9,6 +9,7 @@ import { imagePairObjectType } from './image-pair';
 import { linkObjectType } from './link';
 import { listTextItemObjectType } from './list-text-item';
 import { scrollGalleryImageObjectType } from './scoll-gallery-image';
+import { serviceObjectType } from './service';
 import { teamMemberObjectType } from './team-member';
 
 export const objectSchemaTypes = [
@@ -22,6 +23,7 @@ export const objectSchemaTypes = [
   scrollGalleryImageObjectType,
   imagePairObjectType,
   listTextItemObjectType,
+  serviceObjectType,
   formaImageInstanceObjectType,
   formaMediaInstanceObjectType
 ];
