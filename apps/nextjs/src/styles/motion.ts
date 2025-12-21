@@ -16,7 +16,7 @@ export const motionAnimationScrollXInfinity: MotionProps = {
   initial: { x: '-25%' },
   animate: { x: '-75%' },
   transition: {
-    duration: 80,
+    duration: 160,
     ease: 'linear',
     repeat: Infinity
   }

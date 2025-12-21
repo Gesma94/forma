@@ -22,7 +22,7 @@ export function BrandListItem({ variant, brand }: TProps) {
 }
 
 const style = tv({
-  base: 'size-64 shrink-0 flex items-center justify-center p-4 rounded-2xl',
+  base: 'size-64 shrink-0 flex items-center justify-center p-4 rounded-2xl border border-primary',
   variants: {
     variant: {
       [MODULE_VARIANTS.ON_BG]: '',

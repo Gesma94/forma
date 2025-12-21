@@ -8,7 +8,6 @@ import { howItWorksObjectType } from './how-it-works-step';
 import { imagePairObjectType } from './image-pair';
 import { linkObjectType } from './link';
 import { listTextItemObjectType } from './list-text-item';
-import { processObjectType } from './process-step';
 import { scrollGalleryImageObjectType } from './scoll-gallery-image';
 import { teamMemberObjectType } from './team-member';
 
@@ -20,7 +19,6 @@ export const objectSchemaTypes = [
   howItWorksObjectType,
   cardObjectType,
   teamMemberObjectType,
-  processObjectType,
   scrollGalleryImageObjectType,
   imagePairObjectType,
   listTextItemObjectType,

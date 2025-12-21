@@ -1,6 +1,11 @@
 import { RouteIcon } from 'lucide-react';
-import { defineArrayMember, defineField, defineType } from 'sanity';
-import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
+import { defineField, defineType } from 'sanity';
+import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineModuleVariantField, defineRichEditorField } from '../../../fields';
+import { defineImagePositionField } from '../../../fields/image-position';
+import { defineFormaMediaField } from '../../../fields/media';
+import { defineSpacingField } from '../../../fields/spacing';
 
 export const processModuleDocumentType = defineType({
   type: 'document',
@@ -9,22 +14,48 @@ export const processModuleDocumentType = defineType({
   icon: RouteIcon,
   preview: {
     select: {
-      title: 'friendlyName'
-    }
+      order: 'order',
+      heading: 'heading',
+      description: 'description',
+      ...getFormaMediaSelectProps('image')
+    },
+    prepare: ({ heading, description, order, ...formaMediaProps }) => ({
+      title: `${order} - ${textBlockToPlainText(heading)}`,
+      media: getFormaMediaMedia(formaMediaProps),
+      subtitle: textBlockToPlainText(description, 30)
+    })
   },
   fields: [
+    defineModuleVariantField(),
+    defineSpacingField(),
+    defineImagePositionField(),
     defineField({
-      type: 'string',
-      name: 'friendlyName',
-      title: 'Friendly Name',
-      description: 'Used only to identify the module in the CMS',
+      type: 'number',
+      title: 'Order',
+      name: 'order',
       validation: rule => rule.required()
     }),
+    defineRichEditorField({
+      title: 'Heading',
+      name: 'heading',
+      validation: rule => rule.required()
+    }),
+    defineRichEditorField({
+      title: 'Description',
+      name: 'description',
+      validation: rule => rule.required(),
+      allowColorMarkDecorator: false
+    }),
     defineField({
-      type: 'array',
-      name: 'steps',
-      title: 'Steps',
-      of: [defineArrayMember({ type: OBJECT_SCHEMA_TYPES.processStep })]
+      type: 'number',
+      title: 'Estimated days',
+      name: 'estimatedDays',
+      validation: rule => rule.required()
+    }),
+    defineFormaMediaField({
+      name: 'image',
+      title: 'Image',
+      validation: rule => rule.required()
     })
   ]
 });
