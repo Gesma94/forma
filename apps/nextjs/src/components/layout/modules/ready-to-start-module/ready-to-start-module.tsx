@@ -4,6 +4,7 @@ import type { ReadyToStartModuleDocumentType } from 'types/generated/sanity-type
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { Subtitle } from './subs/subtitle';
+import { MODULE_VARIANTS } from '@forma/common';
 
 type TProps = {
   module: ReadyToStartModuleDocumentType;
@@ -13,7 +14,7 @@ export async function ReadyToStartModule({ module }: TProps) {
   const backgroundImageData = await getFormaImageData(module.backgroundImage);
 
   return (
-    <ModuleContentContainer skipContentContainer={true} skipYPadding={true}>
+    <ModuleContentContainer skipContentContainer={true} skipYPadding={true} variant={MODULE_VARIANTS.ON_PRIMARY}>
       <div className='h-ready-to-start w-full relative'>
         <Image
           src={backgroundImageData.imageUrl}
