@@ -40,6 +40,18 @@ export const servicesModuleDocumentType = defineType({
       type: 'array',
       of: [defineArrayMember({ type: OBJECT_SCHEMA_TYPES.service })],
       validation: rule => rule.required().min(3).max(3)
+    }),
+    defineField({
+      name: 'primaryCta',
+      title: 'Primary CTA',
+      type: OBJECT_SCHEMA_TYPES.cta,
+      validation: rule => rule.required()
+    }),
+    defineField({
+      name: 'secondaryCta',
+      title: 'Secondary CTA',
+      type: OBJECT_SCHEMA_TYPES.cta,
+      validation: rule => rule.required()
     })
   ]
 });

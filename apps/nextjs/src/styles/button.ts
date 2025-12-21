@@ -119,6 +119,19 @@ export const buttonStyle = tv({
                 active:bg-primary-active
                 focus-visible:outline-bg focus-visible:outline focus-visible:outline-offset-4
                 `
+    },
+    {
+      variant: 'ghost',
+      surface: 'bg',
+      isDisabled: false,
+      isLoading: false,
+      className: `
+                border-bg
+                bg-bg text-primary
+                hover:bg-bg-hover hover:after:opacity-0
+                active:bg-bg-active
+                focus-visible:outline-primary focus-visible:outline focus-visible:outline-offset-4
+                `
     }
   ]
 });
