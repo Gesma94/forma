@@ -1,3 +1,4 @@
+import { ELEMENT_X_POSITION } from '@forma/common';
 import { UsersIcon } from 'lucide-react';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
@@ -30,6 +31,21 @@ export const teamModuleDocumentType = defineType({
       name: 'subHeading',
       title: 'Subheading',
       validation: rule => rule.required()
+    }),
+    defineField({
+      type: 'string',
+      name: 'teamMembersPosition',
+      description: 'Defines where the members images are positioned',
+      title: 'Team Members Position',
+      validation: rule => rule.required(),
+      initialValue: ELEMENT_X_POSITION.RIGHT,
+      options: {
+        layout: 'radio',
+        list: [
+          { title: 'Left', value: ELEMENT_X_POSITION.LEFT },
+          { title: 'Right', value: ELEMENT_X_POSITION.RIGHT }
+        ]
+      }
     }),
     defineField({
       name: 'teamMembers',

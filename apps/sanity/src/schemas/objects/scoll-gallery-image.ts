@@ -45,13 +45,14 @@ export const scrollGalleryImageObjectType = defineType({
       };
     }
   },
-  fields: [defineFormaMediaField(),
+  fields: [
+    defineFormaMediaField(),
     defineField({
       title: 'Media Tags',
       name: 'mediaTags',
       type: 'array',
       of: [{ type: 'reference', to: { type: DOCUMENT_SCHEMA_TYPES.mediaTagAsset } }],
-      validation: rule => rule.required(),
+      validation: rule => rule.required()
     })
   ]
 });

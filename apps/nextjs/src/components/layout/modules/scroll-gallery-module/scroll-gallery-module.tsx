@@ -1,4 +1,3 @@
-import { randomUUID } from 'node:crypto';
 import { getFormaMediaData } from 'common/utils/get-forma-media';
 import type { ScrollGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { q, runQuery } from '@/utils/groqd-client';
@@ -21,6 +20,6 @@ export async function ScrollGalleryModule({ module }: TProps) {
       };
     })
   );
-  
+
   return <ScrollGalleryClientModule medias={medias} filters={filters} />;
 }

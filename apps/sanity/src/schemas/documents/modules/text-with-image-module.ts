@@ -1,4 +1,4 @@
-import { IMAGE_X_POSITION } from '@forma/common';
+import { ELEMENT_X_POSITION } from '@forma/common';
 import { ListXIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
@@ -46,12 +46,12 @@ export const textWithImageModuleDocumentType = defineType({
       name: 'imagePosition',
       title: 'Image Position',
       validation: rule => rule.required(),
-      initialValue: IMAGE_X_POSITION.RIGHT,
+      initialValue: ELEMENT_X_POSITION.RIGHT,
       options: {
         layout: 'radio',
         list: [
-          { title: 'Left', value: IMAGE_X_POSITION.LEFT },
-          { title: 'Right', value: IMAGE_X_POSITION.RIGHT }
+          { title: 'Left', value: ELEMENT_X_POSITION.LEFT },
+          { title: 'Right', value: ELEMENT_X_POSITION.RIGHT }
         ]
       }
     }),

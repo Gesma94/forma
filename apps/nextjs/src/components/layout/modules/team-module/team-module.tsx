@@ -1,7 +1,7 @@
+import { ELEMENT_X_POSITION } from '@forma/common';
 import { tv } from 'tailwind-variants';
 import type { TeamModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
-import { ContentContainer } from '@/ui/content-container/content-container';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { getSanityImageUrl } from '@/utils/groqd-client';
 import { Header } from './subs/header';
@@ -12,27 +12,44 @@ type TProps = {
 };
 
 export async function TeamModule({ module }: TProps) {
-  const { containerStyle, moduleTextsContainerStyle } = styles();
+  const { containerStyle, moduleTextsContainerStyle, carouselWrapper } = styles({
+    membersPosition: module.teamMembersPosition
+  });
   const members = await Promise.all(module.teamMembers.map(x => ({ ...x, imageUrl: getSanityImageUrl(x.image) })));
 
   return (
     <ModuleContentContainer variant={module.variant}>
-      <ContentContainer>
-        <div className={containerStyle()}>
-          <div className={moduleTextsContainerStyle()}>
-            <Header value={module.heading} variant={module.variant} />
-            <ParagraphPortableText value={module.subHeading} variant={module.variant} />
-          </div>
+      <div className={containerStyle()}>
+        <div className={moduleTextsContainerStyle()}>
+          <Header value={module.heading} variant={module.variant} />
+          <ParagraphPortableText value={module.subHeading} variant={module.variant} />
+        </div>
+        <div className={carouselWrapper()}>
           <TeamCarousel members={members} variant={module.variant} />
         </div>
-      </ContentContainer>
+      </div>
     </ModuleContentContainer>
   );
 }
 
 const styles = tv({
   slots: {
-    containerStyle: ['grid', 'grid-rows-[auto_auto] gap-8', '2xl:grid-rows-1 2xl:grid-cols-[auto_auto] 2xl:gap-20'],
-    moduleTextsContainerStyle: ['flex flex-col gap-4 md:gap-10 text-center', '2xl:text-left']
+    containerStyle: ['grid', 'grid-rows-[auto_auto] gap-8', '2xl:grid-rows-1 2xl:gap-20 min-h-[50rem]'],
+    moduleTextsContainerStyle: ['flex flex-col gap-4 md:gap-10 text-center', '2xl:text-left row-start-1'],
+    carouselWrapper: 'row-start-1 h-full'
+  },
+  variants: {
+    membersPosition: {
+      [ELEMENT_X_POSITION.LEFT]: {
+        containerStyle: '2xl:grid-cols-[2fr_1fr]',
+        carouselWrapper: 'col-start-1',
+        moduleTextsContainerStyle: 'col-start-2'
+      },
+      [ELEMENT_X_POSITION.RIGHT]: {
+        containerStyle: '2xl:grid-cols-[1fr_2fr]',
+        carouselWrapper: 'col-start-2',
+        moduleTextsContainerStyle: 'col-start-1'
+      }
+    }
   }
 });

@@ -56,8 +56,8 @@ export function MemberCard({ imageUrl, fullName, role, direction, isSecond, vari
 const styles = tv({
   slots: {
     motionStyle: 'relative w-full row-start-1',
-    containerStyle: 'flex flex-col w-full',
-    imageContainerStyle: 'w-full max-w-full aspect-[9/16] max-h-[520px] overflow-hidden shadow-inner relative',
+    containerStyle: 'flex flex-col size-full',
+    imageContainerStyle: 'size-full max-w-full object-cover overflow-hidden shadow-inner relative',
     imageStyle: 'size-full object-cover hover:scale-110 transition-transform duration-300',
     firstLineStyle: 'w-[110%] h-2 absolute bottom-10 left-1/2 -translate-x-1/2 rotate-12',
     secondLineStyle: 'w-[110%] h-2 absolute bottom-14 left-1/2 -translate-x-1/2 rotate-12',

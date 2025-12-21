@@ -41,7 +41,7 @@ export function TeamCarousel({ members, variant }: TProps) {
   };
 
   return (
-    <div className='grid grid-cols-[1fr] md:grid-cols-2 grid-rows-1 gap-4 relative w-full max-w-96 md:max-w-3xl 2xl:w-3xl mx-auto'>
+    <div className='grid grid-cols-[1fr] md:grid-cols-2 grid-rows-1 gap-4 relative size-full'>
       <AnimatePresence initial={false} custom={direction}>
         <MemberCard
           imageUrl={firstMember.imageUrl}

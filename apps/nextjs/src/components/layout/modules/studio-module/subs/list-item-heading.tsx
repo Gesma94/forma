@@ -34,6 +34,6 @@ export function ListItemHeading({ value }: TListItemHeadingProps) {
 const style = tv({
   slots: {
     container: 'flex flex-col gap-4 max-w-5xl',
-    text: 'text-primary leading-10 text-4xl'
+    text: 'text-primary leading-10 text-2xl'
   }
 });

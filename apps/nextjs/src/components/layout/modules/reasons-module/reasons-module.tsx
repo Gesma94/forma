@@ -1,4 +1,4 @@
-import { IMAGE_X_POSITION } from '@forma/common';
+import { ELEMENT_X_POSITION } from '@forma/common';
 import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { ReasonsModuleDocumentType } from 'types/generated/sanity-types-generated';
@@ -13,7 +13,7 @@ type TProps = {
 };
 
 export async function ReasonsModule({ module }: TProps) {
-  const { imageWrapper, textWrapper } = style({ imagePosition: IMAGE_X_POSITION.LEFT });
+  const { imageWrapper, textWrapper } = style({ imagePosition: ELEMENT_X_POSITION.LEFT });
   const leftImageData = await getFormaImageData(module.leftImage);
 
   return (
@@ -36,25 +36,25 @@ export async function ReasonsModule({ module }: TProps) {
           </div>
           <div className={textWrapper()}>
             <div className='border-l-primary border-l-4 pl-8'>
-              <div className='mb-4'>
+              <div className='mb-2'>
                 <SubHeading value={module.firstSubHeading} />
               </div>
               <SubContent value={module.firstSubContent} />
             </div>
             <div className='border-l-primary border-l-4 pl-8'>
-              <div className='mb-4'>
+              <div className='mb-2'>
                 <SubHeading value={module.secondSubHeading} />
               </div>
               <SubContent value={module.secondSubContent} />
             </div>
             <div className='border-l-primary border-l-4 pl-8'>
-              <div className='mb-4'>
+              <div className='mb-2'>
                 <SubHeading value={module.thirdSubHeading} />
               </div>
               <SubContent value={module.thirdSubContent} />
             </div>
             <div className='border-l-primary border-l-4 pl-8'>
-              <div className='mb-4'>
+              <div className='mb-2'>
                 <SubHeading value={module.fourthSubHeading} />
               </div>
               <SubContent value={module.fourthSubContent} />
@@ -72,11 +72,11 @@ const style = tv({
   },
   variants: {
     imagePosition: {
-      [IMAGE_X_POSITION.LEFT]: {
+      [ELEMENT_X_POSITION.LEFT]: {
         imageWrapper: 'order-1',
         textWrapper: 'order-2'
       },
-      [IMAGE_X_POSITION.RIGHT]: {
+      [ELEMENT_X_POSITION.RIGHT]: {
         imageWrapper: 'order-2',
         textWrapper: 'order-1 text-right'
       }

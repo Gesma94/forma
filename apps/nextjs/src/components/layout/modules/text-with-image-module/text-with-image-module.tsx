@@ -1,4 +1,4 @@
-import { IMAGE_X_POSITION, MODULE_VARIANTS } from '@forma/common';
+import { ELEMENT_X_POSITION, MODULE_VARIANTS } from '@forma/common';
 import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { TextWithImageModuleDocumentType } from 'types/generated/sanity-types-generated';
@@ -56,11 +56,11 @@ const style = tv({
       [MODULE_VARIANTS.ON_PRIMARY]: {}
     },
     imagePosition: {
-      [IMAGE_X_POSITION.LEFT]: {
+      [ELEMENT_X_POSITION.LEFT]: {
         imageWrapper: 'order-1',
         textWrapper: 'order-2'
       },
-      [IMAGE_X_POSITION.RIGHT]: {
+      [ELEMENT_X_POSITION.RIGHT]: {
         imageWrapper: 'order-2',
         textWrapper: 'order-1'
       }
