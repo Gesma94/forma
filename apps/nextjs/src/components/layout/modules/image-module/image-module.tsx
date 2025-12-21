@@ -1,4 +1,4 @@
-import { BACKGROUND_COLOR, IMAGE_SIZE } from '@forma/common';
+import { BACKGROUND_COLOR, IMAGE_SIZE, MODULE_VARIANTS } from '@forma/common';
 import { getFormaImageData } from 'common/utils/get-forma-image';
 import { isNotNil } from 'es-toolkit';
 import Image from 'next/image';
@@ -19,7 +19,7 @@ export async function ImageModule({ module }: TProps) {
   const backgroundImageData = await getFormaImageData(module.backgroundImage);
 
   return (
-    <ModuleContentContainer skipContentContainer={true} skipYPadding={true}>
+    <ModuleContentContainer skipContentContainer={true} skipYPadding={true} variant={MODULE_VARIANTS.ON_BG}>
       <div className={outerContainerStyle()}>
         <div className={upperBackgroundStyle()} />
         <div className={lowerBackgroundStyle()} />
