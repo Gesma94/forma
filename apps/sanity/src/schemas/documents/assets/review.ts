@@ -3,6 +3,7 @@ import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
 import { textBlockToPlainText } from '../../../common/utils';
 import { defineFormaImageField, defineImageField, defineRichEditorField } from '../../../fields';
+import { defineShadeColorField } from '../../../fields/shade-color';
 
 export const reviewDocumentType = defineType({
   type: 'document',
@@ -57,6 +58,10 @@ export const reviewDocumentType = defineType({
       name: 'authorAvatar',
       title: 'Author Avatar',
       validation: rule => rule.required()
+    }),
+    defineShadeColorField({
+      name: 'brandShade',
+      title: 'Brand Shade'
     }),
     defineField({
       name: 'brand',

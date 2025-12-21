@@ -1,9 +1,5 @@
-import { MODULE_VARIANTS } from '@forma/common';
 import { getFormaImageData } from 'common/utils/get-forma-image';
 import type { ReviewsModuleDocumentType } from 'types/generated/sanity-types-generated';
-import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
-import { ContentContainer } from '@/ui/content-container/content-container';
-import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { ReviewsCarousel } from './subs/reviews-carousel';
 import type { TReview } from './subs/types';
@@ -30,6 +26,7 @@ export async function ReviewsModule({ module }: TProps) {
         authorRole: sub.field('authorRole'),
         authorCompany: sub.field('authorCompany'),
         authorAvatar: sub.field('authorAvatar'),
+        brandShade: sub.field('brandShade'),
         brand: sub.field('brand').deref()
       })),
     { parameters: { reviewIds: module.reviews.map(x => x._ref) } }
@@ -44,17 +41,8 @@ export async function ReviewsModule({ module }: TProps) {
   );
 
   return (
-    <ModuleContentContainer title={module.heading} skipContentContainer={true} variant={MODULE_VARIANTS.ON_BG}>
-      <div>
-        <div>
-          <ContentContainer>
-            <ParagraphPortableText value={module.content} variant={MODULE_VARIANTS.ON_BG} className='text-center' />
-          </ContentContainer>
-        </div>
-        <div className='relative'>
-          <ReviewsCarousel reviews={reviewsWithImages} />
-        </div>
-      </div>
-    </ModuleContentContainer>
+    <div>
+      <ReviewsCarousel reviews={reviewsWithImages} moduleTitle={module.heading} imagePosition={module.imagePosition} />
+    </div>
   );
 }

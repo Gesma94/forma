@@ -1,8 +1,10 @@
 import { MessageSquareQuoteIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
+import { getModuleTitleWithFriendlyName } from '../../../common/utils';
 import { defineRichEditorField } from '../../../fields';
+import { defineFriendlyNameField } from '../../../fields/friendly-name';
+import { defineImagePositionField } from '../../../fields/image-position';
 
 export const reviewsModuleDocumentType = defineType({
   type: 'document',
@@ -16,27 +18,19 @@ export const reviewsModuleDocumentType = defineType({
       friendlyName: 'friendlyName'
     },
     prepare: ({ title, reviews, friendlyName }) => ({
-      title: title ? textBlockToPlainText(title) : (friendlyName ?? 'Unnamed Reviews Module'),
+      title: getModuleTitleWithFriendlyName(title, friendlyName),
       subtitle: `Selected ${reviews.length} review(s)`
     })
   },
   fields: [
-    defineField({
-      name: 'friendlyName',
-      title: 'Friendly Name',
-      type: 'string',
-      description: 'used only to identify the module when heading is not defined'
-    }),
+    defineFriendlyNameField(),
     defineRichEditorField({
       name: 'heading',
       title: 'Heading',
-      allowColorMarkDecorator: false
+      allowColorMarkDecorator: false,
+      validation: rule => rule.required()
     }),
-    defineRichEditorField({
-      name: 'content',
-      title: 'Content',
-      allowColorMarkDecorator: false
-    }),
+    defineImagePositionField(),
     defineField({
       name: 'reviews',
       title: 'Reviews',

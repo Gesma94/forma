@@ -1,27 +1,11 @@
 import { ELEMENT_X_POSITION } from '@forma/common';
 import { ListXIcon } from 'lucide-react';
-import { defineArrayMember, defineField, defineType, type PortableTextBlock } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, FORMA_MEDIA_SELECT_PROPS, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
-import { getFormaMediaMedia, getVariantTitle, textBlockToPlainText } from '../../../common/utils';
+import { getFormaMediaMedia, getModuleTitleWithFriendlyName, getVariantTitle } from '../../../common/utils';
 import { defineModuleVariantField, defineRichEditorField } from '../../../fields';
 import { defineFormaMediaField } from '../../../fields/media';
 import { defineSpacingField } from '../../../fields/spacing';
-
-function getPreviewTitle(title?: PortableTextBlock[], friendlyName?: string): string {
-  if (title && friendlyName) {
-    return `${textBlockToPlainText(title)} (${friendlyName})`;
-  }
-
-  if (title && !friendlyName) {
-    return textBlockToPlainText(title);
-  }
-
-  if (!title && friendlyName) {
-    return friendlyName;
-  }
-
-  return 'Unnamed List With Image Module';
-}
 
 export const listWithImageModuleDocumentType = defineType({
   type: 'document',
@@ -38,7 +22,7 @@ export const listWithImageModuleDocumentType = defineType({
     },
     prepare: ({ title, friendlyName, variant, items, ...formaMediaProps }) => ({
       media: getFormaMediaMedia(formaMediaProps),
-      title: getPreviewTitle(title, friendlyName),
+      title: getModuleTitleWithFriendlyName(title, friendlyName),
       subtitle: `List with Image Module - ${getVariantTitle(variant)}`
     })
   },

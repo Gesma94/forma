@@ -153,3 +153,19 @@ export function getFormaMediaSelectProps(fieldName: string): typeof FORMA_MEDIA_
     formaMediaVideoThumbnail: `${fieldName}.formaMedia.thumbnail`
   };
 }
+
+export function getModuleTitleWithFriendlyName(title?: PortableTextBlock[], friendlyName?: string): string {
+  if (title && friendlyName) {
+    return `${textBlockToPlainText(title)} (${friendlyName})`;
+  }
+
+  if (title && !friendlyName) {
+    return textBlockToPlainText(title);
+  }
+
+  if (!title && friendlyName) {
+    return friendlyName;
+  }
+
+  return 'Unnamed Module';
+}
