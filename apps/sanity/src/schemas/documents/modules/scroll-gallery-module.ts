@@ -1,6 +1,7 @@
 import { UsersIcon } from 'lucide-react';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
+import { defineShadeColorField } from '../../../fields/shade-color';
 
 export const scrollGalleryModuleDocumentType = defineType({
   type: 'document',
@@ -24,6 +25,10 @@ export const scrollGalleryModuleDocumentType = defineType({
       title: 'Friendly Name',
       description: 'Used only to identify the module in the CMS',
       validation: rule => rule.required()
+    }),
+    defineShadeColorField({
+      name: 'backgroundShadeColor',
+      title: 'Background Shade Color'
     }),
     defineField({
       name: 'scrollGalleryImages',

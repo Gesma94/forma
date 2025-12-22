@@ -1,5 +1,6 @@
 'use client';
 
+import { SHADE_COLOR, type TShadeColor } from '@forma/common';
 import { isNil } from 'es-toolkit';
 import { Fragment, useMemo, useState } from 'react';
 import { Button } from 'react-aria-components';
@@ -15,9 +16,10 @@ import type { TScrollGalleryMedia } from './types';
 interface IScrollGalleryClientModuleProps {
   filters: MediaTagAssetDocumentType[];
   medias: TScrollGalleryMedia[];
+  backgroundShadeColor: TShadeColor;
 }
 
-export function ScrollGalleryClientModule({ medias, filters }: IScrollGalleryClientModuleProps) {
+export function ScrollGalleryClientModule({ medias, filters, backgroundShadeColor }: IScrollGalleryClientModuleProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [filtersSelection, setFiltersSelection] = useState<Record<string, boolean>>(
     filters.reduce((acc, curr) => {
@@ -26,7 +28,7 @@ export function ScrollGalleryClientModule({ medias, filters }: IScrollGalleryCli
     }, {})
   );
   const { filterWrapper, imageList, imageItem, tagContainerTv, tagTv, emptyListTv, emptyListTextTv, listItemButtonTv } =
-    stylesTv();
+    stylesTv({ backgroundShadeColor });
 
   const filtersMapMemoized = useMemo(() => {
     return filters.reduce((acc, curr) => {
@@ -105,7 +107,7 @@ export function ScrollGalleryClientModule({ medias, filters }: IScrollGalleryCli
 const stylesTv = tv({
   slots: {
     filterWrapper: 'sticky top-0 z-10',
-    imageList: 'bg-bg w-full columns-1 md:columns-2 lg:columns-3 2xl:columns-4 py-10 md:py-20 px-10 lg:px-20',
+    imageList: 'w-full columns-1 md:columns-2 lg:columns-3 2xl:columns-4 py-10 md:py-20 px-10 lg:px-20',
     imageTv: 'size-full object-cover',
     imageItem: 'w-full mb-4 rounded-2xl overflow-hidden',
     listItemButtonTv: 'relative cursor-pointer block',
@@ -113,5 +115,15 @@ const stylesTv = tv({
     tagTv: 'text-primary-text text-sm text-nowrap text-shadow-xl',
     emptyListTv: 'py-10 flex items-center justify-center w-full text-center',
     emptyListTextTv: 'text-bg-text text-3xl py-40'
+  },
+  variants: {
+    backgroundShadeColor: {
+      [SHADE_COLOR.LIGHT]: {
+        imageList: 'bg-bg'
+      },
+      [SHADE_COLOR.DARK]: {
+        imageList: 'bg-bg-soft-dark'
+      }
+    }
   }
 });

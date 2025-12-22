@@ -25,6 +25,7 @@ export type TFormaMediaVideoUnwrapped = TFormaMediaUnwrappedBase & {
   areControlsEnabled: boolean;
   videoUrl: string;
   videoAltText: string;
+  thumbnailUrl: string;
 };
 
 export type TFormaMediaUnwrapped = TFormaMediaImageUnwrapped | TFormaMediaVideoUnwrapped;
@@ -54,6 +55,7 @@ export async function getFormaMediaData(formaMedia: FormaMediaInstanceObjectType
     };
   } else if (mediaAsset._type === 'formaVideoAssetDocumentType') {
     const videoAltText = `${mediaAsset.clientName} - ${mediaAsset.videoTitle}`;
+    const thumbnailUrl = getSanityImageUrl(mediaAsset.thumbnail);
     const video = await runQuery(
       q.parameters<TSanityQueryParams>().star.filterByType('sanity.fileAsset').filterRaw('_id == $documentId').slice(0),
       { parameters: { documentId: mediaAsset.video.asset._ref } }
@@ -68,7 +70,8 @@ export async function getFormaMediaData(formaMedia: FormaMediaInstanceObjectType
       isMuted: formaMedia.isMuted,
       showMediaTitle,
       videoAltText: videoAltText,
-      videoUrl: video.url
+      videoUrl: video.url,
+      thumbnailUrl: thumbnailUrl
     };
   }
 }

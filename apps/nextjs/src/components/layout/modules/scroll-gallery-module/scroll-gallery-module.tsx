@@ -21,5 +21,7 @@ export async function ScrollGalleryModule({ module }: TProps) {
     })
   );
 
-  return <ScrollGalleryClientModule medias={medias} filters={filters} />;
+  return (
+    <ScrollGalleryClientModule medias={medias} filters={filters} backgroundShadeColor={module.backgroundShadeColor} />
+  );
 }

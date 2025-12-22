@@ -43,7 +43,16 @@ export function FormaMediaClientSide(props: TProps) {
       </div>
     );
   } else if (props.mediaType === 'formaVideoAssetDocumentType') {
-    const { isMuted, isLoopEnabled, isAutoplayEnabled, areControlsEnabled, videoUrl, videoAltText, videoProps } = props;
+    const {
+      isMuted,
+      isLoopEnabled,
+      isAutoplayEnabled,
+      areControlsEnabled,
+      videoUrl,
+      videoAltText,
+      thumbnailUrl,
+      videoProps
+    } = props;
 
     return (
       <div className='relative size-full'>
@@ -55,9 +64,10 @@ export function FormaMediaClientSide(props: TProps) {
           autoPlay={isAutoplayEnabled}
           controls={areControlsEnabled}
           {...videoProps}
+          poster={thumbnailUrl}
           className={className ?? videoProps?.className}
         >
-          <source src={`${videoUrl}#t=0.1`} type='video/mp4' />
+          <source src={videoUrl} type='video/mp4' />
         </video>
         {shouldDisplayMediaTitle && (
           <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>

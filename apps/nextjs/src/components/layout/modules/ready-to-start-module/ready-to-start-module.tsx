@@ -1,10 +1,10 @@
+import { MODULE_VARIANTS } from '@forma/common';
 import { getFormaImageData } from 'common/utils/get-forma-image';
 import Image from 'next/image';
 import type { ReadyToStartModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { Subtitle } from './subs/subtitle';
-import { MODULE_VARIANTS } from '@forma/common';
 
 type TProps = {
   module: ReadyToStartModuleDocumentType;

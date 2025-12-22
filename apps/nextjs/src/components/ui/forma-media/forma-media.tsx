@@ -51,6 +51,7 @@ export async function FormaMedia({ formaMedia, videoProps, imgProps, className, 
     );
   } else if (mediaAsset._type === 'formaVideoAssetDocumentType') {
     const videoAltText = `${mediaAsset.clientName} - ${mediaAsset.videoTitle}`;
+    const thumbnailUrl = getSanityImageUrl(mediaAsset.thumbnail);
     const video = await runQuery(
       q.parameters<TSanityQueryParams>().star.filterByType('sanity.fileAsset').filterRaw('_id == $documentId').slice(0),
       { parameters: { documentId: mediaAsset.video.asset._ref } }
@@ -66,6 +67,7 @@ export async function FormaMedia({ formaMedia, videoProps, imgProps, className, 
           autoPlay={formaMedia.isAutoplayEnabled}
           controls={formaMedia.areControlsEnabled}
           {...videoProps}
+          poster={thumbnailUrl}
           className={className ?? videoProps?.className}
         >
           <source src={video.url} type='video/mp4' />
