@@ -1,11 +1,10 @@
 import { ELEMENT_X_POSITION } from '@forma/common';
-import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { ParallaxImagesModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
-import { ParallaxImage } from './subs/parallax-image';
+import { FormaMedia } from '@/ui/forma-media/forma-media';
 
 type TProps = {
   module: ParallaxImagesModuleDocumentType;
@@ -16,28 +15,21 @@ export async function ParallaxImageModule({ module }: TProps) {
     bigImagePosition: module.bigImagePosition
   });
 
-  const [leftImageData, rightImageData] = await Promise.all([
-    getFormaImageData(module.imagePair.leftImage),
-    getFormaImageData(module.imagePair.rightImage)
-  ]);
-
   return (
     <BackgroundVariantContainer variant={module.variant}>
       <VerticalPaddingContainer {...module.paddings}>
         <ModuleContentContainer variant={module.variant}>
           <div className={imagesContainerTv()}>
             <div className={bigImageWrapperTv()}>
-              <ParallaxImage
-                imageUrl={leftImageData.imageUrl}
-                altText={leftImageData.imageAltText}
-                isSmallImage={false}
+              <FormaMedia
+                formaMedia={module.imagePair.leftMedia}
+                className='object-cover size-full contain-size rounded-2xl'
               />
             </div>
             <div className={smallImageWrapperTv()}>
-              <ParallaxImage
-                imageUrl={rightImageData.imageUrl}
-                altText={rightImageData.imageAltText}
-                isSmallImage={true}
+              <FormaMedia
+                formaMedia={module.imagePair.rightMedia}
+                className='object-cover size-full contain-size rounded-2xl'
               />
             </div>
           </div>

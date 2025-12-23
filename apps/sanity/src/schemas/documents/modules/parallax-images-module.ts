@@ -1,6 +1,7 @@
 import { ELEMENT_X_POSITION } from '@forma/common';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
+import { getFormaMediaMedia, getFormaMediaTitle } from '../../../common/utils';
 import { defineModuleVariantField } from '../../../fields';
 import { defineSpacingField } from '../../../fields/spacing';
 
@@ -10,9 +11,61 @@ export const parallaxImagesModuleDocumentType = defineType({
   name: DOCUMENT_SCHEMA_TYPES.parallaxImagesModule,
   preview: {
     select: {
-      title: 'friendlyName'
+      title: 'friendlyName',
+      leftFormaMediaType: 'imagePair.leftMedia.formaMedia._type',
+      leftFormaImageClientName: 'imagePair.leftMedia.formaMedia.clientName',
+      leftFormaVideoClientName: 'imagePair.leftMedia.formaMedia.clientName',
+      leftFormaImageTitle: 'imagePair.leftMedia.formaMedia.imageTitle',
+      leftFormaVideoTitle: 'imagePair.leftMedia.formaMedia.videoTitle',
+      leftFormaMediaOverrideAltText: 'imagePair.leftMedia.overrideAltText',
+      leftFormaMediaImage: 'imagePair.leftMedia.formaMedia.image',
+      leftFormaMediaVideoThumbnail: 'imagePair.leftMedia.formaMedia.thumbnail',
+      rightFormaMediaType: 'imagePair.rightMedia.formaMedia._type',
+      rightFormaImageClientName: 'imagePair.rightMedia.formaMedia.clientName',
+      rightFormaVideoClientName: 'imagePair.rightMedia.formaMedia.clientName',
+      rightFormaImageTitle: 'imagePair.rightMedia.formaMedia.imageTitle',
+      rightFormaVideoTitle: 'imagePair.rightMedia.formaMedia.videoTitle',
+      rightFormaMediaOverrideAltText: 'imagePair.rightMedia.overrideAltText'
     },
-    prepare: ({ title }) => ({ title })
+    prepare: ({
+      title,
+      leftFormaMediaType,
+      leftFormaImageClientName,
+      leftFormaVideoClientName,
+      leftFormaImageTitle,
+      leftFormaVideoTitle,
+      leftFormaMediaOverrideAltText,
+      leftFormaMediaImage,
+      leftFormaMediaVideoThumbnail,
+      rightFormaMediaType,
+      rightFormaImageClientName,
+      rightFormaVideoClientName,
+      rightFormaImageTitle,
+      rightFormaVideoTitle,
+      rightFormaMediaOverrideAltText
+    }) => ({
+      title,
+      media: getFormaMediaMedia({
+        formaMediaImage: leftFormaMediaImage,
+        formaMediaType: leftFormaMediaType,
+        formaMediaVideoThumbnail: leftFormaMediaVideoThumbnail
+      }),
+      subtitle: `${getFormaMediaTitle({
+        formaMediaType: leftFormaMediaType,
+        formaImageClientName: leftFormaImageClientName,
+        formaImageTitle: leftFormaImageTitle,
+        formaMediaOverrideAltText: leftFormaMediaOverrideAltText,
+        formaVideoClientName: leftFormaVideoClientName,
+        formaVideoTitle: leftFormaVideoTitle
+      })} || ${getFormaMediaTitle({
+        formaMediaType: rightFormaMediaType,
+        formaImageClientName: rightFormaImageClientName,
+        formaImageTitle: rightFormaImageTitle,
+        formaMediaOverrideAltText: rightFormaMediaOverrideAltText,
+        formaVideoClientName: rightFormaVideoClientName,
+        formaVideoTitle: rightFormaVideoTitle
+      })}`
+    })
   },
   fields: [
     defineSpacingField(),
