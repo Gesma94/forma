@@ -1,5 +1,6 @@
 import { TShadeColor } from '@forma/common';
 import { IFormImageInstance } from 'common/utils/get-forma-image';
+import { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
 import { ReviewDocumentType } from 'types/generated/sanity-types-generated';
 
 export type TFullReview = ReviewDocumentType & {
@@ -11,14 +12,13 @@ export type TFullReview = ReviewDocumentType & {
 
 export type TReview = {
   id: string;
-  image: ReviewDocumentType['image'];
   statement: TBasePortableTextValue;
   authorName: string;
   authorRole: string;
   authorCompany: string;
   authorAvatar: ReviewDocumentType['authorAvatar'];
   brand: BrandDocumentType;
-  reviewImageData: IFormImageInstance;
+  formaMediaData: TFormaMediaUnwrapped;
   authorAvatarUrl: string;
   brandImageUrl: string;
   brandShade: TShadeColor;
