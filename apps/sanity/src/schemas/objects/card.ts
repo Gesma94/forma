@@ -1,8 +1,9 @@
 import { RectangleHorizontalIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { OBJECT_SCHEMA_TYPES } from '../../common/constants';
-import { textBlockToPlainText } from '../../common/utils';
-import { defineFormaImageField, defineRichEditorField } from '../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../common/utils';
+import { defineRichEditorField } from '../../fields';
+import { defineFormaMediaField } from '../../fields/media';
 
 export const cardObjectType = defineType({
   type: 'object',
@@ -12,11 +13,11 @@ export const cardObjectType = defineType({
     select: {
       title: 'title',
       description: 'description',
-      media: 'image.formaImage.image'
+      ...getFormaMediaSelectProps('media')
     },
-    prepare: ({ title, description, media }) => ({
-      media,
+    prepare: ({ title, description, ...formaMediaProps }) => ({
       title,
+      media: getFormaMediaMedia(formaMediaProps),
       subtitle: textBlockToPlainText(description, 30)
     })
   },
@@ -33,9 +34,9 @@ export const cardObjectType = defineType({
       validation: rule => rule.required(),
       allowColorMarkDecorator: false
     }),
-    defineFormaImageField({
-      name: 'image',
-      title: 'Image',
+    defineFormaMediaField({
+      name: 'media',
+      title: 'Media',
       validation: rule => rule.required()
     })
   ]

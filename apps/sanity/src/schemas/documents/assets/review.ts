@@ -1,8 +1,9 @@
 import { MessageSquareQuoteIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineFormaImageField, defineImageField, defineRichEditorField } from '../../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineImageField, defineRichEditorField } from '../../../fields';
+import { defineFormaMediaField } from '../../../fields/media';
 import { defineShadeColorField } from '../../../fields/shade-color';
 
 export const reviewDocumentType = defineType({
@@ -16,18 +17,18 @@ export const reviewDocumentType = defineType({
       authorName: 'authorName',
       authorRole: 'authorRole',
       authorCompany: 'authorCompany',
-      media: 'image.formaImage.image'
+      ...getFormaMediaSelectProps('media')
     },
-    prepare: ({ title, authorName, media, authorRole, authorCompany }) => ({
-      media,
+    prepare: ({ title, authorName, authorRole, authorCompany, ...formaMediaProps }) => ({
+      media: getFormaMediaMedia(formaMediaProps),
       title: textBlockToPlainText(title, 30),
       subtitle: `${authorName}, ${authorRole}, ${authorCompany}`
     })
   },
   fields: [
-    defineFormaImageField({
-      name: 'image',
-      title: 'Image',
+    defineFormaMediaField({
+      name: 'media',
+      title: 'Media',
       validation: rule => rule.required()
     }),
     defineRichEditorField({

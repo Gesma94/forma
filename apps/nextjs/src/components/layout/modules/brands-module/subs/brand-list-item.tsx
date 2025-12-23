@@ -9,25 +9,29 @@ type TProps = SetRequired<VariantProps<typeof style>, 'variant'> & {
 };
 
 export function BrandListItem({ variant, brand }: TProps) {
+  const { imageTv, wrapperTv } = style({ variant });
   return (
-    <li className={style({ variant })}>
-      <img
-        className='max-w-full max-h-full'
-        key={brand._id}
-        src={getSanityImageUrl(brand.logo)}
-        alt={brand.logo.altText}
-      />
+    <li className={wrapperTv()}>
+      <img className={imageTv()} key={brand._id} src={getSanityImageUrl(brand.logo)} alt={brand.logo.altText} />
     </li>
   );
 }
 
 const style = tv({
-  base: 'size-64 shrink-0 flex items-center justify-center p-4 rounded-2xl border border-primary',
+  slots: {
+    wrapperTv: 'size-64 shrink-0 flex items-center justify-center p-4 rounded-2xl border',
+    imageTv: 'max-w-full max-h-full'
+  },
   variants: {
     variant: {
-      [MODULE_VARIANTS.ON_BG]: '',
-      [MODULE_VARIANTS.ON_PRIMARY]:
-        'invert-[95%] sepia-[14%] saturate-[596%] hue-rotate-[348deg] brightness-[107%] contrast-[93%]'
+      [MODULE_VARIANTS.ON_BG]: {
+        wrapperTv: 'border-primary',
+        imageTv: ''
+      },
+      [MODULE_VARIANTS.ON_PRIMARY]: {
+        wrapperTv: 'border-primary-text',
+        imageTv: 'invert-[95%] sepia-[14%] saturate-[596%] hue-rotate-[348deg] brightness-[107%] contrast-[93%]'
+      }
     }
   }
 });

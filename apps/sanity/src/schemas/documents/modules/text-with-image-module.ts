@@ -2,8 +2,9 @@ import { ELEMENT_X_POSITION } from '@forma/common';
 import { ListXIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
-import { getVariantTitle, textBlockToPlainText } from '../../../common/utils';
-import { defineFormaImageField, defineModuleVariantField, defineRichEditorField } from '../../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineModuleVariantField, defineRichEditorField } from '../../../fields';
+import { defineFormaMediaField } from '../../../fields/media';
 import { defineSpacingField } from '../../../fields/spacing';
 
 export const textWithImageModuleDocumentType = defineType({
@@ -14,13 +15,14 @@ export const textWithImageModuleDocumentType = defineType({
   preview: {
     select: {
       title: 'heading',
+      content: 'content',
       variant: 'variant',
-      media: 'image.formaImage.image'
+      ...getFormaMediaSelectProps('media')
     },
-    prepare: ({ title, media, variant }) => ({
-      media,
+    prepare: ({ title, content, variant, ...formaMediaProps }) => ({
+      media: getFormaMediaMedia(formaMediaProps),
       title: textBlockToPlainText(title),
-      subtitle: `Text with Image Module - ${getVariantTitle(variant)}`
+      subtitle: textBlockToPlainText(content, 30)
     })
   },
   fields: [
@@ -38,9 +40,9 @@ export const textWithImageModuleDocumentType = defineType({
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
-    defineFormaImageField({
-      name: 'image',
-      title: 'Image',
+    defineFormaMediaField({
+      name: 'media',
+      title: 'Media',
       validation: rule => rule.required()
     }),
     defineField({

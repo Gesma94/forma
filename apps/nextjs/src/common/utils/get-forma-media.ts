@@ -6,6 +6,7 @@ import type {
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 
 type TFormaMediaUnwrappedBase = {
+  id: string;
   mediaType: FormaImageAssetDocumentType['_type'] | FormaVideoAssetDocumentType['_type'];
   brightness: number;
   showMediaTitle: boolean;
@@ -47,6 +48,7 @@ export async function getFormaMediaData(formaMedia: FormaMediaInstanceObjectType
     const imageAltText = `${mediaAsset.clientName} - ${mediaAsset.imageTitle}`;
 
     return {
+      id: mediaAsset._id,
       mediaType: 'formaImageAssetDocumentType',
       brightness,
       imageAltText,
@@ -62,6 +64,7 @@ export async function getFormaMediaData(formaMedia: FormaMediaInstanceObjectType
     );
 
     return {
+      id: mediaAsset._id,
       mediaType: 'formaVideoAssetDocumentType',
       areControlsEnabled: formaMedia.areControlsEnabled,
       brightness,

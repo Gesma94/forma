@@ -1,7 +1,8 @@
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineFormaImageField, defineRichEditorField } from '../../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineRichEditorField } from '../../../fields';
+import { defineFormaMediaField } from '../../../fields/media';
 
 export const bookModuleDocumentType = defineType({
   type: 'document',
@@ -11,11 +12,11 @@ export const bookModuleDocumentType = defineType({
     select: {
       title: 'heading',
       description: 'subHeading',
-      media: 'backgroundImage.formaImage.image'
+      ...getFormaMediaSelectProps('backgroundMedia')
     },
-    prepare: ({ title, media, description }) => ({
+    prepare: ({ title, description, ...formaMediaProps }) => ({
       title: textBlockToPlainText(title),
-      media,
+      media: getFormaMediaMedia(formaMediaProps),
       subtitle: textBlockToPlainText(description, 30)
     })
   },
@@ -32,9 +33,9 @@ export const bookModuleDocumentType = defineType({
       allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
-    defineFormaImageField({
-      name: 'backgroundImage',
-      title: 'Background Image',
+    defineFormaMediaField({
+      name: 'backgroundMedia',
+      title: 'Background Media',
       validation: rule => rule.required()
     }),
     defineField({
@@ -42,6 +43,12 @@ export const bookModuleDocumentType = defineType({
       title: 'Project Phases',
       type: 'array',
       of: [{ type: 'string' }],
+      validation: rule => rule.required()
+    }),
+    defineField({
+      name: 'scrollText',
+      title: 'Scroll Text',
+      type: 'string',
       validation: rule => rule.required()
     })
   ]

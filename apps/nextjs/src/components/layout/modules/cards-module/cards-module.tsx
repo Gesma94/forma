@@ -1,5 +1,5 @@
 import { MODULE_VARIANTS } from '@forma/common';
-import { getFormaImageData } from 'common/utils/get-forma-image';
+import { getFormaMediaData } from 'common/utils/get-forma-media';
 import { tv } from 'tailwind-variants';
 import type { CardsModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
@@ -15,14 +15,13 @@ type TProps = {
 
 export async function CardsModule({ module }: TProps) {
   const variant = MODULE_VARIANTS.ON_PRIMARY;
-  const { listStyle, bgImageStyle, moduleWrapperStyle, contentContainerWrapperStyle } = styles();
-  const backgroundImageData = await getFormaImageData(module.backgroundImage);
+  const { listStyle, moduleWrapperStyle, contentContainerWrapperStyle } = styles();
   const cards = await Promise.all(
     module.cards.map<Promise<ICard>>(async card => ({
       key: card._key,
       title: card.title,
       description: card.description,
-      imageData: await getFormaImageData(card.image)
+      formaMedia: await getFormaMediaData(card.media)
     }))
   );
 
@@ -31,13 +30,6 @@ export async function CardsModule({ module }: TProps) {
       <VerticalPaddingContainer {...module.paddings}>
         <ModuleContentContainer title={module.heading} variant={variant} skipContentContainer={true}>
           <div className={moduleWrapperStyle()}>
-            {module.showBgImage && (
-              <img
-                src={backgroundImageData.imageUrl}
-                alt={backgroundImageData.imageAltText}
-                className={bgImageStyle()}
-              />
-            )}
             <div className={contentContainerWrapperStyle()}>
               <ContentContainer>
                 <ul className={listStyle()}>

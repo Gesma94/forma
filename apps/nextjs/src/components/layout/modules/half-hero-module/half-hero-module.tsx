@@ -1,8 +1,8 @@
-import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { HalfHeroModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { Scrolldown } from '@/layout/scrolldown/scrolldown';
 import { ContentContainer } from '@/ui/content-container/content-container';
+import { FormaMedia } from '@/ui/forma-media/forma-media';
 import { HalfHeroHeading } from './subs/half-hero-heading';
 import { HalfHeroSubHeading } from './subs/half-hero-subheading';
 
@@ -12,17 +12,12 @@ type TProps = {
 
 export async function HalfHeroModule({ module }: TProps) {
   const { bgImageTv, containerTv, contentWrapperTv, contentContainerTv } = styles();
-  const backgroundImageData = await getFormaImageData(module.backgroundImage);
 
   return (
     <div className={containerTv()}>
-      <img
-        src={backgroundImageData.imageUrl}
-        alt={backgroundImageData.imageAltText}
-        className={bgImageTv()}
-        style={{ filter: `brightness(${module.backgroundImage.brightness}%)` }}
-      />
-
+      <div className='absolute size-full'>
+        <FormaMedia formaMedia={module.backgroundMedia} className={bgImageTv()} />
+      </div>
       <div className={contentWrapperTv()}>
         <ContentContainer>
           <div className={contentContainerTv()}>
@@ -32,7 +27,7 @@ export async function HalfHeroModule({ module }: TProps) {
         </ContentContainer>
       </div>
       <div className='absolute bottom-4 w-full flex justify-center mt-4'>
-        <Scrolldown />
+        <Scrolldown label={module.scrollText} />
       </div>
     </div>
   );

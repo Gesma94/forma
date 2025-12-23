@@ -12,12 +12,12 @@ export const inlineGalleryModuleDocumentType = defineType({
   preview: {
     select: {
       title: 'heading',
-      images: 'images',
+      medias: 'medias',
       friendlyName: 'friendlyName'
     },
-    prepare: ({ title, images, friendlyName }) => ({
+    prepare: ({ title, medias, friendlyName }) => ({
       title: title ?? friendlyName ?? 'Unnamed Inline Gallery Module',
-      subtitle: `Selected ${images.length} image(s)`
+      subtitle: `Selected ${medias.length} media(s)`
     })
   },
   fields: [
@@ -35,10 +35,13 @@ export const inlineGalleryModuleDocumentType = defineType({
       description: 'used only to identify the module when heading is not defined'
     }),
     defineField({
-      name: 'images',
-      title: 'Images',
+      name: 'medias',
+      title: 'Medias',
       type: 'array',
-      of: [{ type: 'reference', to: { type: DOCUMENT_SCHEMA_TYPES.formaImageAsset } }],
+      of: [
+        { type: 'reference', name: 'formaImageReference', to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }] },
+        { type: 'reference', name: 'formaVideoReference', to: [{ type: DOCUMENT_SCHEMA_TYPES.formaVideoAsset }] }
+      ],
       validation: rule => rule.required()
     }),
     defineField({

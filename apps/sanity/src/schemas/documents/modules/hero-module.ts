@@ -1,7 +1,8 @@
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineFormaImageField, defineRichEditorField } from '../../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineRichEditorField } from '../../../fields';
+import { defineFormaMediaField } from '../../../fields/media';
 
 export const heroModuleDocumentType = defineType({
   type: 'document',
@@ -11,12 +12,12 @@ export const heroModuleDocumentType = defineType({
     select: {
       title: 'heading',
       subtitle: 'subHeading',
-      media: 'backgroundImage.formaImage.image'
+      ...getFormaMediaSelectProps('backgroundMedia')
     },
-    prepare: ({ title, subtitle, media }) => ({
+    prepare: ({ title, subtitle, ...formaMediaProps }) => ({
       title: textBlockToPlainText(title),
-      media,
-      subtitle: textBlockToPlainText(subtitle, 30)
+      subtitle: textBlockToPlainText(subtitle),
+      media: getFormaMediaMedia(formaMediaProps)
     })
   },
   fieldsets: [
@@ -29,9 +30,9 @@ export const heroModuleDocumentType = defineType({
     }
   ],
   fields: [
-    defineFormaImageField({
-      name: 'backgroundImage',
-      title: 'Background Image',
+    defineFormaMediaField({
+      name: 'backgroundMedia',
+      title: 'Background Media',
       validation: rule => rule.required()
     }),
     defineRichEditorField({

@@ -7,7 +7,6 @@ import { CountersModule } from '@/layout/modules/counters-module/counters-module
 import { HalfHeroModule } from '@/layout/modules/half-hero-module/half-hero-module';
 import { HeroModule } from '@/layout/modules/hero-module/hero-module';
 import { HowItWorksModule } from '@/layout/modules/how-it-works-module/how-it-works-module';
-import { ImageModule } from '@/layout/modules/image-module/image-module';
 import { InlineGalleryModule } from '@/layout/modules/inline-gallery-module/inline-gallery-module';
 import { ListWithImageModule } from '@/layout/modules/list-with-image-module/list-with-image-module';
 import { ParallaxImageModule } from '@/layout/modules/parallax-image-module/parallax-image-module';
@@ -50,8 +49,6 @@ export function ModuleRenderer({ modules }: TProps) {
         return <CardsModule key={module._id} module={module} />;
       case 'bookModuleDocumentType':
         return <BookModule key={module._id} module={module} />;
-      case 'imageModuleDocumentType':
-        return <ImageModule key={module._id} module={module} />;
       case 'inlineGalleryModuleDocumentType':
         return <InlineGalleryModule key={module._id} module={module} />;
       case 'teamModuleDocumentType':

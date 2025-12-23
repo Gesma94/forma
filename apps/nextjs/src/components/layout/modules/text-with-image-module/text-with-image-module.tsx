@@ -1,5 +1,4 @@
 import { ELEMENT_X_POSITION, MODULE_VARIANTS } from '@forma/common';
-import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { TextWithImageModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
@@ -7,6 +6,7 @@ import { BackgroundVariantContainer } from '@/ui/containers/background-variant-c
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { ModuleContentContainerTitle } from '@/ui/containers/module-content-container/subs/module-content-container-title';
 import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
+import { FormaMedia } from '@/ui/forma-media/forma-media';
 import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-text';
 
 type TProps = {
@@ -15,7 +15,6 @@ type TProps = {
 
 export async function TextWithImageModule({ module }: TProps) {
   const { imageWrapper, textWrapper } = style({ imagePosition: module.imagePosition });
-  const backgroundImageData = await getFormaImageData(module.image);
 
   return (
     <BackgroundVariantContainer variant={module.variant}>
@@ -25,11 +24,7 @@ export async function TextWithImageModule({ module }: TProps) {
             className={'grid gap-x-20 gap-y-6 grid-rows-[auto_auto] grid-cols-1 xl:grid-rows-1 xl:grid-cols-[2fr_1fr]'}
           >
             <div className={imageWrapper()}>
-              <img
-                className='size-full object-cover rounded-2xl shadow-2xl'
-                alt={backgroundImageData.imageAltText}
-                src={backgroundImageData.imageUrl}
-              />
+              <FormaMedia formaMedia={module.media} className='size-full object-cover rounded-2xl shadow-2xl' />
             </div>
             <div className={textWrapper()}>
               <div className='order-2'>

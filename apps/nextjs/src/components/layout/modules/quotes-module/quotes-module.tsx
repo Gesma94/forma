@@ -1,5 +1,4 @@
 import { MODULE_VARIANTS } from '@forma/common';
-import { isNotNil } from 'es-toolkit';
 import type { QuotesModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
@@ -32,7 +31,7 @@ export async function QuotesModule({ module }: TProps) {
       <VerticalPaddingContainer {...module.paddings}>
         <ModuleContentContainer title={module.heading} variant={variant} skipContentContainer={true}>
           <div className='px-16 md:px-24'>
-            <QuotesCarousel quotes={quotesWithImages} hasTitle={isNotNil(module.heading)} />
+            <QuotesCarousel quotes={quotesWithImages} />
           </div>
         </ModuleContentContainer>
       </VerticalPaddingContainer>

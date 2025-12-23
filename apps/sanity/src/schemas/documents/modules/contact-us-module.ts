@@ -1,7 +1,8 @@
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineFormaImageField, defineRichEditorField } from '../../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineRichEditorField } from '../../../fields';
+import { defineFormaMediaField } from '../../../fields/media';
 
 export const contactUsDocumentType = defineType({
   type: 'document',
@@ -11,23 +12,23 @@ export const contactUsDocumentType = defineType({
     select: {
       title: 'heading',
       subtitle: 'subHeading',
-      media: 'backgroundImage.formaImage.image'
+      ...getFormaMediaSelectProps('backgroundMedia')
     },
-    prepare: ({ title, subtitle, media }) => ({
-      media,
+    prepare: ({ title, subtitle, ...formaMediaProps }) => ({
       title: textBlockToPlainText(title),
-      subtitle: textBlockToPlainText(subtitle)
+      subtitle: textBlockToPlainText(subtitle),
+      media: getFormaMediaMedia(formaMediaProps)
     })
   },
   fields: [
-    defineFormaImageField({
-      name: 'backgroundImage',
-      title: 'Background Image',
+    defineFormaMediaField({
+      name: 'backgroundMedia',
+      title: 'Background Media',
       validation: rule => rule.required()
     }),
-    defineFormaImageField({
-      name: 'cardBackgroundImage',
-      title: 'Card Background Image',
+    defineFormaMediaField({
+      name: 'cardBackgroundMedia',
+      title: 'Card Background Media',
       validation: rule => rule.required()
     }),
     defineRichEditorField({
@@ -45,6 +46,12 @@ export const contactUsDocumentType = defineType({
     defineField({
       name: 'CtaLabel',
       title: 'CTA Label',
+      type: 'string',
+      validation: rule => rule.required()
+    }),
+    defineField({
+      name: 'scrollText',
+      title: 'Scroll Text',
       type: 'string',
       validation: rule => rule.required()
     })

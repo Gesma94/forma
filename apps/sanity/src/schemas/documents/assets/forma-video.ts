@@ -16,6 +16,7 @@ export const formaVideoDocumentType = defineType({
     },
     prepare: ({ clientName, videoTitle, media }) => ({
       title: getFormaImageAssetName(videoTitle, clientName) ?? media.asset._ref ?? 'Unnamed Video',
+      subtitle: '🎥 Forma Video',
       media
     })
   },

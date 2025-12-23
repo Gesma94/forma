@@ -1,8 +1,9 @@
 import { TouchpadIcon } from 'lucide-react';
 import { defineArrayMember, defineField, defineType } from 'sanity';
+import type { CardObjectType } from '../../../../generated/types/sanity-types-generated';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineFormaImageField, defineRichEditorField } from '../../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineRichEditorField } from '../../../fields';
 import { defineSpacingField } from '../../../fields/spacing';
 
 export const cardsModuleDocumentType = defineType({
@@ -12,14 +13,14 @@ export const cardsModuleDocumentType = defineType({
   icon: TouchpadIcon,
   preview: {
     select: {
-      title: 'heading',
       cards: 'cards',
-      media: 'backgroundImage.formaImage.image'
+      title: 'heading',
+      ...getFormaMediaSelectProps('backgroundMedia')
     },
-    prepare: ({ title, cards, media }) => ({
-      media,
+    prepare: ({ title, cards, ...formaMediaProps }) => ({
       title: textBlockToPlainText(title),
-      subtitle: `Contained ${cards.length} card(s)`
+      media: getFormaMediaMedia(formaMediaProps),
+      subtitle: cards.map((c: CardObjectType) => c.title).join(', ')
     })
   },
   fields: [
@@ -28,18 +29,6 @@ export const cardsModuleDocumentType = defineType({
       name: 'heading',
       title: 'Heading',
       allowColorMarkDecorator: false,
-      validation: rule => rule.required()
-    }),
-    defineFormaImageField({
-      name: 'backgroundImage',
-      title: 'Background Image',
-      validation: rule => rule.required()
-    }),
-    defineField({
-      type: 'boolean',
-      name: 'showBgImage',
-      initialValue: false,
-      title: 'Show Background Image',
       validation: rule => rule.required()
     }),
     defineField({

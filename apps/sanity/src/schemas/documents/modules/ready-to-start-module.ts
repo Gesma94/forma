@@ -1,8 +1,9 @@
 import { CirclePlayIcon } from 'lucide-react';
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineFormaImageField, defineRichEditorField } from '../../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineRichEditorField } from '../../../fields';
+import { defineFormaMediaField } from '../../../fields/media';
 
 export const readyToStartModuleDocumentType = defineType({
   type: 'document',
@@ -13,24 +14,24 @@ export const readyToStartModuleDocumentType = defineType({
     select: {
       title: 'title',
       subtitle: 'subtitle',
-      media: 'backgroundImage.formaImage.image'
+      ...getFormaMediaSelectProps('backgroundMedia')
     },
-    prepare: ({ title, subtitle, media }) => ({
-      title,
-      media,
-      subtitle: textBlockToPlainText(subtitle, 30)
+    prepare: ({ title, subtitle, ...formaMediaProps }) => ({
+      title: textBlockToPlainText(title),
+      subtitle: textBlockToPlainText(subtitle),
+      media: getFormaMediaMedia(formaMediaProps)
     })
   },
   fields: [
-    defineFormaImageField({
-      name: 'backgroundImage',
-      title: 'Background Image',
+    defineFormaMediaField({
+      name: 'backgroundMedia',
+      title: 'Background Media',
       validation: rule => rule.required()
     }),
-    defineField({
-      type: 'string',
+    defineRichEditorField({
       name: 'title',
       title: 'Title',
+      allowColorMarkDecorator: false,
       validation: rule => rule.required()
     }),
     defineRichEditorField({

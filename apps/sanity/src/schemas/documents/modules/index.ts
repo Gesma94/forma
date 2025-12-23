@@ -6,7 +6,6 @@ import { countersModuleDocumentType } from './counters-module';
 import { halfHeroModuleDocumentType } from './half-hero-module';
 import { heroModuleDocumentType } from './hero-module';
 import { howItWorksModuleDocumentType } from './how-it-works-module';
-import { imageModuleDocumentType } from './image-module';
 import { inlineGalleryModuleDocumentType } from './inline-gallery';
 import { listWithImageModuleDocumentType } from './list-with-image-module';
 import { parallaxImagesModuleDocumentType } from './parallax-images-module';
@@ -34,7 +33,6 @@ export const moduleDocumentSchemaTypes = [
   servicesModuleDocumentType,
   howItWorksModuleDocumentType,
   cardsModuleDocumentType,
-  imageModuleDocumentType,
   inlineGalleryModuleDocumentType,
   readyToStartModuleDocumentType,
   teamModuleDocumentType,

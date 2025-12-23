@@ -1,7 +1,11 @@
 import { CaretDoubleDownIcon } from '@phosphor-icons/react/dist/ssr';
 import { MotionDiv } from '@/ui/motion/motion-div';
 
-export function Scrolldown() {
+type TProps = {
+  label: string;
+};
+
+export function Scrolldown({ label }: TProps) {
   return (
     <MotionDiv
       initial={{ y: 0 }}
@@ -14,7 +18,7 @@ export function Scrolldown() {
       }}
       className='flex flex-col items-center gap-1'
     >
-      <p className='text-text-muted text-xs uppercase'>scroll to explore</p>
+      <p className='text-text-muted text-xs uppercase'>{label}</p>
       <CaretDoubleDownIcon className='size-3 text-primary-text' />
     </MotionDiv>
   );

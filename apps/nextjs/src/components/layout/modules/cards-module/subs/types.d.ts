@@ -1,9 +1,9 @@
 import { TBasePortableTextValue } from '@/ui/portable-text/base-portable-text';
-import { IFormImageAsset } from 'common/utils/get-forma-image';
+import { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
 
 export interface ICard {
   key: string;
   title: string;
+  formaMedia: TFormaMediaUnwrapped;
   description: TBasePortableTextValue;
-  imageData: IFormImageAsset;
 }

@@ -1,9 +1,8 @@
-import { getFormaImageData } from 'common/utils/get-forma-image';
-import Image from 'next/image';
 import type { HeroModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { Scrolldown } from '@/layout/scrolldown/scrolldown';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { ContentContainer } from '@/ui/content-container/content-container';
+import { FormaMedia } from '@/ui/forma-media/forma-media';
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { HeroModuleHeadingPortableText } from './subs/hero-module-heading-portable-text';
 import { HeroModuleSubHeadingPortableText } from './subs/hero-module-subheading-portable-text';
@@ -17,7 +16,6 @@ type TSanityQueryParams = {
 };
 
 export async function HeroModule({ module }: TProps) {
-  const backgroundImageData = await getFormaImageData(module.backgroundImage);
   const firms = await runQuery(
     q.parameters<TSanityQueryParams>().star.filterByType('brandDocumentType').filterRaw('_id in $firmIds'),
     { parameters: { firmIds: module.firmImages.map(x => x._ref) } }
@@ -25,13 +23,9 @@ export async function HeroModule({ module }: TProps) {
 
   return (
     <div className='w-full min-h-dvh relative flex justify-center'>
-      <Image
-        fill={true}
-        src={backgroundImageData.imageUrl}
-        priority={true}
-        alt={backgroundImageData.imageAltText}
-        className='object-cover object-bottom bg-linear-30 brightness-[0.32]'
-      />
+      <div className='absolute inset-0'>
+        <FormaMedia formaMedia={module.backgroundMedia} className='object-cover object-bottom size-full' />
+      </div>
 
       <div className='grid grid-rows-[1fr] relative pt-20 pb-4'>
         <div>
@@ -79,7 +73,7 @@ export async function HeroModule({ module }: TProps) {
           </ContentContainer>
         </div>
         <div className='absolute bottom-4 w-full flex justify-center mt-4'>
-          <Scrolldown />
+          <Scrolldown label={module.scrollText} />
         </div>
       </div>
     </div>

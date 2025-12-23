@@ -1,4 +1,4 @@
-import { getFormaImageData } from 'common/utils/get-forma-image';
+import { getFormaMediaData } from 'common/utils/get-forma-media';
 import type { ReviewsModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
 import { ReviewsCarousel } from './subs/reviews-carousel';
@@ -20,7 +20,7 @@ export async function ReviewsModule({ module }: TProps) {
       .filterRaw('_id in $reviewIds')
       .project(sub => ({
         id: sub.field('_id'),
-        image: sub.field('image'),
+        media: sub.field('media'),
         statement: sub.field('statement[]'),
         authorName: sub.field('authorName'),
         authorRole: sub.field('authorRole'),
@@ -35,7 +35,7 @@ export async function ReviewsModule({ module }: TProps) {
     reviews.map<Promise<TReview>>(async review => ({
       ...review,
       brandImageUrl: getSanityImageUrl(review.brand.logo),
-      reviewImageData: await getFormaImageData(review.image),
+      formaMediaData: await getFormaMediaData(review.media),
       authorAvatarUrl: getSanityImageUrl(review.authorAvatar)
     }))
   );

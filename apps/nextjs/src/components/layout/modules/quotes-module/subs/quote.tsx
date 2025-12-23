@@ -4,15 +4,13 @@ import { ParagraphPortableText } from '@/ui/portable-text/paragraph-portable-tex
 import type { TQuoteWithAvatarUrl } from './types';
 
 type TProps = {
-  hasMarginTop: boolean;
   quote: TQuoteWithAvatarUrl;
 };
 
 export function Quote({
-  hasMarginTop,
   quote: { authorAvatar, authorCompany, authorName, authorRole, statement, authorAvatarUrl }
 }: TProps) {
-  const { mainContainerTv } = stylesTv({ hasMarginTop });
+  const { mainContainerTv } = stylesTv();
   return (
     <div>
       <div className={mainContainerTv()}>
@@ -43,16 +41,6 @@ export function Quote({
 
 const stylesTv = tv({
   slots: {
-    mainContainerTv: 'mx-auto max-w-3xl text-center flex items-center justify-center relative'
-  },
-  variants: {
-    hasMarginTop: {
-      true: {
-        mainContainerTv: 'mt-20'
-      },
-      false: {
-        mainContainerTv: 'mt-6'
-      }
-    }
+    mainContainerTv: 'mt-6 mx-auto max-w-3xl text-center flex items-center justify-center relative'
   }
 });

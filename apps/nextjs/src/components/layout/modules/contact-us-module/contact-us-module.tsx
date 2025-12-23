@@ -1,7 +1,8 @@
-import { getFormaImageData } from 'common/utils/get-forma-image';
 import { tv } from 'tailwind-variants';
 import type { ContactUsModuleDocumentType } from 'types/generated/sanity-types-generated';
+import { Scrolldown } from '@/layout/scrolldown/scrolldown';
 import { ContentContainer } from '@/ui/content-container/content-container';
+import { FormaMedia } from '@/ui/forma-media/forma-media';
 import { ContactUsModuleForm } from './subs/contact-us-module-form';
 import { Header } from './subs/header';
 import { Subheading } from './subs/subheading';
@@ -11,24 +12,16 @@ type TProps = {
 };
 
 export async function ContactUsModule({ module }: TProps) {
-  const [backgroundImageData, cardBackgroundImageData] = await Promise.all([
-    getFormaImageData(module.backgroundImage),
-    getFormaImageData(module.cardBackgroundImage)
-  ]);
-
   const { outerContainerTv, bgImageTv, floatingContainerTv, floatingInnerContainerTv, formContainerTv } = styleTv();
+
   return (
     <div className={outerContainerTv()}>
-      <img className={bgImageTv()} src={backgroundImageData.imageUrl} alt={backgroundImageData.imageAltText} />
+      <FormaMedia formaMedia={module.backgroundMedia} className={bgImageTv()} />
       <div className={floatingContainerTv()}>
         <ContentContainer>
           <div className={floatingInnerContainerTv()}>
             <div className='contain-size'>
-              <img
-                src={cardBackgroundImageData.imageUrl}
-                alt={cardBackgroundImageData.imageAltText}
-                className='object-cover size-full'
-              />
+              <FormaMedia formaMedia={module.cardBackgroundMedia} className='object-cover size-full' />
             </div>
             <div className={formContainerTv()}>
               <div className='mb-4'>
@@ -39,6 +32,9 @@ export async function ContactUsModule({ module }: TProps) {
             </div>
           </div>
         </ContentContainer>
+      </div>
+      <div className='absolute bottom-4 w-full flex justify-center mt-4'>
+        <Scrolldown label={module.scrollText} />
       </div>
     </div>
   );

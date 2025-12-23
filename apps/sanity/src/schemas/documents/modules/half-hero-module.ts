@@ -1,7 +1,8 @@
 import { defineField, defineType } from 'sanity';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
-import { textBlockToPlainText } from '../../../common/utils';
-import { defineFormaImageField, defineRichEditorField } from '../../../fields';
+import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { defineRichEditorField } from '../../../fields';
+import { defineFormaMediaField } from '../../../fields/media';
 
 export const halfHeroModuleDocumentType = defineType({
   type: 'document',
@@ -11,18 +12,18 @@ export const halfHeroModuleDocumentType = defineType({
     select: {
       title: 'heading',
       subtitle: 'subHeading',
-      media: 'backgroundImage.formaImage.image'
+      ...getFormaMediaSelectProps('backgroundMedia')
     },
-    prepare: ({ title, subtitle, media }) => ({
+    prepare: ({ title, subtitle, ...formaMediaProps }) => ({
       title: textBlockToPlainText(title),
-      media,
-      subtitle: textBlockToPlainText(subtitle, 30)
+      subtitle: textBlockToPlainText(subtitle),
+      media: getFormaMediaMedia(formaMediaProps)
     })
   },
   fields: [
-    defineFormaImageField({
-      name: 'backgroundImage',
-      title: 'Background Image',
+    defineFormaMediaField({
+      name: 'backgroundMedia',
+      title: 'Background Media',
       validation: rule => rule.required()
     }),
     defineRichEditorField({
@@ -46,6 +47,12 @@ export const halfHeroModuleDocumentType = defineType({
       name: 'secondaryCta',
       title: 'Secondary CTA',
       type: OBJECT_SCHEMA_TYPES.cta,
+      validation: rule => rule.required()
+    }),
+    defineField({
+      name: 'scrollText',
+      title: 'Scroll Text',
+      type: 'string',
       validation: rule => rule.required()
     })
   ]

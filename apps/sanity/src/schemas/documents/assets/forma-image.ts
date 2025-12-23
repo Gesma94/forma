@@ -16,6 +16,7 @@ export const formaImageDocumentType = defineType({
     },
     prepare: ({ clientName, imageTitle, media }) => ({
       title: getFormaImageAssetName(imageTitle, clientName) ?? media.asset._ref ?? 'Unnamed Image',
+      subtitle: '🌄 Forma Image',
       media
     })
   },

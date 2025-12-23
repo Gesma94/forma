@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useInterval } from 'react-use';
 import { tv } from 'tailwind-variants';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
+import { FormaMediaClientSide } from '@/ui/forma-media/forma-media-client-side';
 import { MotionDiv } from '@/ui/motion/motion-div';
 import type { TBasePortableTextValue } from '@/ui/portable-text/base-portable-text';
 import { Heading } from './heading';
@@ -31,7 +32,7 @@ export function ReviewsCarousel({ reviews, moduleTitle, imagePosition }: TProps)
     authorCompany,
     authorName,
     id,
-    reviewImageData,
+    formaMediaData,
     authorRole,
     statement,
     brandImageUrl,
@@ -107,11 +108,7 @@ export function ReviewsCarousel({ reviews, moduleTitle, imagePosition }: TProps)
           <div className={reviewImgWrapperTv()} key={id}>
             <motion.div {...commonMotionProps}>
               <div className='absolute inset-0'>
-                <img
-                  src={reviewImageData.imageUrl}
-                  alt={reviewImageData.imageAltText}
-                  className='size-full object-cover'
-                />
+                <FormaMediaClientSide {...formaMediaData} className='size-full object-cover' />
               </div>
               <div className='z-10 absolute bottom-10 right-10'>
                 <img src={brandImageUrl} alt={brand.logo.altText} className={brandImgTv()} />

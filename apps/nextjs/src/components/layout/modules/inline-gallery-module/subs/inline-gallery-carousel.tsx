@@ -1,13 +1,14 @@
 'use client';
 
 import type { TModuleVariants } from '@forma/common';
-import type { IFormImageAsset } from 'common/utils/get-forma-image';
+import type { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
 import { motion, useDragControls, useMotionValue } from 'motion/react';
 import { useRef } from 'react';
+import { FormaMediaClientSide } from '@/ui/forma-media/forma-media-client-side';
 
 type TProps = {
   variant: TModuleVariants;
-  images: (IFormImageAsset & { key: string })[];
+  images: TFormaMediaUnwrapped[];
 };
 
 export function InlineGalleryCarousel({ images }: TProps) {
@@ -92,19 +93,14 @@ export function InlineGalleryCarousel({ images }: TProps) {
           {images.map(image => {
             return (
               <div
-                key={image.key}
+                key={image.id}
                 className='h-full w-auto shrink-0 relative max-w-[calc(100vw-3rem)] sm:max-w-[calc(100vw-4rem)] snap-center'
               >
-                <img
-                  src={image.imageUrl}
-                  alt={image.imageAltText}
-                  draggable={false}
-                  className='rounded-2xl h-full w-auto object-cover'
+                <FormaMediaClientSide
+                  {...image}
+                  imgProps={{ draggable: 'false', className: 'rounded-2xl h-full w-auto object-cover' }}
+                  videoProps={{ draggable: 'false', className: 'rounded-2xl h-full w-auto object-cover' }}
                 />
-                <div className='absolute bottom-4 left-4 text-shadow-xl text-md text-primary-text'>
-                  <p className='text-md'>{image.imageTitle}</p>
-                  <p className='text-sm'>{image.clientName}</p>
-                </div>
               </div>
             );
           })}
