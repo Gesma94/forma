@@ -65,8 +65,18 @@ export function TeamCarousel({ members, variant }: TProps) {
         )}
       </AnimatePresence>
       <div className='absolute flex gap-2 bottom-2 px-2 right-0'>
-        <IconButton icon={CaretLeftIcon} surface={getIconButtonSurface()} onClick={handleCaretLeftClick} aria-label='Previous member' />
-        <IconButton icon={CaretRightIcon} surface={getIconButtonSurface()} onClick={handleCaretRightClick} aria-label='Next member' />
+        <IconButton
+          icon={CaretLeftIcon}
+          surface={getIconButtonSurface()}
+          onClick={handleCaretLeftClick}
+          aria-label='Previous member'
+        />
+        <IconButton
+          icon={CaretRightIcon}
+          surface={getIconButtonSurface()}
+          onClick={handleCaretRightClick}
+          aria-label='Next member'
+        />
       </div>
     </div>
   );

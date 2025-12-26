@@ -70,8 +70,16 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
                     </p>
                   </div>
                   <div className={changeIndexButtonsContainerTv()}>
-                    <IconButton icon={CaretLeftIcon} onClick={() => onChangeCurrentIndex(currentIndex - 1)} aria-label='Previous media' />
-                    <IconButton icon={CaretRightIcon} onClick={() => onChangeCurrentIndex(currentIndex + 1)} aria-label='Next media' />
+                    <IconButton
+                      icon={CaretLeftIcon}
+                      onClick={() => onChangeCurrentIndex(currentIndex - 1)}
+                      aria-label='Previous media'
+                    />
+                    <IconButton
+                      icon={CaretRightIcon}
+                      onClick={() => onChangeCurrentIndex(currentIndex + 1)}
+                      aria-label='Next media'
+                    />
                   </div>
                 </div>
               </>

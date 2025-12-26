@@ -40,7 +40,14 @@ export function CookieConsentFloatingBanner() {
           Learn more
         </Link>
       </span>
-      <IconButton onClick={handleClose} icon={X} variant='outline' surface='primary' size='extrasmall'  aria-label='Close cookie consent' />
+      <IconButton
+        onClick={handleClose}
+        icon={X}
+        variant='outline'
+        surface='primary'
+        size='extrasmall'
+        aria-label='Close cookie consent'
+      />
     </div>
   );
 }

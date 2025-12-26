@@ -34,6 +34,7 @@ export const DOCUMENT_SCHEMA_TYPES = {
 
 export const OBJECT_SCHEMA_TYPES = {
   service: 'serviceObjectType',
+  pageMetadata: 'pageMetadataObjectType',
   imagePair: 'imagePairObjectType',
   link: 'linkObjectType',
   formaImageInstance: 'formaImageInstanceObjectType',

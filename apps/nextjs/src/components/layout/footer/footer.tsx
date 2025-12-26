@@ -79,13 +79,13 @@ export async function Footer() {
 
           <ul className='row-start-1 flex gap-4 justify-center xl:row-start-1'>
             <li>
-              <FooterSocialLink url={result.linkedinLink} icon={LinkedinLogoIcon} label="Linkedin"/>
+              <FooterSocialLink url={result.linkedinLink} icon={LinkedinLogoIcon} label='Linkedin' />
             </li>
             <li>
-              <FooterSocialLink url={result.facebookLink} icon={FacebookLogoIcon} label="Facebook" />
+              <FooterSocialLink url={result.facebookLink} icon={FacebookLogoIcon} label='Facebook' />
             </li>
             <li>
-              <FooterSocialLink url={result.instagramLink} icon={InstagramLogoIcon} label="Instagram" />
+              <FooterSocialLink url={result.instagramLink} icon={InstagramLogoIcon} label='Instagram' />
             </li>
           </ul>
 

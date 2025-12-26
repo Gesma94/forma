@@ -1,6 +1,7 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Topbar } from '@/layout/topbar/topbar';
+import { commonGenerateMetadata } from '@/utils/common-generate-metadata';
 import { q, runQuery } from '@/utils/groqd-client';
 import { ModuleRenderer } from '@/utils/module-renderer';
 
@@ -13,6 +14,10 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return commonGenerateMetadata(SANITY_DOCUMENT_IDS.bookpage);
+}
 
 export default async function Page() {
   const sanityData = await runQuery(
