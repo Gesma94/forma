@@ -1,7 +1,7 @@
 'use client';
 
-import type { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
 import { type CSSProperties, useState } from 'react';
+import type { TFormaMediaUnwrapped } from 'types/forma-media';
 import type { ServiceObjectType } from 'types/generated/sanity-types-generated';
 import { FormaMediaClientSide } from '@/ui/forma-media/forma-media-client-side';
 import { CardDescription } from './card-description';

@@ -1,14 +1,16 @@
 import { CaretLeftIcon, CaretRightIcon, XIcon } from '@phosphor-icons/react';
+import { getFormaMediaDataTitle } from 'common/utils/get-forma-media-title';
 import { isNil, isNotNil } from 'es-toolkit';
 import { useLayoutEffect } from 'react';
 import { Dialog as AriaDialog, Modal as AriaModal } from 'react-aria-components';
 import { tv } from 'tailwind-variants';
 import { IconButton } from '@/ui/buttons/icon-button/icon-button';
-import type { IModalGalleryImage } from './subs/types';
+import { FormaMediaClientSide } from '@/ui/forma-media/forma-media-client-side';
+import type { TScrollGalleryMedia } from '../modules/scroll-gallery-module/subs/types';
 
 interface IModalGalleryProps {
   currentIndex: number | null;
-  images: IModalGalleryImage[];
+  images: TScrollGalleryMedia[];
   onOpenChange: (isOpen: boolean) => void;
   onChangeCurrentIndex: (index: number) => void;
 }
@@ -20,7 +22,6 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
     dialogContentContainerTv,
     imageWrapperTv,
     topSectionContainerTv,
-    imageTv,
     titleTv,
     bottomSectionContainerTv,
     titleIndexContainerTv,
@@ -28,7 +29,8 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
     spacerIndexTv,
     indexTv
   } = styleTv();
-  const currentImage = images[currentIndex];
+  const currentFormaMedia = images[currentIndex]?.formaMediaUnwrapped;
+  const currentFormaMediaTitle = getFormaMediaDataTitle(currentFormaMedia);
 
   useLayoutEffect(() => {
     if (isNotNil(currentIndex)) {
@@ -38,25 +40,31 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
       document.body.parentElement.classList.remove('disable-scrollbar-gutter');
     };
   }, [currentIndex]);
-  return isNil(currentImage) ? null : (
+  return isNil(currentFormaMedia) ? null : (
     <AriaModal className={modalTv()} isDismissable={false} isOpen={isNotNil(currentIndex)} onOpenChange={onOpenChange}>
-      <AriaDialog aria-label={currentImage.title} className={dialogTv()}>
+      <AriaDialog aria-label={currentFormaMediaTitle} className={dialogTv()}>
         {({ close }) => (
           <div className={dialogContentContainerTv()}>
-            {currentImage && (
+            {currentFormaMedia && (
               <>
                 <div className={topSectionContainerTv()}>
                   <IconButton icon={XIcon} onClick={close} />
                 </div>
                 <div className={imageWrapperTv()}>
-                  <img src={currentImage.imageUrl} alt={currentImage.title} className={imageTv()} />
+                  <FormaMediaClientSide
+                    {...currentFormaMedia}
+                    className='h-full w-auto mx-auto'
+                    forceHideMediaTitle={true}
+                    areControlsEnabled={true}
+                    isAutoplayEnabled={false}
+                  />
                 </div>
                 <div className={bottomSectionContainerTv()}>
                   <div className={titleIndexContainerTv()}>
                     <p className={spacerIndexTv()}>
                       {currentIndex + 1}/{images.length}
                     </p>
-                    {isNotNil(currentImage.title) && <p className={titleTv()}>{currentImage.title}</p>}
+                    {isNotNil(currentFormaMediaTitle) && <p className={titleTv()}>{currentFormaMediaTitle}</p>}
                     <p className={indexTv()}>
                       {currentIndex + 1}/{images.length}
                     </p>
@@ -83,7 +91,6 @@ const styleTv = tv({
     topSectionContainerTv: 'row-start-1 flex justify-end items-center pr-10',
     bottomSectionContainerTv: 'row-start-3 flex flex-col gap-6 sm:gap-0 sm:grid sm:grid-cols-[10rem_1fr_10rem]',
     imageWrapperTv: 'row-start-2 min-h-0',
-    imageTv: 'size-full object-contain',
     titleTv: 'text-primary-text text-center text-2xl col-start-2',
     spacerIndexTv: 'text-primary-text text-lg invisible col-start-1',
     indexTv: 'text-primary-text text-lg col-start-3',

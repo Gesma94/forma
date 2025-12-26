@@ -1,9 +1,9 @@
 import { getFormaImageInstanceData } from 'common/utils/get-forma-image-instance';
-import type { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
 import { getFormaVideoInstanceData } from 'common/utils/get-forma-video-instance';
 import { isNotNil } from 'es-toolkit';
 import type { ComponentProps } from 'react';
 import { tv } from 'tailwind-variants';
+import type { TFormaMediaUnwrapped } from 'types/forma-media';
 import type { InlineGalleryModuleDocumentType } from 'types/generated/sanity-types-generated';
 import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';

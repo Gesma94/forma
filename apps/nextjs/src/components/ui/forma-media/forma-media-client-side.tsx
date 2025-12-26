@@ -1,8 +1,8 @@
 'use client';
 
-import type { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
 import { isNotNil } from 'es-toolkit';
 import type { CSSProperties, DetailedHTMLProps, ImgHTMLAttributes, VideoHTMLAttributes } from 'react';
+import type { TFormaMediaUnwrapped } from 'types/forma-media';
 
 type TProps = TFormaMediaUnwrapped & {
   imgWidth?: number;

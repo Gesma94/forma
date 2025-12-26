@@ -1,10 +1,10 @@
 'use client';
 
 import type { TModuleVariants } from '@forma/common';
-import type { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
 import { isNil } from 'es-toolkit';
 import { motion, useDragControls } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
+import type { TFormaMediaUnwrapped } from 'types/forma-media';
 import { FormaMediaClientSide } from '@/ui/forma-media/forma-media-client-side';
 
 type TProps = {

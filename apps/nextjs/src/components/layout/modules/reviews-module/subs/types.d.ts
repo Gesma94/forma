@@ -1,5 +1,5 @@
 import { TShadeColor } from '@forma/common';
-import { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
+import { TFormaMediaUnwrapped } from 'types/forma-media';
 import { ReviewDocumentType } from 'types/generated/sanity-types-generated';
 
 export type TFullReview = ReviewDocumentType & {

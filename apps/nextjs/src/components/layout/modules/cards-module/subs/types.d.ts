@@ -1,5 +1,5 @@
 import { TBasePortableTextValue } from '@/ui/portable-text/base-portable-text';
-import { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
+import { TFormaMediaUnwrapped } from 'types/forma-media';
 
 export interface ICard {
   key: string;

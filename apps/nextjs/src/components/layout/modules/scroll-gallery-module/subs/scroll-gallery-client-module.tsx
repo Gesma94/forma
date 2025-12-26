@@ -7,7 +7,6 @@ import { Button } from 'react-aria-components';
 import { tv } from 'tailwind-variants';
 import type { MediaTagAssetDocumentType } from 'types/generated/sanity-types-generated';
 import { ModalGallery } from '@/layout/modal-gallery/modal-gallery';
-import type { IModalGalleryImage } from '@/layout/modal-gallery/subs/types';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { FormaMediaClientSide } from '@/ui/forma-media/forma-media-client-side';
 import { Filters } from './filters';
@@ -41,12 +40,8 @@ export function ScrollGalleryClientModule({ medias, filters, backgroundShadeColo
     return medias.filter(x => x.tagReferences.some(tag => filtersSelection[tag._ref]));
   }, [medias, filtersSelection]);
 
-  const filteredModalImages = useMemo<IModalGalleryImage[]>(() => {
-    return []; // filteredImages.map(x => ({ imageUrl: x.imageUrl, title: x.imageAltText }));
-  }, []);
-
   const handleChangeCurrentIndex = (index: number) => {
-    setSelectedImageIndex(index <= -1 ? filteredModalImages.length - 1 : index % filteredModalImages.length);
+    setSelectedImageIndex(index <= -1 ? filteredImages.length - 1 : index % filteredImages.length);
   };
 
   return (
@@ -65,12 +60,12 @@ export function ScrollGalleryClientModule({ medias, filters, backgroundShadeColo
         {filteredImages.length > 0 && (
           <ul className={imageList()}>
             {filteredImages.map((x, i) => {
-              const { key, tagReferences, ...mediaProps } = x;
+              const { key, tagReferences, formaMediaUnwrapped } = x;
               return (
                 <Fragment key={key}>
                   <li className={imageItem()}>
                     <Button onClick={() => setSelectedImageIndex(i)} className={listItemButtonTv()}>
-                      <FormaMediaClientSide {...mediaProps} forceHideMediaTitle={true} />
+                      <FormaMediaClientSide {...formaMediaUnwrapped} forceHideMediaTitle={true} />
                       <div className={tagContainerTv()}>
                         {tagReferences.map(tagReference => {
                           const baseTag = filtersMapMemoized.get(tagReference._ref);
@@ -96,7 +91,7 @@ export function ScrollGalleryClientModule({ medias, filters, backgroundShadeColo
       </div>
       <ModalGallery
         currentIndex={selectedImageIndex}
-        images={filteredModalImages}
+        images={filteredImages}
         onOpenChange={isOpen => setSelectedImageIndex(isOpen ? selectedImageIndex : null)}
         onChangeCurrentIndex={handleChangeCurrentIndex}
       />

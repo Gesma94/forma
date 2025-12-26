@@ -15,8 +15,8 @@ export async function ScrollGalleryModule({ module }: TProps) {
       const mediaData = await getFormaMediaData(x.formaMedia);
       return {
         key: x._key,
-        ...mediaData,
-        tagReferences: x.mediaTags
+        tagReferences: x.mediaTags,
+        formaMediaUnwrapped: mediaData
       };
     })
   );
