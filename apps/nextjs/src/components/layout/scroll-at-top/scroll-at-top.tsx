@@ -41,6 +41,7 @@ export function ScrollAtTop() {
         initial={{ opacity: '0%', rotate: 180 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
         className='shadow-[0_0_15px_-5px_black]'
+        aria-label='Scroll to top'
       />
     </div>
   );

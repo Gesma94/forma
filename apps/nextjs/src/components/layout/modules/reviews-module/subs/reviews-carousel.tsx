@@ -100,8 +100,8 @@ export function ReviewsCarousel({ reviews, moduleTitle, imagePosition }: TProps)
             </div>
           </AnimatePresence>
           <div className='mt-4 mb-10 mx-auto md:mt-0 md:mb-0 md:mx-0 md:absolute flex gap-2 bottom-[3.25rem] right-10'>
-            <IconButton surface='primary' icon={CaretLeftIcon} onClick={handlePreviousClick} />
-            <IconButton surface='primary' icon={CaretRightIcon} onClick={handleNextClick} />
+            <IconButton surface='primary' icon={CaretLeftIcon} onClick={handlePreviousClick} aria-label='Previous review' />
+            <IconButton surface='primary' icon={CaretRightIcon} onClick={handleNextClick} aria-label='Next review' />
           </div>
         </div>
         <AnimatePresence initial={false}>

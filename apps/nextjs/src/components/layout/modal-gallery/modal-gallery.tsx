@@ -48,7 +48,7 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
             {currentFormaMedia && (
               <>
                 <div className={topSectionContainerTv()}>
-                  <IconButton icon={XIcon} onClick={close} />
+                  <IconButton icon={XIcon} onClick={close} aria-label='Close modal' />
                 </div>
                 <div className={imageWrapperTv()}>
                   <FormaMediaClientSide
@@ -70,8 +70,8 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
                     </p>
                   </div>
                   <div className={changeIndexButtonsContainerTv()}>
-                    <IconButton icon={CaretLeftIcon} onClick={() => onChangeCurrentIndex(currentIndex - 1)} />
-                    <IconButton icon={CaretRightIcon} onClick={() => onChangeCurrentIndex(currentIndex + 1)} />
+                    <IconButton icon={CaretLeftIcon} onClick={() => onChangeCurrentIndex(currentIndex - 1)} aria-label='Previous media' />
+                    <IconButton icon={CaretRightIcon} onClick={() => onChangeCurrentIndex(currentIndex + 1)} aria-label='Next media' />
                   </div>
                 </div>
               </>

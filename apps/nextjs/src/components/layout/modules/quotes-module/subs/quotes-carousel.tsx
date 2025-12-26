@@ -46,8 +46,8 @@ export function QuotesCarousel({ quotes }: TProps) {
           </motion.div>
         </AnimatePresence>
         <div className='mt-8 mx-auto md:mx-[unset] md:mt-0 md:absolute flex gap-2 bottom-3 right-8'>
-          <IconButton icon={CaretLeftIcon} onClick={handlePreviousClick} />
-          <IconButton icon={CaretRightIcon} onClick={handleNextClick} />
+          <IconButton icon={CaretLeftIcon} onClick={handlePreviousClick} aria-label='Previous quote' />
+          <IconButton icon={CaretRightIcon} onClick={handleNextClick} aria-label='Next quote' />
         </div>
       </div>
     </div>
