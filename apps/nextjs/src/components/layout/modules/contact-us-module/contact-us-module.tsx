@@ -12,11 +12,20 @@ type TProps = {
 };
 
 export async function ContactUsModule({ module }: TProps) {
-  const { outerContainerTv, bgImageTv, floatingContainerTv, floatingInnerContainerTv, formContainerTv } = styleTv();
+  const {
+    outerContainerTv,
+    imageWrapperTv,
+    bgImageTv,
+    floatingContainerTv,
+    floatingInnerContainerTv,
+    formContainerTv
+  } = styleTv();
 
   return (
     <div className={outerContainerTv()}>
-      <FormaMedia formaMedia={module.backgroundMedia} className={bgImageTv()} />
+      <div className={imageWrapperTv()}>
+        <FormaMedia formaMedia={module.backgroundMedia} className={bgImageTv()} />
+      </div>
       <div className={floatingContainerTv()}>
         <ContentContainer>
           <div className={floatingInnerContainerTv()}>
@@ -44,7 +53,8 @@ const styleTv = tv({
   slots: {
     outerContainerTv:
       'min-h-dvh relative grid grid-rows-[minmax(7.5rem,_auto)_1fr_minmax(7.5rem,_auto)] items-center-safe',
-    bgImageTv: 'absolute size-full inset-0 object-cover brightness-[25%]',
+    imageWrapperTv: 'absolute size-full inset-0',
+    bgImageTv: 'size-full object-cover',
     floatingContainerTv: 'row-start-2 w-full z-10',
     floatingInnerContainerTv: 'size-full grid grid-cols-[3fr_2fr]  rounded-2xl overflow-hidden',
     formContainerTv: 'bg-primary text-primary-text p-10 flex flex-col'

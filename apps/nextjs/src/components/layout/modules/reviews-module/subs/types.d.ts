@@ -1,5 +1,4 @@
 import { TShadeColor } from '@forma/common';
-import { IFormImageInstance } from 'common/utils/get-forma-image';
 import { TFormaMediaUnwrapped } from 'common/utils/get-forma-media';
 import { ReviewDocumentType } from 'types/generated/sanity-types-generated';
 
