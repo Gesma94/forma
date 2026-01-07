@@ -24,7 +24,7 @@ export async function MaintananceSplashScreen() {
         className='absolute size-full object-cover'
         style={{ filter: `brightness(${result.brightness}%)` }}
       />
-      <div className='relative items-center flex flex-col gap-4'>
+      <div className='relative items-center flex flex-col sm:gap-4'>
         <Heading value={result.heading} />
         <SubHeading value={result.subHeading} />
       </div>
