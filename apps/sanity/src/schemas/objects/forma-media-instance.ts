@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import type { ScrollGalleryModuleDocumentType } from '../../../generated/types/sanity-types-generated';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../common/constants';
 
 export const formaMediaInstanceObjectType = defineType({
@@ -24,6 +25,22 @@ export const formaMediaInstanceObjectType = defineType({
       name: 'formaMedia',
       title: 'Forma Media',
       type: 'reference',
+      options: {
+        filter: ({ document }) => {
+          if (document._type === DOCUMENT_SCHEMA_TYPES.scrollGalleryModule) {
+            const scrollGalleryModuleDocument = document as ScrollGalleryModuleDocumentType;
+            const selectedFormaMedia = scrollGalleryModuleDocument.scrollGalleryImages
+              .map(x => x.formaMedia?.formaMedia?._ref)
+              .filter(Boolean);
+
+            return {
+              filter: '!(_id in $selectedFormaMedia)',
+              params: { selectedFormaMedia }
+            };
+          }
+          return {};
+        }
+      },
       to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }, { type: DOCUMENT_SCHEMA_TYPES.formaVideoAsset }]
     }),
     defineField({
