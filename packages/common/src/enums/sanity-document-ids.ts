@@ -2,6 +2,7 @@ import type { ValueOf } from 'type-fest';
 
 export const SANITY_DOCUMENT_IDS = {
   footer: 'footerDocumentId',
+  maintananceScreen: 'maintananceScreenDocumentId',
   homepage: 'homePageDocumentId',
   bookpage: 'bookPageDocumentId',
   processpage: 'processPageDocumentId',

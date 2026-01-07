@@ -2,6 +2,7 @@ import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { visionTool } from '@sanity/vision';
 import {
   BookKeyIcon,
+  ConstructionIcon,
   GalleryVerticalIcon,
   HomeIcon,
   type LucideProps,
@@ -95,6 +96,17 @@ export default defineConfig({
                   .id(SANITY_DOCUMENT_IDS.footer)
                   .schemaType(DOCUMENT_SCHEMA_TYPES.footer)
                   .documentId(SANITY_DOCUMENT_IDS.footer)
+              ),
+            S.listItem()
+              .icon(ConstructionIcon)
+              .id(SANITY_DOCUMENT_IDS.maintananceScreen)
+              .schemaType(DOCUMENT_SCHEMA_TYPES.maintananceScreen)
+              .title('Maintanance Screen')
+              .child(
+                S.editor()
+                  .id(SANITY_DOCUMENT_IDS.maintananceScreen)
+                  .schemaType(DOCUMENT_SCHEMA_TYPES.maintananceScreen)
+                  .documentId(SANITY_DOCUMENT_IDS.maintananceScreen)
               ),
             S.divider().title('Modules'),
             ...moduleDocumentSchemaTypes
