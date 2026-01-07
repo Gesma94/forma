@@ -18,6 +18,8 @@
     "@forma/common": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@internationalized/date": "^3.9.0",
+    "@mui/lab": "7.0.1-beta.20",
+    "@mui/material": "^7.3.6",
     "@phosphor-icons/react": "^2.1.10",
     "@portabletext/react": "^4.0.1",
     "@react-email/render": "^2.0.0",
