@@ -1,4 +1,5 @@
 import { brandDocumentType } from './brand';
+import { forma360DocumentType } from './forma-360';
 import { formaImageDocumentType } from './forma-image';
 import { formaVideoDocumentType } from './forma-video';
 import { mediaTagDocumentType } from './media-tag';
@@ -11,5 +12,6 @@ export const assetDocumentTypes = [
   reviewDocumentType,
   mediaTagDocumentType,
   formaImageDocumentType,
-  formaVideoDocumentType
+  formaVideoDocumentType,
+  forma360DocumentType
 ];

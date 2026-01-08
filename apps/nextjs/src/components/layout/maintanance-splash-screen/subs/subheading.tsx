@@ -8,7 +8,9 @@ export function SubHeading({ value }: TBasePortableTextConsumerProps) {
       value={value}
       components={{
         block: {
-          normal: ({ children }) => <h1 className='prose-2xl font-inter text-left text-primary-text'>{children}</h1>
+          normal: ({ children }) => (
+            <h1 className='prose-xl sm:prose-2xl font-inter text-left text-primary-text'>{children}</h1>
+          )
         },
         marks: {
           em: PortableTextEmComponent,

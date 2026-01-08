@@ -27,9 +27,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className={mainDivTv()}>{children}</div>
             <Footer />
             <ScrollAtTop />
+            <CookieConsentFloatingBanner />
           </>
         )}
-        <CookieConsentFloatingBanner />
       </body>
     </html>
   );
