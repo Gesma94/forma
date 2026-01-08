@@ -2,6 +2,7 @@ import { cardObjectType } from './card';
 import { contactObjectType } from './contact';
 import { counterObjectType } from './counter';
 import { ctaObjectType } from './cta';
+import { forma360InstanceObjectType } from './forma-360-instance';
 import { formaImageInstanceObjectType } from './forma-image-instance';
 import { formaMediaInstanceObjectType } from './forma-media-instance';
 import { howItWorksObjectType } from './how-it-works-step';
@@ -27,5 +28,6 @@ export const objectSchemaTypes = [
   serviceObjectType,
   formaImageInstanceObjectType,
   formaMediaInstanceObjectType,
+  forma360InstanceObjectType,
   pageMetadataObjectType
 ];

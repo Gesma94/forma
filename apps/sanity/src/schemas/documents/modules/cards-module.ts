@@ -2,7 +2,7 @@ import { TouchpadIcon } from 'lucide-react';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import type { CardObjectType } from '../../../../generated/types/sanity-types-generated';
 import { DOCUMENT_SCHEMA_TYPES, OBJECT_SCHEMA_TYPES } from '../../../common/constants';
-import { getFormaMediaMedia, getFormaMediaSelectProps, textBlockToPlainText } from '../../../common/utils';
+import { textBlockToPlainText } from '../../../common/utils';
 import { defineRichEditorField } from '../../../fields';
 import { defineSpacingField } from '../../../fields/spacing';
 
@@ -14,12 +14,10 @@ export const cardsModuleDocumentType = defineType({
   preview: {
     select: {
       cards: 'cards',
-      title: 'heading',
-      ...getFormaMediaSelectProps('backgroundMedia')
+      title: 'heading'
     },
-    prepare: ({ title, cards, ...formaMediaProps }) => ({
+    prepare: ({ title, cards }) => ({
       title: textBlockToPlainText(title),
-      media: getFormaMediaMedia(formaMediaProps),
       subtitle: cards.map((c: CardObjectType) => c.title).join(', ')
     })
   },

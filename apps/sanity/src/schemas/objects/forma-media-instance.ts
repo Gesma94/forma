@@ -41,7 +41,11 @@ export const formaMediaInstanceObjectType = defineType({
           return {};
         }
       },
-      to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }, { type: DOCUMENT_SCHEMA_TYPES.formaVideoAsset }]
+      to: [
+        { type: DOCUMENT_SCHEMA_TYPES.formaImageAsset },
+        { type: DOCUMENT_SCHEMA_TYPES.formaVideoAsset },
+        { type: DOCUMENT_SCHEMA_TYPES.forma360Asset }
+      ]
     }),
     defineField({
       title: 'Show Media Title',

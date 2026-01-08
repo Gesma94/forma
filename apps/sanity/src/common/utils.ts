@@ -100,7 +100,10 @@ export function getFormaMediaTitle({
 
   const elements: string[] = [];
 
-  if (formaMediaType === DOCUMENT_SCHEMA_TYPES.formaImageAsset) {
+  if (
+    formaMediaType === DOCUMENT_SCHEMA_TYPES.formaImageAsset ||
+    formaMediaType === DOCUMENT_SCHEMA_TYPES.forma360Asset
+  ) {
     if (formaImageClientName) {
       elements.push(formaImageClientName);
     }
@@ -132,7 +135,10 @@ export function getFormaMediaMedia({
   formaMediaType,
   formaMediaVideoThumbnail
 }: TGetFormaMediaMediaParams) {
-  if (formaMediaType === DOCUMENT_SCHEMA_TYPES.formaImageAsset) {
+  if (
+    formaMediaType === DOCUMENT_SCHEMA_TYPES.formaImageAsset ||
+    formaMediaType === DOCUMENT_SCHEMA_TYPES.forma360Asset
+  ) {
     return formaMediaImage;
   } else if (formaMediaType === DOCUMENT_SCHEMA_TYPES.formaVideoAsset) {
     return formaMediaVideoThumbnail;
