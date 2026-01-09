@@ -8,6 +8,8 @@ export function getFormaMediaDataTitle(formaMedia: TFormaMediaUnwrapped | null |
 
   if (formaMedia.mediaType === 'formaImageAssetDocumentType') {
     return formaMedia.imageAltText;
+  } else if (formaMedia.mediaType === 'forma360AssetDocumentType') {
+    return formaMedia.imageAltText;
   } else {
     return formaMedia.videoAltText;
   }
