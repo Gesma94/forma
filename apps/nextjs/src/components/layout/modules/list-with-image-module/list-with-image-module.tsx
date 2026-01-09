@@ -24,6 +24,7 @@ export async function ListWithImageModule({ module }: TProps) {
               <FormaMedia
                 formaMedia={module.formaMedia}
                 className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
+                wrapper360Classname='size-full overflow-hidden rounded-2xl'
               />
             </div>
             <div className={textWrapper()}>

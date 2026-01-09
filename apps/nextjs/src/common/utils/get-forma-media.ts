@@ -26,6 +26,26 @@ export async function getFormaMediaData(formaMedia: FormaMediaInstanceObjectType
       imageUrl,
       showMediaTitle
     };
+  } else if (mediaAsset._type === 'forma360AssetDocumentType') {
+    const imageUrl = getSanityImageUrl(mediaAsset.image);
+    const imageAltText = `${mediaAsset.clientName} - ${mediaAsset.imageTitle}`;
+
+    return {
+      id: mediaAsset._id,
+      mediaType: 'forma360AssetDocumentType',
+      brightness,
+      imageAltText,
+      imageUrl,
+      showMediaTitle,
+      autoplayDelay: formaMedia.autoplayDelay ?? 0,
+      autoplaySpeed: formaMedia.autoplaySpeed ?? 2,
+      canInterruptAutoplay: formaMedia.canInterruptAutoplay ?? true,
+      initialZoom: formaMedia.initialZoom ?? 0,
+      isAutoplayEnabled: formaMedia.isAutoplayEnabled ?? false,
+      isAutoplayPausedOnHoverEnabled: formaMedia.isAutoplayPausedOnHoverEnabled ?? false,
+      isZoomEnabled: formaMedia.isZoomEnabled ?? true,
+      msDelayOnMouseLeave: formaMedia.msDelayOnMouseLeave ?? 0
+    };
   } else if (mediaAsset._type === 'formaVideoAssetDocumentType') {
     const videoAltText = `${mediaAsset.clientName} - ${mediaAsset.videoTitle}`;
     const thumbnailUrl = getSanityImageUrl(mediaAsset.thumbnail);

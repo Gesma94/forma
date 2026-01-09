@@ -2,6 +2,7 @@ import { isNotNil } from 'es-toolkit';
 import type { CSSProperties, DetailedHTMLProps, ImgHTMLAttributes, VideoHTMLAttributes } from 'react';
 import type { FormaMediaInstanceObjectType } from 'types/generated/sanity-types-generated';
 import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
+import { Viewer360 } from '../viewer-360/viewer-360';
 
 type TProps = {
   imgWidth?: number;
@@ -10,6 +11,7 @@ type TProps = {
   formaMedia: FormaMediaInstanceObjectType;
   imgProps?: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
   videoProps?: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>;
+  wrapper360Classname?: string;
   forceHideMediaTitle?: true;
 };
 
@@ -17,7 +19,14 @@ type TSanityQueryParams = {
   documentId: string;
 };
 
-export async function FormaMedia({ formaMedia, videoProps, imgProps, className, forceHideMediaTitle }: TProps) {
+export async function FormaMedia({
+  formaMedia,
+  videoProps,
+  imgProps,
+  wrapper360Classname,
+  className,
+  forceHideMediaTitle
+}: TProps) {
   const shouldHideMediaTitle = forceHideMediaTitle === true || !formaMedia.showMediaTitle;
   const shouldDisplayMediaTitle = !shouldHideMediaTitle;
   const brightnessStyle: CSSProperties = isNotNil(formaMedia.brightness)
@@ -47,6 +56,24 @@ export async function FormaMedia({ formaMedia, videoProps, imgProps, className, 
             <p className='text-md'>{imageAltText}</p>
           </div>
         )}
+      </div>
+    );
+  } else if (mediaAsset._type === 'forma360AssetDocumentType') {
+    const imageUrl = getSanityImageUrl(mediaAsset.image);
+
+    return (
+      <div className={wrapper360Classname ?? 'size-full'}>
+        <Viewer360
+          imageUrl={imageUrl}
+          autoplayDelay={formaMedia.autoplayDelay}
+          autoplaySpeed={formaMedia.autoplaySpeed}
+          canInterruptAutoplay={formaMedia.canInterruptAutoplay}
+          initialZoom={formaMedia.initialZoom}
+          isAutoplayEnabled={formaMedia.isAutoplayEnabled}
+          isAutoplayPausedOnHoverEnabled={formaMedia.isAutoplayPausedOnHoverEnabled}
+          isZoomEnabled={formaMedia.isZoomEnabled}
+          msDelayOnMouseLeave={formaMedia.msDelayOnMouseLeave}
+        />
       </div>
     );
   } else if (mediaAsset._type === 'formaVideoAssetDocumentType') {

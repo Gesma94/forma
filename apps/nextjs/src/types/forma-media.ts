@@ -1,8 +1,15 @@
-import type { FormaImageAssetDocumentType, FormaVideoAssetDocumentType } from './generated/sanity-types-generated';
+import type {
+  Forma360AssetDocumentType,
+  FormaImageAssetDocumentType,
+  FormaVideoAssetDocumentType
+} from './generated/sanity-types-generated';
 
 export type TFormaMediaUnwrappedBase = {
   id: string;
-  mediaType: FormaImageAssetDocumentType['_type'] | FormaVideoAssetDocumentType['_type'];
+  mediaType:
+    | FormaImageAssetDocumentType['_type']
+    | FormaVideoAssetDocumentType['_type']
+    | Forma360AssetDocumentType['_type'];
   brightness: number;
   showMediaTitle: boolean;
 };
@@ -11,6 +18,20 @@ export type TFormaMediaImageUnwrapped = TFormaMediaUnwrappedBase & {
   mediaType: FormaImageAssetDocumentType['_type'];
   imageUrl: string;
   imageAltText: string;
+};
+
+export type TFormaMedia360Unwrapped = TFormaMediaUnwrappedBase & {
+  mediaType: Forma360AssetDocumentType['_type'];
+  imageUrl: string;
+  imageAltText: string;
+  isZoomEnabled: boolean;
+  initialZoom: number;
+  isAutoplayEnabled: boolean;
+  canInterruptAutoplay: boolean;
+  autoplaySpeed: number;
+  autoplayDelay: number;
+  isAutoplayPausedOnHoverEnabled: boolean;
+  msDelayOnMouseLeave: number;
 };
 
 export type TFormaMediaVideoUnwrapped = TFormaMediaUnwrappedBase & {
@@ -24,4 +45,4 @@ export type TFormaMediaVideoUnwrapped = TFormaMediaUnwrappedBase & {
   thumbnailUrl: string;
 };
 
-export type TFormaMediaUnwrapped = TFormaMediaImageUnwrapped | TFormaMediaVideoUnwrapped;
+export type TFormaMediaUnwrapped = TFormaMedia360Unwrapped | TFormaMediaImageUnwrapped | TFormaMediaVideoUnwrapped;

@@ -3,6 +3,7 @@
 import { isNotNil } from 'es-toolkit';
 import type { CSSProperties, DetailedHTMLProps, ImgHTMLAttributes, VideoHTMLAttributes } from 'react';
 import type { TFormaMediaUnwrapped } from 'types/forma-media';
+import { Viewer360 } from '../viewer-360/viewer-360';
 
 type TProps = TFormaMediaUnwrapped & {
   imgWidth?: number;
@@ -10,6 +11,7 @@ type TProps = TFormaMediaUnwrapped & {
   className?: string;
   imgProps?: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
   videoProps?: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>;
+  wrapper360Classname?: string;
   forceHideMediaTitle?: true;
 };
 
@@ -36,10 +38,26 @@ export function FormaMediaClientSide(props: TProps) {
           className={className ?? imgProps?.className}
         />
         {shouldDisplayMediaTitle && (
-          <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
+          <div className='absolute bottom-4 left-4 text-primary-text text-shadow-xl text-md'>
             <p className='text-md'>{imageAltText}</p>
           </div>
         )}
+      </div>
+    );
+  } else if (props.mediaType === 'forma360AssetDocumentType') {
+    return (
+      <div className={props.wrapper360Classname ?? 'size-full'}>
+        <Viewer360
+          imageUrl={props.imageUrl}
+          autoplayDelay={props.autoplayDelay}
+          autoplaySpeed={props.autoplaySpeed}
+          canInterruptAutoplay={props.canInterruptAutoplay}
+          initialZoom={props.initialZoom}
+          isAutoplayEnabled={props.isAutoplayEnabled}
+          isAutoplayPausedOnHoverEnabled={props.isAutoplayPausedOnHoverEnabled}
+          isZoomEnabled={props.isZoomEnabled}
+          msDelayOnMouseLeave={props.msDelayOnMouseLeave}
+        />
       </div>
     );
   } else if (props.mediaType === 'formaVideoAssetDocumentType') {
