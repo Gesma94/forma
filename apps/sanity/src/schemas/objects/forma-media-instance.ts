@@ -18,7 +18,8 @@ export const formaMediaInstanceObjectType = defineType({
   fieldsets: [
     { name: 'commonProperties', title: 'Common Properties' },
     { name: 'videoProperties', title: 'Video Properties', options: { collapsible: true, collapsed: true } },
-    { name: 'imageProperties', title: 'Image Properties', options: { collapsible: true, collapsed: true } }
+    { name: 'imageProperties', title: 'Image Properties', options: { collapsible: true, collapsed: true } },
+    { name: '360Properties', title: '360 Properties', options: { collapsible: true, collapsed: true } }
   ],
   fields: [
     defineField({
@@ -96,6 +97,63 @@ export const formaMediaInstanceObjectType = defineType({
       type: 'boolean',
       initialValue: false,
       fieldset: 'videoProperties'
+    }),
+    defineField({
+      title: 'Is Zoom Enabled',
+      name: 'isZoomEnabled',
+      type: 'boolean',
+      initialValue: true,
+      fieldset: '360Properties'
+    }),
+    defineField({
+      title: 'Initial Zoom',
+      name: 'initialZoom',
+      type: 'number',
+      initialValue: 0,
+      fieldset: '360Properties'
+    }),
+    defineField({
+      title: 'Is Autoplay Enabled',
+      name: 'is360AutoplayEnabled',
+      type: 'boolean',
+      initialValue: false,
+      fieldset: '360Properties'
+    }),
+    defineField({
+      title: 'Can interrupt Autoplay',
+      name: 'canInterruptAutoplay',
+      type: 'boolean',
+      initialValue: false,
+      fieldset: '360Properties'
+    }),
+    defineField({
+      title: 'Autoplay speed',
+      name: 'autoplaySpeed',
+      type: 'number',
+      initialValue: 2,
+      fieldset: '360Properties',
+      validation: rule => rule.min(2)
+    }),
+    defineField({
+      title: 'Autoplay delay',
+      name: 'autoplayDelay',
+      type: 'number',
+      initialValue: 0,
+      fieldset: '360Properties'
+    }),
+    defineField({
+      title: 'Is autoplay paused on hover enabled',
+      name: 'isAutoplayPausedOnHoverEnabled',
+      type: 'boolean',
+      initialValue: false,
+      fieldset: '360Properties'
+    }),
+    defineField({
+      title: 'Ms delay on mouse leave',
+      name: 'msDelayOnMouseLeave',
+      type: 'number',
+      initialValue: 0,
+      fieldset: '360Properties'
     })
   ]
 });
