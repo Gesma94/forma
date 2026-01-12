@@ -40,8 +40,6 @@ export async function FormaMedia({
     parameters: { documentId: formaMedia.formaMedia._ref }
   });
 
-  console.log(shouldDisplayMediaTitle);
-
   if (mediaAsset._type === 'formaImageAssetDocumentType') {
     const imageUrl = getSanityImageUrl(mediaAsset.image);
     const imageAltText = `${mediaAsset.clientName} - ${mediaAsset.imageTitle}`;

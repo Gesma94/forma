@@ -1,6 +1,6 @@
 'use client';
 
-import { ListIcon, XIcon } from '@phosphor-icons/react';
+import { ImageIcon, ListIcon, PanoramaIcon, VideoIcon, XIcon } from '@phosphor-icons/react';
 import { HouseIcon } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -47,6 +47,27 @@ export function TopbarMobileMenu() {
               <Link href='/' className='px-8 h-20 flex gap-4 items-center text-2xl text-bg-text'>
                 <HouseIcon className='size-8' />
                 Home
+              </Link>
+              <Link
+                href='/services/architectural-stills'
+                className='px-8 h-20 flex gap-4 items-center text-2xl text-bg-text'
+              >
+                <ImageIcon className='size-8' />
+                Architectural Stills
+              </Link>
+              <Link
+                href='/services/video-animations'
+                className='px-8 h-20 flex gap-4 items-center text-2xl text-bg-text'
+              >
+                <PanoramaIcon className='size-8' />
+                Video & Animations
+              </Link>
+              <Link
+                href='/services/360-virtual-reality'
+                className='px-8 h-20 flex gap-4 items-center text-2xl text-bg-text'
+              >
+                <VideoIcon className='size-8' />
+                360 Virtual Reality
               </Link>
               {topbarCommonNavLinks.map(link => {
                 const Icon = link.icon;

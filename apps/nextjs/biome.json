@@ -13,6 +13,9 @@
   },
   "linter": {
     "rules": {
+      "a11y": {
+        "noStaticElementInteractions": "off"
+      },
       "performance": {
         "noImgElement": "off"
       },
