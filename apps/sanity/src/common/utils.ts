@@ -24,6 +24,15 @@ export function getPageTitleFromId(pageId: string): string {
   if (pageId === SANITY_DOCUMENT_IDS.gallerypage) {
     return 'Gallery Page';
   }
+  if (pageId === SANITY_DOCUMENT_IDS.architecturalStillsPage) {
+    return 'Service - Architectural Stills';
+  }
+  if (pageId === SANITY_DOCUMENT_IDS.videoAnimationsPage) {
+    return 'Service - Video Animations';
+  }
+  if (pageId === SANITY_DOCUMENT_IDS.virtualToursPage) {
+    return 'Service - Virtual Tours';
+  }
 
   return 'Unknown Page';
 }

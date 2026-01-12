@@ -16,7 +16,12 @@ export async function HalfHeroModule({ module }: TProps) {
   return (
     <div className={containerTv()}>
       <div className='absolute size-full'>
-        <FormaMedia formaMedia={module.backgroundMedia} className={bgImageTv()} />
+        <FormaMedia
+          formaMedia={module.backgroundMedia}
+          className={bgImageTv()}
+          forceIs360HintShown={false}
+          forceHideMediaTitle={true}
+        />
       </div>
       <div className={contentWrapperTv()}>
         <ContentContainer>

@@ -1,18 +1,20 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { visionTool } from '@sanity/vision';
 import {
+  BinocularsIcon,
   BookKeyIcon,
+  ClapperboardIcon,
   ConstructionIcon,
   GalleryVerticalIcon,
   HomeIcon,
-  type LucideProps,
+  ImageIcon,
+  type LucideIcon,
   NotebookPenIcon,
   PhoneCallIcon,
   RouteIcon,
   SparklesIcon,
   WavesIcon
 } from 'lucide-react';
-import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { DOCUMENT_SCHEMA_TYPES } from './src/common/constants';
@@ -22,7 +24,7 @@ import { moduleDocumentSchemaTypes } from './src/schemas/documents/modules';
 
 type TPageItem = {
   id: string;
-  icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;
+  icon: LucideIcon;
   title: string;
 };
 const pageItems: TPageItem[] = [
@@ -45,6 +47,21 @@ const pageItems: TPageItem[] = [
     id: SANITY_DOCUMENT_IDS.gallerypage,
     icon: GalleryVerticalIcon,
     title: 'Gallery'
+  },
+  {
+    id: SANITY_DOCUMENT_IDS.architecturalStillsPage,
+    icon: ImageIcon,
+    title: 'Service - Architectural Stills'
+  },
+  {
+    id: SANITY_DOCUMENT_IDS.videoAnimationsPage,
+    icon: ClapperboardIcon,
+    title: 'Service - Video Animations'
+  },
+  {
+    id: SANITY_DOCUMENT_IDS.virtualToursPage,
+    icon: BinocularsIcon,
+    title: 'Service - Virtual Tours'
   },
   {
     id: SANITY_DOCUMENT_IDS.contactUsPage,

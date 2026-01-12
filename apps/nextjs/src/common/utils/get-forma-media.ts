@@ -37,14 +37,10 @@ export async function getFormaMediaData(formaMedia: FormaMediaInstanceObjectType
       imageAltText,
       imageUrl,
       showMediaTitle,
-      autoplayDelay: formaMedia.autoplayDelay ?? 0,
-      autoplaySpeed: formaMedia.autoplaySpeed ?? 2,
-      canInterruptAutoplay: formaMedia.canInterruptAutoplay ?? true,
+      is360HintShown: formaMedia.is360HintShown,
       initialZoom: formaMedia.initialZoom ?? 0,
-      isAutoplayEnabled: formaMedia.isAutoplayEnabled ?? false,
-      isAutoplayPausedOnHoverEnabled: formaMedia.isAutoplayPausedOnHoverEnabled ?? false,
       isZoomEnabled: formaMedia.isZoomEnabled ?? true,
-      msDelayOnMouseLeave: formaMedia.msDelayOnMouseLeave ?? 0
+      is360AutoplayEnabled: formaMedia.is360AutoplayEnabled ?? false
     };
   } else if (mediaAsset._type === 'formaVideoAssetDocumentType') {
     const videoAltText = `${mediaAsset.clientName} - ${mediaAsset.videoTitle}`;

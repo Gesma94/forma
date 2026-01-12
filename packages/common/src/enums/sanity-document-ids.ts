@@ -7,7 +7,10 @@ export const SANITY_DOCUMENT_IDS = {
   bookpage: 'bookPageDocumentId',
   processpage: 'processPageDocumentId',
   gallerypage: 'galleryPageDocumentId',
-  contactUsPage: 'contactUsPageDocumentId'
+  contactUsPage: 'contactUsPageDocumentId',
+  architecturalStillsPage: 'architecturalStillsPageDocumentId',
+  videoAnimationsPage: 'videoAnimationsPageDocumentId',
+  virtualToursPage: 'virtualToursPageDocumentId'
 } as const;
 
 export type TSanityDocumentId = ValueOf<typeof SANITY_DOCUMENT_IDS>;

@@ -13,10 +13,11 @@ type TProps = TFormaMediaUnwrapped & {
   videoProps?: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>;
   wrapper360Classname?: string;
   forceHideMediaTitle?: true;
+  forceIs360HintShown?: boolean;
 };
 
 export function FormaMediaClientSide(props: TProps) {
-  const { brightness, mediaType, showMediaTitle, className, forceHideMediaTitle } = props;
+  const { brightness, mediaType, showMediaTitle, className, forceHideMediaTitle, forceIs360HintShown } = props;
   const shouldHideMediaTitle = forceHideMediaTitle === true || !showMediaTitle;
   const shouldDisplayMediaTitle = !shouldHideMediaTitle;
 
@@ -45,18 +46,15 @@ export function FormaMediaClientSide(props: TProps) {
       </div>
     );
   } else if (props.mediaType === 'forma360AssetDocumentType') {
+    const showDisplayHint = forceIs360HintShown ? true : props.forceIs360HintShown;
     return (
-      <div className={props.wrapper360Classname ?? 'size-full'}>
+      <div className={props.wrapper360Classname ?? 'size-full'} style={brightnessStyle}>
         <Viewer360
           imageUrl={props.imageUrl}
-          autoplayDelay={props.autoplayDelay}
-          autoplaySpeed={props.autoplaySpeed}
-          canInterruptAutoplay={props.canInterruptAutoplay}
+          showDisplayHint={showDisplayHint}
           initialZoom={props.initialZoom}
-          isAutoplayEnabled={props.isAutoplayEnabled}
-          isAutoplayPausedOnHoverEnabled={props.isAutoplayPausedOnHoverEnabled}
           isZoomEnabled={props.isZoomEnabled}
-          msDelayOnMouseLeave={props.msDelayOnMouseLeave}
+          isAutoplayEnabled={props.is360AutoplayEnabled}
         />
       </div>
     );

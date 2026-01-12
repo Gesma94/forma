@@ -120,39 +120,10 @@ export const formaMediaInstanceObjectType = defineType({
       fieldset: '360Properties'
     }),
     defineField({
-      title: 'Can interrupt Autoplay',
-      name: 'canInterruptAutoplay',
+      title: 'Is 360 Hint be Shown',
+      name: 'is360HintShown',
       type: 'boolean',
-      initialValue: false,
-      fieldset: '360Properties'
-    }),
-    defineField({
-      title: 'Autoplay speed',
-      name: 'autoplaySpeed',
-      type: 'number',
-      initialValue: 2,
-      fieldset: '360Properties',
-      validation: rule => rule.min(2)
-    }),
-    defineField({
-      title: 'Autoplay delay',
-      name: 'autoplayDelay',
-      type: 'number',
-      initialValue: 0,
-      fieldset: '360Properties'
-    }),
-    defineField({
-      title: 'Is autoplay paused on hover enabled',
-      name: 'isAutoplayPausedOnHoverEnabled',
-      type: 'boolean',
-      initialValue: false,
-      fieldset: '360Properties'
-    }),
-    defineField({
-      title: 'Ms delay on mouse leave',
-      name: 'msDelayOnMouseLeave',
-      type: 'number',
-      initialValue: 0,
+      initialValue: true,
       fieldset: '360Properties'
     })
   ]

@@ -10,26 +10,10 @@ type TProps = {
   isZoomEnabled: boolean;
   initialZoom: number;
   isAutoplayEnabled: boolean;
-  canInterruptAutoplay: boolean;
-  autoplaySpeed: number;
-  autoplayDelay: number;
-  isAutoplayPausedOnHoverEnabled: boolean;
-  msDelayOnMouseLeave: number;
   showDisplayHint?: boolean;
 };
 
-export function Viewer360({
-  imageUrl,
-  autoplayDelay,
-  autoplaySpeed,
-  canInterruptAutoplay,
-  initialZoom,
-  isAutoplayEnabled,
-  isAutoplayPausedOnHoverEnabled,
-  isZoomEnabled,
-  msDelayOnMouseLeave,
-  showDisplayHint
-}: TProps) {
+export function Viewer360({ imageUrl, initialZoom, isAutoplayEnabled, isZoomEnabled, showDisplayHint }: TProps) {
   showDisplayHint ??= true;
   const projection = useMemo(
     () =>
@@ -45,20 +29,13 @@ export function Viewer360({
     }
 
     return {
-      delay: autoplayDelay,
-      canInterrupt: canInterruptAutoplay,
-      pauseOnHover: isAutoplayPausedOnHoverEnabled,
-      delayOnMouseLeave: msDelayOnMouseLeave,
-      speed: autoplaySpeed
+      delay: 0,
+      canInterrupt: true,
+      pauseOnHover: true,
+      delayOnMouseLeave: 0,
+      speed: 2
     };
-  }, [
-    isAutoplayEnabled,
-    autoplayDelay,
-    autoplaySpeed,
-    canInterruptAutoplay,
-    isAutoplayPausedOnHoverEnabled,
-    msDelayOnMouseLeave
-  ]);
+  }, [isAutoplayEnabled]);
 
   return (
     <div className='size-full relative'>

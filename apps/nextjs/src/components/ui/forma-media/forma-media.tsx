@@ -13,6 +13,7 @@ type TProps = {
   videoProps?: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>;
   wrapper360Classname?: string;
   forceHideMediaTitle?: true;
+  forceIs360HintShown?: boolean;
 };
 
 type TSanityQueryParams = {
@@ -25,7 +26,8 @@ export async function FormaMedia({
   imgProps,
   wrapper360Classname,
   className,
-  forceHideMediaTitle
+  forceHideMediaTitle,
+  forceIs360HintShown
 }: TProps) {
   const shouldHideMediaTitle = forceHideMediaTitle === true || !formaMedia.showMediaTitle;
   const shouldDisplayMediaTitle = !shouldHideMediaTitle;
@@ -37,6 +39,8 @@ export async function FormaMedia({
   const mediaAsset = await runQuery(q.parameters<TSanityQueryParams>().star.filterRaw('_id == $documentId').slice(0), {
     parameters: { documentId: formaMedia.formaMedia._ref }
   });
+
+  console.log(shouldDisplayMediaTitle);
 
   if (mediaAsset._type === 'formaImageAssetDocumentType') {
     const imageUrl = getSanityImageUrl(mediaAsset.image);
@@ -60,19 +64,16 @@ export async function FormaMedia({
     );
   } else if (mediaAsset._type === 'forma360AssetDocumentType') {
     const imageUrl = getSanityImageUrl(mediaAsset.image);
+    const showDisplayHint = forceIs360HintShown ? true : formaMedia.is360HintShown;
 
     return (
-      <div className={wrapper360Classname ?? 'size-full'}>
+      <div className={wrapper360Classname ?? 'size-full'} style={brightnessStyle}>
         <Viewer360
           imageUrl={imageUrl}
-          autoplayDelay={formaMedia.autoplayDelay}
-          autoplaySpeed={formaMedia.autoplaySpeed}
-          canInterruptAutoplay={formaMedia.canInterruptAutoplay}
+          showDisplayHint={showDisplayHint}
           initialZoom={formaMedia.initialZoom}
-          isAutoplayEnabled={formaMedia.isAutoplayEnabled}
-          isAutoplayPausedOnHoverEnabled={formaMedia.isAutoplayPausedOnHoverEnabled}
           isZoomEnabled={formaMedia.isZoomEnabled}
-          msDelayOnMouseLeave={formaMedia.msDelayOnMouseLeave}
+          isAutoplayEnabled={formaMedia.is360AutoplayEnabled}
         />
       </div>
     );
@@ -99,7 +100,7 @@ export async function FormaMedia({
         >
           <source src={video.url} type='video/mp4' />
         </video>
-        {formaMedia.showMediaTitle && (
+        {shouldDisplayMediaTitle && (
           <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
             <p className='text-md'>{videoAltText}</p>
           </div>
