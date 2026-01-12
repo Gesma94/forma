@@ -21,23 +21,19 @@ export const textWithImageModuleDocumentType = defineType({
     },
     prepare: ({ title, content, variant, ...formaMediaProps }) => ({
       media: getFormaMediaMedia(formaMediaProps),
-      title: textBlockToPlainText(title),
-      subtitle: textBlockToPlainText(content, 30)
+      title: textBlockToPlainText(content, 30)
     })
   },
   fields: [
     defineModuleVariantField(),
     defineSpacingField(),
     defineRichEditorField({
-      name: 'heading',
-      title: 'Heading',
-      allowColorMarkDecorator: false,
-      validation: rule => rule.required()
-    }),
-    defineRichEditorField({
       name: 'content',
       title: 'Content',
-      allowColorMarkDecorator: false,
+      allowColorMarkDecorator: true,
+      allowBulletPoint: true,
+      allowH1: true,
+      allowH2: true,
       validation: rule => rule.required()
     }),
     defineFormaMediaField({

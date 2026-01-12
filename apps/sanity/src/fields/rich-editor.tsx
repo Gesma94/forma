@@ -4,6 +4,7 @@ import {
   type ArrayRule,
   type BlockDecoratorDefinition,
   type BlockDecoratorProps,
+  type BlockListDefinition,
   type BlockStyleDefinition,
   defineArrayMember,
   defineField,
@@ -16,7 +17,9 @@ type TProps = {
   note?: string;
   fieldset?: string;
   allowColorMarkDecorator?: boolean;
-  allowHeaderMarks?: boolean;
+  allowH1?: boolean;
+  allowH2?: boolean;
+  allowBulletPoint?: boolean;
   validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]>;
 };
 
@@ -26,7 +29,9 @@ export function defineRichEditorField({
   note,
   fieldset,
   allowColorMarkDecorator = true,
-  allowHeaderMarks = false,
+  allowH1 = false,
+  allowH2 = false,
+  allowBulletPoint = false,
   validation
 }: TProps): ReturnType<typeof defineField> {
   return defineField({
@@ -42,8 +47,8 @@ export function defineRichEditorField({
           decorators: getMarkDecorators(allowColorMarkDecorator),
           annotations: []
         },
-        lists: [],
-        styles: getStyleDecorators(allowHeaderMarks)
+        lists: getListDecorators(allowBulletPoint),
+        styles: getStyleDecorators(allowH1, allowH2)
       })
     ],
     validation
@@ -68,17 +73,38 @@ function getMarkDecorators(allowColorMarkDecorator: boolean) {
   return baseDecorators;
 }
 
-function getStyleDecorators(allowHeaderMarks: boolean): BlockStyleDefinition[] {
+function getStyleDecorators(allowH1Mark: boolean, allowH2Mark: boolean): BlockStyleDefinition[] {
   const styleDecorators: BlockStyleDefinition[] = [];
 
-  if (allowHeaderMarks) {
+  if (allowH1Mark || allowH2Mark) {
     styleDecorators.push({
       title: 'Normal',
       value: 'normal'
     });
+  }
+  if (allowH1Mark) {
     styleDecorators.push({
       title: 'Title',
-      value: 'title'
+      value: 'h1'
+    });
+  }
+  if (allowH2Mark) {
+    styleDecorators.push({
+      title: 'Subtitle',
+      value: 'h3'
+    });
+  }
+
+  return styleDecorators;
+}
+
+function getListDecorators(allowBulletMark: boolean): BlockListDefinition[] {
+  const styleDecorators: BlockListDefinition[] = [];
+
+  if (allowBulletMark) {
+    styleDecorators.push({
+      title: 'Bullet',
+      value: 'bullet'
     });
   }
 
