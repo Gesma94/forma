@@ -1,5 +1,6 @@
 export const DOCUMENT_SCHEMA_TYPES = {
   footer: 'footerDocumentType',
+  topbar: 'topbarDocumentType',
   maintananceScreen: 'maintananceScreenDocumentType',
   inlineGalleryModule: 'inlineGalleryModuleDocumentType',
   howItWorksModule: 'howItWorksModuleDocumentType',

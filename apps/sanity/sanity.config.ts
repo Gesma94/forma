@@ -1,6 +1,7 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
 import { visionTool } from '@sanity/vision';
 import {
+  BandageIcon,
   BinocularsIcon,
   BookKeyIcon,
   ClapperboardIcon,
@@ -124,6 +125,17 @@ export default defineConfig({
                   .id(SANITY_DOCUMENT_IDS.maintananceScreen)
                   .schemaType(DOCUMENT_SCHEMA_TYPES.maintananceScreen)
                   .documentId(SANITY_DOCUMENT_IDS.maintananceScreen)
+              ),
+            S.listItem()
+              .icon(BandageIcon)
+              .id(SANITY_DOCUMENT_IDS.topbar)
+              .schemaType(DOCUMENT_SCHEMA_TYPES.topbar)
+              .title('Topbar')
+              .child(
+                S.editor()
+                  .id(SANITY_DOCUMENT_IDS.topbar)
+                  .schemaType(DOCUMENT_SCHEMA_TYPES.topbar)
+                  .documentId(SANITY_DOCUMENT_IDS.topbar)
               ),
             S.divider().title('Modules'),
             ...moduleDocumentSchemaTypes
