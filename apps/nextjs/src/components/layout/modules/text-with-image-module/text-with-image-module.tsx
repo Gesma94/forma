@@ -1,11 +1,11 @@
 import { ELEMENT_X_POSITION, MODULE_VARIANTS } from '@forma/common';
 import { tv } from 'tailwind-variants';
 import type { TextWithImageModuleDocumentType } from 'types/generated/sanity-types-generated';
-import { LinkButton } from '@/ui/buttons/link-button/link-button';
 import { BackgroundVariantContainer } from '@/ui/containers/background-variant-container/background-variant-container';
 import { ModuleContentContainer } from '@/ui/containers/module-content-container/module-content-container';
 import { VerticalPaddingContainer } from '@/ui/containers/vertical-padding-container/vertical-padding-container';
 import { FormaMedia } from '@/ui/forma-media/forma-media';
+import { Actions } from './subs/actions';
 import { ContentPortableText } from './subs/content';
 
 type TProps = {
@@ -25,13 +25,7 @@ export async function TextWithImageModule({ module }: TProps) {
             </div>
             <div className={textWrapper()}>
               <ContentPortableText value={module.content} variant={module.variant} />
-              {module.primaryCta.showCta && (
-                <div className='mt-8 grid xs:flex'>
-                  <LinkButton href={module.primaryCta.url} size='large' variant='primary' surface='bg'>
-                    {module.primaryCta.caption}
-                  </LinkButton>
-                </div>
-              )}
+              <Actions variant={module.variant} primaryCta={module.primaryCta} secondaryCta={module.secondaryCta} />
             </div>
           </div>
         </ModuleContentContainer>
