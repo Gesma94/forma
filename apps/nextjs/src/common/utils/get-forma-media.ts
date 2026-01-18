@@ -37,9 +37,10 @@ export async function getFormaMediaData(formaMedia: FormaMediaInstanceObjectType
       imageAltText,
       imageUrl,
       showMediaTitle,
-      is360HintShown: formaMedia.is360HintShown,
       initialZoom: formaMedia.initialZoom ?? 0,
-      isZoomEnabled: formaMedia.isZoomEnabled ?? true,
+      isZoomEnabled: formaMedia.isZoomEnabled ?? false,
+      is360HintShown: formaMedia.is360HintShown ?? true,
+      is360FullScreenShown: formaMedia.is360FullScreenShown ?? true,
       is360AutoplayEnabled: formaMedia.is360AutoplayEnabled ?? false
     };
   } else if (mediaAsset._type === 'formaVideoAssetDocumentType') {

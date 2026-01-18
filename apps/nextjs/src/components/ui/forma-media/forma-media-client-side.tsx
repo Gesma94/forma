@@ -51,10 +51,12 @@ export function FormaMediaClientSide(props: TProps) {
       <div className={props.wrapper360Classname ?? 'size-full'} style={brightnessStyle}>
         <Viewer360
           imageUrl={props.imageUrl}
+          imageLabel={props.imageAltText}
           showDisplayHint={showDisplayHint}
           initialZoom={props.initialZoom}
           isZoomEnabled={props.isZoomEnabled}
           isAutoplayEnabled={props.is360AutoplayEnabled}
+          isFullScreenShown={props.is360FullScreenShown}
         />
       </div>
     );

@@ -125,6 +125,13 @@ export const formaMediaInstanceObjectType = defineType({
       type: 'boolean',
       initialValue: true,
       fieldset: '360Properties'
+    }),
+    defineField({
+      title: 'Is 360 Full Screen be Shown',
+      name: 'is360FullScreenShown',
+      type: 'boolean',
+      initialValue: true,
+      fieldset: '360Properties'
     })
   ]
 });

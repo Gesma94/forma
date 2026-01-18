@@ -63,15 +63,18 @@ export async function FormaMedia({
   } else if (mediaAsset._type === 'forma360AssetDocumentType') {
     const imageUrl = getSanityImageUrl(mediaAsset.image);
     const showDisplayHint = forceIs360HintShown ? true : formaMedia.is360HintShown;
+    const imageAltText = `${mediaAsset.clientName} - ${mediaAsset.imageTitle}`;
 
     return (
       <div className={wrapper360Classname ?? 'size-full'} style={brightnessStyle}>
         <Viewer360
           imageUrl={imageUrl}
+          imageLabel={imageAltText}
           showDisplayHint={showDisplayHint}
           initialZoom={formaMedia.initialZoom}
           isZoomEnabled={formaMedia.isZoomEnabled}
           isAutoplayEnabled={formaMedia.is360AutoplayEnabled}
+          isFullScreenShown={formaMedia.is360FullScreenShown}
         />
       </div>
     );

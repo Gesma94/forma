@@ -28,6 +28,7 @@ export type TFormaMedia360Unwrapped = TFormaMediaUnwrappedBase & {
   initialZoom: number;
   is360AutoplayEnabled: boolean;
   is360HintShown: boolean;
+  is360FullScreenShown: boolean;
 };
 
 export type TFormaMediaVideoUnwrapped = TFormaMediaUnwrappedBase & {
