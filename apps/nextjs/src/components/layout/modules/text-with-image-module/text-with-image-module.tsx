@@ -21,7 +21,11 @@ export async function TextWithImageModule({ module }: TProps) {
         <ModuleContentContainer variant={module.variant}>
           <div className={contentContainer()}>
             <div className={imageWrapper()}>
-              <FormaMedia formaMedia={module.media} className='size-full object-cover rounded-2xl shadow-2xl' />
+              <FormaMedia
+                formaMedia={module.media}
+                className='size-full object-cover rounded-2xl shadow-2xl'
+                wrapper360Classname='size-full rounded-2xl overflow-hidden'
+              />
             </div>
             <div className={textWrapper()}>
               <ContentPortableText value={module.content} variant={module.variant} />

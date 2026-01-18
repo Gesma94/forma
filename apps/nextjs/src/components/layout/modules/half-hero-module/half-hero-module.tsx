@@ -21,6 +21,7 @@ export async function HalfHeroModule({ module }: TProps) {
           className={bgImageTv()}
           forceIs360HintShown={false}
           forceHideMediaTitle={true}
+          wrapper360Classname='size-full overflow-hidden'
         />
       </div>
       <div className={contentWrapperTv()}>

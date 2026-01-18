@@ -54,7 +54,7 @@ export async function FormaMedia({
           className={className ?? imgProps?.className}
         />
         {shouldDisplayMediaTitle && (
-          <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
+          <div className='absolute bottom-4 left-4 text-primary-text text-shadow-xl text-md'>
             <p className='text-md'>{imageAltText}</p>
           </div>
         )}
@@ -99,7 +99,7 @@ export async function FormaMedia({
           <source src={video.url} type='video/mp4' />
         </video>
         {shouldDisplayMediaTitle && (
-          <div className='absolute bottom-4 left-4  text-primary-text  text-shadow-xl text-md'>
+          <div className='absolute bottom-4 left-4 text-primary-text text-shadow-xl text-md'>
             <p className='text-md'>{videoAltText}</p>
           </div>
         )}
