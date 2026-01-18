@@ -23,15 +23,16 @@
   "dependencies": {
     "@forma/common": "workspace:*",
     "@sanity/ui": "^3.1.11",
-    "@sanity/vision": "^4.21.0",
+    "@sanity/vision": "^4.22.0",
     "lucide-react": "^0.559.0",
-    "react": "^19.2",
-    "react-dom": "^19.2",
-    "sanity": "^4.21.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "sanity": "^4.22.0",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "@types/react": "^19.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "cpy-cli": "^6.0.0",
     "mkdirp": "^3.0.1",
     "rimraf": "^6.1.2"
