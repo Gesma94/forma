@@ -36,6 +36,11 @@ export async function Footer() {
                         <Link href={link.url}>{link.caption}</Link>
                       </li>
                     ))}
+                    <li className='text-lg text-primary-text underline underline-offset-4'>
+                      <Link href='https://www.svgrepo.com' target='_blank'>
+                        SVG Repo
+                      </Link>
+                    </li>
                   </ul>
                 </nav>
               </FooterGroup>
