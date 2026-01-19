@@ -20,6 +20,7 @@ type TProps = {
   allowH1?: boolean;
   allowH2?: boolean;
   allowBulletPoint?: boolean;
+  allowOrderedPoint?: boolean;
   validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]>;
 };
 
@@ -32,6 +33,7 @@ export function defineRichEditorField({
   allowH1 = false,
   allowH2 = false,
   allowBulletPoint = false,
+  allowOrderedPoint = false,
   validation
 }: TProps): ReturnType<typeof defineField> {
   return defineField({
@@ -47,7 +49,7 @@ export function defineRichEditorField({
           decorators: getMarkDecorators(allowColorMarkDecorator),
           annotations: []
         },
-        lists: getListDecorators(allowBulletPoint),
+        lists: getListDecorators(allowBulletPoint, allowOrderedPoint),
         styles: getStyleDecorators(allowH1, allowH2)
       })
     ],
@@ -98,13 +100,20 @@ function getStyleDecorators(allowH1Mark: boolean, allowH2Mark: boolean): BlockSt
   return styleDecorators;
 }
 
-function getListDecorators(allowBulletMark: boolean): BlockListDefinition[] {
+function getListDecorators(allowBulletMark: boolean, allowOrderedPoint: boolean): BlockListDefinition[] {
   const styleDecorators: BlockListDefinition[] = [];
 
   if (allowBulletMark) {
     styleDecorators.push({
       title: 'Bullet',
       value: 'bullet'
+    });
+  }
+
+  if (allowOrderedPoint) {
+    styleDecorators.push({
+      title: 'Numbered',
+      value: 'number'
     });
   }
 

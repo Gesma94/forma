@@ -14,6 +14,7 @@ import {
   PhoneCallIcon,
   RouteIcon,
   SparklesIcon,
+  TextInitialIcon,
   WavesIcon
 } from 'lucide-react';
 import { defineConfig } from 'sanity';
@@ -103,6 +104,26 @@ export default defineConfig({
               .title('Client Secret Pages')
               .icon(BookKeyIcon)
               .child(S.documentTypeList(DOCUMENT_SCHEMA_TYPES.clientSecretPage).title('Client Secret Pages')),
+            S.listItem()
+              .icon(BookKeyIcon)
+              .id(SANITY_DOCUMENT_IDS.privacyPolicyPage)
+              .schemaType(DOCUMENT_SCHEMA_TYPES.policyPage)
+              .title('Privacy Policy Page')
+              .child(
+                S.document()
+                  .documentId(SANITY_DOCUMENT_IDS.privacyPolicyPage)
+                  .schemaType(DOCUMENT_SCHEMA_TYPES.policyPage)
+              ),
+            S.listItem()
+              .icon(TextInitialIcon)
+              .id(SANITY_DOCUMENT_IDS.cookiePolicyPage)
+              .schemaType(DOCUMENT_SCHEMA_TYPES.policyPage)
+              .title('Cookie Policy Page')
+              .child(
+                S.document()
+                  .documentId(SANITY_DOCUMENT_IDS.cookiePolicyPage)
+                  .schemaType(DOCUMENT_SCHEMA_TYPES.policyPage)
+              ),
             S.divider().title('Singletons'),
             S.listItem()
               .icon(WavesIcon)
