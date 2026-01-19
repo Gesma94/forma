@@ -11,6 +11,8 @@ export function CookieManagerProvider({ children }: PropsWithChildren) {
         classNames={{
           popupContainer:
             'fixed bottom-4 left-4 w-80 bg-white/95 ring-1 ring-black/10 shadow-lg rounded-lg backdrop-blur-sm backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-[99999] opacity-100 scale-100',
+          declineButton:
+            'px-3 py-1.5 text-xs font-medium rounded-md bg-gray-200 hover:bg-gray-300 text-gray-800 transition-all duration-200 focus-visible:outline-none focus:outline-none focus-visible:outline-transparent focus:outline-transparent flex-1',
           acceptButton:
             'px-3 py-1.5 text-xs font-medium rounded-md bg-primary! hover:bg-primary-hover! text-primary-text! transition-all duration-200 focus-visible:outline-none focus:outline-none focus-visible:outline-transparent focus:outline-transparent flex-1',
           manageButton:
