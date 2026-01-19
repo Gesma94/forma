@@ -40,6 +40,7 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
       document.body.parentElement.classList.remove('disable-scrollbar-gutter');
     };
   }, [currentIndex]);
+
   return isNil(currentFormaMedia) ? null : (
     <AriaModal className={modalTv()} isDismissable={false} isOpen={isNotNil(currentIndex)} onOpenChange={onOpenChange}>
       <AriaDialog aria-label={currentFormaMediaTitle} className={dialogTv()}>
