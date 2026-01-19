@@ -51,7 +51,11 @@ export function ServiceCardClient({ formaMediaData, service }: TProps) {
       onMouseOut={handleMouseOut}
     >
       <div className='absolute inset-0'>
-        <FormaMediaClientSide {...formaMediaData} className='size-full rounded-2xl object-cover' />
+        <FormaMediaClientSide
+          {...formaMediaData}
+          className='size-full rounded-2xl object-cover'
+          {...(formaMediaData.mediaType === 'forma360AssetDocumentType' ? { is360FullScreenShown: false } : {})}
+        />
       </div>
       <div className='transition-all row-start-2 bg-primary relative'>
         <div className='h-[5rem] text-center flex items-center justify-center'>
