@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { type CSSProperties, useState } from 'react';
 import type { TFormaMediaUnwrapped } from 'types/forma-media';
 import type { ServiceObjectType } from 'types/generated/sanity-types-generated';
@@ -41,8 +42,8 @@ export function ServiceCardClient({ formaMediaData, service }: TProps) {
   };
 
   return (
-    <button
-      type='button'
+    <Link
+      href={service.serviceUrl}
       style={getContainerStyle()}
       className='transition-all duration-300 size-full grid grid-rows-[1fr_5rem] relative h-[40rem] rounded-2xl overflow-hidden shadow-2xl'
       onFocus={handleOnFocus}
@@ -65,6 +66,6 @@ export function ServiceCardClient({ formaMediaData, service }: TProps) {
           <CardDescription value={service.description} />
         </div>
       </div>
-    </button>
+    </Link>
   );
 }

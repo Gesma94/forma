@@ -1,4 +1,4 @@
-import { defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 import { FORMA_MEDIA_SELECT_PROPS, OBJECT_SCHEMA_TYPES } from '../../common/constants';
 import { getFormaMediaMedia, textBlockToPlainText } from '../../common/utils';
 import { defineRichEditorField } from '../../fields';
@@ -28,6 +28,12 @@ export const serviceObjectType = defineType({
     defineRichEditorField({
       name: 'description',
       title: 'Description',
+      validation: rule => rule.required()
+    }),
+    defineField({
+      type: 'string',
+      name: 'serviceUrl',
+      title: 'Service URL',
       validation: rule => rule.required()
     }),
     defineFormaMediaField()
