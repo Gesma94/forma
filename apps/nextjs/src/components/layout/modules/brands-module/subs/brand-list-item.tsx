@@ -1,19 +1,20 @@
+'use client';
+
 import { MODULE_VARIANTS } from '@forma/common';
 import { tv, type VariantProps } from 'tailwind-variants';
 import type { SetRequired } from 'type-fest';
-import type { BrandDocumentType } from 'types/generated/sanity-types-generated';
-import { getSanityImageUrl } from '@/utils/groqd-client';
+import type { TClientBrand } from './types';
 
 type TProps = SetRequired<VariantProps<typeof style>, 'variant'> & {
-  brand: BrandDocumentType;
+  brand: TClientBrand;
 };
 
 export function BrandListItem({ variant, brand }: TProps) {
   const { imageTv, wrapperTv } = style({ variant });
   return (
-    <li className={wrapperTv()}>
-      <img className={imageTv()} key={brand._id} src={getSanityImageUrl(brand.logo)} alt={brand.logo.altText} />
-    </li>
+    <div className={wrapperTv()}>
+      <img className={imageTv()} key={brand._id} src={brand.logoUrl} alt={brand.logo.altText} />
+    </div>
   );
 }
 
