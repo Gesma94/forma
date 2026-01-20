@@ -53,6 +53,7 @@ export function FormaMediaClientSide(props: TProps) {
           imageUrl={props.imageUrl}
           imageLabel={props.imageAltText}
           showDisplayHint={showDisplayHint}
+          hintOpacity={props.hintOpacity}
           initialZoom={props.initialZoom}
           isZoomEnabled={props.isZoomEnabled}
           isAutoplayEnabled={props.is360AutoplayEnabled}

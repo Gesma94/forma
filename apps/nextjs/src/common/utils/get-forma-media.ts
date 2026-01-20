@@ -38,6 +38,7 @@ export async function getFormaMediaData(formaMedia: FormaMediaInstanceObjectType
       imageUrl,
       showMediaTitle,
       initialZoom: formaMedia.initialZoom ?? 0,
+      hintOpacity: formaMedia.hintOpacity ?? 100,
       isZoomEnabled: formaMedia.isZoomEnabled ?? false,
       is360HintShown: formaMedia.is360HintShown ?? true,
       is360FullScreenShown: formaMedia.is360FullScreenShown ?? true,

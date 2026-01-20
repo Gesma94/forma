@@ -71,6 +71,7 @@ export async function FormaMedia({
           imageUrl={imageUrl}
           imageLabel={imageAltText}
           showDisplayHint={showDisplayHint}
+          hintOpacity={formaMedia.hintOpacity}
           initialZoom={formaMedia.initialZoom}
           isZoomEnabled={formaMedia.isZoomEnabled}
           isAutoplayEnabled={formaMedia.is360AutoplayEnabled}

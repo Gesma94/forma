@@ -16,6 +16,7 @@ type TProps = {
   isAutoplayEnabled: boolean;
   showDisplayHint?: boolean;
   isFullScreenShown?: boolean;
+  hintOpacity?: number;
 };
 
 export function Viewer360({
@@ -24,6 +25,7 @@ export function Viewer360({
   imageLabel,
   isAutoplayEnabled,
   isZoomEnabled,
+  hintOpacity,
   showDisplayHint,
   isFullScreenShown
 }: TProps) {
@@ -55,7 +57,10 @@ export function Viewer360({
   return (
     <div className='size-full relative group'>
       {showDisplayHint && (
-        <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 size-[calc(100%_-_20px)] max-w-40 max-h-40 group-hover:opacity-50 group-hover:pointer-events-none transition-opacity duration-500'>
+        <div
+          className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 size-[calc(100%_-_20px)] max-w-40 max-h-40 group-hover:opacity-50 group-hover:pointer-events-none transition-opacity duration-500'
+          style={{ opacity: hintOpacity ? `${hintOpacity / 100} !important` : undefined }}
+        >
           <Icon360 />
         </div>
       )}
