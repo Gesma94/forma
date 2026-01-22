@@ -20,6 +20,12 @@ export const pageMetadataObjectType = defineType({
       validation: rule => rule.required()
     }),
     defineField({
+      type: 'string',
+      title: 'Keywords',
+      description: 'Comma separated keywords for SEO (e.g. "Forma, Architecture, Design")',
+      name: 'keywords'
+    }),
+    defineField({
       type: 'object',
       title: 'Open Graph',
       name: 'openGraph',

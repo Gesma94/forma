@@ -1,8 +1,9 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Topbar } from '@/layout/topbar/topbar';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { PolicyPortableText } from '@/ui/portable-text/policy-portable-text';
+import { commonGenerateMetadata } from '@/utils/common-generate-metadata';
 import { q, runQuery } from '@/utils/groqd-client';
 
 type TSanityQueryParams = {
@@ -14,6 +15,10 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return commonGenerateMetadata(SANITY_DOCUMENT_IDS.privacyPolicyPage);
+}
 
 export default async function Page() {
   const sanityData = await runQuery(

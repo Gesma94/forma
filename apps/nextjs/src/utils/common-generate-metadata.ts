@@ -16,6 +16,7 @@ export async function commonGenerateMetadata(pageId: string): Promise<Metadata> 
         pageMetadata: sub.field('pageMetadata').project(p => ({
           pageTitle: true,
           pageDescription: true,
+          keywords: true,
           openGraph: p.field('openGraph').project(og => ({
             openGraphTitle: true,
             openGraphDescription: true,
@@ -32,6 +33,7 @@ export async function commonGenerateMetadata(pageId: string): Promise<Metadata> 
   return {
     title: result.pageMetadata.pageTitle,
     description: result.pageMetadata.pageDescription,
+    keywords: result.pageMetadata.keywords,
     openGraph: {
       title: result.pageMetadata.openGraph.openGraphTitle,
       description: result.pageMetadata.openGraph.openGraphDescription,
