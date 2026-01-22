@@ -16,15 +16,15 @@ const stylesTv = tv({
   variants: {
     paddingTop: {
       [PADDING_SIZE.NONE]: '',
-      [PADDING_SIZE.SM]: 'pt-5 md:pt-10',
-      [PADDING_SIZE.MD]: 'pt-10 md:pt-20',
-      [PADDING_SIZE.LG]: 'pt-20 md:pt-40'
+      [PADDING_SIZE.SM]: 'pt-5 lg:pt-10',
+      [PADDING_SIZE.MD]: 'pt-10 lg:pt-20',
+      [PADDING_SIZE.LG]: 'pt-20 lg:pt-40'
     },
     paddingBottom: {
       [PADDING_SIZE.NONE]: '',
-      [PADDING_SIZE.SM]: 'pb-5 md:pb-10',
-      [PADDING_SIZE.MD]: 'pb-10 md:pb-20',
-      [PADDING_SIZE.LG]: 'pb-20 md:pb-40'
+      [PADDING_SIZE.SM]: 'pb-5 lg:pb-10',
+      [PADDING_SIZE.MD]: 'pb-10 lg:pb-20',
+      [PADDING_SIZE.LG]: 'pb-20 lg:pb-40'
     }
   }
 });

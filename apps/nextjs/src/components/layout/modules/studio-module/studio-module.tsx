@@ -19,7 +19,7 @@ export async function StudioModule({ module }: TProps) {
     <BackgroundVariantContainer variant={variant}>
       <VerticalPaddingContainer {...module.paddings}>
         <ModuleContentContainer variant={variant}>
-          <div className='grid gap-20 xl:grid-cols-[1fr_2fr]'>
+          <div className='grid gap-8 xl:gap-20 grid-rows-[auto-auto] grid-cols-1 xl:grid-rows-1 xl:grid-cols-[1fr_2fr]'>
             <div className='flex flex-col min-w-0'>
               <h2 className='text-7xl md:text-8xl text-primary flex flex-col'>
                 <span className='text-5xl md:text-6xl'>This is</span>
@@ -39,10 +39,10 @@ export async function StudioModule({ module }: TProps) {
                 </div>
               )}
             </div>
-            <div className='relative contain-size'>
+            <div className='relative xl:contain-size'>
               <FormaMedia
                 formaMedia={module.media}
-                className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
+                className='w-full h-auto xl:h-[unset] xl:size-full xl:max-h-dvh object-cover rounded-2xl'
               />
             </div>
           </div>

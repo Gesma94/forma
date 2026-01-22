@@ -30,13 +30,13 @@ export async function ServicesModule({ module }: TProps) {
               </ContentContainer>
             </div>
           </div>
-          <div className='mt-10 grid grid-cols-3 gap-4 relative z-10'>
+          <div className='mt-10 grid grid-rows-3 lg:grid-rows-1 lg:grid-cols-3 gap-4 relative z-10'>
             <ServiceCard service={module.services.at(0)} />
             <ServiceCard service={module.services.at(1)} />
             <ServiceCard service={module.services.at(2)} />
           </div>
           {(module.primaryCta.showCta || module.secondaryCta.showCta) && (
-            <div className='mt-10 mx-auto flex justify-center gap-8 z-0 relative'>
+            <div className='mt-10 mx-auto flex flex-col sm:flex-row justify-center gap-2 sm:gap-8 z-0 relative'>
               {module.primaryCta.showCta && (
                 <LinkButton href={module.primaryCta.url} size='large' variant='primary' surface='bg'>
                   {module.primaryCta.caption}

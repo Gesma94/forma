@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next';
 import { Topbar } from '@/layout/topbar/topbar';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { PolicyPortableText } from '@/ui/portable-text/policy-portable-text';
-import { q, runQuery } from '@/utils/groqd-client';
 import { commonGenerateMetadata } from '@/utils/common-generate-metadata';
+import { q, runQuery } from '@/utils/groqd-client';
 
 type TSanityQueryParams = {
   pageId: string;

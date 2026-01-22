@@ -30,7 +30,7 @@ export function TopbarMobileMenu() {
 
   return (
     <AriaDialogTrigger key={pathname} onOpenChange={handleOpenChange}>
-      <AriaButton aria-label="Open mobile menu">
+      <AriaButton aria-label='Open mobile menu'>
         <ListIcon className='size-8 text-primary-text' />
       </AriaButton>
       <ModalOverlay isDismissable={true} className={({ state }) => modalOverlayStyle({ isOpen: state.isOpen })}>

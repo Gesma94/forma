@@ -41,20 +41,20 @@ export async function ParallaxImageModule({ module }: TProps) {
 
 const styleTv = tv({
   slots: {
-    imagesContainerTv: 'size-full grid grid-cols-[5fr_2fr] gap-20 max-h-dvh h-[980px]',
+    imagesContainerTv: 'size-full grid grid-cols-[1fr] gap-20 max-h-dvh h-[480px] sm:h-[980px]',
     bigImageWrapperTv: 'rounded-2xl relative row-start-1 contain-size',
-    smallImageWrapperTv: 'rounded-2xl relative h-3/4 row-start-1 self-center contain-size'
+    smallImageWrapperTv: 'hidden lg:block rounded-2xl relative h-3/4 row-start-1 self-center contain-size'
   },
   variants: {
     bigImagePosition: {
       [ELEMENT_X_POSITION.LEFT]: {
-        imagesContainerTv: 'grid-cols-[5fr_2fr]',
+        imagesContainerTv: 'lg:grid-cols-[5fr_2fr]',
         bigImageWrapperTv: 'col-start-1',
         smallImageWrapperTv: 'col-start-2'
       },
       [ELEMENT_X_POSITION.RIGHT]: {
-        imagesContainerTv: 'grid-cols-[2fr_5fr]',
-        bigImageWrapperTv: 'col-start-2',
+        imagesContainerTv: 'lg:grid-cols-[2fr_5fr]',
+        bigImageWrapperTv: 'col-start-1 lg:col-start-2',
         smallImageWrapperTv: 'col-start-1'
       }
     }

@@ -29,7 +29,7 @@ export function ReviewStatement({ value, variant }: TReviewStatementProps) {
 const style = tv({
   slots: {
     container: 'flex flex-col gap-2 max-w-5xl mx-auto',
-    paragraph: 'prose-xl prose-p:my-0 italic'
+    paragraph: 'prose-lg xl:prose-xl prose-p:my-0 italic'
   },
   variants: {
     variant: {

@@ -40,21 +40,21 @@ export async function TeamModule({ module }: TProps) {
 
 const styles = tv({
   slots: {
-    containerStyle: ['grid', 'gap-8', '2xl:gap-20 min-h-[50rem]'],
+    containerStyle: ['grid', 'gap-8', '2xl:gap-20 xl:min-h-[50rem]'],
     moduleTextsContainerStyle: ['flex flex-col gap-4 md:gap-10 text-center', '2xl:text-left row-start-1'],
-    carouselWrapper: 'row-start-1 h-full'
+    carouselWrapper: 'row-start-1 h-96 lg:h-full'
   },
   variants: {
     membersPosition: {
       [ELEMENT_X_POSITION.LEFT]: {
-        containerStyle: 'grid-cols-[2fr_1fr]',
-        carouselWrapper: 'col-start-1',
-        moduleTextsContainerStyle: 'col-start-2'
+        containerStyle: 'grid-rows-[auto_auto] grid-cols-1 lg:grid-rows-1 lg:grid-cols-2 xl:grid-cols-[2fr_1fr]',
+        carouselWrapper: 'row-start-2 lg:row-start-1 lg:col-start-1',
+        moduleTextsContainerStyle: 'row-start-1 col-start-1 lg:col-start-2'
       },
       [ELEMENT_X_POSITION.RIGHT]: {
-        containerStyle: 'grid-cols-[1fr_2fr]',
-        carouselWrapper: 'col-start-2',
-        moduleTextsContainerStyle: 'col-start-1'
+        containerStyle: 'grid-rows-[auto_auto] grid-cols-1 lg:grid-rows-1 lg:grid-cols-2 xl:grid-cols-[1fr_2fr]',
+        carouselWrapper: 'row-start-2 lg:row-start-1 lg:col-start-2',
+        moduleTextsContainerStyle: 'row-start-1 col-start-1'
       }
     }
   }

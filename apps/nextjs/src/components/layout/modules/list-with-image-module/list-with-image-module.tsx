@@ -23,7 +23,7 @@ export async function ListWithImageModule({ module }: TProps) {
             <div className={imageWrapper()}>
               <FormaMedia
                 formaMedia={module.formaMedia}
-                className='max-h-96 size-full xl:max-h-dvh object-cover rounded-2xl'
+                className='size-full xl:max-h-dvh object-cover rounded-2xl'
                 wrapper360Classname='size-full overflow-hidden rounded-2xl'
               />
             </div>
@@ -53,21 +53,21 @@ export async function ListWithImageModule({ module }: TProps) {
 
 const stylesTv = tv({
   slots: {
-    imageWrapper: 'contain-size',
+    imageWrapper: 'hidden sm:block h-full contain-size',
     textWrapper: 'flex flex-col gap-10',
-    contentContainer: 'grid gap-20 grid-rows-[auto_auto] xl:grid-rows-1 grid-cols-1'
+    contentContainer: 'grid sm:gap-10 xl:gap-20 grid-rows-1 grid-cols-1'
   },
   variants: {
     imagePosition: {
       [ELEMENT_X_POSITION.LEFT]: {
         imageWrapper: 'order-1',
         textWrapper: 'order-2',
-        contentContainer: ' xl:grid-cols-[2fr_1fr]'
+        contentContainer: 'sm:grid-cols-2 xl:grid-cols-[2fr_1fr]'
       },
       [ELEMENT_X_POSITION.RIGHT]: {
         imageWrapper: 'order-2',
         textWrapper: 'order-1',
-        contentContainer: ' xl:grid-cols-[1fr_2fr]'
+        contentContainer: 'sm:grid-cols-2 xl:grid-cols-[1fr_2fr]'
       }
     }
   }

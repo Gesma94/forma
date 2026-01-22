@@ -11,7 +11,7 @@ type TProps = {
 
 export function Counter({ value, postfix, content }: TProps) {
   return (
-    <div className='bg-bg rounded-2xl overflow-hidden mx-auto'>
+    <div className='bg-bg rounded-2xl overflow-hidden mx-auto size-full'>
       <div className='flex flex-col items-center text-fg-dark overflow-hidden'>
         <div className='w-full px-6 py-10 text-left'>
           <div className='flex items-center justify-center'>

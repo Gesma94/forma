@@ -15,7 +15,7 @@ export function CountersModule({ module }: TProps) {
     <BackgroundVariantContainer variant={variant}>
       <VerticalPaddingContainer {...module.paddings}>
         <ModuleContentContainer variant={variant} title={module.heading}>
-          <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4'>
+          <div className='grid gap-4 grid-rows-4 grid-cols-1 sm:grid-rows-2 sm:grid-cols-2 xl:grid-rows-1 xl:grid-cols-4'>
             {module.counters.map(x => (
               <Counter content={x.content} postfix={x.postfix} value={x.value} key={x._key} />
             ))}

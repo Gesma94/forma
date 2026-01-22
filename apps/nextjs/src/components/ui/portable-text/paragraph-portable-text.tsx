@@ -31,7 +31,7 @@ export function ParagraphPortableText({ value, variant = 'on-bg', className }: T
 
 const style = tv({
   slots: {
-    container: 'flex flex-col gap-4 max-w-5xl mx-auto',
+    container: 'flex flex-col gap-4 max-w-5xl xl:mx-auto',
     paragraph: 'prose-xl prose-p:my-0'
   },
   variants: {

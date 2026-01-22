@@ -73,7 +73,7 @@ export async function InlineGalleryModule({ module }: TProps) {
             <InlineGalleryCarousel images={images} variant={module.variant} />
           </div>
           {(module.primaryCta.showCta || module.secondaryCta.showCta) && (
-            <div className='mt-10 mx-auto flex gap-8'>
+            <div className='mt-10 mx-4 sm:mx-auto flex flex-col sm:flex-row gap-2 sm:gap-8'>
               {module.primaryCta.showCta && (
                 <LinkButton href={module.primaryCta.url} size='large' variant='primary' surface={buttonSurface}>
                   {module.primaryCta.caption}

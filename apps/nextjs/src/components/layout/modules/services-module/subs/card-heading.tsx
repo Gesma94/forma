@@ -7,7 +7,7 @@ export function CardHeading({ value }: TBasePortableTextConsumerProps) {
       value={value}
       components={{
         block: {
-          normal: ({ children }) => <h3 className='text-4xl leading-14 text-primary-text'>{children}</h3>
+          normal: ({ children }) => <h3 className='text-2xl xl:text-4xl leading-14 text-primary-text'>{children}</h3>
         },
         marks: {
           em: PortableTextEmComponent,
