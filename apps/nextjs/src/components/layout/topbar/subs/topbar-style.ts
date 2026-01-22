@@ -4,7 +4,7 @@ export const topbarTv = tv({
   slots: {
     container: 'w-full h-20 relative',
     link: 'text-lg hover:underline underline-offset-4',
-    servicesContainer: 'absolute left-0 top-0 pt-24 pb-4 w-full bg-primary'
+    servicesContainer: 'hidden lg:block absolute left-0 top-0 pt-24 pb-4 w-full bg-primary'
   },
   variants: {
     variant: {
