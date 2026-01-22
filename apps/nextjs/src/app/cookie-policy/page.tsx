@@ -1,9 +1,10 @@
 import { SANITY_DOCUMENT_IDS } from '@forma/common';
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Topbar } from '@/layout/topbar/topbar';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { PolicyPortableText } from '@/ui/portable-text/policy-portable-text';
 import { q, runQuery } from '@/utils/groqd-client';
+import { commonGenerateMetadata } from '@/utils/common-generate-metadata';
 
 type TSanityQueryParams = {
   pageId: string;
@@ -15,13 +16,15 @@ export const viewport: Viewport = {
   initialScale: 1
 };
 
+export async function generateMetadata(): Promise<Metadata> {
+  return commonGenerateMetadata(SANITY_DOCUMENT_IDS.cookiePolicyPage);
+}
+
 export default async function Page() {
   const sanityData = await runQuery(
     q.parameters<TSanityQueryParams>().star.filterByType('policyPageDocumentType').filterBy('_id == $pageId').slice(0),
     { parameters: { pageId: SANITY_DOCUMENT_IDS.cookiePolicyPage } }
   );
-
-  console.log(sanityData);
 
   return (
     <div>

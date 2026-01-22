@@ -26,8 +26,6 @@ export default async function Page() {
     { parameters: { pageId: SANITY_DOCUMENT_IDS.privacyPolicyPage } }
   );
 
-  console.log(sanityData);
-
   return (
     <div>
       <Topbar variant='solid' />

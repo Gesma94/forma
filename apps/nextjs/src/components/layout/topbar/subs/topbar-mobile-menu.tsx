@@ -21,7 +21,6 @@ export function TopbarMobileMenu() {
   const pathname = usePathname();
 
   const handleOpenChange = (isOpen: boolean) => {
-    console.log('hwew');
     if (isOpen) {
       document.body.parentElement.classList.add('disable-scrollbar-gutter');
     } else {
