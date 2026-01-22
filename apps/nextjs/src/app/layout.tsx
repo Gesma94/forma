@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <MaintananceSplashScreen />
           ) : (
             <>
-              <div className={mainDivTv()}>{children}</div>
+              <main className={mainDivTv()}>{children}</main>
               <Footer />
               <ScrollAtTop />
             </>
