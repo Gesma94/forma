@@ -1,5 +1,4 @@
 import { Footer } from '@/layout/footer/footer';
-import { interNextFont } from '../utils/fonts/inter';
 import { Roobert } from '../utils/fonts/roobert';
 import './globals.css';
 import { CookieManagerProvider } from 'components/cookie-manager/cookie-manager-provider';
@@ -13,7 +12,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const { bodyTv, mainDivTv } = stylesTv();
 
   const getHtmlClassName = () => {
-    return [Roobert.className, interNextFont.className].join(' ');
+    return [Roobert.className].join(' ');
   };
 
   return (
