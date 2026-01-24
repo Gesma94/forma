@@ -30,9 +30,14 @@ export function PolicyPortableText({ value }: TProps) {
         marks: {
           em: PortableTextEmComponent,
           strong: PortableTextStrongComponent,
-          link: ({ value }) => { 
-             return <a className='text-primary hover:text-primary-hover underline' href={value.href}>{value.caption}</a>
-        }}
+          link: ({ value }) => {
+            return (
+              <a className='text-primary hover:text-primary-hover underline' href={value.href}>
+                {value.caption}
+              </a>
+            );
+          }
+        }
       }}
     />
   );
@@ -41,8 +46,8 @@ export function PolicyPortableText({ value }: TProps) {
 const style = tv({
   slots: {
     normalTv: 'prose-xl prose-p:my-0 text-bg-text',
-    h2Tv: 'text-5xl md:text-8xl pt-12 pb-8 text-primary',
-    h3Tv: 'text-3xl md:text-5xl pt-8 pb-4 text-primary',
+    h2Tv: 'text-5xl md:text-8xl mt-8 mb-6 text-primary',
+    h3Tv: 'text-3xl md:text-5xl mt-4 mb-4 text-primary',
     listBulletTv: 'flex flex-col pl-4 text-bg-text mt-0',
     listNumberTv: 'flex flex-col pl-4  list-decimal ml-4 ',
     listBulletItemTv:
