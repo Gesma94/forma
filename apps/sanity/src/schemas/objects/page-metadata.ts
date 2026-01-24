@@ -47,7 +47,8 @@ export const pageMetadataObjectType = defineType({
           name: 'openGraphImage',
           title: 'Open Graph Image',
           type: 'reference',
-          to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }]
+          to: [{ type: DOCUMENT_SCHEMA_TYPES.formaImageAsset }],
+          validation: rule => rule.required(),
         })
       ]
     })

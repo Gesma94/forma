@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import { Topbar } from '@/layout/topbar/topbar';
 import { ContentContainer } from '@/ui/content-container/content-container';
 import { PolicyPortableText } from '@/ui/portable-text/policy-portable-text';
-import { commonGenerateMetadata } from '@/utils/common-generate-metadata';
+import { commonPolicyGenerateMetadata } from '@/utils/common-generate-metadata';
 import { q, runQuery } from '@/utils/groqd-client';
 
 type TSanityQueryParams = {
@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  return commonGenerateMetadata(SANITY_DOCUMENT_IDS.privacyPolicyPage);
+  return commonPolicyGenerateMetadata(SANITY_DOCUMENT_IDS.privacyPolicyPage);
 }
 
 export default async function Page() {
@@ -30,8 +30,8 @@ export default async function Page() {
     <div>
       <Topbar variant='solid' />
       <ContentContainer>
-        <div className='text-primary py-20'>
-          <h1 className='font-bold text-9xl mb-20'>{sanityData.heading}</h1>
+        <div className='text-primary py-12 md:py-20'>
+          <h1 className='font-bold text-7xl md:text-9xl mb-8 md:mb-20'>{sanityData.heading}</h1>
           <PolicyPortableText value={sanityData.content} />
         </div>
       </ContentContainer>
