@@ -29,8 +29,10 @@ export function PolicyPortableText({ value }: TProps) {
         },
         marks: {
           em: PortableTextEmComponent,
-          strong: PortableTextStrongComponent
-        }
+          strong: PortableTextStrongComponent,
+          link: ({ value }) => { 
+             return <a className='text-primary hover:text-primary-hover underline' href={value.href}>{value.caption}</a>
+        }}
       }}
     />
   );
