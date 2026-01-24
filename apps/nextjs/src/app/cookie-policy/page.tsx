@@ -26,13 +26,16 @@ export default async function Page() {
     { parameters: { pageId: SANITY_DOCUMENT_IDS.cookiePolicyPage } }
   );
 
+  console.log(sanityData);
+
   return (
     <div>
       <Topbar variant='solid' />
       <ContentContainer>
         <div className='text-primary py-12 md:py-20'>
-          <h1 className='font-bold text-7xl md:text-9xl mb-8 md:mb-20'>{sanityData.heading}</h1>
+          <h1 className='font-bold text-7xl md:text-9xl'>{sanityData.heading}</h1>
           <PolicyPortableText value={sanityData.content} />
+          <p className='mt-12 text-text-muted text-sm'>Last updated at: {new Date(sanityData._updatedAt).toDateString()}</p>
         </div>
       </ContentContainer>
     </div>

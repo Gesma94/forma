@@ -39,12 +39,12 @@ export function PolicyPortableText({ value }: TProps) {
 const style = tv({
   slots: {
     normalTv: 'prose-xl prose-p:my-0 text-bg-text',
-    h2Tv: 'text-5xl md:text-8xl pb-8 text-primary',
-    h3Tv: 'text-3xl md:text-5xl pb-4 text-primary mt-10',
+    h2Tv: 'text-5xl md:text-8xl pt-12 pb-8 text-primary',
+    h3Tv: 'text-3xl md:text-5xl pt-8 pb-4 text-primary',
     listBulletTv: 'flex flex-col pl-4 text-bg-text mt-0',
-    listNumberTv: 'flex flex-col pl-4 text-bg-text list-decimal',
+    listNumberTv: 'flex flex-col pl-4  list-decimal ml-4 ',
     listBulletItemTv:
       'prose-xl prose-p:my-0 before:content-[""] before:inline-block before:mr-4 before:relative before:-top-0.5 before:size-2 before:bg-primary  before:rounded-full mt-0 mb-0',
-    listNumberItemTv: 'prose-xl prose-p:my-0'
+    listNumberItemTv: 'prose-xl prose-p:my-0 pl-1 text-bg-text marker:text-primary'
   }
 });
