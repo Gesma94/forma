@@ -28,6 +28,7 @@ export const policyPageDocumentType = defineType({
       allowBulletPoint: true,
       allowOrderedPoint: true,
       allowH1: true,
+      allowLink: true,
       allowH2: true,
       validation: rule => rule.required()
     })
