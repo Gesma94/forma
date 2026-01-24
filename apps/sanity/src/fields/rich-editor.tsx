@@ -1,7 +1,7 @@
 import { PaletteIcon } from 'lucide-react';
 import type { PropsWithChildren } from 'react';
 import {
-  ArrayOfType,
+  type ArrayOfType,
   type ArrayRule,
   type BlockDecoratorDefinition,
   type BlockDecoratorProps,
@@ -95,7 +95,7 @@ function getMarkAnnotations(allowLink: boolean) {
         {
           name: 'caption',
           type: 'string',
-          title: 'Caption',
+          title: 'Caption'
         }
       ]
     });
@@ -103,7 +103,6 @@ function getMarkAnnotations(allowLink: boolean) {
 
   return annotations;
 }
-
 
 function getStyleDecorators(allowH1Mark: boolean, allowH2Mark: boolean): BlockStyleDefinition[] {
   const styleDecorators: BlockStyleDefinition[] = [];
