@@ -1,7 +1,7 @@
 import { tv, type VariantProps } from 'tailwind-variants';
 
 export const buttonStyle = tv({
-  base: 'flex items-center font-normal justify-center transition-colors duration-300',
+  base: 'flex items-center font-normal justify-center transition-colors duration-300 whitespace-nowrap',
   variants: {
     size: {
       small: 'gap-2 h-8 px-2 text-xs rounded',

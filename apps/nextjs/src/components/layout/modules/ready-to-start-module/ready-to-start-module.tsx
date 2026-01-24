@@ -20,7 +20,7 @@ export async function ReadyToStartModule({ module }: TProps) {
         <div className='flex flex-col gap-4 relative z-10  justify-center items-center size-full'>
           <Title value={module.title} />
           <Subtitle value={module.subtitle} />
-          <div className='grid sm:grid-cols-2 gap-4'>
+          <div className='w-full px-4 sm:w-auto sm:mx-auto flex flex-col sm:flex-row gap-2 sm:gap-8'>
             <LinkButton href='/book' size='large' variant='primary' surface='bg'>
               {module.primaryCtaLabel}
             </LinkButton>

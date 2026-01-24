@@ -20,7 +20,7 @@ export async function Actions({ primaryCta, secondaryCta, variant }: TProps) {
   }
 
   return (
-    <div className='mt-8 grid xs:flex gap-8'>
+    <div className='mt-10 lg:mx-[unset] flex flex-col lg:flex-row gap-2 lg:gap-8'>
       {isNotNil(primaryCta) && primaryCta.showCta && (
         <LinkButton href={primaryCta.url} size='large' variant='primary' surface={buttonsSurface}>
           {primaryCta.caption}

@@ -40,9 +40,9 @@ export async function TextWithImageModule({ module }: TProps) {
 
 const style = tv({
   slots: {
-    imageWrapper: 'hidden xl:block contain-size',
-    textWrapper: 'flex flex-col py-10',
-    contentContainer: 'grid xl:gap-20 grid-rows-[auto_auto] xl:grid-rows-1 grid-cols-1'
+    imageWrapper: 'hidden sm:block h-full contain-size',
+    textWrapper: 'flex flex-col sm:py-10 z-10',
+    contentContainer: 'grid sm:gap-10 xl:gap-20 grid-rows-1 grid-cols-1'
   },
   variants: {
     variant: {
@@ -53,12 +53,12 @@ const style = tv({
       [ELEMENT_X_POSITION.LEFT]: {
         imageWrapper: 'order-1',
         textWrapper: 'order-2',
-        contentContainer: ' xl:grid-cols-[2fr_1fr]'
+        contentContainer: 'sm:grid-cols-2 xl:grid-cols-[2fr_1fr]'
       },
       [ELEMENT_X_POSITION.RIGHT]: {
         imageWrapper: 'order-2',
         textWrapper: 'order-1',
-        contentContainer: ' xl:grid-cols-[1fr_2fr]'
+        contentContainer: 'sm:grid-cols-2 xl:grid-cols-[1fr_2fr]'
       }
     }
   }

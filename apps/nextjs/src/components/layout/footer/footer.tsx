@@ -75,7 +75,7 @@ export async function Footer() {
 
       <ContentContainer>
         <div className='grid grid-rows-[auto_auto_auto] gap-y-3 items-center justify-center xl:grid-rows-1 xl:grid-cols-3'>
-          <div className='row-start-3 flex items-center gap-2 mt-4 xl:row-start-1 xl:mt-0'>
+          <div className='row-start-3 flex items-center gap-2 mt-4 xl:row-start-1 xl:mt-0 flex-col sm:flex-row'>
             <div className='h-3'>
               <LogoWithText variant='on-brand' />
             </div>
@@ -111,5 +111,5 @@ export async function Footer() {
 
 const FooterLegalLinks: Array<{ url: string; caption: string }> = [
   { url: '/privacy-policy', caption: 'Privacy Policy' },
-  { url: '/terms-and-conditions', caption: 'Terms & Conditions' }
+  { url: '/cookie-policy', caption: 'Cookie Policy' }
 ];

@@ -9,7 +9,7 @@ export function HalfHeroHeading({ value }: TBasePortableTextConsumerProps) {
       components={{
         block: {
           normal: ({ children }) => (
-            <h1 className='text-left text-primary-text text-7xl font-bold leading-16 sm:leading-none sm:text-8xl 2xl:text-9xl'>
+            <h1 className='text-left text-primary-text text-5xl font-bold sm:leading-none sm:text-8xl 2xl:text-9xl'>
               {children}
             </h1>
           )

@@ -177,7 +177,7 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
       <div>
         <Button
           type='submit'
-          className='min-w-2xs mt-10'
+          className='w-full min-w-2xs mt-10 sm:w-auto'
           size='large'
           variant='primary'
           surface='bg'

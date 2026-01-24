@@ -12,7 +12,7 @@ export function Subheading({ value }: TProps) {
       value={value}
       components={{
         block: {
-          normal: ({ children }) => <p className='prose-xl mb-4'>{children}</p>
+          normal: ({ children }) => <p className='prose-lg sm:prose-xl mb-4'>{children}</p>
         },
         marks: {
           em: PortableTextEmComponent,

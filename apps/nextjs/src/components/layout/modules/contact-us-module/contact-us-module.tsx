@@ -29,7 +29,7 @@ export async function ContactUsModule({ module }: TProps) {
       <div className={floatingContainerTv()}>
         <ContentContainer>
           <div className={floatingInnerContainerTv()}>
-            <div className='contain-size'>
+            <div className='hidden lg:block contain-size'>
               <FormaMedia formaMedia={module.cardBackgroundMedia} className='object-cover size-full' />
             </div>
             <div className={formContainerTv()}>
@@ -56,7 +56,7 @@ const styleTv = tv({
     imageWrapperTv: 'absolute size-full inset-0',
     bgImageTv: 'size-full object-cover',
     floatingContainerTv: 'row-start-2 w-full z-10',
-    floatingInnerContainerTv: 'size-full grid grid-cols-[3fr_2fr]  rounded-2xl overflow-hidden',
-    formContainerTv: 'bg-primary text-primary-text p-10 flex flex-col'
+    floatingInnerContainerTv: 'size-full grid grid-cols-[0fr-1fr] lg:grid-cols-[3fr_2fr] rounded-2xl overflow-hidden',
+    formContainerTv: 'sm:bg-primary text-primary-text p-0 sm:p-10 flex flex-col'
   }
 });

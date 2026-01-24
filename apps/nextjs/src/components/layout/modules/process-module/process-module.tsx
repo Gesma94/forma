@@ -53,14 +53,14 @@ export const ProcessModule = async ({ module }: TProcessModuleProps) => {
 
 const tvStyles = tv({
   slots: {
-    mainContainerTv: 'h-full grid relative grid-cols-1 2xl:gap-20',
-    stepNumberWrapperTv: 'row-start-1 sm:col-start-1 sm:row-start-1 text-9xl font-bold relative border-r-2',
+    mainContainerTv: 'h-full grid relative grid-cols-1 gap-10 2xl:gap-20',
+    stepNumberWrapperTv: 'row-start-1 sm:col-start-1 sm:row-start-1 text-9xl font-bold relative sm:border-r-2',
     stepNumberTv: 'mt-4 2xl:mt-24',
     contentContainerTv: 'grid sm:grid-cols-[6rem_1fr] gap-x-10 mb-auto',
     textsContainerTv: 'row-start-2 sm:col-start-2 sm:row-start-1 flex flex-col gap-4',
     estimatedDaysTv: 'uppercase text-sm mt-4',
     imageWrapperTv: 'relative 2xl:row-start-1',
-    coverImageTv: 'w-full h-[48rem] object-cover rounded-2xl'
+    coverImageTv: 'w-full h-[24rem] sm:h-[32rem] lg:h-[48rem] object-cover rounded-2xl'
   },
   variants: {
     variant: {

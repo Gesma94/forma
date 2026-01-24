@@ -73,7 +73,7 @@ export function ReviewsCarousel({ reviews, moduleTitle, imagePosition }: TProps)
           <AnimatePresence initial={false}>
             <div key={id} className='py-4 px-6 md:py-10 md:px-10 flex col-start-1 row-start-1'>
               <div className='flex flex-col justify-between'>
-                <div>
+                <div className='pt-4 pb-4'>
                   <Heading value={moduleTitle} />
                 </div>
                 <motion.div {...commonMotionProps} className='mt-4 lg:mt-0'>
@@ -99,7 +99,7 @@ export function ReviewsCarousel({ reviews, moduleTitle, imagePosition }: TProps)
               </div>
             </div>
           </AnimatePresence>
-          <div className='mt-4 mb-10 mx-auto md:mt-0 md:mb-0 md:mx-0 md:absolute flex gap-2 bottom-[3.25rem] right-10'>
+          <div className='mt-0 mb-10 mx-auto md:mt-0 md:mb-0 md:mx-0 md:absolute flex gap-2 bottom-[3.25rem] right-10'>
             <IconButton
               surface='primary'
               icon={CaretLeftIcon}

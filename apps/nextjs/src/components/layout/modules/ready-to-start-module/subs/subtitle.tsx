@@ -25,7 +25,7 @@ export function Subtitle({ value }: TBasePortableTextConsumerProps) {
 
 const style = tv({
   slots: {
-    container: 'flex flex-col gap-4 max-w-xl mx-auto',
+    container: 'flex flex-col max-w-xl mx-auto',
     paragraph: 'prose-xl md:prose-2xl prose-p:my-0 text-center text-primary-text px-4 md:px-8'
   }
 });

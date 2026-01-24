@@ -39,8 +39,8 @@ export function ContentPortableText({ value, variant }: TProps) {
 const style = tv({
   slots: {
     normalTv: 'prose-xl prose-p:my-0',
-    h2Tv: 'text-5xl md:text-8xl pb-8',
-    h3Tv: 'text-3xl md:text-5xl pb-4',
+    h2Tv: 'text-5xl lg:text-8xl pb-4 lg:pb-8',
+    h3Tv: 'text-3xl lg:text-5xl pb-2 lg:pb-4',
     listTv: 'flex flex-col pl-4',
     listItemTv:
       'prose-xl prose-p:my-0 before:content-[""] before:inline-block before:mr-4 before:relative before:-top-0.5 before:size-2 before:bg-primary  before:rounded-full'
