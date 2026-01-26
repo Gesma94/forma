@@ -42,7 +42,7 @@ export async function StudioModule({ module }: TProps) {
             <div className='relative xl:contain-size'>
               <FormaMedia
                 formaMedia={module.media}
-                className='w-full h-auto xl:h-[unset] xl:size-full xl:max-h-dvh object-cover rounded-2xl'
+                className='w-full h-auto xl:h-full xl:size-full xl:max-h-dvh object-cover rounded-2xl'
               />
             </div>
           </div>

@@ -24,13 +24,17 @@ export async function ContactUsModule({ module }: TProps) {
   return (
     <div className={outerContainerTv()}>
       <div className={imageWrapperTv()}>
-        <FormaMedia formaMedia={module.backgroundMedia} className={bgImageTv()} />
+        <FormaMedia formaMedia={module.backgroundMedia} className={bgImageTv()} imageBuilderOptions={{ quality: 35 }} />
       </div>
       <div className={floatingContainerTv()}>
         <ContentContainer>
           <div className={floatingInnerContainerTv()}>
             <div className='hidden lg:block contain-size'>
-              <FormaMedia formaMedia={module.cardBackgroundMedia} className='object-cover size-full' />
+              <FormaMedia
+                formaMedia={module.cardBackgroundMedia}
+                className='object-cover size-full'
+                imageBuilderOptions={{ width: 1200 }}
+              />
             </div>
             <div className={formContainerTv()}>
               <div className='mb-4'>

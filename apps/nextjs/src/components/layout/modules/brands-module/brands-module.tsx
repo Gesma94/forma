@@ -23,7 +23,7 @@ export async function BrandsModule({ module }: TProps) {
   );
   const clientBrands: TClientBrand[] = brands.map(b => ({
     ...b,
-    logoUrl: getSanityImageUrl(b.logo)
+    logoUrl: getSanityImageUrl(b.logo, { quality: 50, width: 300 })
   }));
 
   return (

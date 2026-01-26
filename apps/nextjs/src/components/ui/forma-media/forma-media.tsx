@@ -1,7 +1,7 @@
 import { isNotNil } from 'es-toolkit';
 import type { CSSProperties, DetailedHTMLProps, ImgHTMLAttributes, VideoHTMLAttributes } from 'react';
 import type { FormaMediaInstanceObjectType } from 'types/generated/sanity-types-generated';
-import { getSanityImageUrl, q, runQuery } from '@/utils/groqd-client';
+import { getSanityImageUrl, q, runQuery, type TSanityImageUrlBuilderOptions } from '@/utils/groqd-client';
 import { Viewer360 } from '../viewer-360/viewer-360';
 
 type TProps = {
@@ -14,6 +14,7 @@ type TProps = {
   wrapper360Classname?: string;
   forceHideMediaTitle?: true;
   forceIs360HintShown?: boolean;
+  imageBuilderOptions?: TSanityImageUrlBuilderOptions;
 };
 
 type TSanityQueryParams = {
@@ -27,7 +28,8 @@ export async function FormaMedia({
   wrapper360Classname,
   className,
   forceHideMediaTitle,
-  forceIs360HintShown
+  forceIs360HintShown,
+  imageBuilderOptions
 }: TProps) {
   const shouldHideMediaTitle = forceHideMediaTitle === true || !formaMedia.showMediaTitle;
   const shouldDisplayMediaTitle = !shouldHideMediaTitle;
@@ -41,7 +43,7 @@ export async function FormaMedia({
   });
 
   if (mediaAsset._type === 'formaImageAssetDocumentType') {
-    const imageUrl = getSanityImageUrl(mediaAsset.image);
+    const imageUrl = getSanityImageUrl(mediaAsset.image, imageBuilderOptions);
     const imageAltText = `${mediaAsset.clientName} - ${mediaAsset.imageTitle}`;
 
     return (
@@ -61,7 +63,7 @@ export async function FormaMedia({
       </div>
     );
   } else if (mediaAsset._type === 'forma360AssetDocumentType') {
-    const imageUrl = getSanityImageUrl(mediaAsset.image);
+    const imageUrl = getSanityImageUrl(mediaAsset.image, imageBuilderOptions);
     const showDisplayHint = forceIs360HintShown ? true : formaMedia.is360HintShown;
     const imageAltText = `${mediaAsset.clientName} - ${mediaAsset.imageTitle}`;
 

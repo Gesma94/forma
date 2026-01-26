@@ -17,7 +17,9 @@ export async function TeamModule({ module }: TProps) {
   const { containerStyle, moduleTextsContainerStyle, carouselWrapper } = styles({
     membersPosition: module.teamMembersPosition
   });
-  const members = await Promise.all(module.teamMembers.map(x => ({ ...x, imageUrl: getSanityImageUrl(x.image) })));
+  const members = await Promise.all(
+    module.teamMembers.map(x => ({ ...x, imageUrl: getSanityImageUrl(x.image, { width: 600 }) }))
+  );
 
   return (
     <BackgroundVariantContainer variant={module.variant}>

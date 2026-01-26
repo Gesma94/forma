@@ -17,12 +17,14 @@ export type TFormaMediaUnwrappedBase = {
 export type TFormaMediaImageUnwrapped = TFormaMediaUnwrappedBase & {
   mediaType: FormaImageAssetDocumentType['_type'];
   imageUrl: string;
+  imageUrlHq: string;
   imageAltText: string;
 };
 
 export type TFormaMedia360Unwrapped = TFormaMediaUnwrappedBase & {
   mediaType: Forma360AssetDocumentType['_type'];
   imageUrl: string;
+  imageUrlHq: string;
   imageAltText: string;
   isZoomEnabled: boolean;
   initialZoom: number;

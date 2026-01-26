@@ -17,7 +17,11 @@ export async function BookModule({ module }: TProps) {
   return (
     <div className='relative min-h-dvh grid grid-rows-[minmax(5rem,1fr)_auto_minmax(5rem,1fr)]'>
       <div className='absolute size-full'>
-        <FormaMedia formaMedia={module.backgroundMedia} className='object-cover size-full' />
+        <FormaMedia
+          formaMedia={module.backgroundMedia}
+          className='object-cover size-full'
+          imageBuilderOptions={{ quality: 35 }}
+        />
       </div>
       <div className='row-start-2'>
         <ContentContainer>

@@ -10,6 +10,11 @@ type SchemaConfig = {
   referenceSymbol: typeof SanityTypes.internalGroqTypeReferenceTo;
 };
 
+export type TSanityImageUrlBuilderOptions = {
+  width?: number;
+  quality?: number;
+};
+
 const sanityClient = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_PROJECT_DATASET,
@@ -35,10 +40,13 @@ export const runQuery = makeSafeQueryRunner((query, options) =>
   })
 );
 
-export function getSanityImageUrlBuilder(source: SanityImageSource): ImageUrlBuilder {
-  return sanityImageUrlBuilder.image(source);
+export function getSanityImageUrlBuilder(
+  source: SanityImageSource,
+  options?: TSanityImageUrlBuilderOptions
+): ImageUrlBuilder {
+  return sanityImageUrlBuilder.image(source).auto('format').width(options?.width).quality(options?.quality);
 }
 
-export function getSanityImageUrl(source: SanityImageSource): string {
-  return getSanityImageUrlBuilder(source).url();
+export function getSanityImageUrl(source: SanityImageSource, options?: TSanityImageUrlBuilderOptions): string {
+  return getSanityImageUrlBuilder(source, options).url();
 }

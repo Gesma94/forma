@@ -21,7 +21,7 @@ export async function CardsModule({ module }: TProps) {
       key: card._key,
       title: card.title,
       description: card.description,
-      formaMedia: await getFormaMediaData(card.media)
+      formaMedia: await getFormaMediaData(card.media, { imageBuilderOptions: { quality: 50, width: 1000 } })
     }))
   );
 

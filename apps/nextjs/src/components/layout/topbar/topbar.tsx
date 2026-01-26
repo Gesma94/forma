@@ -8,9 +8,9 @@ import { TopbarClient } from './topbar-client';
 export async function Topbar({ variant }: SetRequired<VariantProps<typeof topbarTv>, 'variant'>) {
   const result = await runQuery(q.star.filterByType('topbarDocumentType').slice(0));
   const [architecturalStillsMedia, videoAnimationsMedia, virtualRealityMedia] = await Promise.all([
-    getFormaMediaData(result.architecturalStillsMedia),
-    getFormaMediaData(result.videoAnimationsMedia),
-    getFormaMediaData(result.virtualRealityMedia)
+    getFormaMediaData(result.architecturalStillsMedia, { imageBuilderOptions: { width: 750 } }),
+    getFormaMediaData(result.videoAnimationsMedia, { imageBuilderOptions: { width: 750 } }),
+    getFormaMediaData(result.virtualRealityMedia, { imageBuilderOptions: { width: 750 } })
   ]);
 
   return (

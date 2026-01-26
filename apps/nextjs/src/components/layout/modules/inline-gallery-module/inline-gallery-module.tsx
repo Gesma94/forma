@@ -34,7 +34,7 @@ export async function InlineGalleryModule({ module }: TProps) {
       );
 
       if (media._type === 'formaImageAssetDocumentType') {
-        const imageInstanceData = getFormaImageInstanceData(media);
+        const imageInstanceData = getFormaImageInstanceData(media, { quality: 50, width: 1200 });
 
         return {
           id: media._id,

@@ -58,6 +58,7 @@ export function ModalGallery({ currentIndex, images, onOpenChange, onChangeCurre
                     forceHideMediaTitle={true}
                     areControlsEnabled={true}
                     isAutoplayEnabled={false}
+                    useHqImage={true}
                   />
                 </div>
                 <div className={bottomSectionContainerTv()}>

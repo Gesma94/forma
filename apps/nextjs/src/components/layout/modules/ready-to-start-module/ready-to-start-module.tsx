@@ -15,7 +15,11 @@ export async function ReadyToStartModule({ module }: TProps) {
     <ModuleContentContainer skipContentContainer={true} skipYPadding={true} variant={MODULE_VARIANTS.ON_PRIMARY}>
       <div className='h-ready-to-start w-full relative'>
         <div className='absolute size-full'>
-          <FormaMedia formaMedia={module.backgroundMedia} className='object-cover size-full' />
+          <FormaMedia
+            formaMedia={module.backgroundMedia}
+            className='object-cover size-full'
+            imageBuilderOptions={{ quality: 35 }}
+          />
         </div>
         <div className='flex flex-col gap-4 relative z-10  justify-center items-center size-full'>
           <Title value={module.title} />

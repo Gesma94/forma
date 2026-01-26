@@ -9,6 +9,7 @@ type TProps = TFormaMediaUnwrapped & {
   imgWidth?: number;
   imgHeight?: number;
   className?: string;
+  useHqImage?: boolean;
   imgProps?: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
   videoProps?: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>;
   wrapper360Classname?: string;
@@ -17,6 +18,7 @@ type TProps = TFormaMediaUnwrapped & {
 };
 
 export function FormaMediaClientSide(props: TProps) {
+  const useHqImage = props.useHqImage ?? false;
   const { brightness, mediaType, showMediaTitle, className, forceHideMediaTitle, forceIs360HintShown } = props;
   const shouldHideMediaTitle = forceHideMediaTitle === true || !showMediaTitle;
   const shouldDisplayMediaTitle = !shouldHideMediaTitle;
@@ -28,11 +30,12 @@ export function FormaMediaClientSide(props: TProps) {
     : {};
 
   if (mediaType === 'formaImageAssetDocumentType') {
-    const { imageUrl, imageAltText, imgProps } = props;
+    const { imageUrl, imageAltText, imgProps, imageUrlHq } = props;
+    const finalImageUrl = useHqImage ? imageUrlHq : imageUrl;
     return (
       <div className='relative size-full'>
         <img
-          src={imageUrl}
+          src={finalImageUrl}
           alt={imageAltText}
           style={brightnessStyle}
           {...imgProps}
@@ -47,10 +50,11 @@ export function FormaMediaClientSide(props: TProps) {
     );
   } else if (props.mediaType === 'forma360AssetDocumentType') {
     const showDisplayHint = forceIs360HintShown ? true : props.forceIs360HintShown;
+    const finalImageUrl = useHqImage ? props.imageUrlHq : props.imageUrl;
     return (
       <div className={props.wrapper360Classname ?? 'size-full'} style={brightnessStyle}>
         <Viewer360
-          imageUrl={props.imageUrl}
+          imageUrl={finalImageUrl}
           imageLabel={props.imageAltText}
           showDisplayHint={showDisplayHint}
           hintOpacity={props.hintOpacity}

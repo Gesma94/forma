@@ -35,7 +35,7 @@ export async function ReviewsModule({ module }: TProps) {
     reviews.map<Promise<TReview>>(async review => ({
       ...review,
       brandImageUrl: getSanityImageUrl(review.brand.logo),
-      formaMediaData: await getFormaMediaData(review.media),
+      formaMediaData: await getFormaMediaData(review.media, { imageBuilderOptions: { quality: 50 } }),
       authorAvatarUrl: getSanityImageUrl(review.authorAvatar)
     }))
   );
