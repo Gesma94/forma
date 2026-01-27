@@ -3,6 +3,7 @@
 import { ImageIcon, ListIcon, PanoramaIcon, VideoIcon, XIcon } from '@phosphor-icons/react';
 import { HouseIcon } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
+import { useId } from 'react';
 import {
   Button as AriaButton,
   DialogTrigger as AriaDialogTrigger,
@@ -17,6 +18,8 @@ import { LogoWithText } from '@/ui/logos/logo-with-text/logo-with-text';
 import { topbarCommonNavLinks } from './topbar-common';
 
 export function TopbarMobileMenu() {
+  const buttonId = useId();
+
   const handleOpenChange = (isOpen: boolean) => {
     if (isOpen) {
       document.body.parentElement.classList.add('disable-scrollbar-gutter');
@@ -27,7 +30,7 @@ export function TopbarMobileMenu() {
 
   return (
     <AriaDialogTrigger onOpenChange={handleOpenChange}>
-      <AriaButton aria-label='Open mobile menu'>
+      <AriaButton aria-label='Open mobile menu' id={buttonId}>
         <ListIcon className='size-8 text-primary-text' />
       </AriaButton>
       <ModalOverlay isDismissable={true} className={({ state }) => modalOverlayStyle({ isOpen: state.isOpen })}>
