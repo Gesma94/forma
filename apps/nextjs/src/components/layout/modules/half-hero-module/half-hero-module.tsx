@@ -22,7 +22,7 @@ export async function HalfHeroModule({ module }: TProps) {
           forceIs360HintShown={false}
           forceHideMediaTitle={true}
           wrapper360Classname='size-full overflow-hidden'
-          imageBuilderOptions={{ quality: 50 }}
+          imageBuilderOptions={{ quality: 40 }}
         />
       </div>
       <div className={contentWrapperTv()}>

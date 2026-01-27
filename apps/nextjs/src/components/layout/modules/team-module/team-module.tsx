@@ -18,7 +18,7 @@ export async function TeamModule({ module }: TProps) {
     membersPosition: module.teamMembersPosition
   });
   const members = await Promise.all(
-    module.teamMembers.map(x => ({ ...x, imageUrl: getSanityImageUrl(x.image, { width: 600 }) }))
+    module.teamMembers.map(x => ({ ...x, imageUrl: getSanityImageUrl(x.image, { width: 1200 }) }))
   );
 
   return (

@@ -36,7 +36,7 @@ export async function getFormaMediaData(
       showMediaTitle
     };
   } else if (mediaAsset._type === 'forma360AssetDocumentType') {
-    const imageUrl = getSanityImageUrl(mediaAsset.image, options?.imageBuilderOptions);
+    const imageUrl = getSanityImageUrl(mediaAsset.image);
     const imageUrlHq = getSanityImageUrl(mediaAsset.image);
     const imageAltText = `${mediaAsset.clientName} - ${mediaAsset.imageTitle}`;
 

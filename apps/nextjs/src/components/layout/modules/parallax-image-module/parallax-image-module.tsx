@@ -30,7 +30,7 @@ export async function ParallaxImageModule({ module }: TProps) {
             <div className={smallImageWrapperTv()}>
               <FormaMedia
                 formaMedia={module.imagePair.rightMedia}
-                imageBuilderOptions={{ quality: 50 }}
+                imageBuilderOptions={{ width: 600 }}
                 className='object-cover size-full contain-size rounded-2xl'
               />
             </div>

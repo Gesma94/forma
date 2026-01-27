@@ -18,7 +18,7 @@ export async function ReadyToStartModule({ module }: TProps) {
           <FormaMedia
             formaMedia={module.backgroundMedia}
             className='object-cover size-full'
-            imageBuilderOptions={{ quality: 35 }}
+            imageBuilderOptions={{ quality: 40 }}
           />
         </div>
         <div className='flex flex-col gap-4 relative z-10  justify-center items-center size-full'>

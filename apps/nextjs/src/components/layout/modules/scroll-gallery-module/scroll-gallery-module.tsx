@@ -12,7 +12,7 @@ export async function ScrollGalleryModule({ module }: TProps) {
   const filters = await runQuery(q.star.filterByType('mediaTagAssetDocumentType'));
   const medias = await Promise.all(
     module.scrollGalleryImages.map<Promise<TScrollGalleryMedia>>(async x => {
-      const mediaData = await getFormaMediaData(x.formaMedia, { imageBuilderOptions: { quality: 50, width: 600 } });
+      const mediaData = await getFormaMediaData(x.formaMedia, { imageBuilderOptions: { width: 600 } });
       return {
         key: x._key,
         tagReferences: x.mediaTags,

@@ -28,7 +28,7 @@ export async function HeroModule({ module }: TProps) {
           formaMedia={module.backgroundMedia}
           className='object-cover object-bottom size-full'
           wrapper360Classname='overflow-hidden'
-          imageBuilderOptions={{ quality: 50 }}
+          imageBuilderOptions={{ quality: 40 }}
         />
       </div>
 

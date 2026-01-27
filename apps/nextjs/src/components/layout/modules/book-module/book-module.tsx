@@ -20,7 +20,7 @@ export async function BookModule({ module }: TProps) {
         <FormaMedia
           formaMedia={module.backgroundMedia}
           className='object-cover size-full'
-          imageBuilderOptions={{ quality: 35 }}
+          imageBuilderOptions={{ quality: 40 }}
         />
       </div>
       <div className='row-start-2'>
