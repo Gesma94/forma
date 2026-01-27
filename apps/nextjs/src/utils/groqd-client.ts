@@ -35,7 +35,7 @@ export const runQuery = makeSafeQueryRunner((query, options) =>
   sanityClient.fetch(query, options.parameters, {
     cache: 'force-cache',
     next: {
-      revalidate: 1
+      revalidate: 259200
     }
   })
 );
