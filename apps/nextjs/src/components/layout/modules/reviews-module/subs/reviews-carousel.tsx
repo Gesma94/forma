@@ -150,8 +150,8 @@ const stylesTv = tv({
     imagePosition: {
       [ELEMENT_X_POSITION.LEFT]: {
         reviewWrapperTv: 'lg:grid-cols-[2fr_minmax(512px,1fr)]',
-        reviewContentWrapperTv: 'col-start-2',
-        reviewImgWrapperTv: 'col-start-1'
+        reviewContentWrapperTv: 'col-start-1 lg:col-start-2',
+        reviewImgWrapperTv: 'row-start-1 col-start-1'
       },
 
       [ELEMENT_X_POSITION.RIGHT]: {
