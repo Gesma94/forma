@@ -2,6 +2,7 @@
 
 import type { PropsWithChildren } from 'react';
 import { CookieManager } from 'react-cookie-manager';
+import { VisitorTracking } from './visitor-tracking';
 
 export function CookieManagerProvider({ children }: PropsWithChildren) {
   return (
@@ -32,6 +33,7 @@ export function CookieManagerProvider({ children }: PropsWithChildren) {
         cookieCategories={{ Analytics: true, Advertising: false, Social: false }}
         theme='light'
       >
+        <VisitorTracking />
         {children}
       </CookieManager>
     </div>
