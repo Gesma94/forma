@@ -1,13 +1,27 @@
+import { isValidSignature, SIGNATURE_HEADER_NAME } from '@sanity/webhook';
+import { isNil } from 'es-toolkit';
 import { revalidatePath } from 'next/cache';
 
 export async function POST(request: Request) {
-  console.log(request);
+  const secret = process.env.SANITY_WEBOOK_SECRET;
+  const signature = request.headers.get(SIGNATURE_HEADER_NAME);
 
+  if (isNil(secret)) {
+    return new Response('Webhook secret is not configured', { status: 500 });
+  }
+  if (isNil(signature)) {
+    return new Response('Missing signature header', { status: 400 });
+  }
+
+  let bodyText: string;
   try {
-    const text = await request.text();
-    console.log('Received webhook payload:', text);
-  } catch (error) {
-    console.error('Error processing webhook payload:', error);
+    bodyText = await request.text();
+  } catch (_) {
+    return new Response('Failed to read request body', { status: 400 });
+  }
+
+  if (!(await isValidSignature(bodyText, signature, secret))) {
+    return new Response('Invalid signature', { status: 401 });
   }
 
   revalidatePath('/');

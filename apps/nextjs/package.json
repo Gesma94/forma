@@ -25,6 +25,7 @@
     "@portabletext/react": "^4.0.1",
     "@react-email/render": "^2.0.0",
     "@sanity/image-url": "^1.1.0",
+    "@sanity/webhook": "^4.0.4",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "date-fns": "^4.1.0",

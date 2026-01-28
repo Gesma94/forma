@@ -50,6 +50,9 @@ importers:
       '@sanity/image-url':
         specifier: ^1.1.0
         version: 1.1.0
+      '@sanity/webhook':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@splidejs/react-splide':
         specifier: ^0.7.12
         version: 0.7.12
@@ -3130,6 +3133,10 @@ packages:
         optional: true
       svelte:
         optional: true
+
+  '@sanity/webhook@4.0.4':
+    resolution: {integrity: sha512-c8LmzR5Wx93zJ10ohhp0XlmPrTNSFyvPcLbNY/sN45Wj5VOngz4FbBMbX9j64sSQLt+676U6OhiVfjs1yw3YCw==}
+    engines: {node: '>=20.0.0'}
 
   '@selderee/plugin-htmlparser2@0.11.0':
     resolution: {integrity: sha512-P33hHGdldxGabLFjPPpaTxVolMrzrcegejx+0GxjrIb9Zv48D8yAIA/QTDR2dFl7Uz7urX8aX6+5bCZslr+gWQ==}
@@ -10557,6 +10564,8 @@ snapshots:
       - debug
       - sanity
       - typescript
+
+  '@sanity/webhook@4.0.4': {}
 
   '@selderee/plugin-htmlparser2@0.11.0':
     dependencies:
