@@ -34,9 +34,7 @@ export const q = createGroqBuilder<SchemaConfig>({});
 export const runQuery = makeSafeQueryRunner((query, options) =>
   sanityClient.fetch(query, options.parameters, {
     cache: 'force-cache',
-    next: {
-      revalidate: 259200
-    }
+    next: { tags: ['sanity'], revalidate: 259200 }
   })
 );
 

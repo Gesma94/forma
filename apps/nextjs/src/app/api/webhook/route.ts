@@ -1,6 +1,6 @@
 import { isValidSignature, SIGNATURE_HEADER_NAME } from '@sanity/webhook';
 import { isNil } from 'es-toolkit';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export async function POST(request: Request) {
   const secret = process.env.SANITY_WEBOOK_SECRET;
@@ -24,7 +24,8 @@ export async function POST(request: Request) {
     return new Response('Invalid signature', { status: 401 });
   }
 
-  revalidatePath('/');
+  revalidateTag('sanity');
+  revalidatePath('/', 'layout');
 
   return new Response('Webhook received', { status: 200 });
 }
