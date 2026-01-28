@@ -1,56 +1,58 @@
 import type { MetadataRoute } from 'next';
+import { headers } from 'next/headers';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.BASE_URL;
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const headersList = await headers();
+  const hostName = headersList.get('host');
 
   return [
     {
-      url: `${baseUrl}`,
+      url: `${hostName}`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     },
     {
-      url: `${baseUrl}/services/architectural-stills`,
+      url: `${hostName}/services/architectural-stills`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     },
     {
-      url: `${baseUrl}/services/video-animations`,
+      url: `${hostName}/services/video-animations`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     },
     {
-      url: `${baseUrl}/services/360-virtual-reality`,
+      url: `${hostName}/services/360-virtual-reality`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     },
     {
-      url: `${baseUrl}/process`,
+      url: `${hostName}/process`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     },
     {
-      url: `${baseUrl}/gallery`,
+      url: `${hostName}/gallery`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     },
     {
-      url: `${baseUrl}/book`,
+      url: `${hostName}/book`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     },
     {
-      url: `${baseUrl}/contact-us`,
+      url: `${hostName}/contact-us`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     },
     {
-      url: `${baseUrl}/privacy-policy`,
+      url: `${hostName}/privacy-policy`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     },
     {
-      url: `${baseUrl}/cookie-policy`,
+      url: `${hostName}/cookie-policy`,
       lastModified: new Date(),
       changeFrequency: 'yearly'
     }
