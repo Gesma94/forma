@@ -94,6 +94,7 @@ export async function FormaMedia({
         <video
           preload='metadata'
           style={brightnessStyle}
+          playsInline={true}
           muted={formaMedia.isMuted}
           loop={formaMedia.isLoopEnabled}
           autoPlay={formaMedia.isAutoplayEnabled}

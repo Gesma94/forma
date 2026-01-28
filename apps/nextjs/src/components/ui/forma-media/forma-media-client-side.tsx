@@ -84,6 +84,7 @@ export function FormaMediaClientSide(props: TProps) {
           style={brightnessStyle}
           muted={isMuted}
           loop={isLoopEnabled}
+          playsInline={true}
           autoPlay={isAutoplayEnabled}
           controls={areControlsEnabled}
           {...videoProps}
