@@ -35,7 +35,8 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
       email: data.email,
       fullName: data.fullName,
       message: data.message,
-      company: data.companyName
+      company: data.companyName,
+      reason: data.reason
     });
 
     if (result) {

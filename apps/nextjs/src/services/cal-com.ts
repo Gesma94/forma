@@ -56,6 +56,11 @@ export async function postCalcomBooking(
   deadlineDateIso: string,
   clientOptions: TCalComBookingClientOptions
 ): Promise<boolean> {
+  // Early return when honeypot input is filled. We pretend the booking was successful
+  if (data.reason !== '') {
+    return true;
+  }
+
   const calcomJson = {
     attendee: {
       language: clientOptions.language,

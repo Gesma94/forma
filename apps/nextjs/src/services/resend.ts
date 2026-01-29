@@ -7,7 +7,12 @@ import { postDiscord } from './discord';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendEmail(props: TFormaEmailTemplateProps): Promise<boolean> {
+export async function sendEmail(props: TFormaEmailTemplateProps & { reason?: string }): Promise<boolean> {
+  // Early return when honeypot input is filled. We pretend the delivery was successful
+  if (props.reason !== '') {
+    return true;
+  }
+
   try {
     const { error } = await resend.emails.send({
       from: 'Forma Webite <onboarding@resend.dev>',
