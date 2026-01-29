@@ -6,6 +6,7 @@ import { isNotNil } from 'es-toolkit';
 import ky, { isHTTPError, isKyError, isTimeoutError } from 'ky';
 import type { TCalComBookingClientOptions, TCalComBookingResponse, TCalComSlotsResponse } from 'types/cal-com';
 import type { TCalendarAvailabilities } from 'types/calendar';
+import { postDiscord } from './discord';
 
 const kyCalCom = ky.create({
   prefixUrl: 'https://api.cal.com/v2/',
@@ -55,29 +56,31 @@ export async function postCalcomBooking(
   deadlineDateIso: string,
   clientOptions: TCalComBookingClientOptions
 ): Promise<boolean> {
+  const calcomJson = {
+    attendee: {
+      language: clientOptions.language,
+      timeZone: clientOptions.timeZone,
+      name: data.fullName,
+      email: data.email,
+      phoneNumber: data.phoneNumber
+    },
+    start: data.appointmentSlot,
+    eventTypeId: Number(process.env.CAL_COM_EVENT_TYPE),
+    bookingFieldsResponses: {
+      projectPhase: data.projectPhase ?? undefined,
+      deadlineDate: isNotNil(deadlineDateIso) ? format(deadlineDateIso, 'yyyy-MM-dd') : undefined,
+      companyStudioName: data.companyStudio,
+      projectAbout: data.projectAbout ?? 'FAKE'
+    }
+  };
+
   try {
     const result = await kyCalCom
       .post<TCalComBookingResponse>('bookings', {
         headers: {
           'cal-api-version': '2024-08-13'
         },
-        json: {
-          attendee: {
-            language: clientOptions.language,
-            timeZone: clientOptions.timeZone,
-            name: data.fullName,
-            email: data.email,
-            phoneNumber: data.phoneNumber
-          },
-          start: data.appointmentSlot,
-          eventTypeId: Number(process.env.CAL_COM_EVENT_TYPE),
-          bookingFieldsResponses: {
-            projectPhase: data.projectPhase ?? undefined,
-            deadlineDate: isNotNil(deadlineDateIso) ? format(deadlineDateIso, 'yyyy-MM-dd') : undefined,
-            companyStudioName: data.companyStudio,
-            projectAbout: data.projectAbout ?? 'FAKE'
-          }
-        }
+        json: calcomJson
       })
       .json();
 
@@ -90,6 +93,9 @@ export async function postCalcomBooking(
     } else if (isTimeoutError(error)) {
       console.log('Timeout error during cal.com booking');
     }
+
+    await postDiscord('⚠️ Cal.com booking failed! ⚠️', calcomJson);
+
     return false;
   }
 }

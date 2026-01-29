@@ -7,7 +7,7 @@ import { isNil, isNotNil } from 'es-toolkit';
 import { isEmpty } from 'es-toolkit/compat';
 import { useMemo } from 'react';
 import { type DateValue, Form } from 'react-aria-components';
-import { type FieldErrors, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useLocalStorage } from 'react-use';
 import { postCalcomBooking } from 'services/cal-com';
 import type { TCalendarAvailabilities } from 'types/calendar';
@@ -39,7 +39,6 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
     handleSubmit,
     control,
     watch,
-    getValues,
     formState: { isSubmitting }
   } = useForm<BookFormSchema>({
     resolver: zodResolver(bookFormSchema),
@@ -109,9 +108,15 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
     }
   };
 
-  const onInvalid = (errors: FieldErrors<BookFormSchema>) => {
-    console.log(errors);
-    console.log(getValues());
+  const onInvalid = () => {
+    toastQueue.add(
+      {
+        kind: 'error',
+        title: 'Cannot book appointment',
+        description: 'Cannot submit the form, please check for errors and try again'
+      },
+      { timeout: 5000 }
+    );
   };
 
   const handleIsDateUnavailable = (date: DateValue) => {
