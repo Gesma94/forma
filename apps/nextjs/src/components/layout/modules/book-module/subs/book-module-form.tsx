@@ -50,7 +50,7 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
       appointmentSlot: null,
       companyStudio: '',
       projectAbout: '',
-      reason: null,
+      reason: '',
       deadlineDate: null,
       projectPhase: null
     }

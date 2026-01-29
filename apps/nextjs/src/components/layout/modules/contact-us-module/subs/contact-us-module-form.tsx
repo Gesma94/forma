@@ -26,7 +26,7 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
       companyName: '',
       email: '',
       message: '',
-      reason: null
+      reason: ''
     }
   });
 
