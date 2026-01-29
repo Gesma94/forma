@@ -3,7 +3,8 @@ import { headers } from 'next/headers';
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
   const headersList = await headers();
-  const hostName = headersList.get('host');
+  const host = headersList.get('host');
+  const hostName = `https://${host?.replace(/\/$/, '')}`;
 
   return {
     rules: {
