@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <ToastRegion />
       <body className={bodyTv()}>
         <CookieManagerProvider>
-          {process.env.NEXT_PUBLIC_UNDER_MAINTENANCE === 'true' ? (
+          {process.env.UNDER_MAINTENANCE === 'true' ? (
             <MaintananceSplashScreen />
           ) : (
             <>
