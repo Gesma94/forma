@@ -29,7 +29,7 @@ export async function ContactUsModule({ module }: TProps) {
       <div className={floatingContainerTv()}>
         <ContentContainer>
           <div className={floatingInnerContainerTv()}>
-            <div className='hidden lg:block contain-size'>
+            <div className='hidden lg:block contain-size bg-primary/80'>
               <FormaMedia
                 formaMedia={module.cardBackgroundMedia}
                 className='object-cover size-full'
