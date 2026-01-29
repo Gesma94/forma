@@ -89,3 +89,7 @@
     display: none;
   }
 }
+
+.form-item {
+  display: none;
+}

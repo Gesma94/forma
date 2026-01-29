@@ -11,7 +11,8 @@ export const bookFormSchema = z.object({
   companyStudio: z.string().min(1, 'Company/Studio is required'),
   projectAbout: z.string().min(1, 'Project description is required'),
   deadlineDate: z.custom().nullable(),
-  projectPhase: z.string().nullable()
+  projectPhase: z.string().nullable(),
+  reason: z.string().optional()
 });
 
 export type BookFormSchema = z.infer<typeof bookFormSchema>;

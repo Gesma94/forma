@@ -26,7 +26,8 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
       fullName: '',
       companyName: '',
       email: '',
-      message: ''
+      message: '',
+      reason: null
     }
   });
 
@@ -72,6 +73,16 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
       </div>
       <FormTextField control={control} type='email' label='Email' name='email' isRequired={true} />
       <FormTextAreaField control={control} label='Message' name='message' rows={10} isRequired={true} />
+      <div className='form-item flex-col gap-2'>
+        <FormTextField
+          control={control}
+          type='text'
+          label='Reasons'
+          name='reason'
+          autoComplete='one-time-code'
+          excludeFromTabOrder
+        />
+      </div>
       <div>
         <Button
           type='submit'

@@ -50,6 +50,7 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
       appointmentSlot: null,
       companyStudio: '',
       projectAbout: '',
+      reason: null,
       deadlineDate: null,
       projectPhase: null
     }
@@ -178,6 +179,16 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
             </SelectOption>
           ))}
         </FormSelectField>
+      </div>
+      <div className='form-item flex-col gap-2'>
+        <FormTextField
+          control={control}
+          type='text'
+          label='Reasons'
+          name='reason'
+          autoComplete='one-time-code'
+          excludeFromTabOrder
+        />
       </div>
       <div>
         <Button
