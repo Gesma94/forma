@@ -3,8 +3,6 @@
 import { isNil } from 'es-toolkit';
 
 export async function postDiscord(message: string, data: Record<string, unknown>): Promise<void> {
-  console.log(process.env.DISCORD_WEBOOK);
-
   if (isNil(process.env.DISCORD_WEBOOK)) {
     return;
   }

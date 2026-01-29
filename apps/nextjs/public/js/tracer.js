@@ -689,7 +689,7 @@ Tracer.prototype = {
         // Log Interaction if Debugging
         if (tracer.debug) {
             // Log to Console
-            console.log(key + ":\n", message);
+            // console.log(key + ":\n", message);
         }
     },
 
@@ -979,7 +979,7 @@ bindEvent(window, "scroll", function (e) {
                 if (scrollPercentage > sessionStorage.getItem("max")) {
                     maxScrollPercentage = scrollPercentage;
                     sessionStorage.setItem("max", maxScrollPercentage);
-                    console.log("new max:", typeof (maxScrollPercentage))
+                    // console.log("new max:", typeof (maxScrollPercentage))
                     tracer.tracer.trace.session.page.scrollPercentage = maxScrollPercentage;
                 }
                 else {
