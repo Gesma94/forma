@@ -25,7 +25,7 @@ export async function TextWithImageModule({ module }: TProps) {
                 formaMedia={module.media}
                 className='size-full object-cover rounded-2xl shadow-2xl'
                 wrapper360Classname='size-full rounded-2xl overflow-hidden'
-                imageBuilderOptions={{ width: 1200 }}
+                imageBuilderOptions={{ width: 2000 }}
               />
             </div>
             <div className={textWrapper()}>

@@ -42,7 +42,7 @@ export const ProcessModule = async ({ module }: TProcessModuleProps) => {
               </div>
             </div>
             <div className={imageWrapperTv()}>
-              <FormaMedia formaMedia={image} className={coverImageTv()} imageBuilderOptions={{ width: 1200 }} />
+              <FormaMedia formaMedia={image} className={coverImageTv()} imageBuilderOptions={{ width: 2000 }} />
             </div>
           </div>
         </ModuleContentContainer>

@@ -25,7 +25,7 @@ export async function ListWithImageModule({ module }: TProps) {
                 formaMedia={module.formaMedia}
                 className='size-full xl:max-h-dvh object-cover rounded-2xl'
                 wrapper360Classname='size-full overflow-hidden rounded-2xl'
-                imageBuilderOptions={{ width: 1200 }}
+                imageBuilderOptions={{ width: 2000 }}
               />
             </div>
             <div className={textWrapper()}>

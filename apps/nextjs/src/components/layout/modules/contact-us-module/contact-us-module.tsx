@@ -33,7 +33,7 @@ export async function ContactUsModule({ module }: TProps) {
               <FormaMedia
                 formaMedia={module.cardBackgroundMedia}
                 className='object-cover size-full'
-                imageBuilderOptions={{ width: 1200 }}
+                imageBuilderOptions={{ width: 1800 }}
               />
             </div>
             <div className={formContainerTv()}>

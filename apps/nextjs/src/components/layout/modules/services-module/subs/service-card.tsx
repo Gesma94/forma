@@ -8,7 +8,7 @@ type TProps = {
 
 export async function ServiceCard({ service }: TProps) {
   const formaMediaData = await getFormaMediaData(service.formaMedia, {
-    imageBuilderOptions: { width: 800 }
+    imageBuilderOptions: { width: 1000 }
   });
   return <ServiceCardClient formaMediaData={formaMediaData} service={service} />;
 }
