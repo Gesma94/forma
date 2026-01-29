@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type ContactUsFormSchema, contactUsFormSchema } from 'data/contact-us-form-schema';
 import { Form } from 'react-aria-components';
-import { type FieldErrors, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { sendEmail } from 'services/resend';
 import { toastQueue } from '@/layout/toast-notification/subs/toast-queue';
 import { Button } from '@/ui/buttons/button/button';
@@ -18,7 +18,6 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
   const {
     handleSubmit,
     control,
-    getValues,
     formState: { isSubmitting }
   } = useForm<ContactUsFormSchema>({
     resolver: zodResolver(contactUsFormSchema),
@@ -32,7 +31,7 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
   });
 
   const onValid = async (data: ContactUsFormSchema) => {
-    const result = sendEmail({
+    const result = await sendEmail({
       email: data.email,
       fullName: data.fullName,
       message: data.message,
@@ -60,9 +59,15 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
     }
   };
 
-  const onInvalid = (errors: FieldErrors<ContactUsFormSchema>) => {
-    console.log(errors);
-    console.log(getValues());
+  const onInvalid = () => {
+      toastQueue.add(
+        {
+          kind: 'error',
+          title: 'Email sending failed',
+          description: 'Cannot send email, please check for validation errors and try again'
+        },
+        { timeout: 5000 }
+      );
   };
 
   return (
