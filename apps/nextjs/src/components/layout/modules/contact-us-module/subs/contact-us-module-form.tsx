@@ -61,14 +61,14 @@ export const ContactUsModuleForm = ({ ctaLabel }: TProps) => {
   };
 
   const onInvalid = () => {
-      toastQueue.add(
-        {
-          kind: 'error',
-          title: 'Email sending failed',
-          description: 'Cannot send email, please check for validation errors and try again'
-        },
-        { timeout: 5000 }
-      );
+    toastQueue.add(
+      {
+        kind: 'error',
+        title: 'Email sending failed',
+        description: 'Cannot send email, please check for validation errors and try again'
+      },
+      { timeout: 5000 }
+    );
   };
 
   return (

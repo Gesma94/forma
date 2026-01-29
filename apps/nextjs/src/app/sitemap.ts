@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = await headers();
   const host = headersList.get('host');
   const hostName = `https://${host?.replace(/\/$/, '')}`;
-  
+
   return [
     {
       url: `${hostName}`,
