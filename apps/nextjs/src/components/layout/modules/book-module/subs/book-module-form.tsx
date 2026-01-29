@@ -114,7 +114,7 @@ export const BookModuleForm = ({ availableSlots, availablePhases }: TProps) => {
       {
         kind: 'error',
         title: 'Cannot book appointment',
-        description: 'Cannot submit the form, please check for errors and try again'
+        description: 'Cannot submit the form, please check for validation errors and try again'
       },
       { timeout: 5000 }
     );
