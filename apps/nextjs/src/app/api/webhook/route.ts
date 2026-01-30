@@ -3,7 +3,7 @@ import { isNil } from 'es-toolkit';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 export async function POST(request: Request) {
-  const secret = process.env.SANITY_WEBOOK_SECRET;
+  const secret = process.env.SANITY_WEBHOOK_SECRET;
   const signature = request.headers.get(SIGNATURE_HEADER_NAME);
 
   if (isNil(secret)) {
