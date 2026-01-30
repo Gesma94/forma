@@ -3,13 +3,13 @@
 import { isNil } from 'es-toolkit';
 
 export async function postDiscord(message: string, data: Record<string, unknown>): Promise<void> {
-  if (isNil(process.env.DISCORD_WEBOOK)) {
+  if (isNil(process.env.DISCORD_WEBHOOK)) {
     return;
   }
 
   const computedContent = [`**${message}**`, '', ...formatData(data)].join('\n');
 
-  await fetch(process.env.DISCORD_WEBOOK, {
+  await fetch(process.env.DISCORD_WEBHOOK, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ content: computedContent })
