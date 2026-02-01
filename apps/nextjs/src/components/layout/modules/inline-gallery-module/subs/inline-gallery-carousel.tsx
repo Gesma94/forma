@@ -20,7 +20,7 @@ export function InlineGalleryCarousel({ images }: TProps) {
           draggable='false'
           slidesPerView='auto'
           centeredSlides={true}
-          className='h-[720px]'
+          className='h-[400px] sm:h-[720px] max-h-[50vh] sm:max-h-[75vh]'
           initialSlide={Math.floor(images.length / 2)}
         >
           {images.map(image => {
@@ -28,7 +28,7 @@ export function InlineGalleryCarousel({ images }: TProps) {
               <SwiperSlide
                 key={image.id}
                 draggable='false'
-                className='h-full px-4'
+                className='h-full px-4 max-w-[calc(100%_-_4rem)]'
                 style={{ width: 'fit-content', userSelect: 'none' }}
               >
                 <FormaMediaClientSide
