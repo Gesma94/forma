@@ -5,10 +5,16 @@ import { tv } from 'tailwind-variants';
 type TProps = {
   paddingTop: TPaddingSize;
   paddingBottom: TPaddingSize;
+  hideOnMobile?: boolean;
 };
 
-export function VerticalPaddingContainer({ paddingBottom, paddingTop, children }: PropsWithChildren<TProps>) {
-  return <div className={stylesTv({ paddingBottom, paddingTop })}>{children}</div>;
+export function VerticalPaddingContainer({
+  paddingBottom,
+  paddingTop,
+  hideOnMobile,
+  children
+}: PropsWithChildren<TProps>) {
+  return <div className={stylesTv({ paddingBottom, paddingTop, isHiddenOnMobile: hideOnMobile })}>{children}</div>;
 }
 
 const stylesTv = tv({
@@ -25,6 +31,9 @@ const stylesTv = tv({
       [PADDING_SIZE.SM]: 'pb-5 lg:pb-10',
       [PADDING_SIZE.MD]: 'pb-10 lg:pb-20',
       [PADDING_SIZE.LG]: 'pb-20 lg:pb-40'
+    },
+    isHiddenOnMobile: {
+      true: 'hidden sm:block'
     }
   }
 });

@@ -44,6 +44,13 @@ export function defineSpacingField({ fieldset }: TProps = {}) {
             { title: 'Large', value: PADDING_SIZE.LG }
           ]
         }
+      },
+      {
+        type: 'boolean',
+        name: 'hideOnMobile',
+        title: 'Hide on Mobile',
+        initialValue: false,
+        description: 'If enabled, this module will be hidden on mobile devices (<=640px).'
       }
     ]
   });
