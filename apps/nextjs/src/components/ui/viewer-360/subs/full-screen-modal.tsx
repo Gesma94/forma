@@ -62,10 +62,10 @@ const styleTv = tv({
   slots: {
     modalTv: 'fixed z-50 inset-0 bg-bg-dark w-full',
     dialogTv: 'size-full',
-    dialogContentContainerTv: 'size-full grid grid-rows-[8rem_1fr_auto] sm:grid-rows-[8rem_1fr_8rem]',
-    topSectionContainerTv: 'row-start-1 flex justify-end items-center pr-10',
-    bottomSectionContainerTv: 'row-start-3 flex items-center justify-center',
-    imageWrapperTv: 'row-start-2 min-h-0 overflow-hidden',
-    titleTv: 'text-primary-text text-center text-2xl col-start-2'
+    dialogContentContainerTv: 'size-full relative',
+    topSectionContainerTv: 'absolute w-full top-0 h-16 flex justify-end items-center pr-10 z-10',
+    bottomSectionContainerTv: 'absolute w-full bottom-0 h-16 flex items-center justify-center z-10',
+    imageWrapperTv: 'relative size-full overflow-hidden',
+    titleTv: 'text-primary-text text-center text-2xl col-start-2 text-shadow-xl'
   }
 });

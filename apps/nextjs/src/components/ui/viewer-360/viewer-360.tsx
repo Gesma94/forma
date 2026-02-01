@@ -82,7 +82,7 @@ export function Viewer360({
               aria-label='Open in full screen'
               onClick={() => setIsOpen(true)}
             />
-          </div>{' '}
+          </div>
           <FullScreenModal imageLabel={imageLabel} isOpen={isOpen} projection={projection} onOpenChange={setIsOpen} />
         </>
       )}
