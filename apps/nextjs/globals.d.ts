@@ -6,5 +6,10 @@ declare global {
     tracerSingleton?: {
       enabled: boolean;
     };
+    Tracer: new (config: {
+      websiteId?: string;
+      async?: boolean;
+      debug?: boolean;
+    }) => void;
   }
 }

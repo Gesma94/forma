@@ -1,12 +1,12 @@
 import { Footer } from '@/layout/footer/footer';
 import { Roobert } from '../utils/fonts/roobert';
 import './globals.css';
+import { VisitorTrackingNoCookie } from 'components/cookie-manager/visitor-tracking-no-cookie';
 import type { ReactNode } from 'react';
 import { tv } from 'tailwind-variants';
 import { MaintananceSplashScreen } from '@/layout/maintanance-splash-screen/maintanance-splash-screen';
 import { ScrollAtTop } from '@/layout/scroll-at-top/scroll-at-top';
 import { ToastRegion } from '@/layout/toast-notification/toast-region';
-import { VisitorTrackingNoCookie } from 'components/cookie-manager/visitor-tracking-no-cookie';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const { bodyTv, mainDivTv } = stylesTv();
@@ -21,15 +21,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <ToastRegion />
       <body className={bodyTv()}>
         {/* <CookieManagerProvider> */}
-          {process.env.UNDER_MAINTENANCE === 'true' ? (
-            <MaintananceSplashScreen />
-          ) : (
-            <>
-              <main className={mainDivTv()}>{children}</main>
-              <Footer />
-              <ScrollAtTop />
-            </>
-          )}
+        {process.env.UNDER_MAINTENANCE === 'true' ? (
+          <MaintananceSplashScreen />
+        ) : (
+          <>
+            <main className={mainDivTv()}>{children}</main>
+            <Footer />
+            <ScrollAtTop />
+          </>
+        )}
         {/* </CookieManagerProvider> */}
       </body>
     </html>

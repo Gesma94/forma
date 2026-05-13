@@ -9,6 +9,7 @@ import { howItWorksObjectType } from './how-it-works-step';
 import { imagePairObjectType } from './image-pair';
 import { linkObjectType } from './link';
 import { listTextItemObjectType } from './list-text-item';
+import { openGraphObjectType } from './open-graph';
 import { pageMetadataObjectType } from './page-metadata';
 import { scrollGalleryImageObjectType } from './scoll-gallery-image';
 import { serviceObjectType } from './service';
@@ -29,5 +30,6 @@ export const objectSchemaTypes = [
   formaImageInstanceObjectType,
   formaMediaInstanceObjectType,
   forma360InstanceObjectType,
-  pageMetadataObjectType
+  pageMetadataObjectType,
+  openGraphObjectType
 ];

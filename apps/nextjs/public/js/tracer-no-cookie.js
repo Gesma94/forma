@@ -996,11 +996,3 @@ bindEvent(window, "scroll", function (e) {
     animateScroll();
 });
 
-console.log(window.NEXT_PUBLIC_VISITOR_TRACKING_WEBSITE_ID);
-
-window.tracerSingleton = new window.Tracer({
-    websiteId: window.NEXT_PUBLIC_VISITOR_TRACKING_WEBSITE_ID,
-    async: true,
-    debug: false
-});
-
